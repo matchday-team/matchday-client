@@ -1,15 +1,14 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 
-import { exampleQuery } from '@/apis';
-import { exampleQueryById } from '@/apis/exampleById';
+import { exampleQueryById } from '@/apis';
 import { Button, CommonLoader } from '@/components';
 import { queryClient } from '@/react-query-provider';
 import { lightThemeClass } from '@/styles/theme.css';
 
 export const Route = createFileRoute('/')({
   component: HomePage,
-  loader: () => queryClient.ensureQueryData(exampleQuery),
+  loader: () => queryClient.ensureQueryData(exampleQueryById(1)),
   pendingComponent: CommonLoader,
 });
 
