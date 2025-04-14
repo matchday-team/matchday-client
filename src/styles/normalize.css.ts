@@ -42,8 +42,8 @@ globalStyle('main', {
  */
 
 globalStyle('h1', {
-  fontSize: '2em',
   margin: '0.67em 0',
+  fontSize: '2em',
 });
 
 /* Grouping content
@@ -123,10 +123,10 @@ globalStyle('small', {
  */
 
 globalStyle('sub, sup', {
-  fontSize: '75%',
-  lineHeight: 0,
   position: 'relative',
   verticalAlign: 'baseline',
+  lineHeight: 0,
+  fontSize: '75%',
 });
 
 globalStyle('sub', {
@@ -157,10 +157,10 @@ globalStyle('img', {
  */
 
 globalStyle('button, input, optgroup, select, textarea', {
+  margin: 0,
+  lineHeight: 1.15,
   fontFamily: 'inherit',
   fontSize: '100%',
-  lineHeight: 1.15,
-  margin: 0,
 });
 
 /**
@@ -229,11 +229,11 @@ globalStyle('fieldset', {
 
 globalStyle('legend', {
   boxSizing: 'border-box',
-  color: 'inherit',
   display: 'table',
-  maxWidth: '100%',
   padding: 0,
+  maxWidth: '100%',
   whiteSpace: 'normal',
+  color: 'inherit',
 });
 
 /**
@@ -279,8 +279,8 @@ globalStyle(
  */
 
 globalStyle('[type="search"]', {
-  WebkitAppearance: 'textfield',
   outlineOffset: '-2px',
+  WebkitAppearance: 'textfield',
 });
 
 /**
@@ -297,8 +297,8 @@ globalStyle('[type="search"]::-webkit-search-decoration', {
  */
 
 globalStyle('::-webkit-file-upload-button', {
-  WebkitAppearance: 'button',
   font: 'inherit',
+  WebkitAppearance: 'button',
 });
 
 /* Interactive
