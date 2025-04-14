@@ -3,6 +3,7 @@ import { StrictMode } from 'react';
 import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { createRoot } from 'react-dom/client';
 
+import { ReactQueryClientProvider } from './react-query-provider';
 import { routeTree } from './routeTree.gen';
 import './styles/normalize.css';
 
@@ -16,6 +17,8 @@ declare module '@tanstack/react-router' {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ReactQueryClientProvider>
+      <RouterProvider router={router} />
+    </ReactQueryClientProvider>
   </StrictMode>,
 );

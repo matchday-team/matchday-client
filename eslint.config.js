@@ -1,5 +1,6 @@
 import vanillaExtract from '@antebudimir/eslint-plugin-vanilla-extract';
 import js from '@eslint/js';
+import pluginQuery from '@tanstack/eslint-plugin-query';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
@@ -13,6 +14,7 @@ export default tseslint.config({
     js.configs.recommended,
     ...tseslint.configs.recommended,
     prettierRecommended,
+    ...pluginQuery.configs['flat/recommended'],
   ],
   files: ['**/*.{js,jsx,ts,tsx}'],
   ignores: ['dist', 'routeTree.gen.ts'],

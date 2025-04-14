@@ -1,0 +1,5 @@
+export const QUERY_OPTIONS = {
+  STALE_TIME: 5_000,
+  GC_TIME: 5_000,
+  RETRY_COUNT: 3,
+};
