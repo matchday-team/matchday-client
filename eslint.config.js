@@ -50,5 +50,16 @@ export default tseslint.config({
       'warn',
       { allowConstantExport: true },
     ],
+    'no-restricted-imports': [
+      'error',
+      {
+        patterns: [
+          {
+            group: ['../*'],
+            message: '상위 디렉토리에 대한 상대 경로 대신 절대 경로 사용',
+          },
+        ],
+      },
+    ],
   },
 });
