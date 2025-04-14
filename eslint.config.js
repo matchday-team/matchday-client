@@ -1,3 +1,4 @@
+import vanillaExtract from '@antebudimir/eslint-plugin-vanilla-extract';
 import js from '@eslint/js';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import react from 'eslint-plugin-react';
@@ -24,8 +25,11 @@ export default tseslint.config({
     'react-refresh': reactRefresh,
     react,
     'unused-imports': unusedImports,
+    'vanilla-extract': vanillaExtract,
   },
   rules: {
+    ...vanillaExtract.configs.recommended.rules,
+    'vanilla-extract/concentric-order': 'error',
     'no-unused-vars': 'error',
     eqeqeq: 'error',
     'prefer-const': 'error',

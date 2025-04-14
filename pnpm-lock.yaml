@@ -30,6 +30,9 @@ importers:
         specifier: ^19.0.0
         version: 19.1.0(react@19.1.0)
     devDependencies:
+      '@antebudimir/eslint-plugin-vanilla-extract':
+        specifier: ^1.8.0
+        version: 1.8.0(eslint@9.24.0(jiti@2.4.2))
       '@commitlint/cli':
         specifier: ^19.8.0
         version: 19.8.0(@types/node@22.14.1)(typescript@5.7.3)
@@ -105,6 +108,12 @@ packages:
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
+
+  '@antebudimir/eslint-plugin-vanilla-extract@1.8.0':
+    resolution: {integrity: sha512-6ZV0oFz3mNUFMKcRq3Lc+O2pkXgTlnTy8J/RxSyKPB+riHvpFJRMANd3JhEMfHL9KnFSB0TNN395zpbm6dk3cg==}
+    engines: {node: '>=18.18.0'}
+    peerDependencies:
+      eslint: '>=9.0.0'
 
   '@babel/code-frame@7.26.2':
     resolution: {integrity: sha512-RJlIHRueQgwWitWgF8OdFYGZX328Ax5BCemNGlqHfplnRT9ESi8JkFlvaVYbS+UubVY6dpv87Fs2u5M29iNFVQ==}
@@ -2369,6 +2378,10 @@ snapshots:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.8
       '@jridgewell/trace-mapping': 0.3.25
+
+  '@antebudimir/eslint-plugin-vanilla-extract@1.8.0(eslint@9.24.0(jiti@2.4.2))':
+    dependencies:
+      eslint: 9.24.0(jiti@2.4.2)
 
   '@babel/code-frame@7.26.2':
     dependencies:
