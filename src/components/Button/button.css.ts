@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { lightThemeVars } from './theme.css';
+import { lightThemeVars } from '@/styles/theme.css';
 
 export const button = style({
   border: 'none',

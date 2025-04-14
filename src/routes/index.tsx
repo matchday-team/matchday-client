@@ -1,17 +1,15 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 
-import { exampleQuery } from '../apis';
-import { exampleQueryById } from '../apis/exampleById';
-import { CommonLoader } from '../components';
-import { queryClient } from '../react-query-provider';
-import { button } from '../styles/button.css';
-import { lightThemeClass } from '../styles/theme.css';
+import { exampleQuery } from '@/apis';
+import { exampleQueryById } from '@/apis/exampleById';
+import { Button, CommonLoader } from '@/components';
+import { queryClient } from '@/react-query-provider';
+import { lightThemeClass } from '@/styles/theme.css';
 
 export const Route = createFileRoute('/')({
   component: HomePage,
   loader: () => queryClient.ensureQueryData(exampleQuery),
-  // TODO: implement common loading ui
   pendingComponent: CommonLoader,
 });
 
@@ -21,7 +19,7 @@ function HomePage() {
   return (
     <div className={lightThemeClass}>
       <h3>Home</h3>
-      <button className={button}>Click me</button>
+      <Button>Click me</Button>
       <p>{data.message}</p>
     </div>
   );
