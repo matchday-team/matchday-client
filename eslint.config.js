@@ -1,6 +1,6 @@
 import vanillaExtract from '@antebudimir/eslint-plugin-vanilla-extract';
 import js from '@eslint/js';
-import pluginQuery from '@tanstack/eslint-plugin-query';
+import tanStackQuery from '@tanstack/eslint-plugin-query';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
@@ -14,7 +14,18 @@ export default tseslint.config({
     js.configs.recommended,
     ...tseslint.configs.recommended,
     prettierRecommended,
-    ...pluginQuery.configs['flat/recommended'],
+    react.configs.flat.recommended,
+    react.configs.flat['jsx-runtime'], // @see https://github.com/jsx-eslint/eslint-plugin-react
+    reactHooks.configs['recommended-latest'], // @see https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks
+    reactRefresh.configs.vite, // @see https://github.com/ArnaudBarre/eslint-plugin-react-refresh?tab=readme-ov-file#recommended-config
+    ...tanStackQuery.configs['flat/recommended'], // @see https://tanstack.com/query/v5/docs/eslint/eslint-plugin-query#recommended-setup
+    {
+      name: vanillaExtract.meta.name,
+      plugins: {
+        'vanilla-extract': vanillaExtract,
+      },
+      rules: vanillaExtract.configs.recommended.rules,
+    },
   ],
   files: ['**/*.{js,jsx,ts,tsx}'],
   ignores: ['dist', 'routeTree.gen.ts'],
@@ -23,32 +34,27 @@ export default tseslint.config({
     globals: globals.browser,
   },
   plugins: {
-    'react-hooks': reactHooks,
-    'react-refresh': reactRefresh,
-    react,
     'unused-imports': unusedImports,
-    'vanilla-extract': vanillaExtract,
   },
   rules: {
-    ...vanillaExtract.configs.recommended.rules,
-    'vanilla-extract/concentric-order': 'error',
-    'no-unused-vars': 'error',
-    eqeqeq: 'error',
-    'prefer-const': 'error',
-    'no-var': 'error',
-    'object-shorthand': 'error',
-    'prefer-template': 'error', // 문자열 연결 대신 템플릿 리터럴 사용
-    'prefer-arrow-callback': 'error', // 일반 함수 대신 화살표 함수 사용
-    'no-plusplus': 'error', // ++ 연산자 사용 금지
-    'no-unneeded-ternary': 'error', // 불필요한 삼항 연산자 사용 금지
+    '@typescript-eslint/no-unused-vars': 'off',
     'unused-imports/no-unused-imports': 'error',
-    'padding-line-between-statements': [
-      'error',
-      { blankLine: 'always', prev: 'const', next: 'return' },
+    'unused-imports/no-unused-vars': [
+      'warn',
+      {
+        vars: 'all',
+        varsIgnorePattern: '^_',
+        args: 'after-used',
+        argsIgnorePattern: '^_',
+      },
     ],
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
+    ],
+    'padding-line-between-statements': [
+      'error',
+      { blankLine: 'always', prev: 'const', next: 'return' },
     ],
     'no-restricted-imports': [
       'error',
@@ -61,5 +67,13 @@ export default tseslint.config({
         ],
       },
     ],
+    eqeqeq: 'error',
+    'prefer-const': 'error',
+    'no-var': 'error',
+    'object-shorthand': 'error',
+    'prefer-template': 'error', // 문자열 연결 대신 템플릿 리터럴 사용
+    'prefer-arrow-callback': 'error', // 일반 함수 대신 화살표 함수 사용
+    'no-plusplus': 'error', // ++ 연산자 사용 금지
+    'no-unneeded-ternary': 'error', // 불필요한 삼항 연산자 사용 금지
   },
 });
