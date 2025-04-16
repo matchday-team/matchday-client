@@ -11,10 +11,17 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as DragDemoImport } from './routes/drag-demo'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const DragDemoRoute = DragDemoImport.update({
+  id: '/drag-demo',
+  path: '/drag-demo',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AboutRoute = AboutImport.update({
   id: '/about',
@@ -46,6 +53,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
+    '/drag-demo': {
+      id: '/drag-demo'
+      path: '/drag-demo'
+      fullPath: '/drag-demo'
+      preLoaderRoute: typeof DragDemoImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -54,36 +68,41 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/drag-demo': typeof DragDemoRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/drag-demo': typeof DragDemoRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/drag-demo': typeof DragDemoRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths: '/' | '/about' | '/drag-demo'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to: '/' | '/about' | '/drag-demo'
+  id: '__root__' | '/' | '/about' | '/drag-demo'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  DragDemoRoute: typeof DragDemoRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  DragDemoRoute: DragDemoRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,7 +116,8 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/about"
+        "/about",
+        "/drag-demo"
       ]
     },
     "/": {
@@ -105,6 +125,9 @@ export const routeTree = rootRoute
     },
     "/about": {
       "filePath": "about.tsx"
+    },
+    "/drag-demo": {
+      "filePath": "drag-demo.tsx"
     }
   }
 }

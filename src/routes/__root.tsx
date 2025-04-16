@@ -10,7 +10,8 @@ function Root() {
     <>
       <div>
         <h1>Matchday</h1>
-        <Link to='/'>Home</Link> <Link to='/about'>About</Link>
+        <Link to='/'>Home</Link> <Link to='/about'>About</Link>{' '}
+        <Link to='/drag-demo'>Drag Demo</Link>
       </div>
       <hr />
       <Outlet />
