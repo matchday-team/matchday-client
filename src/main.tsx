@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 
 import { RouterProvider, createRouter } from '@tanstack/react-router';
+import { SnackbarProvider } from 'notistack';
 import { createRoot } from 'react-dom/client';
 
 import { ReactQueryClientProvider } from './react-query-provider';
@@ -20,8 +21,16 @@ declare module '@tanstack/react-router' {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ReactQueryClientProvider>
-      <RouterProvider router={router} />
-    </ReactQueryClientProvider>
+    <SnackbarProvider
+      maxSnack={3}
+      anchorOrigin={{
+        horizontal: 'center',
+        vertical: 'bottom',
+      }}
+    >
+      <ReactQueryClientProvider>
+        <RouterProvider router={router} />
+      </ReactQueryClientProvider>
+    </SnackbarProvider>
   </StrictMode>,
 );
