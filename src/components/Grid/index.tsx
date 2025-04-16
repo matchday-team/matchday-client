@@ -258,6 +258,7 @@ export const Grid = () => {
                       src={(cell as PlayerType).imageUrl}
                       alt={(cell as PlayerType).name}
                       className={playerImage}
+                      draggable='false'
                       onError={e => {
                         const target = e.target as HTMLImageElement;
                         target.src = '/images/player-default.png';

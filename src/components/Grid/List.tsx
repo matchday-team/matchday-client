@@ -44,6 +44,7 @@ export const List = ({ items, onDragStart }: ListProps) => {
             src={item.imageUrl}
             alt={item.name}
             className={playerImage}
+            draggable='false'
             onError={e => {
               const target = e.target as HTMLImageElement;
               target.src = '/images/player-default.png';
