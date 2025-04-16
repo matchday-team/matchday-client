@@ -25,7 +25,7 @@ export const gridContainer = style({
   gridTemplateRows: 'repeat(6, 60px)',
   gridTemplateColumns: 'repeat(5, 60px)',
   gap: '0',
-  backgroundColor: '#34a853',
+  background: 'url(/images/field.png) no-repeat center / cover',
   height: '360px', // 하드코딩 없이도 가능한 방법 child 크기로만?
 });
 
@@ -57,7 +57,7 @@ export const gridCell = style([
     width: '60px',
     height: '60px',
     ':hover': {
-      backgroundColor: '#226e36',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
   },
 ]);
@@ -76,7 +76,7 @@ export const filledCell = style([
     width: '60px',
     height: '60px',
     ':hover': {
-      backgroundColor: '#226e36',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
   },
 ]);
@@ -108,5 +108,6 @@ export const playerInfo = style({
   flexDirection: 'column',
   alignItems: 'center',
   gap: '4px',
+  color: 'white',
   fontSize: '12px',
 });
