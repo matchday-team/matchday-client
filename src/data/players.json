@@ -1,0 +1,116 @@
+{
+  "players": [
+    {
+      "id": "1",
+      "name": "손흥민",
+      "number": 7,
+      "position": "FW",
+      "imageUrl": "/images/players/son.png"
+    },
+    {
+      "id": "2",
+      "name": "김민재",
+      "number": 4,
+      "position": "DF",
+      "imageUrl": "/images/players/kim.png"
+    },
+    {
+      "id": "3",
+      "name": "이강인",
+      "number": 10,
+      "position": "MF",
+      "imageUrl": "/images/players/lee.png"
+    },
+    {
+      "id": "4",
+      "name": "조현우",
+      "number": 1,
+      "position": "GK",
+      "imageUrl": "/images/players/cho.png"
+    },
+    {
+      "id": "5",
+      "name": "황희찬",
+      "number": 11,
+      "position": "FW",
+      "imageUrl": "/images/players/hwang.png"
+    },
+    {
+      "id": "6",
+      "name": "황인범",
+      "number": 6,
+      "position": "MF",
+      "imageUrl": "/images/players/hwangin.png"
+    },
+    {
+      "id": "7",
+      "name": "김영권",
+      "number": 19,
+      "position": "DF",
+      "imageUrl": "/images/players/kimyoung.png"
+    },
+    {
+      "id": "8",
+      "name": "이재성",
+      "number": 5,
+      "position": "MF",
+      "imageUrl": "/images/players/leejs.png"
+    },
+    {
+      "id": "9",
+      "name": "김승규",
+      "number": 12,
+      "position": "GK",
+      "imageUrl": "/images/players/kimseung.png"
+    },
+    {
+      "id": "10",
+      "name": "조규성",
+      "number": 9,
+      "position": "FW",
+      "imageUrl": "/images/players/chogyu.png"
+    },
+    {
+      "id": "11",
+      "name": "정우영",
+      "number": 8,
+      "position": "MF",
+      "imageUrl": "/images/players/jungwy.png"
+    },
+    {
+      "id": "12",
+      "name": "김진수",
+      "number": 2,
+      "position": "DF",
+      "imageUrl": "/images/players/kimjs.png"
+    },
+    {
+      "id": "13",
+      "name": "김민성",
+      "number": 3,
+      "position": "DF",
+      "imageUrl": "/images/players/kimms.png"
+    },
+    {
+      "id": "14",
+      "name": "이정빈",
+      "number": 13,
+      "position": "MF",
+      "imageUrl": "/images/players/leejb.png"
+    },
+    {
+      "id": "15",
+      "name": "송민규",
+      "number": 14,
+      "position": "FW",
+      "imageUrl": "/images/players/songmk.png"
+    },
+    {
+      "id": "16",
+      "name": "김주성",
+      "number": 15,
+      "position": "DF",
+      "imageUrl": "/images/players/kimjs2.png"
+    }
+  ]
+}
