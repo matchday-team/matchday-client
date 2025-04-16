@@ -27,8 +27,32 @@ type ListProps = {
 export const List = ({ items, onDragStart, onDrop, onDragOver }: ListProps) => {
   const handleDragStart = useCallback(
     (e: React.DragEvent, item: PlayerType) => {
-      e.dataTransfer.setData('text/plain', JSON.stringify(item));
+      // 이벤트 버블링 방지
+      e.stopPropagation();
+
+      // 드래그 시작 시 다른 요소들이 선택되는 것을 방지
+      const target = e.target as HTMLElement;
+      if (!target.closest(`.${listItem}`)) {
+        e.preventDefault();
+        return;
+      }
+
+      e.dataTransfer.setData(
+        'text/plain',
+        JSON.stringify({
+          player: {
+            id: item.id,
+            name: item.name,
+            number: item.number,
+            position: item.position,
+            imageUrl: item.imageUrl,
+          },
+        }),
+      );
       onDragStart(e, item);
+
+      // 드래그 효과를 move로 제한
+      e.dataTransfer.effectAllowed = 'move';
     },
     [onDragStart],
   );
@@ -60,13 +84,17 @@ export const List = ({ items, onDragStart, onDrop, onDragOver }: ListProps) => {
             draggable
             onDragStart={e => handleDragStart(e, item)}
             onDrop={e => handleDrop(e, item)}
-            onDragOver={onDragOver}
+            onDragOver={e => {
+              e.preventDefault();
+              e.stopPropagation();
+              onDragOver(e);
+            }}
           >
             <img
               src={item.imageUrl}
               alt={item.name}
               className={playerImage}
-              draggable='false'
+              draggable={false}
               onError={e => {
                 const target = e.target as HTMLImageElement;
                 target.src = '/images/player-default.png';
