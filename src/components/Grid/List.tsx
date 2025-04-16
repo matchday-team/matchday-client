@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 
 import {
   listContainer,
+  listContent,
   listItem,
   listTitle,
   playerImage,
@@ -41,6 +42,9 @@ export const List = ({ items, onDragStart, onDrop, onDragOver }: ListProps) => {
     [onDrop],
   );
 
+  // 등번호 기준으로 정렬된 선수 목록
+  const sortedItems = [...items].sort((a, b) => a.number - b.number);
+
   return (
     <div
       className={listContainer}
@@ -48,33 +52,35 @@ export const List = ({ items, onDragStart, onDrop, onDragOver }: ListProps) => {
       onDragOver={onDragOver}
     >
       <div className={listTitle}>선수 명단 ({items.length})</div>
-      {items.map(item => (
-        <div
-          key={item.id}
-          className={listItem}
-          draggable
-          onDragStart={e => handleDragStart(e, item)}
-          onDrop={e => handleDrop(e, item)}
-          onDragOver={onDragOver}
-        >
-          <img
-            src={item.imageUrl}
-            alt={item.name}
-            className={playerImage}
-            draggable='false'
-            onError={e => {
-              const target = e.target as HTMLImageElement;
-              target.src = '/images/player-default.png';
-            }}
-          />
-          <div className={playerInfo}>
-            <div>{item.name}</div>
-            <div>
-              #{item.number} {item.position}
+      <div className={listContent}>
+        {sortedItems.map(item => (
+          <div
+            key={item.id}
+            className={listItem}
+            draggable
+            onDragStart={e => handleDragStart(e, item)}
+            onDrop={e => handleDrop(e, item)}
+            onDragOver={onDragOver}
+          >
+            <img
+              src={item.imageUrl}
+              alt={item.name}
+              className={playerImage}
+              draggable='false'
+              onError={e => {
+                const target = e.target as HTMLImageElement;
+                target.src = '/images/player-default.png';
+              }}
+            />
+            <div className={playerInfo}>
+              <div>{item.name}</div>
+              <div>
+                #{item.number} {item.position}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

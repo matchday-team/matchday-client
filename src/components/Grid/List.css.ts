@@ -3,33 +3,41 @@ import { style } from '@vanilla-extract/css';
 export const listContainer = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '8px',
+  border: '1px solid #ccc',
   borderRadius: '8px',
-  backgroundColor: '#f5f5f5',
-  padding: '16px',
-  minWidth: '200px',
-  maxHeight: '400px',
-  overflowY: 'auto',
+  width: '300px',
+  height: '600px',
+  overflow: 'hidden',
 });
 
 export const listTitle = style({
-  marginBottom: '8px',
-  textAlign: 'center',
-  fontSize: '16px',
+  position: 'sticky',
+  zIndex: 1,
+  top: 0,
+  borderBottom: '1px solid #eee',
+  backgroundColor: 'white',
+  padding: '16px',
   fontWeight: 'bold',
+});
+
+export const listContent = style({
+  flex: 1,
+  padding: '8px',
+  overflowY: 'auto',
 });
 
 export const listItem = style({
   display: 'flex',
   alignItems: 'center',
   gap: '12px',
-  transition: 'transform 0.2s ease-in-out',
-  borderRadius: '4px',
+  marginBottom: '8px',
+  border: '1px solid #eee',
+  borderRadius: '8px',
   backgroundColor: 'white',
   cursor: 'move',
   padding: '8px',
   ':hover': {
-    transform: 'scale(1.02)',
+    backgroundColor: '#f5f5f5',
   },
 });
 
@@ -42,8 +50,7 @@ export const playerImage = style({
 
 export const playerInfo = style({
   display: 'flex',
+  flex: 1,
   flexDirection: 'column',
   gap: '4px',
-  fontSize: '14px',
-  fontWeight: 'bold',
 });
