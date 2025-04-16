@@ -19,9 +19,11 @@ type PlayerType = {
 type ListProps = {
   items: PlayerType[];
   onDragStart: (e: React.DragEvent, item: PlayerType) => void;
+  onDrop: (e: React.DragEvent, targetPlayer?: PlayerType) => void;
+  onDragOver: (e: React.DragEvent) => void;
 };
 
-export const List = ({ items, onDragStart }: ListProps) => {
+export const List = ({ items, onDragStart, onDrop, onDragOver }: ListProps) => {
   const handleDragStart = useCallback(
     (e: React.DragEvent, item: PlayerType) => {
       e.dataTransfer.setData('text/plain', JSON.stringify(item));
@@ -30,8 +32,21 @@ export const List = ({ items, onDragStart }: ListProps) => {
     [onDragStart],
   );
 
+  const handleDrop = useCallback(
+    (e: React.DragEvent, targetPlayer?: PlayerType) => {
+      e.preventDefault();
+      e.stopPropagation();
+      onDrop(e, targetPlayer);
+    },
+    [onDrop],
+  );
+
   return (
-    <div className={listContainer}>
+    <div
+      className={listContainer}
+      onDrop={e => handleDrop(e)}
+      onDragOver={onDragOver}
+    >
       <div className={listTitle}>선수 명단 ({items.length})</div>
       {items.map(item => (
         <div
@@ -39,6 +54,8 @@ export const List = ({ items, onDragStart }: ListProps) => {
           className={listItem}
           draggable
           onDragStart={e => handleDragStart(e, item)}
+          onDrop={e => handleDrop(e, item)}
+          onDragOver={onDragOver}
         >
           <img
             src={item.imageUrl}

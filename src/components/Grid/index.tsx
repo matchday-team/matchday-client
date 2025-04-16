@@ -79,6 +79,7 @@ export const Grid = () => {
       };
       e.dataTransfer.setData('text/plain', JSON.stringify(dragData));
       e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('application/json', JSON.stringify(dragData));
     },
     [],
   );
@@ -92,7 +93,13 @@ export const Grid = () => {
       e.preventDefault();
       const currentFilledCount = getFilledCount(grid);
 
-      if (grid[row][col] === 'empty' && currentFilledCount < maxCount) {
+      // 그리드 내에서 선수를 드래그하는 경우
+      const isGridDrag = e.dataTransfer.types.includes('text/plain');
+
+      if (
+        isGridDrag ||
+        (grid[row][col] === 'empty' && currentFilledCount < maxCount)
+      ) {
         e.dataTransfer.dropEffect = 'move';
         setHighlightedCell({ row, col });
       } else {
@@ -112,12 +119,60 @@ export const Grid = () => {
     setHighlightedCell(null);
   }, []);
 
+  const handleListDrop = useCallback(
+    (e: React.DragEvent, targetPlayer?: PlayerType) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      try {
+        const dragData = JSON.parse(e.dataTransfer.getData('text/plain')) as {
+          player: PlayerType;
+          sourceRow?: number;
+          sourceCol?: number;
+        };
+
+        const { player, sourceRow, sourceCol } = dragData;
+
+        // 그리드에서 드래그된 경우에만 처리
+        if (sourceRow !== undefined && sourceCol !== undefined) {
+          let confirmMessage = `${player.name} 선수를 명단으로 이동하시겠습니까?`;
+
+          // 리스트의 선수와 교체하는 경우
+          if (targetPlayer) {
+            confirmMessage = `${player.name} 선수와 ${targetPlayer.name} 선수를 교체하시겠습니까?`;
+          }
+
+          if (window.confirm(confirmMessage)) {
+            setGrid(prevGrid => {
+              const newGrid = prevGrid.map(row => [...row]);
+
+              // 리스트의 선수와 교체하는 경우
+              if (targetPlayer) {
+                newGrid[sourceRow][sourceCol] = targetPlayer;
+              } else {
+                newGrid[sourceRow][sourceCol] = 'empty';
+              }
+
+              return newGrid;
+            });
+          }
+        }
+      } catch (error) {
+        console.error('Failed to parse dropped player:', error);
+      }
+    },
+    [],
+  );
+
+  const handleListDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+  }, []);
+
   const handleDrop = useCallback(
     (e: React.DragEvent, targetRow: number, targetCol: number) => {
       e.preventDefault();
       e.stopPropagation();
-
-      console.log('handleDrop', targetRow, targetCol);
 
       try {
         const dragData = JSON.parse(e.dataTransfer.getData('text/plain')) as {
@@ -135,6 +190,11 @@ export const Grid = () => {
 
           // 소스 셀이 있는 경우 (그리드 내 이동)
           if (sourceRow !== undefined && sourceCol !== undefined) {
+            // 같은 셀로 드롭하는 경우 무시
+            if (sourceRow === targetRow && sourceCol === targetCol) {
+              return prevGrid;
+            }
+
             // 타겟 셀이 비어있는 경우
             if (newGrid[targetRow][targetCol] === 'empty') {
               newGrid[targetRow][targetCol] = newGrid[sourceRow][sourceCol];
@@ -163,20 +223,27 @@ export const Grid = () => {
             }
 
             // 최대 개수를 초과하면 드롭 불가
-            if (currentFilledCount >= maxCount) {
+            if (
+              currentFilledCount >= maxCount &&
+              newGrid[targetRow][targetCol] === 'empty'
+            ) {
               debouncedShowToast(
                 '최대 배치 수를 초과하여 더 이상 배치할 수 없습니다.',
               );
               return prevGrid;
             }
 
-            // 타겟 셀이 이미 채워져 있으면 드롭 불가
+            // 타겟 셀이 이미 채워져 있는 경우
             if (newGrid[targetRow][targetCol] !== 'empty') {
-              debouncedShowToast('이미 채워진 셀이어서 배치할 수 없습니다.');
-              return prevGrid;
+              const confirmMessage = `${(newGrid[targetRow][targetCol] as PlayerType).name} 선수를 ${player.name} 선수로 교체하시겠습니까?`;
+              if (window.confirm(confirmMessage)) {
+                newGrid[targetRow][targetCol] = player;
+              } else {
+                return prevGrid;
+              }
+            } else {
+              newGrid[targetRow][targetCol] = player;
             }
-
-            newGrid[targetRow][targetCol] = player;
           }
 
           return newGrid;
@@ -230,7 +297,12 @@ export const Grid = () => {
         </span>
       </div>
       <div style={{ display: 'flex', gap: '32px' }}>
-        <List items={initialPlayers} onDragStart={handleDragStart} />
+        <List
+          items={initialPlayers}
+          onDragStart={handleDragStart}
+          onDrop={handleListDrop}
+          onDragOver={handleListDragOver}
+        />
         <div className={gridContainer} onDragLeave={handleDragEnd}>
           {grid.map((row, rowIndex) =>
             row.map((cell, colIndex) => (
