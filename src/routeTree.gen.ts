@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as AboutImport } from './routes/about'
+import { Route as DragDemoRouteImport } from './routes/drag-demo/route'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
@@ -19,6 +20,12 @@ import { Route as IndexImport } from './routes/index'
 const AboutRoute = AboutImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DragDemoRouteRoute = DragDemoRouteImport.update({
+  id: '/drag-demo',
+  path: '/drag-demo',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -39,6 +46,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/drag-demo': {
+      id: '/drag-demo'
+      path: '/drag-demo'
+      fullPath: '/drag-demo'
+      preLoaderRoute: typeof DragDemoRouteImport
+      parentRoute: typeof rootRoute
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -53,36 +67,41 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/drag-demo': typeof DragDemoRouteRoute
   '/about': typeof AboutRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/drag-demo': typeof DragDemoRouteRoute
   '/about': typeof AboutRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/drag-demo': typeof DragDemoRouteRoute
   '/about': typeof AboutRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths: '/' | '/drag-demo' | '/about'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to: '/' | '/drag-demo' | '/about'
+  id: '__root__' | '/' | '/drag-demo' | '/about'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DragDemoRouteRoute: typeof DragDemoRouteRoute
   AboutRoute: typeof AboutRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DragDemoRouteRoute: DragDemoRouteRoute,
   AboutRoute: AboutRoute,
 }
 
@@ -97,11 +116,15 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/drag-demo",
         "/about"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/drag-demo": {
+      "filePath": "drag-demo/route.tsx"
     },
     "/about": {
       "filePath": "about.tsx"

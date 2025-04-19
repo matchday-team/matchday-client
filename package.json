@@ -17,6 +17,7 @@
     "@vanilla-extract/dynamic": "^2.1.2",
     "@vanilla-extract/recipes": "^0.5.5",
     "@vanilla-extract/sprinkles": "^1.6.3",
+    "notistack": "^3.0.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
