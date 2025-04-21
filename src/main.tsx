@@ -5,7 +5,9 @@ import { createRoot } from 'react-dom/client';
 
 import { ReactQueryClientProvider } from './react-query-provider';
 import { routeTree } from './routeTree.gen';
+import './styles/font.css';
 import './styles/normalize.css';
+import './styles/reset.css';
 
 const router = createRouter({
   routeTree,
