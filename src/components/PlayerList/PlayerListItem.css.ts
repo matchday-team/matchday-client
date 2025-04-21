@@ -15,6 +15,10 @@ export const rootContainer = style({
     '&:last-child': {
       borderBottom: 'none',
     },
+
+    '&:hover': {
+      backgroundColor: lightThemeVars.color.white.hover,
+    },
   },
 });
 
