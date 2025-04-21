@@ -5,12 +5,12 @@ import { lightThemeVars } from '@/styles/theme.css';
 export const button = style({
   border: 'none',
   borderRadius: '4px',
-  backgroundColor: lightThemeVars.color.primary,
+  backgroundColor: lightThemeVars.color.primary['700'],
   cursor: 'pointer',
-  padding: lightThemeVars.spacing.medium,
+  padding: 16,
   color: 'white',
-  fontSize: lightThemeVars.font.size.medium,
+  fontSize: 16,
   ':hover': {
-    opacity: 0.9,
+    backgroundColor: lightThemeVars.color.primary['700Darken'],
   },
 });

@@ -4,7 +4,6 @@ import { createFileRoute } from '@tanstack/react-router';
 import { getTeamsQuery } from '@/apis/teams';
 import { Button, CommonLoader } from '@/components';
 import { queryClient } from '@/react-query-provider';
-import { lightThemeClass } from '@/styles/theme.css';
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -16,7 +15,7 @@ function HomePage() {
   const { data } = useSuspenseQuery(getTeamsQuery);
 
   return (
-    <div className={lightThemeClass}>
+    <div>
       <h3>Home</h3>
       <Button>Click me</Button>
       <p>{JSON.stringify(data)}</p>
