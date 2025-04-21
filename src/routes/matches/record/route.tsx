@@ -1,5 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
 
+import { PlayerList } from '@/components';
+import { dummyPlayerOfTeam1, dummyTeam1 } from '@/mocks';
+
 import { MatchRecordLayout } from './-components';
 
 export const Route = createFileRoute('/matches/record')({
@@ -18,7 +21,11 @@ const s = (height: number | string) => ({
 function MatchRecordPage() {
   return (
     <MatchRecordLayout
-      team1={<div style={s('100%')}>Team 1</div>}
+      team1={
+        <div style={s('100%')}>
+          <PlayerList team={dummyTeam1} players={dummyPlayerOfTeam1} />
+        </div>
+      }
       team2={<div style={s('100%')}>Team 2</div>}
       teamStats={<div style={s(528)}>Stats</div>}
       selectedPlayer={<div style={s(302)}>Selected Player</div>}
