@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 
 import { PlayerList } from '@/components';
-import { dummyPlayerOfTeam1, dummyTeam1 } from '@/mocks';
+import { dummyPlayerOfTeam1, dummyTeam1, dummyTeam2 } from '@/mocks';
 
 import { MatchRecordLayout } from './-components';
 
@@ -26,7 +26,11 @@ function MatchRecordPage() {
           <PlayerList team={dummyTeam1} players={dummyPlayerOfTeam1} />
         </div>
       }
-      team2={<div style={s('100%')}>Team 2</div>}
+      team2={
+        <div style={s('100%')}>
+          <PlayerList team={dummyTeam2} players={dummyPlayerOfTeam1} />
+        </div>
+      }
       teamStats={<div style={s(528)}>Stats</div>}
       selectedPlayer={<div style={s(302)}>Selected Player</div>}
       timer={<div style={s(116)}>Timer</div>}

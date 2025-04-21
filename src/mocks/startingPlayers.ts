@@ -1,6 +1,13 @@
 export const dummyTeam1 = {
   id: 1,
   name: 'FC 울릉도',
+  teamColor: '#D91920',
+  logoImageUrl: '/images/team-logo.png',
+};
+export const dummyTeam2 = {
+  id: 2,
+  name: 'FC 독도',
+  teamColor: '#003A70',
   logoImageUrl: '/images/team-logo.png',
 };
 
