@@ -1,13 +1,17 @@
 import { SyntheticEvent } from 'react';
 
+import { assignInlineVars } from '@vanilla-extract/dynamic';
+
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 
 import * as styles from './PlayerList.css';
 import { PlayerItem, StartingPlayer } from './PlayerListItem';
+import { teamColor } from './TeamColor.css';
 
 export interface Team {
   id: number;
   name: string;
+  teamColor: string;
   logoImageUrl: string;
 }
 
@@ -24,7 +28,12 @@ export const PlayerList = ({ team, players }: PlayerListProps) => {
   };
 
   return (
-    <div className={styles.rootContainer}>
+    <div
+      className={styles.rootContainer}
+      style={assignInlineVars({
+        [teamColor]: team.teamColor,
+      })}
+    >
       <div className={styles.header}>
         <div className={styles.teamInfo}>
           <img

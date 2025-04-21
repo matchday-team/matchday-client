@@ -2,8 +2,10 @@ import { style } from '@vanilla-extract/css';
 
 import { lightThemeVars } from '@/styles/theme.css';
 
+import { teamColor } from './TeamColor.css';
+
 export const rootContainer = style({
-  border: '2px solid #D91920',
+  border: `2px solid ${teamColor}`,
   borderRadius: 10,
   background: '#FFF',
   height: 462, // NOTE: 고정 폭 사용
@@ -26,7 +28,7 @@ export const header = style({
 });
 
 export const teamLogo = style({
-  border: '2px solid #D91920',
+  border: `2px solid ${teamColor}`,
   borderRadius: '50%',
   width: 26,
   height: 26,
