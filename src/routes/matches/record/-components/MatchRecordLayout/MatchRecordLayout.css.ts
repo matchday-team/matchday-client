@@ -1,7 +1,5 @@
 import { style } from '@vanilla-extract/css';
 
-import { lightThemeVars } from '@/styles/theme.css';
-
 // NOTE: 현재 디자인은 고정 크기의 레이아웃으로 배치
 export const rootContainer = style({
   display: 'flex',
@@ -22,9 +20,6 @@ export const rootContainer = style({
 const flexColumn = style({
   display: 'flex',
   flexDirection: 'column',
-
-  // TODO: Sidebar 도입 시 bg 제거
-  backgroundColor: lightThemeVars.color.white.background,
 });
 
 export const teamContainer = style([
@@ -35,9 +30,10 @@ export const teamContainer = style([
   },
 ]);
 
-export const statsContainer = style([
+export const centerContainer = style([
   flexColumn,
   {
+    gap: 18,
     marginTop: 30,
     width: 280,
   },
@@ -46,6 +42,7 @@ export const statsContainer = style([
 export const infoContainer = style([
   flexColumn,
   {
+    gap: 16,
     marginTop: 30,
     width: 280,
   },
