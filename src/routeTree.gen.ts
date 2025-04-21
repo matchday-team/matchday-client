@@ -11,10 +11,33 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as SettingsImport } from './routes/settings'
+import { Route as PlayersImport } from './routes/players'
+import { Route as HelpImport } from './routes/help'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
+import { Route as MatchSearchImport } from './routes/match.search'
+import { Route as MatchRecordImport } from './routes/match.record'
 
 // Create/Update Routes
+
+const SettingsRoute = SettingsImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PlayersRoute = PlayersImport.update({
+  id: '/players',
+  path: '/players',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const HelpRoute = HelpImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AboutRoute = AboutImport.update({
   id: '/about',
@@ -25,6 +48,18 @@ const AboutRoute = AboutImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MatchSearchRoute = MatchSearchImport.update({
+  id: '/match/search',
+  path: '/match/search',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MatchRecordRoute = MatchRecordImport.update({
+  id: '/match/record',
+  path: '/match/record',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,6 +81,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
+    '/help': {
+      id: '/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof HelpImport
+      parentRoute: typeof rootRoute
+    }
+    '/players': {
+      id: '/players'
+      path: '/players'
+      fullPath: '/players'
+      preLoaderRoute: typeof PlayersImport
+      parentRoute: typeof rootRoute
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsImport
+      parentRoute: typeof rootRoute
+    }
+    '/match/record': {
+      id: '/match/record'
+      path: '/match/record'
+      fullPath: '/match/record'
+      preLoaderRoute: typeof MatchRecordImport
+      parentRoute: typeof rootRoute
+    }
+    '/match/search': {
+      id: '/match/search'
+      path: '/match/search'
+      fullPath: '/match/search'
+      preLoaderRoute: typeof MatchSearchImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -54,36 +124,83 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/help': typeof HelpRoute
+  '/players': typeof PlayersRoute
+  '/settings': typeof SettingsRoute
+  '/match/record': typeof MatchRecordRoute
+  '/match/search': typeof MatchSearchRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/help': typeof HelpRoute
+  '/players': typeof PlayersRoute
+  '/settings': typeof SettingsRoute
+  '/match/record': typeof MatchRecordRoute
+  '/match/search': typeof MatchSearchRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/help': typeof HelpRoute
+  '/players': typeof PlayersRoute
+  '/settings': typeof SettingsRoute
+  '/match/record': typeof MatchRecordRoute
+  '/match/search': typeof MatchSearchRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/help'
+    | '/players'
+    | '/settings'
+    | '/match/record'
+    | '/match/search'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to:
+    | '/'
+    | '/about'
+    | '/help'
+    | '/players'
+    | '/settings'
+    | '/match/record'
+    | '/match/search'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/help'
+    | '/players'
+    | '/settings'
+    | '/match/record'
+    | '/match/search'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  HelpRoute: typeof HelpRoute
+  PlayersRoute: typeof PlayersRoute
+  SettingsRoute: typeof SettingsRoute
+  MatchRecordRoute: typeof MatchRecordRoute
+  MatchSearchRoute: typeof MatchSearchRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  HelpRoute: HelpRoute,
+  PlayersRoute: PlayersRoute,
+  SettingsRoute: SettingsRoute,
+  MatchRecordRoute: MatchRecordRoute,
+  MatchSearchRoute: MatchSearchRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,7 +214,12 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/about"
+        "/about",
+        "/help",
+        "/players",
+        "/settings",
+        "/match/record",
+        "/match/search"
       ]
     },
     "/": {
@@ -105,6 +227,21 @@ export const routeTree = rootRoute
     },
     "/about": {
       "filePath": "about.tsx"
+    },
+    "/help": {
+      "filePath": "help.tsx"
+    },
+    "/players": {
+      "filePath": "players.tsx"
+    },
+    "/settings": {
+      "filePath": "settings.tsx"
+    },
+    "/match/record": {
+      "filePath": "match.record.tsx"
+    },
+    "/match/search": {
+      "filePath": "match.search.tsx"
     }
   }
 }
