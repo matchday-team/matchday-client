@@ -24,6 +24,7 @@ export const rootContainer = style({
 
 export const profileImage = style({
   borderRadius: '50%',
+  objectFit: 'cover',
   width: 24,
   height: 24,
 });

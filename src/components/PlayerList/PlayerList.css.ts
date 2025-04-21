@@ -30,6 +30,7 @@ export const header = style({
 export const teamLogo = style({
   border: `2px solid ${teamColor}`,
   borderRadius: '50%',
+  objectFit: 'cover',
   width: 26,
   height: 26,
 });
