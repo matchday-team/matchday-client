@@ -25,12 +25,12 @@ export const dummyPlayerOfTeam1 = [
   {
     id: 2,
     name: '김성빈',
-    number: 2,
+    number: 12,
     position: 'FW',
     profileImageUrl: '/images/player-profile.png',
-    goals: 0,
-    assists: 0,
-    fouls: 0,
+    goals: 10,
+    assists: 10,
+    fouls: 10,
   },
   {
     id: 3,

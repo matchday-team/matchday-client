@@ -9,6 +9,7 @@ export const rootContainer = style({
   borderRadius: 10,
   background: '#FFF',
   height: 462, // NOTE: 고정 폭 사용
+  overflow: 'hidden',
 });
 
 const commonText = style({
