@@ -9,8 +9,6 @@ import {
   LogoTextIcon,
   PlayerBlackIcon,
   PlayerGreyIcon,
-  RecordBlackIcon,
-  RecordGreyIcon,
   SearchBlackIcon,
   SearchGreyIcon,
   SeoulLogo,
@@ -74,8 +72,8 @@ export function Sidebar() {
           {isOpen && <span>홈</span>}
         </Link>
 
-        <Link
-          to='.'
+        {/* <Link
+          to='/record'
           className={styles.navItem({
             active: currentPath === '.',
           })}
@@ -86,7 +84,7 @@ export function Sidebar() {
             style={{ width: '20px', height: '20px' }}
           />
           {isOpen && <span>매치 기록</span>}
-        </Link>
+        </Link> */}
 
         <Link
           to='.'
