@@ -5,3 +5,5 @@ export * from './StatCounterItem';
 export * from './TeamStatCounterGrid';
 export * from './SubstitutionPlayerList';
 export * from './PlayerStatCounterGrid';
+export * from './Navbar';
+export * from './Sidebar';
