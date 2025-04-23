@@ -17,9 +17,8 @@ import {
   SettingsIcon,
   UserIcon,
 } from '@/assets/icons';
-
-import { useSidebar } from './context';
-import * as styles from './sidebar.css';
+import { useSidebar } from '@/components/Sidebar/context';
+import * as styles from '@/components/Sidebar/sidebar.css';
 
 export function Sidebar() {
   const { isOpen, width, toggle, showToggle } = useSidebar();
@@ -76,13 +75,13 @@ export function Sidebar() {
         </Link>
 
         <Link
-          to='/record'
+          to='.'
           className={styles.navItem({
-            active: currentPath === '/record',
+            active: currentPath === '.',
           })}
         >
           <img
-            src={currentPath === '/record' ? RecordBlackIcon : RecordGreyIcon}
+            src={currentPath === '.' ? RecordBlackIcon : RecordGreyIcon}
             alt='Match Record'
             style={{ width: '20px', height: '20px' }}
           />
@@ -90,13 +89,13 @@ export function Sidebar() {
         </Link>
 
         <Link
-          to='/search'
+          to='.'
           className={styles.navItem({
-            active: currentPath === '/search',
+            active: currentPath === '.',
           })}
         >
           <img
-            src={currentPath === '/search' ? SearchBlackIcon : SearchGreyIcon}
+            src={currentPath === '.' ? SearchBlackIcon : SearchGreyIcon}
             alt='Match List'
             style={{ width: '20px', height: '20px' }}
           />
@@ -104,11 +103,11 @@ export function Sidebar() {
         </Link>
 
         <Link
-          to='/players'
-          className={styles.navItem({ active: currentPath === '/players' })}
+          to='.'
+          className={styles.navItem({ active: currentPath === '.' })}
         >
           <img
-            src={currentPath === '/players' ? PlayerBlackIcon : PlayerGreyIcon}
+            src={currentPath === '.' ? PlayerBlackIcon : PlayerGreyIcon}
             alt='Player List'
             style={{ width: '20px', height: '20px' }}
           />
@@ -117,7 +116,7 @@ export function Sidebar() {
       </nav>
 
       <div className={styles.footer}>
-        <Link to='/help' className={styles.footerItem}>
+        <Link to='.' className={styles.footerItem}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <img
               src={HelpCircleIcon}
@@ -134,7 +133,7 @@ export function Sidebar() {
             />
           )}
         </Link>
-        <Link to='/settings' className={styles.footerItem}>
+        <Link to='.' className={styles.footerItem}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <img
               src={SettingsIcon}
