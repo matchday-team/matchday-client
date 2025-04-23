@@ -1,8 +1,7 @@
 import { useMatches } from '@tanstack/react-router';
 
+import * as styles from '@/components/Navbar/navbar.css';
 import { useSidebar } from '@/components/Sidebar/context';
-
-import * as styles from './navbar.css';
 
 export function Navbar() {
   const matches = useMatches();
