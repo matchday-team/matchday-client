@@ -1,7 +1,5 @@
 import { useSidebar } from '@/components/Sidebar/context';
 
-import * as styles from './navbar.css';
-
 export function Navbar() {
   const { width } = useSidebar();
 
