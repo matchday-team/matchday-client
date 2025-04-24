@@ -115,7 +115,7 @@ export function Sidebar() {
 
       <div className={styles.footer}>
         <Link to='.' className={styles.footerItem}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div className={styles.footerItemIcon}>
             <img
               src={HelpCircleIcon}
               alt='Help'
@@ -132,7 +132,7 @@ export function Sidebar() {
           )}
         </Link>
         <Link to='.' className={styles.footerItem}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div className={styles.footerItemIcon}>
             <img
               src={SettingsIcon}
               alt='Settings'
@@ -151,7 +151,7 @@ export function Sidebar() {
       </div>
 
       <div className={styles.matchDayLogo}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div className={styles.footerItemIcon}>
           <img src={LogoIcon} alt='Match Day' className={styles.matchDayIcon} />
         </div>
         {isOpen && (
