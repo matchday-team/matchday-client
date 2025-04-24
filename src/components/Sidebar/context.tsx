@@ -15,23 +15,27 @@ const SidebarContext = createContext<SidebarContextType>({
   showToggle: false,
 });
 
+const SIDEBAR_WIDTH = 360;
+const SIDEBAR_WIDTH_TOGGLE = 60;
+const SIDEBAR_BREAKPOINT = 1440;
+
 export function SidebarProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(true);
-  const [width, setWidth] = useState(360);
+  const [width, setWidth] = useState(SIDEBAR_WIDTH);
   const [showToggle, setShowToggle] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       const viewportWidth = window.innerWidth;
-      const isSmallScreen = viewportWidth <= 1440;
+      const isSmallScreen = viewportWidth <= SIDEBAR_BREAKPOINT;
       setShowToggle(isSmallScreen);
 
       if (isSmallScreen) {
         setIsOpen(false);
-        setWidth(60);
+        setWidth(SIDEBAR_WIDTH_TOGGLE);
       } else {
         setIsOpen(true);
-        setWidth(360);
+        setWidth(SIDEBAR_WIDTH);
       }
     };
 
@@ -48,7 +52,9 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
   const toggle = () => {
     if (showToggle) {
       setIsOpen(prev => !prev);
-      setWidth(prev => (prev === 60 ? 360 : 60));
+      setWidth(prev =>
+        prev === SIDEBAR_WIDTH_TOGGLE ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_TOGGLE,
+      );
     }
   };
 
