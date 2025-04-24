@@ -21,13 +21,9 @@ const SidebarContext = createContext<SidebarContextType>({
   showToggle: false,
 });
 
-const SIDEBAR_WIDTH = 360;
-const SIDEBAR_WIDTH_TOGGLE = 60;
-const SIDEBAR_BREAKPOINT = 1440;
-
 export function SidebarProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(true);
-  const [width, setWidth] = useState(SIDEBAR_WIDTH);
+  const [width, setWidth] = useState(sidebarWidth);
   const [showToggle, setShowToggle] = useState(false);
 
   useEffect(() => {
