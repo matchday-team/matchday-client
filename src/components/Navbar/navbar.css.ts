@@ -1,8 +1,10 @@
 import { style } from '@vanilla-extract/css';
 
+import { navbarHeight } from '@/constants';
 import { lightThemeVars } from '@/styles/theme.css';
 
 export const navbar = style({
+  boxSizing: 'border-box',
   position: 'fixed',
   zIndex: 30,
   top: 0,
@@ -14,9 +16,9 @@ export const navbar = style({
   transition: 'left 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
   boxShadow: '0 1px 2px rgba(0, 0, 0, 0.1)',
   backgroundColor: lightThemeVars.color.white.main,
-  padding: '0 64px',
+  padding: '0 32px',
   minWidth: '600px',
-  height: '60px',
+  height: navbarHeight,
 });
 
 export const title = style({

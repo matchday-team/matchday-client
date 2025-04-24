@@ -1,6 +1,12 @@
 // sidebar 상태관리를 위해 react context 사용
 import { createContext, useContext, useEffect, useState } from 'react';
 
+import {
+  sidebarBreakpoint,
+  sidebarWidth,
+  sidebarWidthToggle,
+} from '@/constants';
+
 interface SidebarContextType {
   isOpen: boolean;
   width: number;
@@ -10,32 +16,28 @@ interface SidebarContextType {
 
 const SidebarContext = createContext<SidebarContextType>({
   isOpen: true,
-  width: 360,
+  width: sidebarWidth,
   toggle: () => {},
   showToggle: false,
 });
 
-const SIDEBAR_WIDTH = 360;
-const SIDEBAR_WIDTH_TOGGLE = 60;
-const SIDEBAR_BREAKPOINT = 1440;
-
 export function SidebarProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(true);
-  const [width, setWidth] = useState(SIDEBAR_WIDTH);
+  const [width, setWidth] = useState(sidebarWidth);
   const [showToggle, setShowToggle] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       const viewportWidth = window.innerWidth;
-      const isSmallScreen = viewportWidth <= SIDEBAR_BREAKPOINT;
+      const isSmallScreen = viewportWidth <= sidebarBreakpoint;
       setShowToggle(isSmallScreen);
 
       if (isSmallScreen) {
         setIsOpen(false);
-        setWidth(SIDEBAR_WIDTH_TOGGLE);
+        setWidth(sidebarWidthToggle);
       } else {
         setIsOpen(true);
-        setWidth(SIDEBAR_WIDTH);
+        setWidth(sidebarWidth);
       }
     };
 
@@ -53,7 +55,7 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
     if (showToggle) {
       setIsOpen(prev => !prev);
       setWidth(prev =>
-        prev === SIDEBAR_WIDTH_TOGGLE ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_TOGGLE,
+        prev === sidebarWidthToggle ? sidebarWidth : sidebarWidthToggle,
       );
     }
   };
