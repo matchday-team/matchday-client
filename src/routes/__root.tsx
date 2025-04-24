@@ -3,7 +3,16 @@ import { useEffect, useState } from 'react';
 import { Outlet, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
-import { MainLayout, SidebarProvider } from '@/components';
+import { Navbar } from '@/components/Navbar';
+import { Sidebar } from '@/components/Sidebar';
+import { SidebarProvider } from '@/components/Sidebar/context';
+import {
+  navbarHeight,
+  sidebarBreakpoint,
+  sidebarWidth,
+  sidebarWidthToggle,
+} from '@/constants';
+import { lightThemeVars } from '@/styles/theme.css';
 
 export const Route = createRootRoute({
   component: Root,
@@ -14,7 +23,7 @@ function MainLayout() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= 1440);
+      setIsSmallScreen(window.innerWidth <= sidebarBreakpoint);
     };
 
     handleResize();
@@ -22,17 +31,19 @@ function MainLayout() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const currentSidebarWidth = isSmallScreen ? sidebarWidthToggle : sidebarWidth;
+
   return (
     <div>
       <Navbar />
       <Sidebar />
       <main
         style={{
-          paddingTop: '64px',
-          paddingLeft: isSmallScreen ? '60px' : '360px',
+          paddingTop: navbarHeight,
+          paddingLeft: currentSidebarWidth,
           backgroundColor: lightThemeVars.color.white.hover,
           minHeight: '100vh',
-          width: isSmallScreen ? 'calc(100% - 62px)' : 'calc(100% - 360px)',
+          width: `calc(100% - ${currentSidebarWidth}px)`,
           marginLeft: 'auto',
         }}
       >
