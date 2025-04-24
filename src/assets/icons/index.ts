@@ -4,7 +4,7 @@ export { default as SoccerballIcon } from './soccer-ball.svg?react';
 
 export { default as CheckRightIcon } from '@/assets/icons/check_right.svg';
 export { default as HelpCircleIcon } from '@/assets/icons/help_circle.svg';
-export { default as HomeBlackIcon } from '@/assets/icons/home_balck.svg';
+export { default as HomeBlackIcon } from '@/assets/icons/home_black.svg';
 export { default as HomeGreyIcon } from '@/assets/icons/home_grey.svg';
 export { default as LogoIcon } from '@/assets/icons/logo.svg';
 export { default as LogoTextIcon } from '@/assets/icons/logo_text.svg';
