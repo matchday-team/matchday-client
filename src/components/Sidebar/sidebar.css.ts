@@ -93,6 +93,10 @@ export const navItem = recipe({
     ':hover': {
       backgroundColor: lightThemeVars.color.white.hover,
     },
+    ':focus-visible': {
+      outline: `2px solid ${lightThemeVars.color.gray[600]}`,
+      outlineOffset: '2px',
+    },
   },
   variants: {
     active: {
@@ -126,6 +130,7 @@ export const footerItem = style({
 });
 
 export const footerItemIcon = style({
+<<<<<<< HEAD
   display: 'flex',
   alignItems: 'center',
   gap: 12,
@@ -162,6 +167,31 @@ export const toggleButton = recipe({
         transform: 'translateY(-50%)',
       },
     },
+=======
+  display: 'flex',
+  alignItems: 'center',
+  gap: '12px',
+});
+
+export const toggleButton = style({
+  position: 'absolute',
+  zIndex: 101,
+  top: '50%',
+  right: '-12px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  transform: 'translateY(-50%)',
+  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+  border: '1px solid #f0f0f0',
+  borderRadius: '50%',
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
+  backgroundColor: lightThemeVars.color.white.main,
+  cursor: 'pointer',
+  width: '20px',
+  ':hover': {
+    backgroundColor: '#f5f5f5',
+>>>>>>> 17fa3e2 (refactor: 사이드바 컴포넌트 flex 스타일 통합 및 레이아웃 정리)
   },
 });
 
