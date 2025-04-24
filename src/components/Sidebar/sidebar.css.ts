@@ -47,6 +47,7 @@ export const logo = style({
   padding: '6px',
   height: '72px',
   overflow: 'hidden',
+  textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
   color: lightThemeVars.color.black,
   fontSize: '16px',
@@ -100,6 +101,10 @@ export const navItem = recipe({
     ':hover': {
       backgroundColor: lightThemeVars.color.white.hover,
     },
+    ':focus-visible': {
+      outline: `2px solid ${lightThemeVars.color.gray[600]}`,
+      outlineOffset: '2px',
+    },
   },
   variants: {
     active: {
@@ -132,6 +137,12 @@ export const footerItem = style({
   },
 });
 
+export const footerItemIcon = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '12px',
+});
+
 export const toggleButton = style({
   position: 'absolute',
   zIndex: 101,
@@ -145,7 +156,7 @@ export const toggleButton = style({
   border: '1px solid #f0f0f0',
   borderRadius: '50%',
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
-  backgroundColor: '#ffffff',
+  backgroundColor: lightThemeVars.color.white.main,
   cursor: 'pointer',
   width: '20px',
   ':hover': {
