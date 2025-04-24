@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+import { sidebarWidth } from '@/constants';
 import { lightThemeVars } from '@/styles/theme.css';
 
 export const overlay = recipe({
@@ -35,6 +36,7 @@ export const container = style({
   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
   borderRight: '1px solid #f0f0f0',
   backgroundColor: lightThemeVars.color.white.main,
+  width: sidebarWidth,
   height: '100vh',
 });
 
@@ -160,7 +162,7 @@ export const toggleButton = style({
   cursor: 'pointer',
   width: '20px',
   ':hover': {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: lightThemeVars.color.white.hover,
   },
   height: '20px',
 });
