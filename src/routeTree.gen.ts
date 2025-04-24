@@ -11,10 +11,38 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as SettingsImport } from './routes/settings'
+import { Route as SearchImport } from './routes/search'
+import { Route as PlayersImport } from './routes/players'
+import { Route as HelpImport } from './routes/help'
 import { Route as IndexImport } from './routes/index'
 import { Route as MatchesRecordRouteImport } from './routes/matches/record/route'
 
 // Create/Update Routes
+
+const SettingsRoute = SettingsImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SearchRoute = SearchImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PlayersRoute = PlayersImport.update({
+  id: '/players',
+  path: '/players',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const HelpRoute = HelpImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
@@ -39,6 +67,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/help': {
+      id: '/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof HelpImport
+      parentRoute: typeof rootRoute
+    }
+    '/players': {
+      id: '/players'
+      path: '/players'
+      fullPath: '/players'
+      preLoaderRoute: typeof PlayersImport
+      parentRoute: typeof rootRoute
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchImport
+      parentRoute: typeof rootRoute
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsImport
+      parentRoute: typeof rootRoute
+    }
     '/matches/record': {
       id: '/matches/record'
       path: '/matches/record'
@@ -53,36 +109,69 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/help': typeof HelpRoute
+  '/players': typeof PlayersRoute
+  '/search': typeof SearchRoute
+  '/settings': typeof SettingsRoute
   '/matches/record': typeof MatchesRecordRouteRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/help': typeof HelpRoute
+  '/players': typeof PlayersRoute
+  '/search': typeof SearchRoute
+  '/settings': typeof SettingsRoute
   '/matches/record': typeof MatchesRecordRouteRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/help': typeof HelpRoute
+  '/players': typeof PlayersRoute
+  '/search': typeof SearchRoute
+  '/settings': typeof SettingsRoute
   '/matches/record': typeof MatchesRecordRouteRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/matches/record'
+  fullPaths:
+    | '/'
+    | '/help'
+    | '/players'
+    | '/search'
+    | '/settings'
+    | '/matches/record'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/matches/record'
-  id: '__root__' | '/' | '/matches/record'
+  to: '/' | '/help' | '/players' | '/search' | '/settings' | '/matches/record'
+  id:
+    | '__root__'
+    | '/'
+    | '/help'
+    | '/players'
+    | '/search'
+    | '/settings'
+    | '/matches/record'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  HelpRoute: typeof HelpRoute
+  PlayersRoute: typeof PlayersRoute
+  SearchRoute: typeof SearchRoute
+  SettingsRoute: typeof SettingsRoute
   MatchesRecordRouteRoute: typeof MatchesRecordRouteRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  HelpRoute: HelpRoute,
+  PlayersRoute: PlayersRoute,
+  SearchRoute: SearchRoute,
+  SettingsRoute: SettingsRoute,
   MatchesRecordRouteRoute: MatchesRecordRouteRoute,
 }
 
@@ -97,11 +186,27 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/help",
+        "/players",
+        "/search",
+        "/settings",
         "/matches/record"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/help": {
+      "filePath": "help.tsx"
+    },
+    "/players": {
+      "filePath": "players.tsx"
+    },
+    "/search": {
+      "filePath": "search.tsx"
+    },
+    "/settings": {
+      "filePath": "settings.tsx"
     },
     "/matches/record": {
       "filePath": "matches/record/route.tsx"
