@@ -4,3 +4,7 @@ globalStyle('ul', {
   margin: 0,
   padding: 0,
 });
+
+globalStyle('button', {
+  backgroundColor: 'transparent',
+});
