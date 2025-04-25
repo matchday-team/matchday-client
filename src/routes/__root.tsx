@@ -7,10 +7,10 @@ import { Navbar } from '@/components/Navbar';
 import { Sidebar } from '@/components/Sidebar';
 import { SidebarProvider } from '@/components/Sidebar/context';
 import {
-  navbarHeight,
-  sidebarBreakpoint,
-  sidebarWidth,
-  sidebarWidthToggle,
+  NAVBAR_HEIGHT,
+  SIDEBAR_BREAKPOINT,
+  SIDEBAR_WIDTH,
+  SIDEBAR_WIDTH_TOGGLE,
 } from '@/constants';
 import { lightThemeVars } from '@/styles/theme.css';
 
@@ -23,7 +23,7 @@ function MainLayout() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= sidebarBreakpoint);
+      setIsSmallScreen(window.innerWidth <= SIDEBAR_BREAKPOINT);
     };
 
     handleResize();
@@ -31,7 +31,9 @@ function MainLayout() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const currentSidebarWidth = isSmallScreen ? sidebarWidthToggle : sidebarWidth;
+  const currentSidebarWidth = isSmallScreen
+    ? SIDEBAR_WIDTH_TOGGLE
+    : SIDEBAR_WIDTH;
 
   return (
     <div>
@@ -39,7 +41,7 @@ function MainLayout() {
       <Sidebar />
       <main
         style={{
-          paddingTop: navbarHeight,
+          paddingTop: NAVBAR_HEIGHT,
           paddingLeft: currentSidebarWidth,
           backgroundColor: lightThemeVars.color.white.hover,
           minHeight: '100vh',
