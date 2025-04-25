@@ -5,6 +5,7 @@ import prettierRecommended from 'eslint-plugin-prettier/recommended';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
+import storybook from 'eslint-plugin-storybook';
 import unusedImports from 'eslint-plugin-unused-imports';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
@@ -26,6 +27,7 @@ export default tseslint.config({
       },
       rules: vanillaExtract.configs.recommended.rules,
     },
+    storybook.configs['flat/recommended'],
   ],
   files: ['**/*.{js,jsx,ts,tsx}'],
   ignores: ['dist', 'routeTree.gen.ts'],
@@ -48,6 +50,8 @@ export default tseslint.config({
         argsIgnorePattern: '^_',
       },
     ],
+    'storybook/story-exports': 'off',
+    'storybook/default-exports': 'off',
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
