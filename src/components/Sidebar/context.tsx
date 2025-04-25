@@ -23,7 +23,7 @@ const SidebarContext = createContext<SidebarContextType>({
 
 export function SidebarProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(true);
-  const [width, setWidth] = useState(sidebarWidth);
+  const [width, setWidth] = useState(SIDEBAR_WIDTH);
   const [showToggle, setShowToggle] = useState(false);
 
   useEffect(() => {
