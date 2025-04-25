@@ -1,8 +1,9 @@
 import { Link, useMatches } from '@tanstack/react-router';
 
 import * as icons from '@/assets/icons';
-import { useSidebar } from '@/components/Sidebar/context';
-import * as styles from '@/components/Sidebar/sidebar.css';
+
+import { useSidebar } from './context';
+import * as styles from './sidebar.css';
 
 export function Sidebar() {
   const { isOpen, toggle, showToggle } = useSidebar();
