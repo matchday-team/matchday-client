@@ -1,7 +1,7 @@
 import { HttpResponse, http } from 'msw';
 
 export const exampleApiMock = [
-  http.get('http://175.106.99.16:8080/api/v1/teams/9999/users', () => {
+  http.get(`${import.meta.env.VITE_API_BASE_URL}v1/teams/9999/users`, () => {
     return HttpResponse.json({
       status: 200,
       data: {
