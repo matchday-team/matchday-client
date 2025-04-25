@@ -121,6 +121,8 @@ export const navItem = recipe({
     color: lightThemeVars.color.gray[600],
     fontSize: 14,
     fontWeight: 500,
+    fontSize: 14,
+    fontWeight: 500,
   },
   variants: {
     active: {
