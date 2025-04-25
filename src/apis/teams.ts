@@ -1,8 +1,10 @@
 import { ApiResponse, http } from './http';
 
-interface Team {
+export interface Team {
   id: number;
   name: string;
+  teamColor: string;
+  logoImageUrl: string;
 }
 
 interface TeamsResponse {

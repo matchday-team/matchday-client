@@ -1,19 +1,9 @@
 import { SyntheticEvent } from 'react';
 
+import { StartingPlayer } from '@/apis';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 
 import * as styles from './PlayerListItem.css';
-
-export interface StartingPlayer {
-  id: number;
-  name: string;
-  number: number;
-  position: string;
-  profileImageUrl: string;
-  goals: number;
-  assists: number;
-  fouls: number;
-}
 
 interface PlayerItemProps {
   isSelected: boolean;
