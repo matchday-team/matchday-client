@@ -47,10 +47,15 @@ export const button = style({
   cursor: 'pointer',
   width: 24,
   height: 24,
-
-  color: lightThemeVars.color.gray['500'],
+  color: lightThemeVars.color.gray['600'],
 
   ':hover': {
     backgroundColor: lightThemeVars.color.primary['300'],
+  },
+
+  // FIXME: Base Button에 들어갈 스타일로 보임.
+  ':disabled': {
+    backgroundColor: 'transparent',
+    cursor: 'not-allowed',
   },
 });
