@@ -123,6 +123,8 @@ export const navItem = recipe({
     fontWeight: 500,
     fontSize: 14,
     fontWeight: 500,
+    fontSize: 14,
+    fontWeight: 500,
   },
   variants: {
     active: {
