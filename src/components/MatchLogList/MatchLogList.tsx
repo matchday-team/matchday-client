@@ -2,8 +2,9 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import { MatchLog, Team } from '@/apis';
 
+import { EmptyList } from './EmptyList/EmptyList';
 import * as styles from './MatchLogList.css';
-import { MatchLogListItem } from './MatchLogListItem';
+import { MatchLogListItem } from './MatchLogListItem/MatchLogListItem';
 import { teamAwayColor } from './colors.css';
 import { teamHomeColor } from './colors.css';
 
@@ -28,9 +29,14 @@ export const MatchLogList = ({ teams, logs }: MatchLogListProps) => {
         <div className={styles.title}>경기 로그</div>
       </div>
       <ul className={styles.logListContainer}>
-        {logs.map(log => (
-          <MatchLogListItem key={log.id} teams={teams} log={log} />
-        ))}
+        {logs.length === 0 ? (
+          // FIXME: 디자인이 없어서 임시로 작업
+          <EmptyList />
+        ) : (
+          logs.map(log => (
+            <MatchLogListItem key={log.id} teams={teams} log={log} />
+          ))
+        )}
       </ul>
     </div>
   );

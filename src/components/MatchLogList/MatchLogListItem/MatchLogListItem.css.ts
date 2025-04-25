@@ -1,9 +1,11 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+import {
+  teamAwayColor,
+  teamHomeColor,
+} from '@/components/MatchLogList/colors.css';
 import { lightThemeVars } from '@/styles/theme.css';
-
-import { teamAwayColor, teamHomeColor } from './colors.css';
 
 export const rootContainer = recipe({
   base: {
