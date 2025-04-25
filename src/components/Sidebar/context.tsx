@@ -2,9 +2,9 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
 import {
-  sidebarBreakpoint,
-  sidebarWidth,
-  sidebarWidthToggle,
+  SIDEBAR_BREAKPOINT,
+  SIDEBAR_WIDTH,
+  SIDEBAR_WIDTH_TOGGLE,
 } from '@/constants';
 
 interface SidebarContextType {
@@ -16,28 +16,28 @@ interface SidebarContextType {
 
 const SidebarContext = createContext<SidebarContextType>({
   isOpen: true,
-  width: sidebarWidth,
+  width: SIDEBAR_WIDTH,
   toggle: () => {},
   showToggle: false,
 });
 
 export function SidebarProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(true);
-  const [width, setWidth] = useState(sidebarWidth);
+  const [width, setWidth] = useState(SIDEBAR_WIDTH);
   const [showToggle, setShowToggle] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       const viewportWidth = window.innerWidth;
-      const isSmallScreen = viewportWidth <= sidebarBreakpoint;
+      const isSmallScreen = viewportWidth <= SIDEBAR_BREAKPOINT;
       setShowToggle(isSmallScreen);
 
       if (isSmallScreen) {
         setIsOpen(false);
-        setWidth(sidebarWidthToggle);
+        setWidth(SIDEBAR_WIDTH_TOGGLE);
       } else {
         setIsOpen(true);
-        setWidth(sidebarWidth);
+        setWidth(SIDEBAR_WIDTH);
       }
     };
 
@@ -55,7 +55,7 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
     if (showToggle) {
       setIsOpen(prev => !prev);
       setWidth(prev =>
-        prev === sidebarWidthToggle ? sidebarWidth : sidebarWidthToggle,
+        prev === SIDEBAR_WIDTH_TOGGLE ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_TOGGLE,
       );
     }
   };
