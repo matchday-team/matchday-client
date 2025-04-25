@@ -2,7 +2,6 @@
 /** @jsxImportSource react */
 /* eslint-disable no-restricted-imports */
 import type { Preview } from '@storybook/react';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { initialize as initializeMSW, mswLoader } from 'msw-storybook-addon';
 
 import { ignoreDevResources } from '../src/mocks';
@@ -21,7 +20,6 @@ const preview: Preview = {
     Story => (
       <ReactQueryClientProvider>
         <Story />
-        <ReactQueryDevtools position='right' initialIsOpen={false} />
       </ReactQueryClientProvider>
     ),
   ],
