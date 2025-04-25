@@ -31,7 +31,7 @@ export const TeamStatCounterGrid = ({
     <div className={styles.rootContainer}>
       {stats.map((stat, index) => (
         <StatCounterItem
-          key={index}
+          key={`${stat.title}-${index}`}
           title={stat.title}
           value={stat.value}
           onIncrement={() => handleIncrement(index)}
