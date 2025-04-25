@@ -3,11 +3,16 @@ import { StrictMode } from 'react';
 import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { createRoot } from 'react-dom/client';
 
+import { initializeMSW } from './mocks';
 import { ReactQueryClientProvider } from './react-query-provider';
 import { routeTree } from './routeTree.gen';
 import './styles/font.css';
 import './styles/normalize.css';
 import './styles/reset.css';
+
+if (import.meta.env.DEV && import.meta.env.VITE_USE_MSW === 'true') {
+  await initializeMSW();
+}
 
 const router = createRouter({
   routeTree,
