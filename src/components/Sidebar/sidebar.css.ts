@@ -93,10 +93,6 @@ export const navItem = recipe({
     ':hover': {
       backgroundColor: lightThemeVars.color.white.hover,
     },
-    ':focus-visible': {
-      outline: `2px solid ${lightThemeVars.color.gray[600]}`,
-      outlineOffset: '2px',
-    },
   },
   variants: {
     active: {
@@ -132,7 +128,7 @@ export const footerItem = style({
 export const footerItemIcon = style({
   display: 'flex',
   alignItems: 'center',
-  gap: '12px',
+  gap: 12,
 });
 
 export const footerItemIcon = style({
