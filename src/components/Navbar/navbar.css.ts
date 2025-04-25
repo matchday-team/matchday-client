@@ -17,30 +17,30 @@ export const navbar = style({
   boxShadow: '0 1px 2px rgba(0, 0, 0, 0.1)',
   backgroundColor: lightThemeVars.color.white.main,
   padding: '0 32px',
-  minWidth: '600px',
+  minWidth: 600,
   height: NAVBAR_HEIGHT,
 });
 
 export const title = style({
   whiteSpace: 'nowrap',
   color: lightThemeVars.color.primary[700],
-  fontSize: '14px',
+  fontSize: 14,
   fontWeight: 500,
 });
 
 export const actions = style({
   display: 'flex',
   flexShrink: 0,
-  gap: '12px',
+  gap: 12,
 });
 
 export const button = style({
   transition: 'all 0.2s ease',
-  borderRadius: '4px',
+  borderRadius: 4,
   cursor: 'pointer',
   padding: '8px 16px',
   whiteSpace: 'nowrap',
-  fontSize: '14px',
+  fontSize: 14,
   fontWeight: 500,
   ':hover': {
     opacity: 0.9,
