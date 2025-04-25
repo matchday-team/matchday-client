@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { navbarHeight } from '@/constants';
+import { NAVBAR_HEIGHT } from '@/constants';
 import { lightThemeVars } from '@/styles/theme.css';
 
 export const navbar = style({
@@ -18,7 +18,7 @@ export const navbar = style({
   backgroundColor: lightThemeVars.color.white.main,
   padding: '0 32px',
   minWidth: '600px',
-  height: navbarHeight,
+  height: NAVBAR_HEIGHT,
 });
 
 export const title = style({
