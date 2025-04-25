@@ -2,18 +2,12 @@ import { SyntheticEvent } from 'react';
 
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
+import { StartingPlayer, Team } from '@/apis';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 
 import * as styles from './PlayerList.css';
-import { PlayerItem, StartingPlayer } from './PlayerListItem';
+import { PlayerItem } from './PlayerListItem';
 import { teamColor } from './TeamColor.css';
-
-export interface Team {
-  id: number;
-  name: string;
-  teamColor: string;
-  logoImageUrl: string;
-}
 
 interface PlayerListProps {
   team: Team;
