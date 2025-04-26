@@ -59,6 +59,10 @@ export const Default: Story = {
   },
 };
 
+export const NotSelected: Story = {
+  args: {},
+};
+
 export const OneYellowCard: Story = {
   args: {
     team: dummyTeam,

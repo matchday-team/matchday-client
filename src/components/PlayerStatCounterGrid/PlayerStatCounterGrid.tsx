@@ -4,12 +4,13 @@ import { StartingPlayer, Team } from '@/apis';
 import { StatCounterItem } from '@/components/StatCounterItem';
 
 import { CardBlock } from './CardBlock';
+import { NotSelected } from './NotSelected';
 import { PlayerBlock } from './PlayerBlock';
 import * as styles from './PlayerStatCounterGrid.css';
 
 interface PlayerStatCounterGridProps {
-  team: Team;
-  player: StartingPlayer;
+  team?: Team;
+  player?: StartingPlayer;
 }
 
 const statFields = ['득점', '어시스트'];
@@ -19,10 +20,10 @@ export const PlayerStatCounterGrid = ({
   player,
 }: PlayerStatCounterGridProps) => {
   // NOTE: DEMO 용도로만 임시로 로컬 상태 사용
-  const [goals, setGoals] = useState(player.goals);
-  const [assists, setAssists] = useState(player.assists);
-  const [yellowCards, setYellowCards] = useState(player.yellowCards);
-  const [redCards, setRedCards] = useState(player.redCards);
+  const [goals, setGoals] = useState(player?.goals ?? 0);
+  const [assists, setAssists] = useState(player?.assists ?? 0);
+  const [yellowCards, setYellowCards] = useState(player?.yellowCards ?? 0);
+  const [redCards, setRedCards] = useState(player?.redCards ?? 0);
 
   const isYellow = yellowCards > 0;
   const isRed = redCards > 0;
@@ -36,6 +37,10 @@ export const PlayerStatCounterGrid = ({
       setYellowCards(yellowCards + 1);
     }
   };
+
+  if (!team || !player) {
+    return <NotSelected />;
+  }
 
   return (
     <div className={styles.rootContainer}>
