@@ -10,7 +10,7 @@ export const rootContainer = recipe({
     flexGrow: 1,
     alignItems: 'center',
     gap: 10,
-    transition: 'background-color 0.3s ease',
+    transition: 'background-color 0.3s ease, border 0.3s ease',
     borderRadius: 6,
     width: '100%',
 
@@ -27,9 +27,11 @@ export const rootContainer = recipe({
         },
       },
       yellow: {
+        border: `1px solid ${lightThemeVars.color.soccer.yellow}`,
         backgroundColor: lightThemeVars.color.soccer.yellow,
       },
       red: {
+        border: `1px solid ${lightThemeVars.color.soccer.red}`,
         backgroundColor: lightThemeVars.color.soccer.red,
       },
     },
