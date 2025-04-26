@@ -14,7 +14,7 @@ export const mainContainer = style({
   display: 'flex',
   flexDirection: 'column',
   gap: 6,
-  paddingTop: 36,
+  paddingTop: 34, // NOTE: 전체 높이를 디자인과 맞추기 위해 임시로 -2px
   paddingRight: 15,
   paddingBottom: 24,
   paddingLeft: 15,
@@ -32,7 +32,7 @@ export const cautionContainer = style({
   gap: 9,
   border: `1px solid ${lightThemeVars.color.primary['100']}`,
   borderRadius: 6,
-  padding: '8.5px 7px',
+  padding: 7,
 });
 
 export const title = style({

@@ -14,7 +14,7 @@ export const rootContainer = recipe({
     borderRadius: 6,
     width: '100%',
 
-    height: 40,
+    height: 38,
   },
   variants: {
     caution: {
