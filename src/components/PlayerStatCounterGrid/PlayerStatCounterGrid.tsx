@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { StartingPlayer, Team } from '@/apis';
 import { StatCounterItem } from '@/components/StatCounterItem';
 
@@ -16,6 +18,10 @@ export const PlayerStatCounterGrid = ({
   team,
   player,
 }: PlayerStatCounterGridProps) => {
+  // NOTE: DEMO 용도로만 임시로 로컬 상태 사용
+  const [goals, setGoals] = useState(player.goals);
+  const [assists, setAssists] = useState(player.assists);
+
   const isYellow = player.yellowCards > 0;
   const isRed = player.redCards > 0;
 
@@ -25,7 +31,26 @@ export const PlayerStatCounterGrid = ({
       <div className={styles.mainContainer}>
         <div className={styles.statContainer}>
           {statFields.map(title => (
-            <StatCounterItem key={title} title={title} value={2} />
+            <StatCounterItem
+              key={title}
+              title={title}
+              value={title === '득점' ? goals : assists}
+              onIncrement={() => {
+                // NOTE: DEMO 용도로만 임시로 로컬 상태 사용
+                if (title === '득점') {
+                  setGoals(goals + 1);
+                } else if (title === '어시스트') {
+                  setAssists(assists + 1);
+                }
+              }}
+              onDecrement={() => {
+                if (title === '득점') {
+                  setGoals(goals - 1);
+                } else if (title === '어시스트') {
+                  setAssists(assists - 1);
+                }
+              }}
+            />
           ))}
         </div>
         <div className={styles.cautionContainer}>
