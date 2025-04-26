@@ -6,6 +6,7 @@ import { lightThemeVars } from '@/styles/theme.css';
 export const rootContainer = style({
   display: 'flex',
   flexDirection: 'column',
+  flexGrow: 1, // NOTE: flex 부모일 때는 부모가 설정한 영역 사용
   alignItems: 'center',
   gap: 10,
   border: `1px solid ${lightThemeVars.color.primary['100']}`,
