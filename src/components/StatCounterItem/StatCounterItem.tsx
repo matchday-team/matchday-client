@@ -7,6 +7,7 @@ export interface StatCounterItemProps {
   value: number;
   onIncrement?: () => void;
   onDecrement?: () => void;
+  colorIntegration?: boolean;
 }
 
 export const StatCounterItem = ({
@@ -14,6 +15,7 @@ export const StatCounterItem = ({
   value,
   onIncrement,
   onDecrement,
+  colorIntegration = true,
 }: StatCounterItemProps) => {
   return (
     <div className={styles.rootContainer}>
@@ -27,7 +29,7 @@ export const StatCounterItem = ({
         >
           <MinusIcon />
         </button>
-        <span className={styles.value}>{value}</span>
+        <span className={styles.value({ colorIntegration })}>{value}</span>
         <button
           className={styles.button}
           onClick={onIncrement}

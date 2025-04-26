@@ -45,6 +45,7 @@ export const PlayerStatCounterGrid = ({
           {statFields.map(title => (
             <StatCounterItem
               key={title}
+              colorIntegration={false}
               title={title}
               value={title === '득점' ? goals : assists}
               onIncrement={() => {

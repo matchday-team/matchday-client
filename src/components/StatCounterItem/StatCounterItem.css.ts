@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { teamColor } from '@/components/PlayerList/TeamColor.css';
 import { lightThemeVars } from '@/styles/theme.css';
@@ -22,14 +23,27 @@ export const title = style({
   fontWeight: 400,
 });
 
-export const value = style({
-  width: 35,
-  textAlign: 'center',
-  lineHeight: '1',
-  letterSpacing: -0.35,
-  color: teamColor,
-  fontSize: 32,
-  fontWeight: 500,
+export const value = recipe({
+  base: {
+    width: 35,
+    textAlign: 'center',
+    lineHeight: '1',
+    letterSpacing: -0.35,
+    color: lightThemeVars.color.black,
+
+    fontSize: 32,
+    fontWeight: 500,
+  },
+  variants: {
+    colorIntegration: {
+      true: {
+        color: teamColor,
+      },
+    },
+  },
+  defaultVariants: {
+    colorIntegration: true,
+  },
 });
 
 export const groupContainer = style({
