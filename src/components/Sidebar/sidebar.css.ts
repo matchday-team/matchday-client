@@ -4,28 +4,6 @@ import { recipe } from '@vanilla-extract/recipes';
 import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_TOGGLE } from '@/constants';
 import { lightThemeVars } from '@/styles/theme.css';
 
-export const overlay = recipe({
-  base: {
-    position: 'fixed',
-    zIndex: 99,
-    inset: 0,
-    transition: 'opacity 0.3s ease',
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-  },
-  variants: {
-    open: {
-      true: {
-        opacity: 1,
-        pointerEvents: 'auto',
-      },
-      false: {
-        opacity: 0,
-        pointerEvents: 'none',
-      },
-    },
-  },
-});
-
 export const container = recipe({
   base: {
     position: 'fixed',
@@ -105,7 +83,7 @@ export const navItem = recipe({
     alignItems: 'center',
     gap: 12,
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-    padding: '8px 26px',
+    padding: '8px 16px',
     overflow: 'hidden',
     textDecoration: 'none',
     whiteSpace: 'nowrap',
@@ -169,11 +147,11 @@ export const toggleButton = recipe({
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
     backgroundColor: lightThemeVars.color.white.main,
     cursor: 'pointer',
-    width: 20,
+    width: 24,
+    height: 24,
     ':hover': {
       backgroundColor: lightThemeVars.color.white.hover,
     },
-    height: 20,
   },
   variants: {
     isOpen: {
@@ -205,11 +183,12 @@ export const matchDayIcon = style({
 });
 
 export const toggleIcon = style({
-  width: 12,
-  height: 12,
+  width: 24,
+  height: 24,
 });
 
 export const icon = style({
+  flexShrink: 0,
   width: 20,
   height: 20,
 });

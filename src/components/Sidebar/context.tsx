@@ -28,36 +28,23 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const handleResize = () => {
-      const viewportWidth = window.innerWidth;
-      const isSmallScreen = viewportWidth <= SIDEBAR_BREAKPOINT;
+      const isSmallScreen = window.innerWidth <= SIDEBAR_BREAKPOINT;
       setShowToggle(isSmallScreen);
-
-      if (isSmallScreen) {
-        setIsOpen(false);
-        setWidth(SIDEBAR_WIDTH_TOGGLE);
-      } else {
-        setIsOpen(true);
-        setWidth(SIDEBAR_WIDTH);
-      }
+      setIsOpen(!isSmallScreen);
+      setWidth(isSmallScreen ? SIDEBAR_WIDTH_TOGGLE : SIDEBAR_WIDTH);
     };
 
-    // 초기 설정
     handleResize();
-
-    // 리사이즈 이벤트 리스너 추가
     window.addEventListener('resize', handleResize);
-
-    // 클린업
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const toggle = () => {
-    if (showToggle) {
-      setIsOpen(prev => !prev);
-      setWidth(prev =>
-        prev === SIDEBAR_WIDTH_TOGGLE ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_TOGGLE,
-      );
-    }
+    if (!showToggle) return;
+    setIsOpen(prev => !prev);
+    setWidth(prev =>
+      prev === SIDEBAR_WIDTH_TOGGLE ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_TOGGLE,
+    );
   };
 
   return (
