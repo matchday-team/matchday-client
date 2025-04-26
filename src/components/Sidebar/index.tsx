@@ -16,11 +16,7 @@ export function Sidebar() {
     >
       {showToggle && (
         <button onClick={toggle} className={styles.toggleButton({ isOpen })}>
-          <img
-            src={icons.CheckRightIcon}
-            alt='Toggle'
-            className={styles.toggleIcon}
-          />
+          <icons.CheckRightIcon className={styles.toggleIcon} />
         </button>
       )}
 
@@ -34,11 +30,7 @@ export function Sidebar() {
               <span className={styles.logoSubtitle}>관리자</span>
             </div>
             <div className={styles.adminIcon}>
-              <img
-                src={icons.UserIcon}
-                alt='Admin'
-                className={styles.largeIcon}
-              />
+              <icons.UserIcon className={styles.largeIcon} />
             </div>
           </>
         )}
@@ -52,13 +44,7 @@ export function Sidebar() {
               to='/'
               className={styles.navItem({ active: currentPath === '/' })}
             >
-              <img
-                src={
-                  currentPath === '/' ? icons.HomeBlackIcon : icons.HomeGreyIcon
-                }
-                alt='Home'
-                className={styles.icon}
-              />
+              <icons.HomeIcon className={styles.icon} />
               <span>홈</span>
             </Link>
 
@@ -66,15 +52,7 @@ export function Sidebar() {
               to='.'
               className={styles.navItem({ active: currentPath === '.' })}
             >
-              <img
-                src={
-                  currentPath === '.'
-                    ? icons.RecordBlackIcon
-                    : icons.RecordGreyIcon
-                }
-                alt='Match Record'
-                className={styles.icon}
-              />
+              <icons.RecordIcon className={styles.icon} />
               <span>매치 기록</span>
             </Link>
 
@@ -82,15 +60,7 @@ export function Sidebar() {
               to='.'
               className={styles.navItem({ active: currentPath === '.' })}
             >
-              <img
-                src={
-                  currentPath === '.'
-                    ? icons.SearchBlackIcon
-                    : icons.SearchGreyIcon
-                }
-                alt='Match List'
-                className={styles.icon}
-              />
+              <icons.SearchIcon className={styles.icon} />
               <span>매치 조회</span>
             </Link>
 
@@ -98,15 +68,7 @@ export function Sidebar() {
               to='.'
               className={styles.navItem({ active: currentPath === '.' })}
             >
-              <img
-                src={
-                  currentPath === '.'
-                    ? icons.PlayerBlackIcon
-                    : icons.PlayerGreyIcon
-                }
-                alt='Player List'
-                className={styles.icon}
-              />
+              <icons.PlayerIcon className={styles.icon} />
               <span>선수 명단</span>
             </Link>
           </>
@@ -116,58 +78,28 @@ export function Sidebar() {
               to='/'
               className={styles.navItem({ active: currentPath === '/' })}
             >
-              <img
-                src={
-                  currentPath === '/' ? icons.HomeBlackIcon : icons.HomeGreyIcon
-                }
-                alt='Home'
-                className={styles.icon}
-              />
+              <icons.HomeIcon className={styles.icon} />
             </Link>
 
             <Link
               to='.'
               className={styles.navItem({ active: currentPath === '.' })}
             >
-              <img
-                src={
-                  currentPath === '.'
-                    ? icons.RecordBlackIcon
-                    : icons.RecordGreyIcon
-                }
-                alt='Match Record'
-                className={styles.icon}
-              />
+              <icons.RecordIcon className={styles.icon} />
             </Link>
 
             <Link
               to='.'
               className={styles.navItem({ active: currentPath === '.' })}
             >
-              <img
-                src={
-                  currentPath === '.'
-                    ? icons.SearchBlackIcon
-                    : icons.SearchGreyIcon
-                }
-                alt='Match List'
-                className={styles.icon}
-              />
+              <icons.SearchIcon className={styles.icon} />
             </Link>
 
             <Link
               to='.'
               className={styles.navItem({ active: currentPath === '.' })}
             >
-              <img
-                src={
-                  currentPath === '.'
-                    ? icons.PlayerBlackIcon
-                    : icons.PlayerGreyIcon
-                }
-                alt='Player List'
-                className={styles.icon}
-              />
+              <icons.PlayerIcon className={styles.icon} />
             </Link>
           </>
         )}
@@ -179,53 +111,29 @@ export function Sidebar() {
           <>
             <Link to='.' className={styles.footerItem}>
               <div className={styles.footerItemIcon}>
-                <img
-                  src={icons.HelpCircleIcon}
-                  alt='Help'
-                  className={styles.icon}
-                />
+                <icons.HelpCircleIcon className={styles.icon} />
                 <span>도움말</span>
               </div>
-              <img
-                src={icons.CheckRightIcon}
-                alt='Arrow'
-                className={styles.smallIcon}
-              />
+              <icons.CheckRightIcon className={styles.smallIcon} />
             </Link>
             <Link to='.' className={styles.footerItem}>
               <div className={styles.footerItemIcon}>
-                <img
-                  src={icons.SettingsIcon}
-                  alt='Settings'
-                  className={styles.icon}
-                />
+                <icons.SettingsIcon className={styles.icon} />
                 <span>설정</span>
               </div>
-              <img
-                src={icons.CheckRightIcon}
-                alt='Arrow'
-                className={styles.smallIcon}
-              />
+              <icons.CheckRightIcon className={styles.smallIcon} />
             </Link>
           </>
         ) : (
           <>
             <Link to='.' className={styles.footerItem}>
               <div className={styles.footerItemIcon}>
-                <img
-                  src={icons.HelpCircleIcon}
-                  alt='Help'
-                  className={styles.icon}
-                />
+                <icons.HelpCircleIcon className={styles.icon} />
               </div>
             </Link>
             <Link to='.' className={styles.footerItem}>
               <div className={styles.footerItemIcon}>
-                <img
-                  src={icons.SettingsIcon}
-                  alt='Settings'
-                  className={styles.icon}
-                />
+                <icons.SettingsIcon className={styles.icon} />
               </div>
             </Link>
           </>
@@ -235,19 +143,9 @@ export function Sidebar() {
       {/* 매치 데이 로고섹션 */}
       <div className={styles.matchDayLogo}>
         <div className={styles.footerItemIcon}>
-          <img
-            src={icons.LogoIcon}
-            alt='Match Day'
-            className={styles.matchDayIcon}
-          />
+          <icons.LogoIcon className={styles.matchDayIcon} />
         </div>
-        {isOpen && (
-          <img
-            src={icons.LogoTextIcon}
-            alt='Match Day'
-            className={styles.logoTextImage}
-          />
-        )}
+        {isOpen && <icons.LogoTextIcon className={styles.logoTextImage} />}
       </div>
     </aside>
   );
