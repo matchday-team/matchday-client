@@ -30,31 +30,6 @@ export const container = recipe({
   },
 });
 
-export const container = recipe({
-  base: {
-    position: 'fixed',
-    zIndex: 100,
-    top: 0,
-    left: 0,
-    display: 'flex',
-    flexDirection: 'column',
-    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-    borderRight: '1px solid #f0f0f0',
-    backgroundColor: lightThemeVars.color.white.main,
-    height: '100vh',
-  },
-  variants: {
-    width: {
-      default: {
-        width: SIDEBAR_WIDTH,
-      },
-      toggle: {
-        width: SIDEBAR_WIDTH_TOGGLE,
-      },
-    },
-  },
-});
-
 export const logo = style({
   position: 'relative',
   display: 'flex',
@@ -123,6 +98,7 @@ export const navItem = recipe({
     gap: 12,
     gap: 12,
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+    padding: '8px 16px',
     padding: '8px 16px',
     overflow: 'hidden',
     textDecoration: 'none',
@@ -228,11 +204,11 @@ export const toggleButton = recipe({
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
     backgroundColor: lightThemeVars.color.white.main,
     cursor: 'pointer',
-    width: 20,
+    width: 24,
+    height: 24,
     ':hover': {
       backgroundColor: lightThemeVars.color.white.hover,
     },
-    height: 20,
   },
   variants: {
     isOpen: {
@@ -279,38 +255,6 @@ export const matchDayLogo = style({
 
 export const matchDayIcon = style({
   flexShrink: 0,
-  borderRadius: 8,
-  width: 24,
-  height: 24,
-});
-
-export const toggleIcon = style({
-  width: 12,
-  height: 12,
-});
-
-export const icon = style({
-  width: 20,
-  height: 20,
-});
-
-export const smallIcon = style({
-  width: 16,
-  height: 16,
-});
-
-export const largeIcon = style({
-  width: 24,
-  height: 24,
-});
-
-export const logoImage = style({
-  width: 40,
-  height: 40,
-});
-
-export const logoTextImage = style({
-  height: 14,
   borderRadius: 8,
   width: 24,
   height: 24,
