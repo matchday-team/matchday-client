@@ -7,4 +7,6 @@ export interface StartingPlayer {
   goals: number;
   assists: number;
   fouls: number;
+  yellowCards: number;
+  redCards: number;
 }
