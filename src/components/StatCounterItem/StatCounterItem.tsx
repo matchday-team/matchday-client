@@ -19,7 +19,6 @@ export const StatCounterItem = ({
     <div className={styles.rootContainer}>
       <span className={styles.title}>{title}</span>
       <div className={styles.groupContainer}>
-        {/* FIXME: 추후 Text가 아닌 Icon 사용 예정 */}
         <button
           className={styles.button}
           onClick={onDecrement}

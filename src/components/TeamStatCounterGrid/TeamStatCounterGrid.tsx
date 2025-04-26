@@ -1,4 +1,5 @@
-import { StatCounterItem } from './StatCounterItem';
+import { StatCounterItem } from '@/components/StatCounterItem';
+
 import * as styles from './TeamStatCounterGrid.css';
 
 interface TeamStat {
