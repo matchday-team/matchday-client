@@ -21,9 +21,21 @@ export const PlayerStatCounterGrid = ({
   // NOTE: DEMO 용도로만 임시로 로컬 상태 사용
   const [goals, setGoals] = useState(player.goals);
   const [assists, setAssists] = useState(player.assists);
+  const [yellowCards, setYellowCards] = useState(player.yellowCards);
+  const [redCards, setRedCards] = useState(player.redCards);
 
-  const isYellow = player.yellowCards > 0;
-  const isRed = player.redCards > 0;
+  const isYellow = yellowCards > 0;
+  const isRed = redCards > 0;
+
+  const handleCardClick = () => {
+    if (redCards === 0 && yellowCards === 0) {
+      setYellowCards(yellowCards + 1);
+    } else if (yellowCards > 0) {
+      setRedCards(redCards + 1);
+    } else {
+      setYellowCards(yellowCards + 1);
+    }
+  };
 
   return (
     <div className={styles.rootContainer}>
@@ -56,8 +68,14 @@ export const PlayerStatCounterGrid = ({
         <div className={styles.cautionContainer}>
           <span className={styles.title}>경고</span>
           <div className={styles.cardBlockContainer}>
-            <CardBlock caution={isRed ? 'red' : isYellow ? 'yellow' : 'none'} />
-            <CardBlock caution={isRed ? 'red' : 'none'} />
+            <CardBlock
+              caution={isRed ? 'red' : isYellow ? 'yellow' : 'none'}
+              onClick={handleCardClick}
+            />
+            <CardBlock
+              caution={isRed ? 'red' : 'none'}
+              onClick={handleCardClick}
+            />
           </div>
         </div>
       </div>
