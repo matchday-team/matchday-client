@@ -41,6 +41,8 @@ export const Default: Story = {
         goals: 2,
         assists: 1,
         fouls: 0,
+        yellowCards: 0,
+        redCards: 0,
       },
       {
         id: 2,
@@ -51,6 +53,8 @@ export const Default: Story = {
         goals: 1,
         assists: 3,
         fouls: 1,
+        yellowCards: 0,
+        redCards: 0,
       },
     ],
   },

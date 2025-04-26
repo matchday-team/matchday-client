@@ -48,6 +48,8 @@ const mockHomePlayer: StartingPlayer = {
   goals: 10,
   assists: 10,
   fouls: 10,
+  yellowCards: 0,
+  redCards: 0,
 };
 
 const mockAwayPlayer: StartingPlayer = {
@@ -59,6 +61,8 @@ const mockAwayPlayer: StartingPlayer = {
   goals: 10,
   assists: 10,
   fouls: 10,
+  yellowCards: 0,
+  redCards: 0,
 };
 
 const mockLogs = Array.from({ length: 10 }, (_, index) => [
