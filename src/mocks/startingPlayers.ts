@@ -21,6 +21,8 @@ export const dummyPlayerOfTeam1 = [
     goals: 10,
     assists: 5,
     fouls: 3,
+    yellowCards: 0,
+    redCards: 0,
   },
   {
     id: 2,
@@ -31,6 +33,8 @@ export const dummyPlayerOfTeam1 = [
     goals: 10,
     assists: 10,
     fouls: 10,
+    yellowCards: 0,
+    redCards: 0,
   },
   {
     id: 3,
@@ -41,6 +45,8 @@ export const dummyPlayerOfTeam1 = [
     goals: 10,
     assists: 5,
     fouls: 3,
+    yellowCards: 0,
+    redCards: 0,
   },
   {
     id: 4,
@@ -51,6 +57,8 @@ export const dummyPlayerOfTeam1 = [
     goals: 10,
     assists: 5,
     fouls: 3,
+    yellowCards: 0,
+    redCards: 0,
   },
   {
     id: 5,
@@ -61,6 +69,8 @@ export const dummyPlayerOfTeam1 = [
     goals: 10,
     assists: 5,
     fouls: 3,
+    yellowCards: 0,
+    redCards: 0,
   },
   {
     id: 6,
@@ -71,6 +81,8 @@ export const dummyPlayerOfTeam1 = [
     goals: 10,
     assists: 5,
     fouls: 3,
+    yellowCards: 0,
+    redCards: 0,
   },
   {
     id: 7,
@@ -81,6 +93,8 @@ export const dummyPlayerOfTeam1 = [
     goals: 10,
     assists: 5,
     fouls: 3,
+    yellowCards: 0,
+    redCards: 0,
   },
   {
     id: 8,
@@ -91,6 +105,8 @@ export const dummyPlayerOfTeam1 = [
     goals: 10,
     assists: 5,
     fouls: 3,
+    yellowCards: 0,
+    redCards: 0,
   },
   {
     id: 9,
@@ -101,6 +117,8 @@ export const dummyPlayerOfTeam1 = [
     goals: 10,
     assists: 5,
     fouls: 3,
+    yellowCards: 0,
+    redCards: 0,
   },
   {
     id: 10,
@@ -111,6 +129,8 @@ export const dummyPlayerOfTeam1 = [
     goals: 10,
     assists: 5,
     fouls: 3,
+    yellowCards: 0,
+    redCards: 0,
   },
   {
     id: 11,
@@ -121,6 +141,8 @@ export const dummyPlayerOfTeam1 = [
     goals: 10,
     assists: 5,
     fouls: 3,
+    yellowCards: 0,
+    redCards: 0,
   },
   {
     id: 12,
@@ -131,6 +153,8 @@ export const dummyPlayerOfTeam1 = [
     goals: 10,
     assists: 5,
     fouls: 3,
+    yellowCards: 0,
+    redCards: 0,
   },
   {
     id: 13,
@@ -141,6 +165,8 @@ export const dummyPlayerOfTeam1 = [
     goals: 10,
     assists: 5,
     fouls: 3,
+    yellowCards: 0,
+    redCards: 0,
   },
   {
     id: 14,
@@ -151,6 +177,8 @@ export const dummyPlayerOfTeam1 = [
     goals: 10,
     assists: 5,
     fouls: 3,
+    yellowCards: 0,
+    redCards: 0,
   },
   {
     id: 15,
@@ -161,6 +189,8 @@ export const dummyPlayerOfTeam1 = [
     goals: 10,
     assists: 5,
     fouls: 3,
+    yellowCards: 0,
+    redCards: 0,
   },
   {
     id: 16,
@@ -171,5 +201,7 @@ export const dummyPlayerOfTeam1 = [
     goals: 10,
     assists: 5,
     fouls: 3,
+    yellowCards: 0,
+    redCards: 0,
   },
 ];

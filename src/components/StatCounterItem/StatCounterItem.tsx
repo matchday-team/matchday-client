@@ -7,6 +7,7 @@ export interface StatCounterItemProps {
   value: number;
   onIncrement?: () => void;
   onDecrement?: () => void;
+  colorIntegration?: boolean;
 }
 
 export const StatCounterItem = ({
@@ -14,12 +15,12 @@ export const StatCounterItem = ({
   value,
   onIncrement,
   onDecrement,
+  colorIntegration = true,
 }: StatCounterItemProps) => {
   return (
     <div className={styles.rootContainer}>
       <span className={styles.title}>{title}</span>
       <div className={styles.groupContainer}>
-        {/* FIXME: 추후 Text가 아닌 Icon 사용 예정 */}
         <button
           className={styles.button}
           onClick={onDecrement}
@@ -28,7 +29,7 @@ export const StatCounterItem = ({
         >
           <MinusIcon />
         </button>
-        <span className={styles.value}>{value}</span>
+        <span className={styles.value({ colorIntegration })}>{value}</span>
         <button
           className={styles.button}
           onClick={onIncrement}
