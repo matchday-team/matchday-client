@@ -16,6 +16,7 @@ const meta: Meta<typeof MatchTimeController> = {
       <div
         style={{
           padding: 100,
+          width: 280,
           backgroundColor: lightThemeVars.color.white.background,
         }}
       >
