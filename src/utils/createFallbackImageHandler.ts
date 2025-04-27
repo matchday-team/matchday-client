@@ -10,6 +10,5 @@ import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 export const createFallbackImageHandler =
   (fallbackImageUrl: string = noProfilePlayerImage) =>
   (e: SyntheticEvent<HTMLImageElement, Event>) => {
-    console.log('fallbackImageUrl', fallbackImageUrl);
     e.currentTarget.src = fallbackImageUrl;
   };

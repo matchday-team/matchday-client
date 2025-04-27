@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import FCSeoulLogo from '@/assets/images/teams/fcseoul.png';
-import FCSwonLogo from '@/assets/images/teams/fcsuwon.png';
+import FCSuwonLogo from '@/assets/images/teams/fcsuwon.png';
 import {
   teamAwayColor,
   teamHomeColor,
@@ -49,7 +49,7 @@ export const Default: Story = {
     },
     awayTeam: {
       name: 'FC 수원',
-      logoImageUrl: FCSwonLogo,
+      logoImageUrl: FCSuwonLogo,
     },
   },
 };
@@ -81,7 +81,7 @@ export const Custom: Story = {
     },
     awayTeam: {
       name: '동국대',
-      logoImageUrl: FCSwonLogo,
+      logoImageUrl: FCSuwonLogo,
     },
   },
 };
