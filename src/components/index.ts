@@ -7,3 +7,4 @@ export * from './SubstitutionPlayerList';
 export * from './PlayerStatCounterGrid';
 export * from './MatchRecordSimpleMemo';
 export * from './MatchTimeController';
+export * from './GameScoreArea';
