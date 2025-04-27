@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 
 import { Button } from './Button';
 import * as styles from './MatchTimeController.css';
-import { getUnixTimestampInSeconds } from './timeUtils';
+import { getTimerText } from './timeUtils';
 
 interface MatchTimeControllerProps {
   matchStatus: {
     currentPeriod: number;
-    state: 'playing' | 'end';
+    state: 'notStarted' | 'playing' | 'ended';
     startedAt: number;
     addedTime: number;
   };
@@ -23,23 +23,26 @@ export const MatchTimeController = ({
   onStop,
 }: MatchTimeControllerProps) => {
   const currentPeriodName = periodNames[matchStatus.currentPeriod - 1];
-  const [currentTime, setCurrentTime] = useState('00:00');
+  const [currentTime, setCurrentTime] = useState(
+    getTimerText(matchStatus.startedAt),
+  );
+
+  const isGameEnded =
+    matchStatus.state === 'ended' &&
+    matchStatus.currentPeriod === periodNames.length;
+
+  const buttonText = isGameEnded
+    ? '게임 종료됨'
+    : matchStatus.state === 'notStarted' || matchStatus.state === 'ended'
+      ? `${currentPeriodName} 시작`
+      : `${currentPeriodName} 종료`;
 
   useEffect(() => {
     const updateTime = () => {
-      if (matchStatus.state === 'playing' && matchStatus.startedAt) {
-        const now = getUnixTimestampInSeconds();
-        const elapsedSeconds = now - matchStatus.startedAt;
-        const minutes = Math.floor(elapsedSeconds / 60);
-        const seconds = elapsedSeconds % 60;
-
-        const minutesToDisplay = minutes.toString().padStart(2, '0');
-        const secondsToDisplay = seconds.toString().padStart(2, '0');
-        setCurrentTime(`${minutesToDisplay}:${secondsToDisplay}`);
+      if (matchStatus.state === 'playing') {
+        setCurrentTime(getTimerText(matchStatus.startedAt));
       }
     };
-
-    updateTime();
 
     const intervalId = setInterval(updateTime, 1000);
 
@@ -61,11 +64,11 @@ export const MatchTimeController = ({
       </div>
       <div className={styles.controlSection}>
         <Button
-          isActive={matchStatus.state === 'playing'}
+          disabled={isGameEnded}
+          isActive={!isGameEnded}
           onClick={matchStatus.state === 'playing' ? onStop : onStart}
         >
-          {currentPeriodName}{' '}
-          {matchStatus.state === 'playing' ? '종료' : '시작'}
+          {buttonText}
         </Button>
       </div>
     </div>

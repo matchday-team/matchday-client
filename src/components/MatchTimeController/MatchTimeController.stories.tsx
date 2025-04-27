@@ -45,7 +45,7 @@ export const NotStarted: Story = {
   args: {
     matchStatus: {
       currentPeriod: 1,
-      state: 'end',
+      state: 'notStarted',
       startedAt: getTimeAgo({ minutes: 45 }),
       addedTime: 0,
     },
@@ -57,7 +57,7 @@ export const FirstHalfEnded: Story = {
   args: {
     matchStatus: {
       currentPeriod: 1,
-      state: 'end',
+      state: 'ended',
       startedAt: getTimeAgo({ minutes: 45 }),
       addedTime: 0,
     },
@@ -72,6 +72,18 @@ export const SecondHalfPlaying: Story = {
       state: 'playing',
       startedAt: getTimeAgo({ minutes: 60, seconds: 30 }),
       addedTime: 0,
+    },
+    periodNames: ['전반', '후반'],
+  },
+};
+
+export const SecondHalfEnded: Story = {
+  args: {
+    matchStatus: {
+      currentPeriod: 2,
+      state: 'ended',
+      startedAt: getTimeAgo({ minutes: 91, seconds: 30 }),
+      addedTime: 1,
     },
     periodNames: ['전반', '후반'],
   },
