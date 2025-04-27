@@ -35,6 +35,6 @@ const lightTheme = {
     },
     warning: '#D91920',
   },
-};
+} as const;
 
 export const lightThemeVars = createGlobalTheme(':root', lightTheme);
