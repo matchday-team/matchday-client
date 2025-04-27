@@ -51,7 +51,7 @@ export const NotStarted: Story = {
     matchStatus: {
       currentPeriod: 1,
       state: 'notStarted',
-      startedAt: getTimeAgo({ minutes: 45, seconds: 0, now }),
+      startedAt: getTimeAgo({ minutes: 0, seconds: 0, now }),
       addedTime: 0,
     },
     periodNames: ['전반', '후반'],
