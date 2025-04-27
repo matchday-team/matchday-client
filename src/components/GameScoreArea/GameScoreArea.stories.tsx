@@ -54,6 +54,21 @@ export const Default: Story = {
   },
 };
 
+export const NoImage: Story = {
+  args: {
+    scores: {
+      home: 0,
+      away: 0,
+    },
+    homeTeam: {
+      name: 'FC 서울',
+    },
+    awayTeam: {
+      name: 'FC 수원',
+    },
+  },
+};
+
 export const Custom: Story = {
   args: {
     scores: {

@@ -56,8 +56,7 @@ export const logoWrapper = recipe({
 
 export const logo = style({
   objectFit: 'cover',
-  width: 'auto',
-  height: 38,
+  width: 32,
 });
 
 export const teamName = style({
