@@ -6,3 +6,4 @@ export * from './TeamStatCounterGrid';
 export * from './SubstitutionPlayerList';
 export * from './PlayerStatCounterGrid';
 export * from './MatchRecordSimpleMemo';
+export * from './MatchTimeController';
