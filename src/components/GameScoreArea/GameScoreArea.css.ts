@@ -79,6 +79,8 @@ export const region = style({
 });
 
 export const score = style({
+  width: 92,
+  textAlign: 'center',
   lineHeight: 1.13,
   letterSpacing: -1,
   color: lightThemeVars.color.white.main,

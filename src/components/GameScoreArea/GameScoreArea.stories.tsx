@@ -72,8 +72,8 @@ export const NoImage: Story = {
 export const Custom: Story = {
   args: {
     scores: {
-      home: 3,
-      away: 1,
+      home: 17,
+      away: 3,
     },
     homeTeam: {
       name: '한양대',
