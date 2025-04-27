@@ -5,6 +5,7 @@ import * as styles from './MatchTimeController.css';
 import { getTimerText } from './timeUtils';
 
 interface MatchTimeControllerProps {
+  now: number;
   matchStatus: {
     currentPeriod: number;
     state: 'notStarted' | 'playing' | 'ended';
@@ -17,6 +18,7 @@ interface MatchTimeControllerProps {
 }
 
 export const MatchTimeController = ({
+  now,
   matchStatus,
   periodNames,
   onStart,
@@ -24,7 +26,7 @@ export const MatchTimeController = ({
 }: MatchTimeControllerProps) => {
   const currentPeriodName = periodNames[matchStatus.currentPeriod - 1];
   const [currentTime, setCurrentTime] = useState(
-    getTimerText(matchStatus.startedAt),
+    getTimerText(matchStatus.startedAt, now),
   );
 
   const isGameEnded =
@@ -40,14 +42,14 @@ export const MatchTimeController = ({
   useEffect(() => {
     const updateTime = () => {
       if (matchStatus.state === 'playing') {
-        setCurrentTime(getTimerText(matchStatus.startedAt));
+        setCurrentTime(getTimerText(matchStatus.startedAt, now));
       }
     };
 
     const intervalId = setInterval(updateTime, 1000);
 
     return () => clearInterval(intervalId);
-  }, [matchStatus.state, matchStatus.startedAt]);
+  }, [matchStatus.state, matchStatus.startedAt, now]);
 
   return (
     <div className={styles.container}>

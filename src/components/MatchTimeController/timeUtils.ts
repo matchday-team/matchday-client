@@ -5,12 +5,15 @@ export const getUnixTimestampInSeconds = (now: Date = new Date()) => {
 export const getTimeAgo = ({
   minutes = 0,
   seconds = 0,
-}: { minutes?: number; seconds?: number } = {}): number => {
-  return getUnixTimestampInSeconds() - (minutes * 60 + seconds);
+  now = getUnixTimestampInSeconds(),
+}: { minutes?: number; seconds?: number; now?: number } = {}): number => {
+  return now - (minutes * 60 + seconds);
 };
 
-export const getTimerText = (startedAt: number) => {
-  const now = getUnixTimestampInSeconds();
+export const getTimerText = (
+  startedAt: number,
+  now: number = getUnixTimestampInSeconds(),
+) => {
   const elapsedSeconds = now - startedAt;
   const minutes = Math.floor(elapsedSeconds / 60);
   const seconds = elapsedSeconds % 60;
