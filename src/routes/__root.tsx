@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { Outlet, createRootRoute } from '@tanstack/react-router';
 
-import { Navbar } from '@/components/Navbar';
-import { Sidebar } from '@/components/Sidebar';
+import { Layout } from '@/components/Layout';
 import { SidebarProvider } from '@/components/Sidebar/context';
 import {
   NAVBAR_HEIGHT,
@@ -35,9 +34,7 @@ function MainLayout() {
     : SIDEBAR_WIDTH;
 
   return (
-    <div>
-      <Navbar />
-      <Sidebar />
+    <Layout>
       <main
         style={{
           paddingTop: NAVBAR_HEIGHT,
@@ -50,7 +47,7 @@ function MainLayout() {
       >
         <Outlet />
       </main>
-    </div>
+    </Layout>
   );
 }
 
