@@ -225,7 +225,6 @@ export const footerItemIcon = recipe({
 });
 
 export const footerItemIcon = style({
-<<<<<<< HEAD
   display: 'flex',
   alignItems: 'center',
   gap: 12,
