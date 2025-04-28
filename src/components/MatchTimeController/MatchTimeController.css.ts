@@ -3,6 +3,7 @@ import { style } from '@vanilla-extract/css';
 import { lightThemeVars } from '@/styles/theme.css';
 
 export const container = style({
+  boxSizing: 'border-box',
   display: 'flex',
   alignItems: 'center',
   gap: 34,
