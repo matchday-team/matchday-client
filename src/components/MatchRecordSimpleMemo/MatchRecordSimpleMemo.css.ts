@@ -1,14 +1,15 @@
 import { style } from '@vanilla-extract/css';
 
+import { commonPaper } from '@/styles/paper.css';
 import { lightThemeVars } from '@/styles/theme.css';
 
-export const container = style({
-  border: '4px solid #FFFFFF',
-  borderRadius: 10,
-  boxShadow: '4px 4px 8px 0px rgba(0, 0, 0, 0.05)',
-  background: lightThemeVars.color.white.background,
-  height: 204,
-});
+export const container = style([
+  commonPaper,
+  {
+    border: '4px solid #FFFFFF',
+    height: 204,
+  },
+]);
 
 export const header = style({
   background: '#FFFFFF',

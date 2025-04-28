@@ -19,6 +19,7 @@ import {
   getUnixTimestampInSeconds,
 } from '@/components/MatchTimeController/timeUtils';
 import { dummyPlayerOfTeam1, dummyTeam1, dummyTeam2 } from '@/mocks';
+import { commonPaper } from '@/styles/paper.css';
 import { lightThemeVars } from '@/styles/theme.css';
 
 import { MatchRecordLayout } from './-components';
@@ -116,6 +117,7 @@ function MatchRecordPage() {
       team2Color={dummyTeam2.teamColor}
       team1={
         <div
+          className={commonPaper}
           style={{
             ...s('auto'),
             marginTop: 18,
@@ -154,6 +156,7 @@ function MatchRecordPage() {
       }
       team2={
         <div
+          className={commonPaper}
           style={{
             ...s('auto'),
             marginTop: 18,
@@ -191,7 +194,7 @@ function MatchRecordPage() {
         </div>
       }
       teamStats={
-        <div style={s(548)}>
+        <div className={commonPaper} style={s(548)}>
           <GameScoreArea
             scores={{
               home: 0,

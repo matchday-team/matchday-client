@@ -1,20 +1,21 @@
 import { style } from '@vanilla-extract/css';
 
+import { commonPaper } from '@/styles/paper.css';
 import { lightThemeVars } from '@/styles/theme.css';
 
-export const container = style({
-  boxSizing: 'border-box',
-  display: 'flex',
-  alignItems: 'center',
-  gap: 34,
-  borderRadius: 10,
-  boxShadow: '4px 4px 8px rgba(0, 0, 0, 0.05)',
-  background: lightThemeVars.color.white.main,
-  padding: '0 0 0 20px',
-  width: '100%',
-  height: 116,
-  overflow: 'hidden',
-});
+export const container = style([
+  commonPaper,
+  {
+    boxSizing: 'border-box',
+    display: 'flex',
+    alignItems: 'center',
+    gap: 34,
+    padding: '0 0 0 20px',
+    width: '100%',
+    height: 116,
+    overflow: 'hidden',
+  },
+]);
 
 export const timeSection = style({
   display: 'flex',

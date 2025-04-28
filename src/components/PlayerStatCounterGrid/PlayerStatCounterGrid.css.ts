@@ -1,14 +1,17 @@
 import { style } from '@vanilla-extract/css';
 
 import { teamColor } from '@/components/PlayerList/TeamColor.css';
+import { commonPaper } from '@/styles/paper.css';
 import { lightThemeVars } from '@/styles/theme.css';
 
-export const rootContainer = style({
-  display: 'flex',
-  flexDirection: 'column',
-  border: `2px solid ${teamColor}`,
-  borderRadius: 10,
-});
+export const rootContainer = style([
+  commonPaper,
+  {
+    display: 'flex',
+    flexDirection: 'column',
+    border: `2px solid ${teamColor}`,
+  },
+]);
 
 export const mainContainer = style({
   display: 'flex',
