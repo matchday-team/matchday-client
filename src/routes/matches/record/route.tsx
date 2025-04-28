@@ -4,6 +4,9 @@ import { StartingPlayer } from '@/apis';
 import { Team } from '@/apis';
 import {
   GameScoreArea,
+  MatchLogList,
+  MatchRecordSimpleMemo,
+  MatchSchedule,
   MatchTimeController,
   PlayerList,
   PlayerStatCounterGrid,
@@ -11,9 +14,6 @@ import {
   TeamStatCompareCounterList,
   TeamStatCounterGrid,
 } from '@/components';
-import { MatchLogList } from '@/components/MatchLogList';
-import MatchRecordSimpleMemo from '@/components/MatchRecordSimpleMemo/MatchRecordSimpleMemo';
-import { MatchSchedule } from '@/components/MatchSchedule';
 import {
   getTimeAgo,
   getUnixTimestampInSeconds,
