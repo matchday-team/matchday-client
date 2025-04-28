@@ -1,6 +1,9 @@
 import { useState } from 'react';
 
+import { assignInlineVars } from '@vanilla-extract/dynamic';
+
 import { StartingPlayer, Team } from '@/apis';
+import { teamColor } from '@/components/PlayerList/TeamColor.css';
 import { StatCounterItem } from '@/components/StatCounterItem';
 
 import { CardBlock } from './CardBlock';
@@ -43,7 +46,12 @@ export const PlayerStatCounterGrid = ({
   }
 
   return (
-    <div className={styles.rootContainer}>
+    <div
+      className={styles.rootContainer}
+      style={assignInlineVars({
+        [teamColor]: team.teamColor,
+      })}
+    >
       <PlayerBlock team={team} player={player} />
       <div className={styles.mainContainer}>
         <div className={styles.statContainer}>

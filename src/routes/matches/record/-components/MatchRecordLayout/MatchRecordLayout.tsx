@@ -1,5 +1,12 @@
 import { ReactNode } from 'react';
 
+import { assignInlineVars } from '@vanilla-extract/dynamic';
+
+import {
+  teamAwayColor,
+  teamHomeColor,
+} from '@/components/MatchLogList/colors.css';
+
 import * as styles from './MatchRecordLayout.css';
 
 interface MatchRecordLayoutProps {
@@ -11,6 +18,8 @@ interface MatchRecordLayoutProps {
   info: ReactNode;
   log: ReactNode;
   memo: ReactNode;
+  team1Color: string;
+  team2Color: string;
 }
 
 export const MatchRecordLayout = ({
@@ -22,9 +31,17 @@ export const MatchRecordLayout = ({
   timer,
   log,
   memo,
+  team1Color,
+  team2Color,
 }: MatchRecordLayoutProps) => {
   return (
-    <div className={styles.rootContainer}>
+    <div
+      className={styles.rootContainer}
+      style={assignInlineVars({
+        [teamHomeColor]: team1Color,
+        [teamAwayColor]: team2Color,
+      })}
+    >
       <div className={styles.teamContainer}>{team1}</div>
       <div className={styles.centerContainer}>
         {teamStats}
