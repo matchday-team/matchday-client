@@ -7,6 +7,7 @@ export const container = style({
   borderRadius: 10,
   boxShadow: '4px 4px 8px 0px rgba(0, 0, 0, 0.05)',
   background: lightThemeVars.color.white.background,
+  height: 204,
 });
 
 export const header = style({
@@ -28,7 +29,7 @@ export const textarea = style({
   background: lightThemeVars.color.white.background,
   padding: '8px 12px',
   width: '100%',
-  height: 144,
+  height: 'calc(100% - 32px)', // NOTE: calc를 사용하지 않는 방법 = ?
   resize: 'none',
   lineHeight: 1.5,
   ':focus': {
