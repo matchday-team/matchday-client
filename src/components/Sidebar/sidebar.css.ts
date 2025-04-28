@@ -2,7 +2,6 @@ import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_TOGGLE } from '@/constants';
-import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_TOGGLE } from '@/constants';
 import { lightThemeVars } from '@/styles/theme.css';
 
 export const container = recipe({
@@ -35,10 +34,7 @@ export const logo = style({
   display: 'flex',
   alignItems: 'center',
   gap: 20,
-  gap: 20,
   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-  padding: 6,
-  height: 72,
   padding: 6,
   height: 72,
   overflow: 'hidden',
@@ -47,14 +43,11 @@ export const logo = style({
   color: lightThemeVars.color.black,
   fontSize: 16,
   fontWeight: 600,
-  fontSize: 16,
-  fontWeight: 600,
 });
 
 export const logoText = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: 2,
   gap: 2,
 });
 
@@ -62,21 +55,15 @@ export const logoTitle = style({
   color: lightThemeVars.color.black,
   fontSize: 16,
   fontWeight: 600,
-  fontSize: 16,
-  fontWeight: 600,
 });
 
 export const logoSubtitle = style({
   color: lightThemeVars.color.gray[500],
   fontSize: 12,
-  fontSize: 12,
 });
 
 export const adminIcon = style({
   position: 'absolute',
-  right: 26,
-  width: 24,
-  height: 24,
   right: 26,
   width: 24,
   height: 24,
@@ -88,7 +75,6 @@ export const nav = style({
   flex: 1,
   flexDirection: 'column',
   padding: 0,
-  padding: 0,
 });
 
 export const navItem = recipe({
@@ -96,16 +82,12 @@ export const navItem = recipe({
     display: 'flex',
     alignItems: 'center',
     gap: 12,
-    gap: 12,
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-    padding: '8px 16px',
     padding: '8px 16px',
     overflow: 'hidden',
     textDecoration: 'none',
     whiteSpace: 'nowrap',
     color: lightThemeVars.color.gray[600],
-    fontSize: 14,
-    fontWeight: 500,
     fontSize: 14,
     fontWeight: 500,
     ':hover': {
@@ -138,14 +120,12 @@ export const footerItem = style({
   whiteSpace: 'nowrap',
   color: '#666666',
   fontSize: 14,
-  fontSize: 14,
   ':hover': {
     backgroundColor: '#f5f5f5',
   },
 });
 
 export const footerItemIcon = style({
-<<<<<<< HEAD
   display: 'flex',
   alignItems: 'center',
   gap: 12,
@@ -182,70 +162,12 @@ export const toggleButton = recipe({
         transform: 'translateY(-50%)',
       },
     },
-=======
-  display: 'flex',
-  alignItems: 'center',
-  gap: 12,
-});
-
-export const toggleButton = recipe({
-  base: {
-    position: 'absolute',
-    zIndex: 101,
-    top: '50%',
-    right: -12,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    transform: 'translateY(-50%)',
-    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-    border: '1px solid #f0f0f0',
-    borderRadius: '50%',
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
-    backgroundColor: lightThemeVars.color.white.main,
-    cursor: 'pointer',
-    width: 24,
-    height: 24,
-    ':hover': {
-      backgroundColor: lightThemeVars.color.white.hover,
-    },
-  },
-  variants: {
-    isOpen: {
-      true: {
-        transform: 'translateY(-50%) rotate(180deg)',
-      },
-      false: {
-        transform: 'translateY(-50%)',
-      },
-    },
-  },
-export const toggleButton = style({
-  position: 'absolute',
-  zIndex: 101,
-  top: '50%',
-  right: '-12px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  transform: 'translateY(-50%)',
-  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-  border: '1px solid #f0f0f0',
-  borderRadius: '50%',
-  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
-  backgroundColor: lightThemeVars.color.white.main,
-  cursor: 'pointer',
-  width: '20px',
-  ':hover': {
-    backgroundColor: '#f5f5f5',
->>>>>>> 17fa3e2 (refactor: 사이드바 컴포넌트 flex 스타일 통합 및 레이아웃 정리)
   },
 });
 
 export const matchDayLogo = style({
   display: 'flex',
   alignItems: 'center',
-  gap: 8,
   gap: 8,
   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
   padding: '12px 14px',
