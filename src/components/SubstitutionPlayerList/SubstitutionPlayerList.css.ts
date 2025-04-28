@@ -3,6 +3,7 @@ import { style } from '@vanilla-extract/css';
 import { lightThemeVars } from '@/styles/theme.css';
 
 export const rootContainer = style({
+  boxSizing: 'border-box',
   display: 'flex',
   flexDirection: 'column',
   border: `1px solid ${lightThemeVars.color.primary['100']}`,
