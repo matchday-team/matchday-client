@@ -6,7 +6,7 @@ import { lightThemeVars } from '@/styles/theme.css';
 export const container = recipe({
   base: {
     flex: 1,
-    borderRadius: 10,
+    borderRadius: 3,
     backgroundColor: lightThemeVars.color.gray[100],
   },
   variants: {
@@ -29,7 +29,7 @@ const barAnimation = keyframes({
 
 export const bar = style({
   transition: 'width 0.3s ease-in-out',
-  borderRadius: 10,
+  borderRadius: 3,
   height: 6,
   animation: `${barAnimation} 0.8s ease forwards`,
 });
