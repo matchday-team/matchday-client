@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { createFileRoute } from '@tanstack/react-router';
 
 import { StartingPlayer } from '@/apis';
@@ -110,6 +112,7 @@ const s = (height: number | string) => ({
 
 function MatchRecordPage() {
   const now = getUnixTimestampInSeconds();
+  const [memo, setMemo] = useState('');
 
   return (
     <MatchRecordLayout
@@ -274,10 +277,7 @@ function MatchRecordPage() {
       }
       memo={
         <div style={s(204)}>
-          <MatchRecordSimpleMemo
-            value={'간편 메모 테스트'}
-            onChange={() => {}}
-          />
+          <MatchRecordSimpleMemo value={memo} onChange={setMemo} />
         </div>
       }
     />
