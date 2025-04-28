@@ -1,5 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
+import { lightThemeVars } from '@/styles/theme.css';
+
 // NOTE: 현재 디자인은 고정 크기의 레이아웃으로 배치
 export const rootContainer = style({
   display: 'flex',
@@ -13,6 +15,7 @@ export const rootContainer = style({
   },
   gap: 16,
   margin: '0 16px',
+  backgroundColor: lightThemeVars.color.gray[100],
   minWidth: 1380,
   height: 964,
 });

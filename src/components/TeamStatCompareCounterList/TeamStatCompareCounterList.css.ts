@@ -4,5 +4,5 @@ export const container = style({
   display: 'flex',
   flexDirection: 'column',
   gap: 24,
-  padding: [22, 20],
+  padding: '22px 20px',
 });

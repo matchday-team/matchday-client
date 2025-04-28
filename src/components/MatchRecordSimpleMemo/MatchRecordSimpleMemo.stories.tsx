@@ -4,7 +4,7 @@ import type { Meta, StoryFn } from '@storybook/react';
 
 import { lightThemeVars } from '@/styles/theme.css';
 
-import MatchRecordSimpleMemo from './MatchRecordSimpleMemo';
+import { MatchRecordSimpleMemo } from './MatchRecordSimpleMemo';
 
 const meta = {
   title: 'Components/MatchRecordSimpleMemo',
