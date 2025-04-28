@@ -8,3 +8,6 @@ export * from './PlayerStatCounterGrid';
 export * from './MatchRecordSimpleMemo';
 export * from './MatchTimeController';
 export * from './GameScoreArea';
+export * from './TinyBarChart';
+export * from './StatCompareCounter';
+export * from './TeamStatCompareCounterList';
