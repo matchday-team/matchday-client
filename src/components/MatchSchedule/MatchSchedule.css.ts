@@ -24,9 +24,12 @@ export const labelContainer = style({
 });
 
 export const label = style({
-  borderRadius: 4,
+  borderRadius: 6,
   background: lightThemeVars.color.primary[300],
-  padding: '5px 10px',
+  padding: '0 10px',
+  height: 20,
+  verticalAlign: 'middle',
+  textAlign: 'center',
   lineHeight: 1.4,
   letterSpacing: -0.35,
   color: lightThemeVars.color.primary[800],
