@@ -25,6 +25,7 @@ const lightTheme = {
     },
     field: {
       background: '#43A151',
+      backgroundDarken: '#368141',
       icon: '#0C3F14',
       lineLight: 'rgba(255, 255, 255, 0.15)',
       line: 'rgba(255, 255, 255, 0.5)',

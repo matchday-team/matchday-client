@@ -9,11 +9,16 @@ export const commonCellContainer = recipe({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    // NOTE: border width 변동 시 이상한 Layout Shift가 발생함 - 항상 동일 width를 사용하고, 대신 boxShadow로 기본 border를 대체함
     border: '3px solid transparent',
+    // NOTE: border width 변동 시 이상한 Layout Shift가 발생함 - 항상 동일 width를 사용하고, 대신 boxShadow로 기본 border를 대체함
     boxShadow: `0 0 0 1px ${lightThemeVars.color.field.lineLight}`,
-    height: '100%',
+    height: '100%', // FIXME: 겹치는 모서리 부분에는 더 색이 진한 문제가 존재함
     color: lightThemeVars.color.white.main,
+
+    ':hover': {
+      border: `1px solid ${lightThemeVars.color.field.lineLight}`, // FIXME: bgColor가 boxShadow보다 위여서 이런 식의 패치가 필요 (이 패치 역시 불완전)
+      backgroundColor: lightThemeVars.color.field.backgroundDarken,
+    },
   },
   variants: {
     isSelected: {
