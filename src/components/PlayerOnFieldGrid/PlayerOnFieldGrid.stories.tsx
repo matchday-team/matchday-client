@@ -1,0 +1,63 @@
+import type { Meta, StoryObj } from '@storybook/react';
+
+import { StartingPlayerOnGrid } from '@/apis';
+
+import { PlayerOnFieldGrid } from './PlayerOnFieldGrid';
+
+const meta = {
+  title: 'Components/PlayerOnFieldGrid',
+  component: PlayerOnFieldGrid,
+  parameters: {
+    layout: 'centered',
+  },
+  decorators: [
+    Story => (
+      <div style={{ width: 354, height: 462 }}>
+        <Story />
+      </div>
+    ),
+  ],
+  tags: ['autodocs'],
+} satisfies Meta<typeof PlayerOnFieldGrid>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+const gridPositions = [2, 5, 7, 9, 11, 13, 17, 21, 22, 23, 27];
+
+const mockPlayers: StartingPlayerOnGrid[] = Array.from(
+  { length: 11 },
+  (_, idx) => ({
+    id: idx + 1,
+    name: '손흥민',
+    number: 7,
+    position: 'FW',
+    profileImageUrl: 'https://via.placeholder.com/150',
+    goals: 10,
+    assists: 5,
+    fouls: 2,
+    yellowCards: 1,
+    redCards: 0,
+    grid: gridPositions[idx],
+  }),
+);
+
+export const Default: Story = {
+  args: {
+    players: mockPlayers,
+  },
+};
+
+export const WithSelectedPlayer: Story = {
+  args: {
+    players: mockPlayers,
+    selectedPlayerId: 1,
+  },
+};
+
+export const WithPlayerSelect: Story = {
+  args: {
+    players: mockPlayers,
+    onPlayerSelect: id => console.log(`Selected player: ${id}`),
+  },
+};
