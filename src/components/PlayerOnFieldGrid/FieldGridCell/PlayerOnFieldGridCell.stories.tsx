@@ -66,7 +66,7 @@ export const Selected: Story = {
   },
 };
 
-export const NoAssits: Story = {
+export const NoAssists: Story = {
   args: {
     player: {
       ...commonMockPlayer,
