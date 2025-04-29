@@ -1,5 +1,11 @@
 // sidebar 상태관리를 위해 react context 사용
-import { createContext, useContext, useEffect, useState } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 import {
   SIDEBAR_BREAKPOINT,
@@ -39,13 +45,13 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const toggle = () => {
+  const toggle = useCallback(() => {
     if (!showToggle) return;
     setIsOpen(prev => !prev);
     setWidth(prev =>
       prev === SIDEBAR_WIDTH_TOGGLE ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_TOGGLE,
     );
-  };
+  }, [showToggle]);
 
   return (
     <SidebarContext.Provider value={{ isOpen, width, toggle, showToggle }}>
