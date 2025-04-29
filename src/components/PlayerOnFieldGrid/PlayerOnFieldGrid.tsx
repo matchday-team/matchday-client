@@ -17,11 +17,13 @@ export const PlayerOnFieldGrid = ({
   selectedPlayerId,
   onPlayerSelect,
 }: PlayerOnFieldGridProps) => {
+  const playerGridMap = new Map(players.map(player => [player.grid, player]));
+
   return (
     <FieldBackground>
       <div className={styles.grid}>
         {Array.from({ length: TOTAL_CELLS }, (_, idx) => {
-          const player = players.find(player => player.grid === idx);
+          const player = playerGridMap.get(idx);
 
           if (!player) {
             return <EmptyOnFieldGridCell key={idx} />;
