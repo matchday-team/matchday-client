@@ -15,14 +15,16 @@ const meta = {
   parameters: {
     layout: 'fullscreen',
   },
-  decorators: [
-    Story => (
-      <SidebarProvider>
-        <RouterProvider router={router} />
-      </SidebarProvider>
-    ),
-  ],
   tags: ['autodocs'],
+  decorators: [
+    Story => {
+      return (
+        <SidebarProvider>
+          <Story />
+        </SidebarProvider>
+      );
+    },
+  ],
 } satisfies Meta<typeof Layout>;
 
 export default meta;
@@ -46,4 +48,5 @@ export const Default: Story = {
   args: {
     children: <HomeContent />,
   },
+  render: () => <RouterProvider router={router} />,
 };
