@@ -32,7 +32,9 @@ export const PlayerOnFieldGrid = ({
               key={idx}
               player={player}
               isSelected={player.id === selectedPlayerId}
-              onClick={() => onPlayerSelect?.(player.id)}
+              onClick={() => {
+                onPlayerSelect?.(player.id);
+              }}
             />
           );
         })}

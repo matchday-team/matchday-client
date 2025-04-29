@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { StartingPlayerOnGrid } from '@/apis';
@@ -58,6 +60,19 @@ export const WithSelectedPlayer: Story = {
 export const WithPlayerSelect: Story = {
   args: {
     players: mockPlayers,
-    onPlayerSelect: id => console.log(`Selected player: ${id}`),
+  },
+  render: () => {
+    const defaultSelectedPlayerId = 1;
+    const [selectedPlayerId, setSelectedPlayerId] = useState<number>(
+      defaultSelectedPlayerId,
+    );
+
+    return (
+      <PlayerOnFieldGrid
+        players={mockPlayers}
+        selectedPlayerId={selectedPlayerId}
+        onPlayerSelect={setSelectedPlayerId}
+      />
+    );
   },
 };

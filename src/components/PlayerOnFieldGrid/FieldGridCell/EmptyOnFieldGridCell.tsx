@@ -1,4 +1,4 @@
-import * as styles from './commonStyle.css';
+import { commonCellContainer } from './commonStyle.css';
 
 interface PlayerOnFieldGridCellProps {
   onClick?: () => void;
@@ -7,5 +7,5 @@ interface PlayerOnFieldGridCellProps {
 export const EmptyOnFieldGridCell = ({
   onClick,
 }: PlayerOnFieldGridCellProps) => {
-  return <div className={styles.commonCellContainer} onClick={onClick}></div>;
+  return <div className={commonCellContainer()} onClick={onClick}></div>;
 };

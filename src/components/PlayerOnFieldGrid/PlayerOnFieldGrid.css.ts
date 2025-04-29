@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
 export const grid = style({
+  boxSizing: 'border-box',
   display: 'grid',
   gridTemplateRows: 'repeat(6, 1fr)',
   gridTemplateColumns: 'repeat(5, 1fr)',

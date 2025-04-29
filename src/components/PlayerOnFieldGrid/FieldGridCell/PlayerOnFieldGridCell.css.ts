@@ -2,10 +2,6 @@ import { style } from '@vanilla-extract/css';
 
 import { lightThemeVars } from '@/styles/theme.css';
 
-import { commonCellContainer } from './commonStyle.css';
-
-export const cellContainer = style([commonCellContainer]);
-
 export const playerImageContainer = style({
   position: 'relative',
   display: 'flex',

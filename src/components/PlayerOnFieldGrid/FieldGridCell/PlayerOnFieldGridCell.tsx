@@ -3,6 +3,7 @@ import { SoccerballIcon } from '@/assets/icons';
 import { createFallbackImageHandler } from '@/utils/createFallbackImageHandler';
 
 import * as styles from './PlayerOnFieldGridCell.css';
+import { commonCellContainer } from './commonStyle.css';
 
 interface PlayerOnFieldGridCellProps {
   player: StartingPlayerOnGrid;
@@ -18,7 +19,7 @@ export const PlayerOnFieldGridCell = ({
   onClick,
 }: PlayerOnFieldGridCellProps) => {
   return (
-    <div className={styles.cellContainer} onClick={onClick}>
+    <div className={commonCellContainer({ isSelected })} onClick={onClick}>
       <div className={styles.playerImageContainer}>
         <img
           className={styles.playerImage}
