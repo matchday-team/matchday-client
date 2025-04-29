@@ -5,6 +5,41 @@ import * as icons from '@/assets/icons';
 import { useSidebar } from './context';
 import * as styles from './sidebar.css';
 
+interface OptionItemProps {
+  to: string;
+  icon: React.ReactNode;
+  label?: string;
+  isActive: boolean;
+}
+
+function OptionItem({ to, icon, label, isActive }: OptionItemProps) {
+  return (
+    <Link to={to} className={styles.navItem({ active: isActive })}>
+      {icon}
+      {label && <span>{label}</span>}
+    </Link>
+  );
+}
+
+interface FooterItemProps {
+  to: string;
+  icon: React.ReactNode;
+  label?: string;
+  showArrow?: boolean;
+}
+
+function FooterItem({ to, icon, label, showArrow }: FooterItemProps) {
+  return (
+    <Link to={to} className={styles.footerItem}>
+      <div className={styles.footerItemIcon}>
+        {icon}
+        {label && <span>{label}</span>}
+      </div>
+      {showArrow && <icons.CheckRightIcon className={styles.smallIcon} />}
+    </Link>
+  );
+}
+
 export function Sidebar() {
   const { isOpen, toggle, showToggle } = useSidebar();
   const matches = useMatches();
@@ -36,111 +71,51 @@ export function Sidebar() {
         )}
       </div>
 
-      {/* 사이드바 섹션 */}
+      {/* Sidebar Option */}
       <nav className={styles.nav}>
-        {isOpen ? (
-          <>
-            <Link
-              to='/'
-              className={styles.navItem({ active: currentPath === '/' })}
-            >
-              <icons.HomeIcon className={styles.icon} />
-              <span>홈</span>
-            </Link>
-
-            <Link
-              to='.'
-              className={styles.navItem({ active: currentPath === '.' })}
-            >
-              <icons.RecordIcon className={styles.icon} />
-              <span>매치 기록</span>
-            </Link>
-
-            <Link
-              to='.'
-              className={styles.navItem({ active: currentPath === '.' })}
-            >
-              <icons.SearchIcon className={styles.icon} />
-              <span>매치 조회</span>
-            </Link>
-
-            <Link
-              to='.'
-              className={styles.navItem({ active: currentPath === '.' })}
-            >
-              <icons.PlayerIcon className={styles.icon} />
-              <span>선수 명단</span>
-            </Link>
-          </>
-        ) : (
-          <>
-            <Link
-              to='/'
-              className={styles.navItem({ active: currentPath === '/' })}
-            >
-              <icons.HomeIcon className={styles.icon} />
-            </Link>
-
-            <Link
-              to='.'
-              className={styles.navItem({ active: currentPath === '.' })}
-            >
-              <icons.RecordIcon className={styles.icon} />
-            </Link>
-
-            <Link
-              to='.'
-              className={styles.navItem({ active: currentPath === '.' })}
-            >
-              <icons.SearchIcon className={styles.icon} />
-            </Link>
-
-            <Link
-              to='.'
-              className={styles.navItem({ active: currentPath === '.' })}
-            >
-              <icons.PlayerIcon className={styles.icon} />
-            </Link>
-          </>
-        )}
+        <OptionItem
+          to='/'
+          icon={<icons.HomeIcon className={styles.icon} />}
+          label={isOpen ? '홈' : undefined}
+          isActive={currentPath === '/'}
+        />
+        <OptionItem
+          to='.'
+          icon={<icons.RecordIcon className={styles.icon} />}
+          label={isOpen ? '매치 기록' : undefined}
+          isActive={currentPath === '.'}
+        />
+        <OptionItem
+          to='.'
+          icon={<icons.SearchIcon className={styles.icon} />}
+          label={isOpen ? '매치 조회' : undefined}
+          isActive={currentPath === '.'}
+        />
+        <OptionItem
+          to='.'
+          icon={<icons.PlayerIcon className={styles.icon} />}
+          label={isOpen ? '선수 명단' : undefined}
+          isActive={currentPath === '.'}
+        />
       </nav>
 
-      {/* 푸터섹션 */}
+      {/* footer */}
       <div className={styles.footer}>
-        {isOpen ? (
-          <>
-            <Link to='.' className={styles.footerItem}>
-              <div className={styles.footerItemIcon}>
-                <icons.HelpCircleIcon className={styles.icon} />
-                <span>도움말</span>
-              </div>
-              <icons.CheckRightIcon className={styles.smallIcon} />
-            </Link>
-            <Link to='.' className={styles.footerItem}>
-              <div className={styles.footerItemIcon}>
-                <icons.SettingsIcon className={styles.icon} />
-                <span>설정</span>
-              </div>
-              <icons.CheckRightIcon className={styles.smallIcon} />
-            </Link>
-          </>
-        ) : (
-          <>
-            <Link to='.' className={styles.footerItem}>
-              <div className={styles.footerItemIcon}>
-                <icons.HelpCircleIcon className={styles.icon} />
-              </div>
-            </Link>
-            <Link to='.' className={styles.footerItem}>
-              <div className={styles.footerItemIcon}>
-                <icons.SettingsIcon className={styles.icon} />
-              </div>
-            </Link>
-          </>
-        )}
+        <FooterItem
+          to='.'
+          icon={<icons.HelpCircleIcon className={styles.icon} />}
+          label={isOpen ? '도움말' : undefined}
+          showArrow={isOpen}
+        />
+        <FooterItem
+          to='.'
+          icon={<icons.SettingsIcon className={styles.icon} />}
+          label={isOpen ? '설정' : undefined}
+          showArrow={isOpen}
+        />
       </div>
 
-      {/* 매치 데이 로고섹션 */}
+      {/* Match Day Logo */}
       <div className={styles.matchDayLogo}>
         <div className={styles.footerItemIcon}>
           <icons.LogoIcon className={styles.matchDayIcon} />
