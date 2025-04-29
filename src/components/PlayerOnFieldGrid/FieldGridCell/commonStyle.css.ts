@@ -16,7 +16,6 @@ export const commonCellContainer = recipe({
     color: lightThemeVars.color.white.main,
 
     ':hover': {
-      border: `1px solid ${lightThemeVars.color.field.lineLight}`, // FIXME: bgColor가 boxShadow보다 위여서 이런 식의 패치가 필요 (이 패치 역시 불완전)
       backgroundColor: lightThemeVars.color.field.backgroundDarken,
     },
   },
@@ -24,6 +23,10 @@ export const commonCellContainer = recipe({
     isSelected: {
       true: {
         border: `3px dashed ${lightThemeVars.color.white.main}`,
+
+        ':hover': {
+          border: `3px dashed ${lightThemeVars.color.white.main}`,
+        },
       },
     },
   },
