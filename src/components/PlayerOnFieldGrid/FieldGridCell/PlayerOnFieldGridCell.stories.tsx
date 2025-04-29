@@ -29,14 +29,18 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const commonMockPlayer = {
+  id: 1,
+  name: '손흥민',
+  number: 7,
+  profileImageUrl: 'https://example.com/image.jpg',
+  position: 'FW',
+};
+
 export const Default: Story = {
   args: {
     player: {
-      id: 1,
-      name: '손흥민',
-      number: 7,
-      profileImageUrl: 'https://example.com/image.jpg',
-      position: 'FW',
+      ...commonMockPlayer,
       goals: 1,
       assists: 1,
       fouls: 1,
@@ -50,11 +54,7 @@ export const Default: Story = {
 export const Selected: Story = {
   args: {
     player: {
-      id: 1,
-      name: '손흥민',
-      number: 7,
-      profileImageUrl: 'https://example.com/image.jpg',
-      position: 'FW',
+      ...commonMockPlayer,
       goals: 1,
       assists: 1,
       fouls: 1,
@@ -63,5 +63,47 @@ export const Selected: Story = {
       grid: 1,
     },
     isSelected: true,
+  },
+};
+
+export const NoAssits: Story = {
+  args: {
+    player: {
+      ...commonMockPlayer,
+      goals: 1,
+      assists: 0,
+      fouls: 1,
+      yellowCards: 1,
+      redCards: 1,
+      grid: 1,
+    },
+  },
+};
+
+export const NoGoals: Story = {
+  args: {
+    player: {
+      ...commonMockPlayer,
+      goals: 0,
+      assists: 1,
+      fouls: 1,
+      yellowCards: 1,
+      redCards: 1,
+      grid: 1,
+    },
+  },
+};
+
+export const NoAttackPoints: Story = {
+  args: {
+    player: {
+      ...commonMockPlayer,
+      goals: 0,
+      assists: 0,
+      fouls: 1,
+      yellowCards: 1,
+      redCards: 1,
+      grid: 1,
+    },
   },
 };

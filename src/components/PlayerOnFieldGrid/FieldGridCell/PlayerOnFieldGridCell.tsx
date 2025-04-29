@@ -28,8 +28,8 @@ export const PlayerOnFieldGridCell = ({
           onError={fallbackImageHandler}
         />
         <div className={styles.attackPointContainer}>
-          <AttackPointMark count={1} />
-          <AttackPointMark count={1} />
+          <AttackPointMark count={player.goals} />
+          <AttackPointMark count={player.assists} />
         </div>
       </div>
       <div className={styles.playerInfoContainer}>
@@ -41,10 +41,8 @@ export const PlayerOnFieldGridCell = ({
 };
 
 const AttackPointMark = ({ count }: { count: number }) => {
-  if (count === 0) return null;
-
   return (
-    <div className={styles.attackPointMarkContainer}>
+    <div className={styles.attackPointMarkContainer({ isEmpty: count === 0 })}>
       <SoccerballIcon />
       <span className={styles.attackPointCount}>{count}</span>
     </div>

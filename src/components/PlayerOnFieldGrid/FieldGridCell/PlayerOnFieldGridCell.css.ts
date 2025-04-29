@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { lightThemeVars } from '@/styles/theme.css';
 
@@ -39,16 +40,25 @@ export const playerInfoContainer = style({
   fontWeight: 600,
 });
 
-export const attackPointMarkContainer = style({
-  boxSizing: 'border-box',
-  display: 'flex',
-  alignItems: 'center',
-  gap: 2,
-  borderRadius: 10, // NOTE: Figma 상의 값으로 진행하면 아예 다르게 출력되어서 임의로 지정
-  backgroundColor: lightThemeVars.color.field.icon,
-  paddingLeft: 1.5, // NOTE: Figma 상의 값으로 진행하면 아예 다르게 출력되어서 임의로 지정
-  width: 24,
-  height: 16,
+export const attackPointMarkContainer = recipe({
+  base: {
+    boxSizing: 'border-box',
+    display: 'flex',
+    alignItems: 'center',
+    gap: 2,
+    borderRadius: 10, // NOTE: Figma 상의 값으로 진행하면 아예 다르게 출력되어서 임의로 지정
+    backgroundColor: lightThemeVars.color.field.icon,
+    paddingLeft: 1.5, // NOTE: Figma 상의 값으로 진행하면 아예 다르게 출력되어서 임의로 지정
+    width: 24,
+    height: 16,
+  },
+  variants: {
+    isEmpty: {
+      true: {
+        visibility: 'hidden',
+      },
+    },
+  },
 });
 
 export const attackPointCount = style({

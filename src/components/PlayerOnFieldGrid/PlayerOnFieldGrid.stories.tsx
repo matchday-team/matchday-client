@@ -57,7 +57,7 @@ export const WithSelectedPlayer: Story = {
   },
 };
 
-export const WithPlayerSelect: Story = {
+export const Selectable: Story = {
   args: {
     players: mockPlayers,
   },
