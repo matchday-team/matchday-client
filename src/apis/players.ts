@@ -10,3 +10,7 @@ export interface StartingPlayer {
   yellowCards: number;
   redCards: number;
 }
+
+export interface StartingPlayerOnGrid extends StartingPlayer {
+  grid: number;
+}
