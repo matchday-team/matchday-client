@@ -224,12 +224,6 @@ export const footerItemIcon = recipe({
   },
 });
 
-export const footerItemIcon = style({
-  display: 'flex',
-  alignItems: 'center',
-  gap: 12,
-});
-
 export const toggleButton = recipe({
   base: {
     position: 'absolute',

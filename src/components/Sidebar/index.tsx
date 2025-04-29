@@ -5,14 +5,14 @@ import * as icons from '@/assets/icons';
 import { useSidebar } from './context';
 import * as styles from './sidebar.css';
 
-interface OptionItemProps {
+interface NavItemProps {
   to: string;
   icon: React.ReactNode;
   label?: string;
   isActive: boolean;
 }
 
-function OptionItem({ to, icon, label, isActive }: OptionItemProps) {
+function NavItem({ to, icon, label, isActive }: NavItemProps) {
   return (
     <Link to={to} className={styles.navItem({ active: isActive })}>
       {icon}
@@ -71,27 +71,27 @@ export function Sidebar() {
         )}
       </div>
 
-      {/* Sidebar Option */}
+      {/* Sidebar Nav */}
       <nav className={styles.nav}>
-        <OptionItem
+        <NavItem
           to='/'
           icon={<icons.HomeIcon className={styles.icon} />}
           label={isOpen ? '홈' : undefined}
           isActive={currentPath === '/'}
         />
-        <OptionItem
+        <NavItem
           to='.'
           icon={<icons.RecordIcon className={styles.icon} />}
           label={isOpen ? '매치 기록' : undefined}
           isActive={currentPath === '.'}
         />
-        <OptionItem
+        <NavItem
           to='.'
           icon={<icons.SearchIcon className={styles.icon} />}
           label={isOpen ? '매치 조회' : undefined}
           isActive={currentPath === '.'}
         />
-        <OptionItem
+        <NavItem
           to='.'
           icon={<icons.PlayerIcon className={styles.icon} />}
           label={isOpen ? '선수 명단' : undefined}
