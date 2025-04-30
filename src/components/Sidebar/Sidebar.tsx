@@ -55,7 +55,6 @@ export function Sidebar() {
         </button>
       )}
 
-      {/* 관리자 섹션 */}
       <div className={styles.logo}>
         <img src={icons.SeoulLogo} alt='FC 서울' className={styles.logoImage} />
         {isOpen && (
@@ -71,7 +70,6 @@ export function Sidebar() {
         )}
       </div>
 
-      {/* Sidebar Nav */}
       <nav className={styles.nav}>
         <NavItem
           to='/'
@@ -99,7 +97,6 @@ export function Sidebar() {
         />
       </nav>
 
-      {/* footer */}
       <div className={styles.footer}>
         <FooterItem
           to='.'
@@ -115,7 +112,6 @@ export function Sidebar() {
         />
       </div>
 
-      {/* Match Day Logo */}
       <div className={styles.matchDayLogo}>
         <div className={styles.footerItemIcon}>
           <icons.LogoIcon className={styles.matchDayIcon} />

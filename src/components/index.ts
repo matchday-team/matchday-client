@@ -13,8 +13,8 @@ export * from './StatCompareCounter';
 export * from './TeamStatCompareCounterList';
 export * from './MatchLogList';
 export * from './MatchSchedule';
-export * from './Navbar';
 export * from './Sidebar';
-
+export * from './Layout';
+export * from './Navbar';
 export * from './PlayerOnFieldGrid';
 export * from './ToggleableStartingPlayers';

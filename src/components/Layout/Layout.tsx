@@ -1,8 +1,5 @@
-import React from 'react';
-
 import { Navbar } from '@/components/Navbar';
-import { Sidebar } from '@/components/Sidebar';
-import { SidebarProvider } from '@/components/Sidebar/context';
+import { Sidebar, SidebarProvider } from '@/components/Sidebar';
 
 import * as styles from './layout.css';
 
