@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useMemo } from 'react';
 
 import { Link, useMatches } from '@tanstack/react-router';
 
@@ -59,6 +59,52 @@ export function Sidebar() {
   const matches = useMatches();
   const currentPath = matches[matches.length - 1]?.pathname || '/';
 
+  const navItems = useMemo(
+    () => [
+      {
+        to: '/',
+        icon: <HomeIcon className={styles.icon} />,
+        label: '홈',
+        path: '/',
+      },
+      {
+        to: '.',
+        icon: <RecordIcon className={styles.icon} />,
+        label: '매치 기록',
+        path: '.',
+      },
+      {
+        to: '.',
+        icon: <SearchIcon className={styles.icon} />,
+        label: '매치 조회',
+        path: '.',
+      },
+      {
+        to: '.',
+        icon: <PlayerIcon className={styles.icon} />,
+        label: '선수 명단',
+        path: '.',
+      },
+    ],
+    [],
+  );
+
+  const footerItems = useMemo(
+    () => [
+      {
+        to: '.',
+        icon: <HelpCircleIcon className={styles.icon} />,
+        label: '도움말',
+      },
+      {
+        to: '.',
+        icon: <SettingsIcon className={styles.icon} />,
+        label: '설정',
+      },
+    ],
+    [],
+  );
+
   return (
     <aside
       className={styles.container({ width: isOpen ? 'default' : 'toggle' })}
@@ -85,45 +131,27 @@ export function Sidebar() {
       </div>
 
       <nav className={styles.nav}>
-        <NavItem
-          to='/'
-          icon={<HomeIcon className={styles.icon} />}
-          label={isOpen ? '홈' : undefined}
-          isActive={currentPath === '/'}
-        />
-        <NavItem
-          to='.'
-          icon={<RecordIcon className={styles.icon} />}
-          label={isOpen ? '매치 기록' : undefined}
-          isActive={currentPath === '.'}
-        />
-        <NavItem
-          to='.'
-          icon={<SearchIcon className={styles.icon} />}
-          label={isOpen ? '매치 조회' : undefined}
-          isActive={currentPath === '.'}
-        />
-        <NavItem
-          to='.'
-          icon={<PlayerIcon className={styles.icon} />}
-          label={isOpen ? '선수 명단' : undefined}
-          isActive={currentPath === '.'}
-        />
+        {navItems.map(item => (
+          <NavItem
+            key={item.label}
+            to={item.to}
+            icon={item.icon}
+            label={isOpen ? item.label : undefined}
+            isActive={currentPath === item.path}
+          />
+        ))}
       </nav>
 
       <div className={styles.footer}>
-        <FooterItem
-          to='.'
-          icon={<HelpCircleIcon className={styles.icon} />}
-          label={isOpen ? '도움말' : undefined}
-          showArrow={isOpen}
-        />
-        <FooterItem
-          to='.'
-          icon={<SettingsIcon className={styles.icon} />}
-          label={isOpen ? '설정' : undefined}
-          showArrow={isOpen}
-        />
+        {footerItems.map(item => (
+          <FooterItem
+            key={item.label}
+            to={item.to}
+            icon={item.icon}
+            label={isOpen ? item.label : undefined}
+            showArrow={isOpen}
+          />
+        ))}
       </div>
 
       <div className={styles.matchDayLogo}>
