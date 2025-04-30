@@ -1,13 +1,27 @@
+import { ReactNode } from 'react';
+
 import { Link, useMatches } from '@tanstack/react-router';
 
-import * as icons from '@/assets/icons';
+import {
+  CheckRightIcon,
+  HelpCircleIcon,
+  HomeIcon,
+  LogoIcon,
+  LogoTextIcon,
+  PlayerIcon,
+  RecordIcon,
+  SearchIcon,
+  SeoulLogo,
+  SettingsIcon,
+  UserIcon,
+} from '@/assets/icons';
 
 import { useSidebar } from './context';
 import * as styles from './sidebar.css';
 
 interface NavItemProps {
   to: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   label?: string;
   isActive: boolean;
 }
@@ -23,7 +37,7 @@ function NavItem({ to, icon, label, isActive }: NavItemProps) {
 
 interface FooterItemProps {
   to: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   label?: string;
   showArrow?: boolean;
 }
@@ -35,7 +49,7 @@ function FooterItem({ to, icon, label, showArrow }: FooterItemProps) {
         {icon}
         {label && <span>{label}</span>}
       </div>
-      {showArrow && <icons.CheckRightIcon className={styles.smallIcon} />}
+      {showArrow && <CheckRightIcon className={styles.smallIcon} />}
     </Link>
   );
 }
@@ -51,12 +65,12 @@ export function Sidebar() {
     >
       {showToggle && (
         <button onClick={toggle} className={styles.toggleButton({ isOpen })}>
-          <icons.CheckRightIcon className={styles.toggleIcon} />
+          <CheckRightIcon className={styles.toggleIcon} />
         </button>
       )}
 
       <div className={styles.logo}>
-        <img src={icons.SeoulLogo} alt='FC 서울' className={styles.logoImage} />
+        <img src={SeoulLogo} alt='FC 서울' className={styles.logoImage} />
         {isOpen && (
           <>
             <div className={styles.logoText}>
@@ -64,7 +78,7 @@ export function Sidebar() {
               <span className={styles.logoSubtitle}>관리자</span>
             </div>
             <div className={styles.adminIcon}>
-              <icons.UserIcon className={styles.largeIcon} />
+              <UserIcon className={styles.largeIcon} />
             </div>
           </>
         )}
@@ -73,25 +87,25 @@ export function Sidebar() {
       <nav className={styles.nav}>
         <NavItem
           to='/'
-          icon={<icons.HomeIcon className={styles.icon} />}
+          icon={<HomeIcon className={styles.icon} />}
           label={isOpen ? '홈' : undefined}
           isActive={currentPath === '/'}
         />
         <NavItem
           to='.'
-          icon={<icons.RecordIcon className={styles.icon} />}
+          icon={<RecordIcon className={styles.icon} />}
           label={isOpen ? '매치 기록' : undefined}
           isActive={currentPath === '.'}
         />
         <NavItem
           to='.'
-          icon={<icons.SearchIcon className={styles.icon} />}
+          icon={<SearchIcon className={styles.icon} />}
           label={isOpen ? '매치 조회' : undefined}
           isActive={currentPath === '.'}
         />
         <NavItem
           to='.'
-          icon={<icons.PlayerIcon className={styles.icon} />}
+          icon={<PlayerIcon className={styles.icon} />}
           label={isOpen ? '선수 명단' : undefined}
           isActive={currentPath === '.'}
         />
@@ -100,13 +114,13 @@ export function Sidebar() {
       <div className={styles.footer}>
         <FooterItem
           to='.'
-          icon={<icons.HelpCircleIcon className={styles.icon} />}
+          icon={<HelpCircleIcon className={styles.icon} />}
           label={isOpen ? '도움말' : undefined}
           showArrow={isOpen}
         />
         <FooterItem
           to='.'
-          icon={<icons.SettingsIcon className={styles.icon} />}
+          icon={<SettingsIcon className={styles.icon} />}
           label={isOpen ? '설정' : undefined}
           showArrow={isOpen}
         />
@@ -114,9 +128,9 @@ export function Sidebar() {
 
       <div className={styles.matchDayLogo}>
         <div className={styles.footerItemIcon}>
-          <icons.LogoIcon className={styles.matchDayIcon} />
+          <LogoIcon className={styles.matchDayIcon} />
         </div>
-        {isOpen && <icons.LogoTextIcon className={styles.logoTextImage} />}
+        {isOpen && <LogoTextIcon className={styles.logoTextImage} />}
       </div>
     </aside>
   );
