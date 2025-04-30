@@ -5,9 +5,9 @@ import {
   createRouter,
 } from '@tanstack/react-router';
 
-import { SidebarProvider } from '@/components/Sidebar/context';
+import { SidebarProvider } from '@/components/Sidebar';
 
-import { Layout } from './index';
+import { Layout } from './Layout';
 
 const meta = {
   title: 'Components/Layout',
