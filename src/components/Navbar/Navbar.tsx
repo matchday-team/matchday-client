@@ -1,4 +1,4 @@
-import { useSidebar } from '@/components/Sidebar/context';
+import { useSidebar } from '@/components/Sidebar';
 
 import * as styles from './navbar.css';
 
