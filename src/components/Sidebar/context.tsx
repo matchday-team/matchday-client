@@ -1,4 +1,4 @@
-// sidebar 상태관리를 위해 react context 사용
+import { ReactNode } from 'react';
 import {
   createContext,
   useCallback,
@@ -27,7 +27,7 @@ const SidebarContext = createContext<SidebarContextType>({
   showToggle: false,
 });
 
-export function SidebarProvider({ children }: { children: React.ReactNode }) {
+export function SidebarProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(true);
   const [width, setWidth] = useState(SIDEBAR_WIDTH);
   const [showToggle, setShowToggle] = useState(false);

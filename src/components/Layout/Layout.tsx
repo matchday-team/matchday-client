@@ -1,10 +1,12 @@
+import { ReactNode } from 'react';
+
 import { Navbar } from '@/components/Navbar';
 import { Sidebar, SidebarProvider } from '@/components/Sidebar';
 
 import * as styles from './layout.css';
 
 interface LayoutProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export function Layout({ children }: LayoutProps) {
