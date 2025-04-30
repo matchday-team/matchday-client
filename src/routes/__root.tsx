@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react';
 import { Outlet, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
-import { Layout } from '@/components/Layout';
-import { SidebarProvider } from '@/components/Sidebar/context';
+import { Layout, SidebarProvider } from '@/components';
 import {
   NAVBAR_HEIGHT,
   SIDEBAR_BREAKPOINT,
