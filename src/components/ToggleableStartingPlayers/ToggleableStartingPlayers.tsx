@@ -28,14 +28,14 @@ export const ToggleableStartingPlayers = ({
         {isGridView ? '리스트 보기' : '포메이션 보기'}
       </button>
       {isGridView ? (
-        <PlayerList
-          team={team}
+        <PlayerOnFieldGrid
           players={players}
           selectedPlayerId={selectedPlayerId}
           onPlayerSelect={onPlayerSelect}
         />
       ) : (
-        <PlayerOnFieldGrid
+        <PlayerList
+          team={team}
           players={players}
           selectedPlayerId={selectedPlayerId}
           onPlayerSelect={onPlayerSelect}
