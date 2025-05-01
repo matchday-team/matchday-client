@@ -8,9 +8,9 @@ export function Navbar() {
   return (
     <header className={styles.navbar} style={{ left: `${width}px` }}>
       <h1 className={styles.title}>교내 리그 3R 매치 기록</h1>
-      <div className={styles.actions}>
-        <button className={styles.primaryButton}>등록하기</button>
-      </div>
+      <button className={styles.signUpButton}>
+        <div className={styles.signUpText}>등록하기</div>
+      </button>
     </header>
   );
 }
