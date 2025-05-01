@@ -14,3 +14,4 @@ export * from './TeamStatCompareCounterList';
 export * from './MatchLogList';
 export * from './MatchSchedule';
 export * from './PlayerOnFieldGrid';
+export * from './ToggleableStartingPlayers';
