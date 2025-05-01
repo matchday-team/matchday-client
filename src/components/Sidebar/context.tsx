@@ -10,7 +10,7 @@ import {
 import {
   SIDEBAR_BREAKPOINT,
   SIDEBAR_WIDTH,
-  SIDEBAR_WIDTH_TOGGLE,
+  SIDEBAR_WIDTH_SMALL,
 } from '@/constants';
 
 interface SidebarContextType {
@@ -37,7 +37,7 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
       const isSmallScreen = window.innerWidth <= SIDEBAR_BREAKPOINT;
       setShowToggle(isSmallScreen);
       setIsOpen(!isSmallScreen);
-      setWidth(isSmallScreen ? SIDEBAR_WIDTH_TOGGLE : SIDEBAR_WIDTH);
+      setWidth(isSmallScreen ? SIDEBAR_WIDTH_SMALL : SIDEBAR_WIDTH);
     };
 
     handleResize();
@@ -49,7 +49,7 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
     if (!showToggle) return;
     setIsOpen(prev => !prev);
     setWidth(prev =>
-      prev === SIDEBAR_WIDTH_TOGGLE ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_TOGGLE,
+      prev === SIDEBAR_WIDTH_SMALL ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_SMALL,
     );
   }, [showToggle]);
 
