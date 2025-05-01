@@ -10,17 +10,17 @@ import {
   MatchRecordSimpleMemo,
   MatchSchedule,
   MatchTimeController,
-  PlayerList,
   PlayerStatCounterGrid,
   SubstitutionPlayerList,
   TeamStatCompareCounterList,
   TeamStatCounterGrid,
+  ToggleableStartingPlayers,
 } from '@/components';
 import {
   getTimeAgo,
   getUnixTimestampInSeconds,
 } from '@/components/MatchTimeController/timeUtils';
-import { dummyPlayerOfTeam1, dummyTeam1, dummyTeam2 } from '@/mocks';
+import { dummyTeam1, dummyTeam2, gridMockPlayers } from '@/mocks';
 import { commonPaper } from '@/styles/paper.css';
 import { lightThemeVars } from '@/styles/theme.css';
 
@@ -113,6 +113,7 @@ const s = (height: number | string) => ({
 function MatchRecordPage() {
   const now = getUnixTimestampInSeconds();
   const [memo, setMemo] = useState('');
+  const [selectedPlayerId, setSelectedPlayerId] = useState(-1);
 
   return (
     <MatchRecordLayout
@@ -123,12 +124,16 @@ function MatchRecordPage() {
           className={commonPaper}
           style={{
             ...s('auto'),
-            marginTop: 18,
             display: 'flex',
             flexDirection: 'column',
           }}
         >
-          <PlayerList team={dummyTeam1} players={dummyPlayerOfTeam1} />
+          <ToggleableStartingPlayers
+            team={dummyTeam1}
+            players={gridMockPlayers}
+            selectedPlayerId={selectedPlayerId}
+            onPlayerSelect={setSelectedPlayerId}
+          />
           <div
             style={{
               padding: '24px 8px',
@@ -162,12 +167,16 @@ function MatchRecordPage() {
           className={commonPaper}
           style={{
             ...s('auto'),
-            marginTop: 18,
             display: 'flex',
             flexDirection: 'column',
           }}
         >
-          <PlayerList team={dummyTeam2} players={dummyPlayerOfTeam1} />
+          <ToggleableStartingPlayers
+            team={dummyTeam2}
+            players={gridMockPlayers}
+            selectedPlayerId={selectedPlayerId}
+            onPlayerSelect={setSelectedPlayerId}
+          />
           <div
             style={{
               padding: '24px 8px',
@@ -230,7 +239,9 @@ function MatchRecordPage() {
       selectedPlayer={
         <div style={s(302)}>
           <PlayerStatCounterGrid
-            player={dummyPlayerOfTeam1[0]}
+            player={gridMockPlayers.find(
+              player => player.id === selectedPlayerId,
+            )}
             team={dummyTeam1}
           />
         </div>
