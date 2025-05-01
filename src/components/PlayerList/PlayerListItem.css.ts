@@ -1,23 +1,35 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { lightThemeVars } from '@/styles/theme.css';
 
-export const rootContainer = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
+import { teamColor } from './TeamColor.css';
 
-  borderBottom: `1px solid ${lightThemeVars.color.primary[100]}`,
-  padding: '0 20px',
-  height: 40,
+export const rootContainer = recipe({
+  base: {
+    boxSizing: 'border-box',
+    display: 'flex',
+    alignItems: 'center',
 
-  selectors: {
-    '&:last-child': {
-      borderBottom: 'none',
+    justifyContent: 'space-between',
+    borderTop: `2px solid transparent`,
+    borderBottom: `2px solid transparent`,
+    boxShadow: `0 1px 0 0 ${lightThemeVars.color.primary[100]}`, // NOTE: border-width 변동이 있는 디자인이어서, boxShadow로 기본 border를 표현
+    padding: '0 20px',
+    height: 40,
+
+    selectors: {
+      '&:hover': {
+        backgroundColor: lightThemeVars.color.white.hover,
+      },
     },
-
-    '&:hover': {
-      backgroundColor: lightThemeVars.color.white.hover,
+  },
+  variants: {
+    isSelected: {
+      true: {
+        borderTop: `2px dashed ${teamColor}`,
+        borderBottom: `2px dashed ${teamColor}`,
+      },
     },
   },
 });

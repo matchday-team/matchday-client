@@ -8,13 +8,18 @@ import * as styles from './PlayerListItem.css';
 interface PlayerItemProps {
   isSelected: boolean;
   player: StartingPlayer;
+  onClick: () => void;
 }
 
 const displayDashIfZero = (value: number) => {
   return value === 0 ? '-' : value;
 };
 
-export const PlayerItem = ({ player }: PlayerItemProps) => {
+export const PlayerItem = ({
+  isSelected,
+  player,
+  onClick,
+}: PlayerItemProps) => {
   const setFallbackImageIfLoadFail = (
     e: SyntheticEvent<HTMLImageElement, Event>,
   ) => {
@@ -22,7 +27,7 @@ export const PlayerItem = ({ player }: PlayerItemProps) => {
   };
 
   return (
-    <li className={styles.rootContainer}>
+    <li className={styles.rootContainer({ isSelected })} onClick={onClick}>
       <div className={styles.infoContainer}>
         <img
           className={styles.profileImage}

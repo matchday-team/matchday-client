@@ -1,4 +1,4 @@
-import { SyntheticEvent } from 'react';
+import { SyntheticEvent, useState } from 'react';
 
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
@@ -15,6 +15,10 @@ interface PlayerListProps {
 }
 
 export const PlayerList = ({ team, players }: PlayerListProps) => {
+  const [selectedPlayer, setSelectedPlayer] = useState<StartingPlayer | null>(
+    null,
+  );
+
   const setFallbackImageIfLoadFail = (
     e: SyntheticEvent<HTMLImageElement, Event>,
   ) => {
@@ -46,7 +50,12 @@ export const PlayerList = ({ team, players }: PlayerListProps) => {
       </div>
       <ul className={styles.playerListContainer}>
         {players.map(player => (
-          <PlayerItem key={player.id} player={player} isSelected={false} />
+          <PlayerItem
+            key={player.id}
+            player={player}
+            isSelected={selectedPlayer?.id === player.id}
+            onClick={() => setSelectedPlayer(player)}
+          />
         ))}
       </ul>
     </div>
