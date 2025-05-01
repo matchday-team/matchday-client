@@ -197,7 +197,7 @@ function MatchRecordPage() {
         </div>
       }
       teamStats={
-        <div className={commonPaper} style={s(548)}>
+        <div className={commonPaper} style={s(560)}>
           <GameScoreArea
             scores={{
               home: 0,

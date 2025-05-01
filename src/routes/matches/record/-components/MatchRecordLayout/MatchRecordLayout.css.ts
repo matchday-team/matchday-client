@@ -15,6 +15,7 @@ export const rootContainer = style({
   },
   gap: 16,
   margin: '0 16px',
+  marginTop: 60,
   backgroundColor: lightThemeVars.color.gray[100],
   minWidth: 1380,
   height: 964,
@@ -28,7 +29,6 @@ const flexColumn = style({
 export const teamContainer = style([
   flexColumn,
   {
-    marginTop: 12,
     width: 354,
   },
 ]);
@@ -37,7 +37,6 @@ export const centerContainer = style([
   flexColumn,
   {
     gap: 18,
-    marginTop: 30,
     width: 280,
   },
 ]);
@@ -46,7 +45,6 @@ export const infoContainer = style([
   flexColumn,
   {
     gap: 16,
-    marginTop: 30,
     width: 280,
   },
 ]);
