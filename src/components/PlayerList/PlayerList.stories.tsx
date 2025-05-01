@@ -50,6 +50,8 @@ export const Default: Story = {
       logoImageUrl: 'https://example.com/logo.png',
     },
     players: createMockPlayers(2),
+    selectedPlayerId: 1,
+    onPlayerSelect: () => {},
   },
 };
 
@@ -62,6 +64,8 @@ export const FullPlayers: Story = {
       logoImageUrl: 'https://example.com/logo2.png',
     },
     players: createMockPlayers(20),
+    selectedPlayerId: 1,
+    onPlayerSelect: () => {},
   },
 };
 
@@ -74,5 +78,7 @@ export const EmptyPlayers: Story = {
       logoImageUrl: 'https://example.com/logo2.png',
     },
     players: [],
+    selectedPlayerId: 1,
+    onPlayerSelect: () => {},
   },
 };
