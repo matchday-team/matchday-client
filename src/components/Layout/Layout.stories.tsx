@@ -9,11 +9,31 @@ import { SidebarProvider } from '@/components/Sidebar';
 
 import { Layout } from './Layout';
 
+const SMALL_SCREEN_WIDTH = 800;
+const LARGE_SCREEN_WIDTH = 1600;
+
 const meta = {
   title: 'Components/Layout',
   component: Layout,
   parameters: {
-    layout: 'fullscreen',
+    viewport: {
+      viewports: {
+        smallScreen: {
+          name: 'Small Screen',
+          styles: {
+            width: `${SMALL_SCREEN_WIDTH}px`,
+            height: '100%',
+          },
+        },
+        largeScreen: {
+          name: 'Large Screen',
+          styles: {
+            width: `${LARGE_SCREEN_WIDTH}px`,
+            height: '100%',
+          },
+        },
+      },
+    },
   },
   tags: ['autodocs'],
   decorators: [
@@ -30,7 +50,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const HomeContent = () => <div style={{ padding: 70 }}></div>;
+const HomeContent = () => <div style={{ padding: 70 }}>화면 부분</div>;
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -47,6 +67,35 @@ const router = createRouter({
 export const Default: Story = {
   args: {
     children: <HomeContent />,
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'largeScreen',
+    },
+  },
+  render: () => <RouterProvider router={router} />,
+};
+
+export const SmallScreen: Story = {
+  args: {
+    children: <HomeContent />,
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'smallScreen',
+    },
+  },
+  render: () => <RouterProvider router={router} />,
+};
+
+export const LargeScreen: Story = {
+  args: {
+    children: <HomeContent />,
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'largeScreen',
+    },
   },
   render: () => <RouterProvider router={router} />,
 };
