@@ -11,7 +11,5 @@ export { default as SearchIcon } from './search.svg?react';
 export { default as SettingsIcon } from './settings.svg?react';
 export { default as UserIcon } from './user.svg?react';
 export { default as SoccerballIcon } from './soccer-ball.svg?react';
-
-// png
 export { default as SeoulLogo } from './seoul-team.png';
 export { default as SuwonLogo } from './suwon-team.png';
