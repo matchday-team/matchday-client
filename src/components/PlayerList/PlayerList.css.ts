@@ -5,12 +5,14 @@ import { lightThemeVars } from '@/styles/theme.css';
 import { teamColor } from './TeamColor.css';
 
 export const rootContainer = style({
+  boxSizing: 'border-box',
   display: 'flex', // NOTE: emptyContainer의 height 채우기 구현을 위해 추가
   flexDirection: 'column',
   border: `2px solid ${teamColor}`,
   borderRadius: 10,
   background: '#FFF',
-  height: 462,
+  width: '100%',
+  height: '100%',
   overflow: 'hidden',
 });
 

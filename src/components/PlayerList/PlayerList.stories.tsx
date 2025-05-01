@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { PlayerList } from './PlayerList';
-import * as styles from './PlayerList.stories.css';
 
 const meta = {
   title: 'Components/PlayerList',
@@ -12,7 +11,7 @@ const meta = {
   tags: ['autodocs'],
   decorators: [
     Story => (
-      <div className={styles.containerStyle}>
+      <div style={{ width: 354, height: 462 }}>
         <Story />
       </div>
     ),
