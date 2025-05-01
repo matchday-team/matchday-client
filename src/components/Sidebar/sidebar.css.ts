@@ -1,8 +1,10 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_TOGGLE } from '@/constants';
+import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_SMALL } from '@/constants';
 import { lightThemeVars } from '@/styles/theme.css';
+
+const transitionTiming = 'cubic-bezier(0.4, 0, 0.2, 1)';
 
 export const container = recipe({
   base: {
@@ -12,8 +14,8 @@ export const container = recipe({
     left: 0,
     display: 'flex',
     flexDirection: 'column',
-    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-    borderRight: '1px solid #f0f0f0',
+    transition: `width 0.3s ${transitionTiming}`,
+    borderRight: `1px solid ${lightThemeVars.color.gray[100]}`,
     backgroundColor: lightThemeVars.color.white.main,
     height: '100vh',
   },
@@ -23,48 +25,73 @@ export const container = recipe({
         width: SIDEBAR_WIDTH,
       },
       toggle: {
-        width: SIDEBAR_WIDTH_TOGGLE,
+        width: SIDEBAR_WIDTH_SMALL,
       },
     },
   },
 });
 
-export const logo = style({
-  position: 'relative',
-  display: 'flex',
-  alignItems: 'center',
-  gap: 20,
-  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-  padding: 6,
-  height: 72,
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  whiteSpace: 'nowrap',
-  color: lightThemeVars.color.black,
-  fontSize: 16,
-  fontWeight: 600,
+export const logo = recipe({
+  base: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    transition: `width 0.3s ${transitionTiming}`,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    color: lightThemeVars.color.black,
+    fontSize: 16,
+    fontWeight: 600,
+  },
+  variants: {
+    isOpen: {
+      true: {
+        margin: '20px 26px',
+        width: 308,
+        height: 39,
+      },
+      false: {
+        justifyContent: 'center',
+        margin: '22px 16px',
+        width: SIDEBAR_WIDTH_SMALL - 32,
+        height: 32,
+      },
+    },
+  },
+  defaultVariants: {
+    isOpen: true,
+  },
 });
 
 export const logoText = style({
   display: 'flex',
   flexDirection: 'column',
   gap: 2,
+  marginLeft: 20,
 });
 
 export const logoTitle = style({
+  lineHeight: '140%',
+  letterSpacing: -0.4,
   color: lightThemeVars.color.black,
   fontSize: 16,
-  fontWeight: 600,
+  fontWeight: 700,
+  fontStyle: 'normal',
 });
 
 export const logoSubtitle = style({
+  lineHeight: '140%',
+  letterSpacing: -0.3,
   color: lightThemeVars.color.gray[500],
   fontSize: 12,
+  fontWeight: 500,
+  fontStyle: 'normal',
 });
 
 export const adminIcon = style({
   position: 'absolute',
-  right: 26,
+  right: 0,
   width: 24,
   height: 24,
   color: lightThemeVars.color.gray[600],
@@ -74,61 +101,123 @@ export const nav = style({
   display: 'flex',
   flex: 1,
   flexDirection: 'column',
+  alignItems: 'flex-start',
+  gap: 16,
   padding: 0,
+  width: 308,
 });
 
 export const navItem = recipe({
   base: {
     display: 'flex',
     alignItems: 'center',
-    gap: 12,
-    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-    padding: '8px 16px',
+    alignSelf: 'stretch',
+    gap: 16,
+    transition: `background-color 0.3s ${transitionTiming}, color 0.3s ${transitionTiming}`,
+    width: '100%',
     overflow: 'hidden',
     textDecoration: 'none',
     whiteSpace: 'nowrap',
     color: lightThemeVars.color.gray[600],
     fontSize: 14,
     fontWeight: 500,
-    ':hover': {
-      backgroundColor: lightThemeVars.color.white.hover,
-    },
   },
   variants: {
     active: {
       true: {
-        backgroundColor: lightThemeVars.color.white.hover,
         color: lightThemeVars.color.black,
       },
     },
+    isOpen: {
+      true: {
+        padding: '8px 26px',
+      },
+      false: {
+        padding: '8px 0',
+      },
+    },
+  },
+  defaultVariants: {
+    isOpen: true,
+  },
+});
+
+export const navItemIcon = recipe({
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 12,
+  },
+  variants: {
+    isOpen: {
+      false: {
+        justifyContent: 'flex-start',
+        marginLeft: 18,
+      },
+    },
+  },
+  defaultVariants: {
+    isOpen: true,
   },
 });
 
 export const footer = style({
+  display: 'flex',
+  flexDirection: 'column',
+  flexShrink: 0,
+  alignItems: 'flex-start',
+  gap: 16,
   padding: '1px 0',
+  width: 308,
+  height: 84,
 });
 
-export const footerItem = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-  cursor: 'pointer',
-  padding: '12px 16px',
-  overflow: 'hidden',
-  textDecoration: 'none',
-  whiteSpace: 'nowrap',
-  color: '#666666',
-  fontSize: 14,
-  ':hover': {
-    backgroundColor: '#f5f5f5',
+export const footerItem = recipe({
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    transition: `background-color 0.3s ${transitionTiming}`,
+    cursor: 'pointer',
+    width: '100%',
+    overflow: 'hidden',
+    textDecoration: 'none',
+    whiteSpace: 'nowrap',
+    color: lightThemeVars.color.gray[500],
+    fontSize: 14,
+  },
+  variants: {
+    isOpen: {
+      true: {
+        padding: '12px 26px',
+      },
+      false: {
+        padding: '12px 0',
+      },
+    },
+  },
+  defaultVariants: {
+    isOpen: true,
   },
 });
 
-export const footerItemIcon = style({
-  display: 'flex',
-  alignItems: 'center',
-  gap: 12,
+export const footerItemIcon = recipe({
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 12,
+  },
+  variants: {
+    isOpen: {
+      false: {
+        justifyContent: 'flex-start',
+        marginLeft: 18,
+      },
+    },
+  },
+  defaultVariants: {
+    isOpen: true,
+  },
 });
 
 export const toggleButton = recipe({
@@ -141,17 +230,14 @@ export const toggleButton = recipe({
     alignItems: 'center',
     justifyContent: 'center',
     transform: 'translateY(-50%)',
-    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-    border: '1px solid #f0f0f0',
+    transition: `transform 0.3s ${transitionTiming}, background-color 0.3s ${transitionTiming}`,
+    border: `1px solid ${lightThemeVars.color.gray[100]}`,
     borderRadius: '50%',
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
+    boxShadow: `0 2px 4px ${lightThemeVars.color.black}0d`,
     backgroundColor: lightThemeVars.color.white.main,
     cursor: 'pointer',
-    width: 24,
-    height: 24,
-    ':hover': {
-      backgroundColor: lightThemeVars.color.white.hover,
-    },
+    width: 36,
+    height: 36,
   },
   variants: {
     isOpen: {
@@ -165,49 +251,69 @@ export const toggleButton = recipe({
   },
 });
 
-export const matchDayLogo = style({
-  display: 'flex',
-  alignItems: 'center',
-  gap: 8,
-  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-  padding: '12px 14px',
-  overflow: 'hidden',
-  whiteSpace: 'nowrap',
+export const matchDayLogo = recipe({
+  base: {
+    display: 'flex',
+    flexShrink: 0,
+    alignItems: 'center',
+    gap: 10.667,
+    transition: `width 0.3s ${transitionTiming}`,
+    marginBottom: 8,
+    width: 139,
+    height: 27,
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+  },
+  variants: {
+    isOpen: {
+      true: {
+        padding: '12px 26px',
+      },
+      false: {
+        padding: '12px 0',
+      },
+    },
+  },
+  defaultVariants: {
+    isOpen: true,
+  },
 });
 
 export const matchDayIcon = style({
   flexShrink: 0,
-  borderRadius: 8,
-  width: 24,
-  height: 24,
-});
-
-export const toggleIcon = style({
-  width: 24,
-  height: 24,
+  width: 28,
+  height: 28,
 });
 
 export const icon = style({
   flexShrink: 0,
-  width: 20,
-  height: 20,
-});
-
-export const smallIcon = style({
-  width: 16,
-  height: 16,
-});
-
-export const largeIcon = style({
   width: 24,
   height: 24,
 });
 
 export const logoImage = style({
-  width: 40,
-  height: 40,
+  aspectRatio: 7 / 8,
+  flexShrink: 0,
+  width: 28,
+  height: 32,
 });
 
 export const logoTextImage = style({
+  flexShrink: 0,
+  width: 90,
   height: 14,
+});
+
+export const navLabel = style({
+  lineHeight: '140%',
+  letterSpacing: -0.3,
+  fontSize: 14,
+  fontWeight: 500,
+});
+
+export const footerLabel = style({
+  lineHeight: '140%',
+  letterSpacing: -0.3,
+  fontSize: 14,
+  fontWeight: 500,
 });

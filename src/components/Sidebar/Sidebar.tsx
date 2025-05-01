@@ -24,13 +24,14 @@ interface NavItemProps {
   icon: ReactNode;
   label?: string;
   isActive: boolean;
+  isOpen: boolean;
 }
 
-function NavItem({ to, icon, label, isActive }: NavItemProps) {
+function NavItem({ to, icon, label, isActive, isOpen }: NavItemProps) {
   return (
-    <Link to={to} className={styles.navItem({ active: isActive })}>
-      {icon}
-      {label && <span>{label}</span>}
+    <Link to={to} className={styles.navItem({ active: isActive, isOpen })}>
+      <div className={styles.navItemIcon({ isOpen })}>{icon}</div>
+      {label && <span className={styles.navLabel}>{label}</span>}
     </Link>
   );
 }
@@ -40,16 +41,17 @@ interface FooterItemProps {
   icon: ReactNode;
   label?: string;
   showArrow?: boolean;
+  isOpen: boolean;
 }
 
-function FooterItem({ to, icon, label, showArrow }: FooterItemProps) {
+function FooterItem({ to, icon, label, showArrow, isOpen }: FooterItemProps) {
   return (
-    <Link to={to} className={styles.footerItem}>
-      <div className={styles.footerItemIcon}>
+    <Link to={to} className={styles.footerItem({ isOpen })}>
+      <div className={styles.footerItemIcon({ isOpen })}>
         {icon}
-        {label && <span>{label}</span>}
+        {label && <span className={styles.footerLabel}>{label}</span>}
       </div>
-      {showArrow && <CheckRightIcon className={styles.smallIcon} />}
+      {showArrow && <CheckRightIcon className={styles.icon} />}
     </Link>
   );
 }
@@ -111,11 +113,11 @@ export function Sidebar() {
     >
       {showToggle && (
         <button onClick={toggle} className={styles.toggleButton({ isOpen })}>
-          <CheckRightIcon className={styles.toggleIcon} />
+          <CheckRightIcon className={styles.icon} />
         </button>
       )}
 
-      <div className={styles.logo}>
+      <div className={styles.logo({ isOpen })}>
         <img src={SeoulLogo} alt='FC 서울' className={styles.logoImage} />
         {isOpen && (
           <>
@@ -124,13 +126,13 @@ export function Sidebar() {
               <span className={styles.logoSubtitle}>관리자</span>
             </div>
             <div className={styles.adminIcon}>
-              <UserIcon className={styles.largeIcon} />
+              <UserIcon className={styles.icon} />
             </div>
           </>
         )}
       </div>
 
-      <nav className={styles.nav}>
+      <div className={styles.nav}>
         {navItems.map(item => (
           <NavItem
             key={item.label}
@@ -138,9 +140,10 @@ export function Sidebar() {
             icon={item.icon}
             label={isOpen ? item.label : undefined}
             isActive={currentPath === item.path}
+            isOpen={isOpen}
           />
         ))}
-      </nav>
+      </div>
 
       <div className={styles.footer}>
         {footerItems.map(item => (
@@ -150,12 +153,13 @@ export function Sidebar() {
             icon={item.icon}
             label={isOpen ? item.label : undefined}
             showArrow={isOpen}
+            isOpen={isOpen}
           />
         ))}
       </div>
 
-      <div className={styles.matchDayLogo}>
-        <div className={styles.footerItemIcon}>
+      <div className={styles.matchDayLogo({ isOpen })}>
+        <div className={styles.footerItemIcon({ isOpen })}>
           <LogoIcon className={styles.matchDayIcon} />
         </div>
         {isOpen && <LogoTextIcon className={styles.logoTextImage} />}
