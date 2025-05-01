@@ -7,9 +7,11 @@ import { lightThemeVars } from '@/styles/theme.css';
 export const rootContainer = style([
   commonPaper,
   {
+    boxSizing: 'border-box',
     display: 'flex',
     flexDirection: 'column',
     border: `2px solid ${teamColor}`,
+    height: 304,
   },
 ]);
 

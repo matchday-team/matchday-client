@@ -47,6 +47,8 @@ const mockPlayers: StartingPlayerOnGrid[] = Array.from(
 export const Default: Story = {
   args: {
     players: mockPlayers,
+    selectedPlayerId: 1,
+    onPlayerSelect: () => {},
   },
 };
 
@@ -54,12 +56,15 @@ export const WithSelectedPlayer: Story = {
   args: {
     players: mockPlayers,
     selectedPlayerId: 1,
+    onPlayerSelect: () => {},
   },
 };
 
 export const Selectable: Story = {
   args: {
     players: mockPlayers,
+    selectedPlayerId: 1,
+    onPlayerSelect: () => {},
   },
   render: () => {
     const defaultSelectedPlayerId = 1;

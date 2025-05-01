@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { PlayerList } from './PlayerList';
-import * as styles from './PlayerList.stories.css';
 
 const meta = {
   title: 'Components/PlayerList',
@@ -12,7 +11,7 @@ const meta = {
   tags: ['autodocs'],
   decorators: [
     Story => (
-      <div className={styles.containerStyle}>
+      <div style={{ width: 354, height: 462 }}>
         <Story />
       </div>
     ),
@@ -50,6 +49,8 @@ export const Default: Story = {
       logoImageUrl: 'https://example.com/logo.png',
     },
     players: createMockPlayers(2),
+    selectedPlayerId: 1,
+    onPlayerSelect: () => {},
   },
 };
 
@@ -62,6 +63,8 @@ export const FullPlayers: Story = {
       logoImageUrl: 'https://example.com/logo2.png',
     },
     players: createMockPlayers(20),
+    selectedPlayerId: 1,
+    onPlayerSelect: () => {},
   },
 };
 
@@ -74,5 +77,7 @@ export const EmptyPlayers: Story = {
       logoImageUrl: 'https://example.com/logo2.png',
     },
     players: [],
+    selectedPlayerId: 1,
+    onPlayerSelect: () => {},
   },
 };

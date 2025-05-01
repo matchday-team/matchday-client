@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent } from 'react';
 
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
@@ -12,13 +12,16 @@ import { teamColor } from './TeamColor.css';
 interface PlayerListProps {
   team: Team;
   players: StartingPlayer[];
+  selectedPlayerId: number;
+  onPlayerSelect: (playerId: number) => void;
 }
 
-export const PlayerList = ({ team, players }: PlayerListProps) => {
-  const [selectedPlayer, setSelectedPlayer] = useState<StartingPlayer | null>(
-    null,
-  );
-
+export const PlayerList = ({
+  team,
+  players,
+  selectedPlayerId,
+  onPlayerSelect,
+}: PlayerListProps) => {
   const setFallbackImageIfLoadFail = (
     e: SyntheticEvent<HTMLImageElement, Event>,
   ) => {
@@ -51,8 +54,8 @@ export const PlayerList = ({ team, players }: PlayerListProps) => {
       {players.length > 0 ? (
         <PlayerListContent
           players={players}
-          selectedPlayer={selectedPlayer}
-          setSelectedPlayer={setSelectedPlayer}
+          selectedPlayerId={selectedPlayerId}
+          onPlayerSelect={onPlayerSelect}
         />
       ) : (
         <EmptyContent />
@@ -63,20 +66,20 @@ export const PlayerList = ({ team, players }: PlayerListProps) => {
 
 const PlayerListContent = ({
   players,
-  selectedPlayer,
-  setSelectedPlayer,
+  selectedPlayerId,
+  onPlayerSelect,
 }: {
   players: StartingPlayer[];
-  selectedPlayer: StartingPlayer | null;
-  setSelectedPlayer: (player: StartingPlayer) => void;
+  selectedPlayerId: number;
+  onPlayerSelect: (playerId: number) => void;
 }) => (
   <ul className={styles.playerListContainer}>
     {players.map(player => (
       <PlayerItem
         key={player.id}
         player={player}
-        isSelected={selectedPlayer?.id === player.id}
-        onClick={() => setSelectedPlayer(player)}
+        isSelected={selectedPlayerId === player.id}
+        onClick={() => onPlayerSelect(player.id)}
       />
     ))}
   </ul>
