@@ -6,8 +6,8 @@ import * as styles from './PlayerOnFieldGrid.css';
 
 interface PlayerOnFieldGridProps {
   players: StartingPlayerOnGrid[];
-  selectedPlayerId?: number;
-  onPlayerSelect?: (playerId: number) => void;
+  selectedPlayerId: number;
+  onPlayerSelect: (playerId: number) => void;
 }
 
 const TOTAL_CELLS = 30;
