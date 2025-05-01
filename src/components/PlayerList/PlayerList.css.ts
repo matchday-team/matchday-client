@@ -5,17 +5,19 @@ import { lightThemeVars } from '@/styles/theme.css';
 import { teamColor } from './TeamColor.css';
 
 export const rootContainer = style({
+  display: 'flex', // NOTE: emptyContainer의 height 채우기 구현을 위해 추가
+  flexDirection: 'column',
   border: `2px solid ${teamColor}`,
   borderRadius: 10,
   background: '#FFF',
-  height: 462, // NOTE: 고정 폭 사용
+  height: 462,
   overflow: 'hidden',
 });
 
 const commonText = style({
-  lineHeight: '140%',
-  letterSpacing: '-0.3px',
-  fontSize: '12px',
+  lineHeight: 1.4,
+  letterSpacing: -0.3,
+  fontSize: 12,
   fontWeight: 400,
   fontStyle: 'normal',
 });
@@ -46,9 +48,9 @@ export const teamInfo = style({
 export const teamName = style([
   commonText,
   {
-    letterSpacing: '-0.35px',
+    letterSpacing: -0.35,
     color: lightThemeVars.color.black,
-    fontSize: '14px',
+    fontSize: 14,
     fontWeight: 500,
   },
 ]);
@@ -68,6 +70,20 @@ export const stat = style([
 ]);
 
 export const playerListContainer = style({
-  height: 406, // NOTE: 고정 폭 사용
+  flex: 1,
   overflow: 'auto',
+});
+
+export const emptyContainer = style({
+  display: 'flex',
+  flex: 1,
+  alignItems: 'center',
+  justifyContent: 'center',
+});
+
+export const emptyText = style({
+  letterSpacing: -0.35,
+  color: lightThemeVars.color.gray['500'],
+  fontSize: 14,
+  fontWeight: 500,
 });
