@@ -22,7 +22,25 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 기본 스토리
+const mockPlayer = {
+  name: '김철수',
+  number: 7,
+  position: 'FW',
+  profileImageUrl: 'https://example.com/player1.png',
+  goals: 2,
+  assists: 1,
+  fouls: 0,
+  yellowCards: 0,
+  redCards: 0,
+};
+
+const createMockPlayers = (count: number) => {
+  return Array.from({ length: count }, (_, index) => ({
+    ...mockPlayer,
+    id: index + 1,
+  }));
+};
+
 export const Default: Story = {
   args: {
     team: {
@@ -31,38 +49,23 @@ export const Default: Story = {
       teamColor: '#FF0000',
       logoImageUrl: 'https://example.com/logo.png',
     },
-    players: [
-      {
-        id: 1,
-        name: '김철수',
-        number: 7,
-        position: 'FW',
-        profileImageUrl: 'https://example.com/player1.png',
-        goals: 2,
-        assists: 1,
-        fouls: 0,
-        yellowCards: 0,
-        redCards: 0,
-      },
-      {
-        id: 2,
-        name: '이영희',
-        number: 10,
-        position: 'MF',
-        profileImageUrl: 'https://example.com/player2.png',
-        goals: 1,
-        assists: 3,
-        fouls: 1,
-        yellowCards: 0,
-        redCards: 0,
-      },
-    ],
+    players: createMockPlayers(2),
   },
 };
 
-// 빈 선수 목록 스토리
+export const FullPlayers: Story = {
+  args: {
+    team: {
+      id: 2,
+      name: '수원 삼성',
+      teamColor: '#0000FF',
+      logoImageUrl: 'https://example.com/logo2.png',
+    },
+    players: createMockPlayers(20),
+  },
+};
+
 export const EmptyPlayers: Story = {
-  name: '빈 선수 목록',
   args: {
     team: {
       id: 2,
