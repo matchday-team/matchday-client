@@ -14,7 +14,7 @@ export const navbar = style({
   alignItems: 'center',
   justifyContent: 'space-between',
   transition: 'left 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-  boxShadow: '0 1px 2px rgba(0, 0, 0, 0.1)',
+  boxShadow: `0 1px 2px ${lightThemeVars.color.black}1a`,
   backgroundColor: lightThemeVars.color.white.main,
   padding: '0 32px',
   minWidth: 600,
@@ -22,36 +22,31 @@ export const navbar = style({
 });
 
 export const title = style({
+  lineHeight: '140%',
+  letterSpacing: -0.4,
   whiteSpace: 'nowrap',
   color: lightThemeVars.color.primary[700],
-  fontSize: 14,
+  fontSize: 16,
   fontWeight: 500,
 });
 
-export const actions = style({
-  display: 'flex',
+export const signUpButton = style({
+  display: 'inline-flex',
   flexShrink: 0,
-  gap: 12,
-});
-
-export const button = style({
-  transition: 'all 0.2s ease',
-  borderRadius: 4,
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 6,
+  border: `1px solid ${lightThemeVars.color.primary[700]}`,
+  borderRadius: 8,
   cursor: 'pointer',
-  padding: '8px 16px',
-  whiteSpace: 'nowrap',
-  fontSize: 14,
-  fontWeight: 500,
-  ':hover': {
-    opacity: 0.9,
-  },
+  padding: '8px 20px',
+  height: 40,
 });
 
-export const primaryButton = style([
-  button,
-  {
-    border: `1px solid ${lightThemeVars.color.primary[700]}`,
-    backgroundColor: 'transparent',
-    color: lightThemeVars.color.primary[700],
-  },
-]);
+export const signUpText = style({
+  lineHeight: '140%',
+  letterSpacing: -0.35,
+  color: lightThemeVars.color.primary[700],
+  fontSize: 14,
+  fontWeight: 600,
+});
