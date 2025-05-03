@@ -14,7 +14,11 @@ export const initializeMSW = () => {
 };
 
 // NOTE: 모든 핸들러에 자연스러운 서버 delay를 적용해요.
-const globalDelay = http.all('*', async () => {
+const globalDelay = http.all('*', async ({ request: req }) => {
+  if (PATHS_IGNORED_BY_MSW.find(path => req.url.includes(path))) {
+    return;
+  }
+
   await delay();
 });
 
