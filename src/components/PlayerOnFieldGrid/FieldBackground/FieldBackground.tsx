@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import {
   CenterCircleHalf,
   InnerPenaltyBox,
@@ -6,11 +8,7 @@ import {
 
 import * as styles from './FieldBackground.css';
 
-export const FieldBackground = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+export const FieldBackground = ({ children }: { children: ReactNode }) => {
   return (
     <div className={styles.rootContainer}>
       <CenterCircleHalf className={styles.centerCircleHalf} />
