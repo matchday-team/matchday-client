@@ -1,11 +1,32 @@
 import { create } from 'zustand';
 
-interface SelectedPlayerIdStore {
-  selectedPlayerId: number | null;
-  setSelectedPlayerId: (playerId: number) => void;
+export type TeamType = 'home' | 'away';
+
+export interface SelectedPlayer {
+  teamType: TeamType;
+  id: number;
 }
 
-export const useSelectedPlayerStore = create<SelectedPlayerIdStore>(set => ({
-  selectedPlayerId: null,
-  setSelectedPlayerId: playerId => set({ selectedPlayerId: playerId }),
+type SelectedPlayerStore =
+  | {
+      isSelected: true;
+      selectedPlayer: SelectedPlayer;
+      selectPlayer: (selectedPlayer: SelectedPlayer) => void;
+      unselectPlayer: () => void;
+    }
+  | {
+      isSelected: false;
+      selectedPlayer: undefined;
+      selectPlayer: (selectedPlayer: SelectedPlayer) => void;
+      unselectPlayer: () => void;
+    };
+
+export const useSelectedPlayerStore = create<SelectedPlayerStore>(set => ({
+  isSelected: false,
+  selectedPlayer: undefined,
+  selectPlayer: (selectedPlayer: SelectedPlayer) => {
+    set({ isSelected: true, selectedPlayer });
+    console.log('selected:', selectedPlayer);
+  },
+  unselectPlayer: () => set({ isSelected: false, selectedPlayer: undefined }),
 }));
