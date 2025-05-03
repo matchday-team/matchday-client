@@ -1,3 +1,7 @@
+---
+name: 기본 PR 템플릿
+---
+
 ## Description
 
 - [Jira Ticket: MAT-](https://match-day.atlassian.net/browse/MAT-)
