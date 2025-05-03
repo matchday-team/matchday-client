@@ -21,6 +21,7 @@ import {
   getUnixTimestampInSeconds,
 } from '@/components/MatchTimeController/timeUtils';
 import { dummyTeam1, dummyTeam2, gridMockPlayers } from '@/mocks';
+import { useSelectedPlayerStore } from '@/stores';
 import { commonPaper } from '@/styles/paper.css';
 import { lightThemeVars } from '@/styles/theme.css';
 
@@ -113,7 +114,7 @@ const s = (height: number | string) => ({
 function MatchRecordPage() {
   const now = getUnixTimestampInSeconds();
   const [memo, setMemo] = useState('');
-  const [selectedPlayerId, setSelectedPlayerId] = useState(-1);
+  const { selectedPlayerId, setSelectedPlayerId } = useSelectedPlayerStore();
 
   return (
     <MatchRecordLayout

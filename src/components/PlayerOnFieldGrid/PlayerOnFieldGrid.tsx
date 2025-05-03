@@ -6,7 +6,7 @@ import * as styles from './PlayerOnFieldGrid.css';
 
 interface PlayerOnFieldGridProps {
   players: StartingPlayerOnGrid[];
-  selectedPlayerId: number;
+  selectedPlayerId: number | null;
   onPlayerSelect: (playerId: number) => void;
 }
 

@@ -14,7 +14,7 @@ export const ToggleableStartingPlayers = ({
 }: {
   team: Team;
   players: StartingPlayerOnGrid[];
-  selectedPlayerId: number;
+  selectedPlayerId: number | null;
   onPlayerSelect: (playerId: number) => void;
 }) => {
   const [isGridView, setIsGridView] = useState(true);

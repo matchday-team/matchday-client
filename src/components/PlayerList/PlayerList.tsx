@@ -12,7 +12,7 @@ import { teamColor } from './TeamColor.css';
 interface PlayerListProps {
   team: Team;
   players: StartingPlayer[];
-  selectedPlayerId: number;
+  selectedPlayerId: number | null;
   onPlayerSelect: (playerId: number) => void;
 }
 
@@ -70,7 +70,7 @@ const PlayerListContent = ({
   onPlayerSelect,
 }: {
   players: StartingPlayer[];
-  selectedPlayerId: number;
+  selectedPlayerId: number | null;
   onPlayerSelect: (playerId: number) => void;
 }) => (
   <ul className={styles.playerListContainer}>
