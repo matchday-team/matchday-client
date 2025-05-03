@@ -2,31 +2,37 @@ import { useState } from 'react';
 
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import { StartingPlayer, Team } from '@/apis';
 import { teamColor } from '@/components/PlayerList/TeamColor.css';
 import { StatCounterItem } from '@/components/StatCounterItem';
+import { mocked_getPlayersByTeamType } from '@/mocks';
+import { mocked_getTeamByType } from '@/mocks';
+import { useSelectedPlayerStore } from '@/stores';
 
 import { CardBlock } from './CardBlock';
 import { NotSelected } from './NotSelected';
 import { PlayerBlock } from './PlayerBlock';
 import * as styles from './PlayerStatCounterGrid.css';
 
-interface PlayerStatCounterGridProps {
-  team?: Team;
-  player?: StartingPlayer;
-}
-
 const statFields = ['득점', '어시스트'];
 
-export const PlayerStatCounterGrid = ({
-  team,
-  player,
-}: PlayerStatCounterGridProps) => {
-  // NOTE: DEMO 용도로만 임시로 로컬 상태 사용
-  const [goals, setGoals] = useState(player?.goals ?? 0);
-  const [assists, setAssists] = useState(player?.assists ?? 0);
-  const [yellowCards, setYellowCards] = useState(player?.yellowCards ?? 0);
-  const [redCards, setRedCards] = useState(player?.redCards ?? 0);
+export const PlayerStatCounterGrid = () => {
+  const { isSelected, selectedPlayer } = useSelectedPlayerStore();
+
+  // TODO: Tanstack-query 연동
+  const team = isSelected
+    ? mocked_getTeamByType(selectedPlayer.teamType)
+    : undefined;
+  const actualSelectedPlayer = isSelected
+    ? mocked_getPlayersByTeamType(selectedPlayer.teamType).find(
+        player => player.id === selectedPlayer.id,
+      )
+    : undefined;
+  const [goals, setGoals] = useState(actualSelectedPlayer?.goals ?? 0);
+  const [assists, setAssists] = useState(actualSelectedPlayer?.assists ?? 0);
+  const [yellowCards, setYellowCards] = useState(
+    actualSelectedPlayer?.yellowCards ?? 0,
+  );
+  const [redCards, setRedCards] = useState(actualSelectedPlayer?.redCards ?? 0);
 
   const isYellow = yellowCards > 0;
   const isRed = redCards > 0;
@@ -41,7 +47,7 @@ export const PlayerStatCounterGrid = ({
     }
   };
 
-  if (!team || !player) {
+  if (!actualSelectedPlayer) {
     return <NotSelected />;
   }
 
@@ -49,10 +55,10 @@ export const PlayerStatCounterGrid = ({
     <div
       className={styles.rootContainer}
       style={assignInlineVars({
-        [teamColor]: team.teamColor,
+        [teamColor]: team?.teamColor,
       })}
     >
-      <PlayerBlock team={team} player={player} />
+      <PlayerBlock team={team} player={actualSelectedPlayer} />
       <div className={styles.mainContainer}>
         <div className={styles.statContainer}>
           {statFields.map(title => (
