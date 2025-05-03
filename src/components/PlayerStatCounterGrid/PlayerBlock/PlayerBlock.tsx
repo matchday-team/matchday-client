@@ -5,8 +5,8 @@ import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 
 import * as styles from './PlayerBlock.css';
 
-export interface ListItemProps {
-  team: Team;
+export interface PlayerBlockProps {
+  team?: Team;
   player: StartingPlayer;
 }
 
@@ -18,9 +18,11 @@ const setFallbackImageIfLoadFail = (
 };
 
 export const PlayerBlock = ({
-  team: { logoImageUrl },
+  team,
   player: { number, name, position, profileImageUrl },
-}: ListItemProps) => {
+}: PlayerBlockProps) => {
+  const logoImageUrl = team?.logoImageUrl;
+
   return (
     <li className={styles.rootContainer}>
       <div className={styles.leftContainer}>

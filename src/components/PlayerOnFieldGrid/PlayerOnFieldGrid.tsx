@@ -1,22 +1,22 @@
-import { StartingPlayerOnGrid } from '@/apis/players';
+import { mocked_getPlayersByTeamType } from '@/mocks';
+import { TeamType, useSelectedPlayerStore } from '@/stores';
 
 import { FieldBackground } from './FieldBackground';
 import { EmptyOnFieldGridCell, PlayerOnFieldGridCell } from './FieldGridCell';
 import * as styles from './PlayerOnFieldGrid.css';
 
-interface PlayerOnFieldGridProps {
-  players: StartingPlayerOnGrid[];
-  selectedPlayerId: number;
-  onPlayerSelect: (playerId: number) => void;
-}
-
 const TOTAL_CELLS = 30;
 
-export const PlayerOnFieldGrid = ({
-  players,
-  selectedPlayerId,
-  onPlayerSelect,
-}: PlayerOnFieldGridProps) => {
+interface PlayerOnFieldGridProps {
+  teamType: TeamType;
+}
+
+export const PlayerOnFieldGrid = ({ teamType }: PlayerOnFieldGridProps) => {
+  const { isSelected, selectedPlayer, selectPlayer } = useSelectedPlayerStore();
+
+  // TODO: Tanstack-query 연동
+  const players = mocked_getPlayersByTeamType(teamType);
+
   const playerGridMap = new Map(players.map(player => [player.grid, player]));
 
   return (
@@ -33,9 +33,9 @@ export const PlayerOnFieldGrid = ({
             <PlayerOnFieldGridCell
               key={idx}
               player={player}
-              isSelected={player.id === selectedPlayerId}
+              isSelected={isSelected && selectedPlayer.id === player.id}
               onClick={() => {
-                onPlayerSelect?.(player.id);
+                selectPlayer({ teamType, id: player.id });
               }}
             />
           );

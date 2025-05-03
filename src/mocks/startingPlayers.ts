@@ -4,6 +4,7 @@ export const dummyTeam1 = {
   teamColor: '#D91920',
   logoImageUrl: '/images/team-logo.png',
 };
+
 export const dummyTeam2 = {
   id: 2,
   name: 'FC 독도',
