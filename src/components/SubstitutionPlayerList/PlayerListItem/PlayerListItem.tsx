@@ -19,7 +19,7 @@ export const PlayerListItem = ({
   player: { number, name, position },
 }: ListItemProps) => {
   return (
-    <li className={styles.rootContainer}>
+    <li className={styles.rootContainer} draggable={true}>
       <img
         className={styles.profileImage}
         src={noProfilePlayerImage}

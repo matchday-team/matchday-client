@@ -29,8 +29,15 @@ export const commonCellContainer = recipe({
         },
       },
     },
+    isDragOver: {
+      true: {
+        backgroundColor: lightThemeVars.color.field.backgroundDarken,
+        userSelect: 'none',
+      },
+    },
   },
   defaultVariants: {
     isSelected: false,
+    isDragOver: false,
   },
 });

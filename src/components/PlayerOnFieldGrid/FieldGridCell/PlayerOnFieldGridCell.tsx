@@ -1,5 +1,6 @@
 import { StartingPlayerOnGrid } from '@/apis';
 import { SoccerballIcon } from '@/assets/icons';
+import { useIsDragOver } from '@/hooks';
 import { createFallbackImageHandler } from '@/utils/createFallbackImageHandler';
 
 import * as styles from './PlayerOnFieldGridCell.css';
@@ -18,8 +19,20 @@ export const PlayerOnFieldGridCell = ({
   isSelected,
   onClick,
 }: PlayerOnFieldGridCellProps) => {
+  const { isDragOver, hoverTargetRef } = useIsDragOver<HTMLDivElement>();
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move'; // Q. 필요할까?
+  };
+
   return (
-    <div className={commonCellContainer({ isSelected })} onClick={onClick}>
+    <div
+      className={commonCellContainer({ isSelected, isDragOver })}
+      onClick={onClick}
+      ref={hoverTargetRef}
+      onDragOver={handleDragOver}
+    >
       <div className={styles.playerImageContainer}>
         <img
           className={styles.playerImage}
