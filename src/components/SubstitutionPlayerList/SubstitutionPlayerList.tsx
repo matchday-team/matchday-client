@@ -1,21 +1,19 @@
+import { mocked_getSubstitutionPlayersByTeamType } from '@/mocks';
+import { TeamType } from '@/stores/selectedPlayer';
+
 import { EmptyList } from './EmptyList';
 import { PlayerListItem } from './PlayerListItem';
 import * as styles from './SubstitutionPlayerList.css';
 
-// FIXME: 우선 여기서 정의함
-export interface Player {
-  number: string;
-  name: string;
-  position: string;
-}
-
-export interface SubstitutionPlayerListProps {
-  players: Player[];
+interface SubstitutionPlayerListProps {
+  teamType: TeamType;
 }
 
 export const SubstitutionPlayerList = ({
-  players,
+  teamType,
 }: SubstitutionPlayerListProps) => {
+  const players = mocked_getSubstitutionPlayersByTeamType(teamType);
+
   return (
     <div className={styles.rootContainer}>
       <div className={styles.header}>

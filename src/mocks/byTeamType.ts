@@ -69,3 +69,8 @@ export const mocked_getPlayersByTeamType = (teamType: TeamType) => {
     grid: gridPositions[idx],
   }));
 };
+
+// NOTE: 겹치지 않게 단순히 거꾸로 주입
+export const mocked_getSubstitutionPlayersByTeamType = (teamType: TeamType) => {
+  return mocked_getPlayersByTeamType(teamType === 'home' ? 'away' : 'home');
+};

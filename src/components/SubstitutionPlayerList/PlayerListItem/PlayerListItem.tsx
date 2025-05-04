@@ -1,12 +1,12 @@
 import { SyntheticEvent } from 'react';
 
+import { StartingPlayerOnGrid } from '@/apis';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
-import { Player } from '@/components/SubstitutionPlayerList';
 
 import * as styles from './PlayerListItem.css';
 
 export interface ListItemProps {
-  player: Player;
+  player: StartingPlayerOnGrid;
 }
 
 const setFallbackImageIfLoadFail = (
@@ -15,11 +15,17 @@ const setFallbackImageIfLoadFail = (
   e.currentTarget.src = noProfilePlayerImage;
 };
 
-export const PlayerListItem = ({
-  player: { number, name, position },
-}: ListItemProps) => {
+export const PlayerListItem = ({ player }: ListItemProps) => {
+  const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
+    e.dataTransfer.setData('application/json', JSON.stringify(player));
+  };
+
   return (
-    <li className={styles.rootContainer} draggable={true}>
+    <li
+      className={styles.rootContainer}
+      draggable={true}
+      onDragStart={handleDragStart}
+    >
       <img
         className={styles.profileImage}
         src={noProfilePlayerImage}
@@ -28,10 +34,10 @@ export const PlayerListItem = ({
       />
       <div className={styles.textContainer}>
         <div className={styles.textLeft}>
-          <span className={styles.number}>{number}</span>
-          <span className={styles.name}>{name}</span>
+          <span className={styles.number}>{player.number}</span>
+          <span className={styles.name}>{player.name}</span>
         </div>
-        <span className={styles.position}>{position}</span>
+        <span className={styles.position}>{player.position}</span>
       </div>
     </li>
   );
