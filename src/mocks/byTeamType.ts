@@ -24,12 +24,40 @@ export const mocked_getTeamByType = (teamType: TeamType) => {
 
 const gridPositions = [2, 5, 7, 9, 11, 13, 17, 21, 22, 23, 27];
 
+const playerNames = [
+  '---', // NOTE: idx:0 미사용
+  '윤빛가람',
+  '조규성',
+  '손흥민',
+  '기성용',
+  '황희찬',
+  '이강인',
+  '정우영',
+  '김민재',
+  '황인범',
+  '이재성',
+  '남태희',
+  '차두리',
+  '박지성',
+  '황선홍',
+  '이동국',
+  '차범근',
+  '홍명보',
+  '유상철',
+  '이운재',
+  '권창훈',
+  '김영권',
+  '박주영',
+  '김승규',
+  '이용',
+];
+
 export const mocked_getPlayersByTeamType = (teamType: TeamType) => {
   const startingIdx = teamType === 'home' ? 0 : 11;
 
   return Array.from({ length: 11 }, (_, idx) => ({
     id: startingIdx + 1 + idx,
-    name: '손흥민',
+    name: playerNames[startingIdx + 1 + idx],
     number: 99,
     position: 'FW',
     profileImageUrl: 'https://via.placeholder.com/150',
