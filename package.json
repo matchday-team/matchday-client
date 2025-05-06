@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "generate-api-models": "orval"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.74.2",
