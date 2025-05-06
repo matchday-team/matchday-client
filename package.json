@@ -14,6 +14,10 @@
     "generate-api-models": "orval"
   },
   "dependencies": {
+    "@rjsf/core": "6.0.0-beta.1",
+    "@rjsf/mui": "6.0.0-beta.1",
+    "@rjsf/utils": "6.0.0-beta.1",
+    "@rjsf/validator-ajv8": "6.0.0-beta.1",
     "@tanstack/react-query": "^5.74.2",
     "@tanstack/react-query-devtools": "^5.74.2",
     "@tanstack/react-router": "^1.116.0",
