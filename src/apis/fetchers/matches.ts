@@ -1,6 +1,7 @@
 import { http } from '@/apis/http';
 import type {
   ApiResponse,
+  MatchCreateRequest,
   MatchEventResponse,
   MatchInfoResponse,
   MatchMemoResponse,
@@ -39,4 +40,15 @@ export const getMatchMemoByMatchIdAndTeamId = async (
   const response = await http.get(`v1/matches/${matchId}/teams/${teamId}/memo`);
 
   return response.json() as Promise<ApiResponse<MatchMemoResponse>>;
+};
+
+export const postMatch = async (data: MatchCreateRequest) => {
+  const response = await http.post(`v1/matches`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  return response.json() as Promise<ApiResponse<number>>;
 };
