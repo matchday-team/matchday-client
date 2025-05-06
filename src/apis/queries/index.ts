@@ -1,1 +1,1 @@
-export * from './matchRecord';
+export * as matchRecordQuery from './matchRecord';

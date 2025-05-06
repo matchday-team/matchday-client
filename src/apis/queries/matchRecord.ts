@@ -1,5 +1,3 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
-
 import { matchApi } from '@/apis/fetchers';
 
 const queryKeyNamespaces = {
@@ -31,37 +29,27 @@ const queryKeys = {
   ],
 };
 
-export const useMatchRecordInfo = (matchId: number) => {
-  return useSuspenseQuery({
-    queryKey: queryKeys.matchInfo(matchId),
-    queryFn: () => matchApi.getMatchInfoByMatchId(matchId),
-  });
-};
+export const infoQuery = (matchId: number) => ({
+  queryKey: queryKeys.matchInfo(matchId),
+  queryFn: () => matchApi.getMatchInfoByMatchId(matchId),
+});
 
-export const useMatchRecordScore = (matchId: number) => {
-  return useSuspenseQuery({
-    queryKey: queryKeys.matchScore(matchId),
-    queryFn: () => matchApi.getMatchScoreByMatchId(matchId),
-  });
-};
+export const scoreQuery = (matchId: number) => ({
+  queryKey: queryKeys.matchScore(matchId),
+  queryFn: () => matchApi.getMatchScoreByMatchId(matchId),
+});
 
-export const useMatchRecordEvents = (matchId: number) => {
-  return useSuspenseQuery({
-    queryKey: queryKeys.matchEvents(matchId),
-    queryFn: () => matchApi.getMatchEventsByMatchId(matchId),
-  });
-};
+export const eventsQuery = (matchId: number) => ({
+  queryKey: queryKeys.matchEvents(matchId),
+  queryFn: () => matchApi.getMatchEventsByMatchId(matchId),
+});
 
-export const useMatchRecordPlayers = (matchId: number) => {
-  return useSuspenseQuery({
-    queryKey: queryKeys.matchPlayers(matchId),
-    queryFn: () => matchApi.getMatchPlayersByMatchId(matchId),
-  });
-};
+export const playersQuery = (matchId: number) => ({
+  queryKey: queryKeys.matchPlayers(matchId),
+  queryFn: () => matchApi.getMatchPlayersByMatchId(matchId),
+});
 
-export const useMatchRecordMemo = (matchId: number, teamId: number) => {
-  return useSuspenseQuery({
-    queryKey: queryKeys.matchMemo(matchId, teamId),
-    queryFn: () => matchApi.getMatchMemoByMatchIdAndTeamId(matchId, teamId),
-  });
-};
+export const memoQuery = (matchId: number, teamId: number) => ({
+  queryKey: queryKeys.matchMemo(matchId, teamId),
+  queryFn: () => matchApi.getMatchMemoByMatchIdAndTeamId(matchId, teamId),
+});
