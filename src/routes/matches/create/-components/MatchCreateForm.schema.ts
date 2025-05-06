@@ -1,11 +1,13 @@
 // TODO: 팀 id 선택은 조회를 통해 구성하는 게 좋아보임
 import { RJSFSchema, UiSchema } from '@rjsf/utils';
 
+import { TeamResponse } from '@/apis/models';
+
 import * as timeUtils from './timeUtils';
 
-export const schema: RJSFSchema = {
+export const createSchema = (teamList: TeamResponse[]): RJSFSchema => ({
   title: '매치 생성',
-  description: '임시 매치 생성 폼. 아래 내용을 채워주세요.',
+  description: '임시 매치 생성 폼. 아래 내용을 채주세요.',
   type: 'object',
   required: [
     'title',
@@ -30,15 +32,25 @@ export const schema: RJSFSchema = {
     },
     homeTeamId: {
       type: 'integer',
-      title: '홈팀 id',
+      title: '홈팀',
       format: 'int64',
-      default: 1,
+      oneOf: teamList.map(team => ({
+        type: 'integer',
+        title: `${team.name} (id: ${team.id})`,
+        enum: [team.id],
+      })),
+      default: teamList[0]?.id,
     },
     awayTeamId: {
       type: 'integer',
-      title: '상대팀 id',
+      title: '상대팀',
       format: 'int64',
-      default: 2,
+      oneOf: teamList.map(team => ({
+        type: 'integer',
+        title: `${team.name} (id: ${team.id})`,
+        enum: [team.id],
+      })),
+      default: teamList[1]?.id,
     },
     matchType: {
       type: 'string',
@@ -94,6 +106,6 @@ export const schema: RJSFSchema = {
       default: 'SCHEDULED',
     },
   },
-};
+});
 
 export const uiSchema: UiSchema = {};

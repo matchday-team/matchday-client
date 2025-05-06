@@ -1,16 +1,18 @@
 import Form from '@rjsf/mui';
 import validator from '@rjsf/validator-ajv8';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { MatchCreateRequest } from '@/apis/models/MatchCreateRequest';
 import { useCreateMatchMutation } from '@/apis/mutations';
+import { teamQuery } from '@/apis/queries';
 
 import * as styles from './MatchCreateForm.css';
-import { schema } from './MatchCreateForm.schema';
-import { uiSchema } from './MatchCreateForm.schema';
+import { createSchema, uiSchema } from './MatchCreateForm.schema';
 
 const log = (type: string) => console.log.bind(console, type);
 
 export const MatchCreateForm = () => {
+  const { data: teamList } = useSuspenseQuery(teamQuery.listAllQuery);
   const { mutateAsync: createMatch } = useCreateMatchMutation();
 
   const onSubmit = async (data: MatchCreateRequest) => {
@@ -20,7 +22,7 @@ export const MatchCreateForm = () => {
   return (
     <div className={styles.rootContainer}>
       <Form
-        schema={schema}
+        schema={createSchema(teamList.data)}
         uiSchema={uiSchema}
         validator={validator}
         liveValidate
