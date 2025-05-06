@@ -6,6 +6,9 @@ import { queryClient } from '@/react-query-provider';
 
 import { MatchCreateForm } from './-components';
 
+// snackbar autoHide 비활성화 옵션이 없어서 하루로 설정
+const ONE_DAY = 1000 * 60 * 60 * 24;
+
 export const Route = createFileRoute('/matches/create')({
   component: MatchCreatePage,
   loader: async () => {
@@ -18,7 +21,7 @@ function MatchCreatePage() {
     <SnackbarProvider
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       maxSnack={3}
-      autoHideDuration={3000}
+      autoHideDuration={ONE_DAY}
     >
       <MatchCreateForm />
     </SnackbarProvider>
