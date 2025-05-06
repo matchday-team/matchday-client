@@ -9,25 +9,25 @@ import type { MatchCreateRequestMatchType } from './MatchCreateRequestMatchType'
 
 export interface MatchCreateRequest {
   /** 경기명 */
-  title?: string;
+  title: string;
   /** 홈팀 id */
-  homeTeamId?: number;
+  homeTeamId: number;
   /** 상대팀 id */
-  awayTeamId?: number;
+  awayTeamId: number;
   /** 매치 타입(리그/대회/친선) */
-  matchType?: MatchCreateRequestMatchType;
+  matchType: MatchCreateRequestMatchType;
   /** 경기장 주소 */
-  stadium?: string;
+  stadium: string;
   /** 경기 일자 */
-  matchDate?: string;
-  startTime?: string;
-  endTime?: string;
+  matchDate: string;
+  startTime: string;
+  endTime: string;
   /** 주심 */
-  mainRefereeName?: string;
+  mainRefereeName: string;
   /** 부심1 */
-  assistantReferee1?: string;
+  assistantReferee1: string;
   /** 부심2 */
-  assistantReferee2?: string;
+  assistantReferee2: string;
   /** 대기심 */
-  fourthReferee?: string;
+  fourthReferee: string;
 }

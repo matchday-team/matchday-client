@@ -11,6 +11,6 @@ import type { TeamGroupedUsers } from './TeamGroupedUsers';
  * 홈팀과 어웨이팀 참가자 정보를 선발/교체로 그룹핑한 응답
  */
 export interface MatchUserGroupResponse {
-  homeTeam?: TeamGroupedUsers;
-  awayTeam?: TeamGroupedUsers;
+  homeTeam: TeamGroupedUsers;
+  awayTeam: TeamGroupedUsers;
 }

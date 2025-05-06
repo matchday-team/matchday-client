@@ -8,15 +8,15 @@
 
 export interface UserJoinTeamRequest {
   /** 가입할 팀의 ID */
-  teamId?: number;
+  teamId: number;
   /**
    * 선수의 등번호
    * @nullable
    */
-  number?: number | null;
+  number: number | null;
   /**
    * 선수의 팀 내 포지션
    * @nullable
    */
-  defaultPosition?: string | null;
+  defaultPosition: string | null;
 }

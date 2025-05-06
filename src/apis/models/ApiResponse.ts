@@ -6,6 +6,8 @@
  * OpenAPI spec version: 0.0.1
  */
 
-export type GenerateUploadUrl1Params = {
-  extension: string;
-};
+export interface ApiResponse<Payload> {
+  status: number;
+  data: Payload;
+  message: string;
+}

@@ -7,9 +7,9 @@
  */
 
 export interface TeamResponse {
-  id?: number;
-  name?: string;
-  teamColor?: string;
-  bottomColor?: string;
-  stockingColor?: string;
+  id: number;
+  name: string;
+  teamColor: string;
+  bottomColor: string;
+  stockingColor: string;
 }

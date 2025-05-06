@@ -12,7 +12,7 @@ import type { MatchUserResponse } from './MatchUserResponse';
  */
 export interface TeamGroupedUsers {
   /** 선발 선수 목록 */
-  starters?: MatchUserResponse[];
+  starters: MatchUserResponse[];
   /** 교체 선수 목록 */
-  substitutes?: MatchUserResponse[];
+  substitutes: MatchUserResponse[];
 }

@@ -7,5 +7,5 @@
  */
 
 export interface MatchMemoRequest {
-  memo?: string;
+  memo: string;
 }

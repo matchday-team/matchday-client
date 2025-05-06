@@ -8,25 +8,25 @@
 
 export interface MatchInfoResponse {
   /** id */
-  id?: number;
+  id: number;
   /** 홈팀 ID */
-  homeTeamId?: number;
+  homeTeamId: number;
   /** 어웨이팀 ID */
-  awayTeamId?: number;
+  awayTeamId: number;
   /** 장소 */
-  stadium?: string;
+  stadium: string;
   /** 날짜 */
-  matchDate?: string;
-  startTime?: string;
-  endTime?: string;
+  matchDate: string;
+  startTime: string;
+  endTime: string;
   /** 주심 */
-  mainRefereeName?: string;
+  mainRefereeName: string;
   /** 부심1 */
-  assistantReferee1?: string;
+  assistantReferee1: string;
   /** 부심2 */
-  assistantReferee2?: string;
+  assistantReferee2: string;
   /** 대기심 */
-  fourthReferee?: string;
-  firstHalfStartTime?: string;
-  secondHalfStartTime?: string;
+  fourthReferee: string;
+  firstHalfStartTime: string;
+  secondHalfStartTime: string;
 }

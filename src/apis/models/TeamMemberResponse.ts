@@ -7,9 +7,9 @@
  */
 
 export interface TeamMemberResponse {
-  id?: number;
-  name?: string;
-  number?: number;
-  defaultPosition?: string;
-  isActive?: boolean;
+  id: number;
+  name: string;
+  number: number;
+  defaultPosition: string;
+  isActive: boolean;
 }

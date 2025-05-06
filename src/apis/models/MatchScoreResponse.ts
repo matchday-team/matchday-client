@@ -12,11 +12,11 @@ import type { ScoreResponse } from './ScoreResponse';
  */
 export interface MatchScoreResponse {
   /** 경기 ID */
-  matchId?: number;
+  matchId: number;
   /** 홈팀 ID */
-  homeTeamId?: number;
+  homeTeamId: number;
   /** 상대팀 ID */
-  awayTeamId?: number;
-  homeScore?: ScoreResponse;
-  awayScore?: ScoreResponse;
+  awayTeamId: number;
+  homeScore: ScoreResponse;
+  awayScore: ScoreResponse;
 }

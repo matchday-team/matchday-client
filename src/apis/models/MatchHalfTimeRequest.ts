@@ -7,6 +7,6 @@
  */
 
 export interface MatchHalfTimeRequest {
-  startTime?: string;
-  endTime?: string;
+  startTime: string;
+  endTime: string;
 }

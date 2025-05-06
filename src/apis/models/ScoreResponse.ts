@@ -11,17 +11,17 @@
  */
 export interface ScoreResponse {
   /** 골 횟수 */
-  goalCount?: number;
+  goalCount: number;
   /** 슈팅 횟수 */
-  shotCount?: number;
+  shotCount: number;
   /** 유효 슈팅 횟수 */
-  validShotCount?: number;
+  validShotCount: number;
   /** 코너킥 횟수 */
-  cornerKickCount?: number;
+  cornerKickCount: number;
   /** 오프사이드 횟수 */
-  offsideCount?: number;
+  offsideCount: number;
   /** 파울 횟수 */
-  foulCount?: number;
+  foulCount: number;
   /** 경고 횟수 */
-  warningCount?: number;
+  warningCount: number;
 }

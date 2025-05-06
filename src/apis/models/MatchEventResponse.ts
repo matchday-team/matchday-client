@@ -11,17 +11,17 @@
  */
 export interface MatchEventResponse {
   /** 이벤트 ID */
-  id?: number;
+  id: number;
   /** 경기 시작 후 경과 시간(분) */
-  elapsedMinutes?: number;
+  elapsedMinutes: number;
   /** 팀 ID */
-  teamId?: number;
+  teamId: number;
   /** 팀 이름 */
-  teamName?: string;
+  teamName: string;
   /** 선수 ID */
-  userId?: number;
+  userId: number;
   /** 선수 이름 */
-  userName?: string;
+  userName: string;
   /** 이벤트 로그 */
-  eventLog?: string;
+  eventLog: string;
 }

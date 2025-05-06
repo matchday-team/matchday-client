@@ -8,5 +8,5 @@
 import type { TeamMemberResponse } from './TeamMemberResponse';
 
 export interface TeamMemberListResponse {
-  teamMemberResponses?: TeamMemberResponse[];
+  teamMemberResponses: TeamMemberResponse[];
 }

@@ -7,8 +7,8 @@
  */
 
 export interface UserInfoResponse {
-  userId?: number;
-  userName?: string;
-  teamIds?: number[];
-  matchIds?: number[];
+  userId: number;
+  userName: string;
+  teamIds: number[];
+  matchIds: number[];
 }

@@ -9,25 +9,25 @@ import type { MatchListResponseMatchState } from './MatchListResponseMatchState'
 
 export interface MatchListResponse {
   /** 매치 ID */
-  matchId?: number;
+  matchId: number;
   /** 홈팀 ID */
-  homeTeamId?: number;
+  homeTeamId: number;
   /** 홈팀명 */
-  homeTeamName?: string;
+  homeTeamName: string;
   /** 상대팀 ID */
-  awayTeamId?: number;
+  awayTeamId: number;
   /** 상대팀명 */
-  awayTeamName?: string;
+  awayTeamName: string;
   /** 매치명 */
-  matchTitle?: string;
-  matchStartTime?: string;
-  matchEndTime?: string;
+  matchTitle: string;
+  matchStartTime: string;
+  matchEndTime: string;
   /** 매치 장소 */
-  stadium?: string;
+  stadium: string;
   /** 홈팀 스코어 */
-  homeScore?: number;
+  homeScore: number;
   /** 상대팀 스코어 */
-  awayScore?: number;
+  awayScore: number;
   /** 경기 진행 여부 */
-  matchState?: MatchListResponseMatchState;
+  matchState: MatchListResponseMatchState;
 }

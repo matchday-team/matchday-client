@@ -11,25 +11,25 @@
  */
 export interface MatchUserResponse {
   /** 유저 ID */
-  id?: number;
+  id: number;
   /** 유저 이름 */
-  name?: string;
+  name: string;
   /** 등번호 */
-  number?: number;
+  number: number;
   /** 매치 포지션 */
-  matchPosition?: string;
+  matchPosition: string;
   /** 경기장 그리드 위치 */
-  matchGrid?: string;
+  matchGrid: string;
   /** 득점 수 */
-  goals?: number;
+  goals: number;
   /** 어시스트 수 */
-  assists?: number;
+  assists: number;
   /** 옐로카드 수 */
-  yellowCards?: number;
+  yellowCards: number;
   /** 레드카드 수 */
-  redCards?: number;
+  redCards: number;
   /** 경고 누적 수 (옐로카드 개수) */
-  caution?: number;
+  caution: number;
   /** 퇴장 여부 (옐로 2장 이상 또는 레드 1장 이상) */
-  sentOff?: boolean;
+  sentOff: boolean;
 }
