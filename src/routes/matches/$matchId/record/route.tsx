@@ -1,9 +1,11 @@
 import { useState } from 'react';
 
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 
 import { StartingPlayer } from '@/apis';
 import { Team } from '@/apis';
+import { matchRecordQuery } from '@/apis/queries';
 import {
   GameScoreArea,
   MatchLogList,
@@ -21,13 +23,24 @@ import {
   getUnixTimestampInSeconds,
 } from '@/components/MatchTimeController/timeUtils';
 import { dummyTeam1, dummyTeam2 } from '@/mocks';
+import { queryClient } from '@/react-query-provider';
 import { commonPaper } from '@/styles/paper.css';
 import { lightThemeVars } from '@/styles/theme.css';
 
 import { MatchRecordLayout } from './-components';
 
-export const Route = createFileRoute('/matches/record')({
+export const Route = createFileRoute('/matches/$matchId/record')({
   component: MatchRecordPage,
+  loader: ({ params }) => {
+    const matchId = Number(params.matchId);
+
+    return Promise.all([
+      queryClient.ensureQueryData(matchRecordQuery.infoQuery(matchId)),
+      queryClient.ensureQueryData(matchRecordQuery.scoreQuery(matchId)),
+      queryClient.ensureQueryData(matchRecordQuery.eventsQuery(matchId)),
+      queryClient.ensureQueryData(matchRecordQuery.playersQuery(matchId)),
+    ]);
+  },
 });
 
 const mockHomeTeam: Team = {
@@ -110,9 +123,24 @@ const s = (height: number | string) => ({
   borderRadius: 10,
 });
 
+const matchId = 6;
+
 function MatchRecordPage() {
   const now = getUnixTimestampInSeconds();
   const [memo, setMemo] = useState('');
+
+  const { data: matchInfo } = useSuspenseQuery(
+    matchRecordQuery.infoQuery(matchId),
+  );
+  const { data: matchScore } = useSuspenseQuery(
+    matchRecordQuery.scoreQuery(matchId),
+  );
+  const { data: matchEvents } = useSuspenseQuery(
+    matchRecordQuery.eventsQuery(matchId),
+  );
+  const { data: matchPlayers } = useSuspenseQuery(
+    matchRecordQuery.playersQuery(matchId),
+  );
 
   return (
     <MatchRecordLayout

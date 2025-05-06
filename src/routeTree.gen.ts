@@ -13,7 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
-import { Route as MatchesRecordRouteImport } from './routes/matches/record/route'
+import { Route as MatchesMatchIdRecordRouteImport } from './routes/matches/$matchId/record/route'
 
 // Create/Update Routes
 
@@ -29,9 +29,9 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const MatchesRecordRouteRoute = MatchesRecordRouteImport.update({
-  id: '/matches/record',
-  path: '/matches/record',
+const MatchesMatchIdRecordRouteRoute = MatchesMatchIdRecordRouteImport.update({
+  id: '/matches/$matchId/record',
+  path: '/matches/$matchId/record',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -53,11 +53,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
-    '/matches/record': {
-      id: '/matches/record'
-      path: '/matches/record'
-      fullPath: '/matches/record'
-      preLoaderRoute: typeof MatchesRecordRouteImport
+    '/matches/$matchId/record': {
+      id: '/matches/$matchId/record'
+      path: '/matches/$matchId/record'
+      fullPath: '/matches/$matchId/record'
+      preLoaderRoute: typeof MatchesMatchIdRecordRouteImport
       parentRoute: typeof rootRoute
     }
   }
@@ -68,41 +68,41 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/matches/record': typeof MatchesRecordRouteRoute
+  '/matches/$matchId/record': typeof MatchesMatchIdRecordRouteRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/matches/record': typeof MatchesRecordRouteRoute
+  '/matches/$matchId/record': typeof MatchesMatchIdRecordRouteRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/matches/record': typeof MatchesRecordRouteRoute
+  '/matches/$matchId/record': typeof MatchesMatchIdRecordRouteRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/matches/record'
+  fullPaths: '/' | '/about' | '/matches/$matchId/record'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/matches/record'
-  id: '__root__' | '/' | '/about' | '/matches/record'
+  to: '/' | '/about' | '/matches/$matchId/record'
+  id: '__root__' | '/' | '/about' | '/matches/$matchId/record'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  MatchesRecordRouteRoute: typeof MatchesRecordRouteRoute
+  MatchesMatchIdRecordRouteRoute: typeof MatchesMatchIdRecordRouteRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  MatchesRecordRouteRoute: MatchesRecordRouteRoute,
+  MatchesMatchIdRecordRouteRoute: MatchesMatchIdRecordRouteRoute,
 }
 
 export const routeTree = rootRoute
@@ -117,7 +117,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
-        "/matches/record"
+        "/matches/$matchId/record"
       ]
     },
     "/": {
@@ -126,8 +126,8 @@ export const routeTree = rootRoute
     "/about": {
       "filePath": "about.tsx"
     },
-    "/matches/record": {
-      "filePath": "matches/record/route.tsx"
+    "/matches/$matchId/record": {
+      "filePath": "matches/$matchId/record/route.tsx"
     }
   }
 }
