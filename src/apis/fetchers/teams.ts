@@ -2,14 +2,21 @@ import { http } from '@/apis/http';
 import {
   ApiResponse,
   TeamMemberListResponse,
+  TeamSearchResponse,
   UserJoinTeamRequest,
 } from '@/apis/models';
 import { TeamResponse } from '@/apis/models';
 
+export const getTeamById = async (teamId: number) => {
+  const response = await http.get(`v1/teams/${teamId}`);
+
+  return response.json() as Promise<ApiResponse<TeamResponse>>;
+};
+
 export const getAllTeamList = async () => {
   const response = await http.get('v1/teams');
 
-  return response.json() as Promise<ApiResponse<TeamResponse[]>>;
+  return response.json() as Promise<ApiResponse<TeamSearchResponse[]>>;
 };
 
 export const getMemberListByTeamId = async (teamId: number) => {

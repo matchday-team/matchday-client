@@ -5,6 +5,7 @@ const queryKeyNamespaces = {
 };
 
 const queryKeys = {
+  teamById: (teamId: number) => [queryKeyNamespaces.teams, teamId],
   teamList: () => [queryKeyNamespaces.teams, 'list'],
   teamMemberListById: (teamId: number) => [
     queryKeyNamespaces.teams,
@@ -12,6 +13,11 @@ const queryKeys = {
     teamId,
   ],
 };
+
+export const byIdQuery = (teamId: number) => ({
+  queryKey: queryKeys.teamById(teamId),
+  queryFn: () => teamApi.getTeamById(teamId),
+});
 
 export const listAllQuery = {
   queryKey: queryKeys.teamList(),
