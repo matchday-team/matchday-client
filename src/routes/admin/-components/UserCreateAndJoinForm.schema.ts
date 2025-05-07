@@ -1,11 +1,11 @@
 // TODO: 팀 id 선택은 조회를 통해 구성하는 게 좋아보임
 import { RJSFSchema, UiSchema } from '@rjsf/utils';
 
-import { TeamResponse } from '@/apis/models';
+import { TeamSearchResponse } from '@/apis/models';
 
 import * as nameUtils from './nameUtils';
 
-export const createSchema = (teamList: TeamResponse[]): RJSFSchema => ({
+export const createSchema = (teamList: TeamSearchResponse[]): RJSFSchema => ({
   title: '선수 생성 및 등록',
   description: '임시 선수 생성 및 등록 폼. 아래 내용을 채주세요.',
   type: 'object',

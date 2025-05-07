@@ -13,7 +13,7 @@ export const formsContainer = style({
   boxSizing: 'border-box',
   display: 'grid',
   flex: 1,
-  gridTemplateColumns: 'repeat(3, 1fr)',
+  gridTemplateColumns: 'repeat(5, 1fr)',
   gap: 16,
   overflow: 'hidden',
 });

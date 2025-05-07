@@ -2,11 +2,15 @@ import { useState } from 'react';
 
 import Form from '@rjsf/mui';
 import validator from '@rjsf/validator-ajv8';
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
-import { MatchUserCreateRequestRole } from '@/apis/models';
+import {
+  MatchListResponse,
+  MatchUserCreateRequestRole,
+  TeamSearchResponse,
+} from '@/apis/models';
 import { useCreateMatchUserMutation } from '@/apis/mutations';
-import { matchRecordQuery, teamQuery } from '@/apis/queries';
+import { teamQuery } from '@/apis/queries';
 
 import * as styles from './UserMatchJoinForm.css';
 import { createSchema, uiSchema } from './UserMatchJoinForm.schema';
@@ -23,7 +27,19 @@ interface FormData {
 }
 
 // NOTE: 팀 선택 -> 매치 선택 -> 유저 선택 -> 참여
-export const UserMatchJoinForm = () => {
+export const UserMatchJoinForm = ({
+  selectedTeamId,
+  teamList,
+  matchList,
+  onSelectTeam,
+  onSelectMatch,
+}: {
+  selectedTeamId: number;
+  teamList: TeamSearchResponse[];
+  matchList: MatchListResponse[];
+  onSelectTeam: (teamId: number) => void;
+  onSelectMatch: (matchId: number) => void;
+}) => {
   // NOTE: Uncontrolled 방식으로 쓰면 schema가 바뀔 때마다 default 값으로 초기화되므로, 값 변경이 불가능해짐.
   const [formData, setFormData] = useState<FormData>({
     matchId: -1,
@@ -33,25 +49,9 @@ export const UserMatchJoinForm = () => {
     matchGrid: '1',
     role: 'START_PLAYER',
   });
-  const { data: teamList } = useSuspenseQuery(teamQuery.listAllQuery);
-  const [selectedTeamId, setSelectedTeamId] = useState<number>(
-    teamList.data[0].id,
-  );
-  const [selectedMatchId, setSelectedMatchId] = useState<number>(-1);
   const { data: teamMemberList } = useQuery({
     ...teamQuery.listTeamMemberQuery(selectedTeamId),
     enabled: selectedTeamId !== -1,
-  });
-  const { data: matchList } = useQuery({
-    ...matchRecordQuery.listQuery(selectedTeamId),
-    enabled: selectedTeamId !== -1,
-  });
-
-  // TODO: submit할 때마다 invalidate 필요 (어차피 useQuery라서 괜찮을 수도)
-  // TODO: 현재 참여 목록 표시 필요함
-  const { data: matchPlayerList } = useQuery({
-    ...matchRecordQuery.playersQuery(selectedMatchId),
-    enabled: selectedMatchId !== -1,
   });
 
   const { mutateAsync: createMatchUser } = useCreateMatchUserMutation();
@@ -76,9 +76,9 @@ export const UserMatchJoinForm = () => {
   };
 
   const schema = createSchema(
-    teamList?.data ?? [],
+    teamList,
     teamMemberList?.data?.teamMemberResponses ?? [],
-    matchList?.data ?? [],
+    matchList,
   );
 
   return (
@@ -100,8 +100,8 @@ export const UserMatchJoinForm = () => {
           }
           setFormData(e.formData);
           log('changed')(e.formData.matchId, e.formData.teamId);
-          setSelectedMatchId(e.formData.matchId);
-          setSelectedTeamId(e.formData.teamId);
+          onSelectMatch(e.formData.matchId);
+          onSelectTeam(e.formData.teamId);
         }}
         onSubmit={({ formData }) => onSubmit(formData)}
         onError={log('errors')}

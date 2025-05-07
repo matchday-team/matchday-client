@@ -3,14 +3,14 @@ import { RJSFSchema, UiSchema } from '@rjsf/utils';
 import {
   MatchListResponse,
   TeamMemberResponse,
-  TeamResponse,
+  TeamSearchResponse,
 } from '@/apis/models';
 
 // FIXME: 현재 단순 명단 추가 기능만 있어서 그렇게만 진행
 // TODO: 팀 목록 조회 필요
 // TODO: 팀 명단 목록 조회 필요
 export const createSchema = (
-  teamList: TeamResponse[],
+  teamList: TeamSearchResponse[],
   teamMemberList: TeamMemberResponse[],
   matchList: MatchListResponse[],
 ): RJSFSchema => ({
