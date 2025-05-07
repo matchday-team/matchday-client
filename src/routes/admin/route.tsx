@@ -26,9 +26,12 @@ function AdminPage() {
       autoHideDuration={ONE_DAY}
     >
       <div className={styles.rootContainer}>
-        <UserMatchJoinForm />
-        <UserCreateAndJoinForm />
-        <MatchCreateForm />
+        <h1>MatchDay Admin</h1>
+        <div className={styles.formsContainer}>
+          <UserCreateAndJoinForm />
+          <MatchCreateForm />
+          <UserMatchJoinForm />
+        </div>
       </div>
     </SnackbarProvider>
   );

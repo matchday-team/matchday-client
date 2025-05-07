@@ -1,7 +1,5 @@
 import { style } from '@vanilla-extract/css';
 
-export const rootContainer = style({
-  display: 'flex',
-  flexDirection: 'column',
-  padding: 16,
-});
+import { commonContainer } from './commonStyle.css';
+
+export const rootContainer = style([commonContainer, {}]);
