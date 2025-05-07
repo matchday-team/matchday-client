@@ -1,10 +1,10 @@
 import { create } from 'zustand';
 
-export type TeamType = 'home' | 'away';
+import { MatchUserResponse, TeamResponse } from '@/apis/models';
 
 export interface SelectedPlayer {
-  teamType: TeamType;
-  id: number;
+  team: TeamResponse;
+  player: MatchUserResponse;
 }
 
 type SelectedPlayerStore =

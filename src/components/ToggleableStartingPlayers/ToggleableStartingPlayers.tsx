@@ -1,17 +1,19 @@
 import { useState } from 'react';
 
+import { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { PlayerList } from '@/components/PlayerList';
 import { PlayerOnFieldGrid } from '@/components/PlayerOnFieldGrid';
-import { TeamType } from '@/stores';
 
 import * as styles from './ToggleableStartingPlayers.css';
 
 interface ToggleableStartingPlayersProps {
-  teamType: TeamType;
+  team?: TeamResponse;
+  players: MatchUserResponse[];
 }
 
 export const ToggleableStartingPlayers = ({
-  teamType,
+  team,
+  players,
 }: ToggleableStartingPlayersProps) => {
   const [isGridView, setIsGridView] = useState(true);
 
@@ -24,9 +26,9 @@ export const ToggleableStartingPlayers = ({
         {isGridView ? '리스트 보기' : '포메이션 보기'}
       </button>
       {isGridView ? (
-        <PlayerOnFieldGrid teamType={teamType} />
+        <PlayerOnFieldGrid team={team} players={players} />
       ) : (
-        <PlayerList teamType={teamType} />
+        <PlayerList team={team} players={players} />
       )}
     </div>
   );

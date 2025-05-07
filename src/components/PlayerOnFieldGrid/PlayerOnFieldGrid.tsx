@@ -1,5 +1,6 @@
-import { mocked_getPlayersByTeamType } from '@/mocks';
-import { TeamType, useSelectedPlayerStore } from '@/stores';
+import { TeamResponse } from '@/apis/models';
+import { MatchUserResponse } from '@/apis/models';
+import { useSelectedPlayerStore } from '@/stores';
 
 import { FieldBackground } from './FieldBackground';
 import { EmptyOnFieldGridCell, PlayerOnFieldGridCell } from './FieldGridCell';
@@ -8,16 +9,22 @@ import * as styles from './PlayerOnFieldGrid.css';
 const TOTAL_CELLS = 30;
 
 interface PlayerOnFieldGridProps {
-  teamType: TeamType;
+  team?: TeamResponse;
+  players: MatchUserResponse[];
 }
 
-export const PlayerOnFieldGrid = ({ teamType }: PlayerOnFieldGridProps) => {
+export const PlayerOnFieldGrid = ({
+  team,
+  players,
+}: PlayerOnFieldGridProps) => {
   const { isSelected, selectedPlayer, selectPlayer } = useSelectedPlayerStore();
 
-  // TODO: Tanstack-query 연동
-  const players = mocked_getPlayersByTeamType(teamType);
+  // FIXME: matchGrid 수정 전까지 어쩔 수 없음
+  const playerGridMap = new Map(
+    players.map(player => [Math.floor(Math.random() * 30), player]),
+  );
 
-  const playerGridMap = new Map(players.map(player => [player.grid, player]));
+  console.log(players, playerGridMap);
 
   return (
     <FieldBackground>
@@ -33,9 +40,13 @@ export const PlayerOnFieldGrid = ({ teamType }: PlayerOnFieldGridProps) => {
             <PlayerOnFieldGridCell
               key={idx}
               player={player}
-              isSelected={isSelected && selectedPlayer.id === player.id}
+              isSelected={isSelected && selectedPlayer.player.id === player.id}
               onClick={() => {
-                selectPlayer({ teamType, id: player.id });
+                // NOTE: 빈 상태임
+                if (!team) {
+                  return;
+                }
+                selectPlayer({ team, player });
               }}
             />
           );
