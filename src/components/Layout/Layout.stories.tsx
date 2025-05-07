@@ -5,12 +5,12 @@ import {
   createRouter,
 } from '@tanstack/react-router';
 
-import { SidebarProvider } from '@/components/Sidebar';
+import { SIDEBAR_BREAKPOINT } from '@/constants';
 
 import { Layout } from './Layout';
 
-const SMALL_SCREEN_WIDTH = 800;
-const LARGE_SCREEN_WIDTH = 1600;
+const SMALL_SCREEN_WIDTH = SIDEBAR_BREAKPOINT - 20;
+const LARGE_SCREEN_WIDTH = SIDEBAR_BREAKPOINT + 20;
 
 const meta = {
   title: 'Components/Layout',
@@ -38,11 +38,7 @@ const meta = {
   tags: ['autodocs'],
   decorators: [
     Story => {
-      return (
-        <SidebarProvider>
-          <Story />
-        </SidebarProvider>
-      );
+      return <Story />;
     },
   ],
 } satisfies Meta<typeof Layout>;
