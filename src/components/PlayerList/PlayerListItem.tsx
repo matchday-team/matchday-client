@@ -1,13 +1,13 @@
 import { SyntheticEvent } from 'react';
 
-import { StartingPlayer } from '@/apis';
+import { MatchUserResponse } from '@/apis/models';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 
 import * as styles from './PlayerListItem.css';
 
 interface PlayerItemProps {
   isSelected: boolean;
-  player: StartingPlayer;
+  player: MatchUserResponse;
   onClick: () => void;
 }
 
@@ -31,20 +31,23 @@ export const PlayerItem = ({
       <div className={styles.infoContainer}>
         <img
           className={styles.profileImage}
-          src={player.profileImageUrl}
+          // src={player.profileImageUrl}
+          src='https://via.placeholder.com/150'
           alt=''
           onError={setFallbackImageIfLoadFail}
         />
         <span className={styles.number}>{player.number}</span>
         <span className={styles.commonText}>{player.name}</span>
       </div>
-      <span className={styles.position}>{player.position}</span>
+      <span className={styles.position}>{player.matchPosition}</span>
       <div className={styles.statContainer}>
         <span className={styles.number}>{displayDashIfZero(player.goals)}</span>
         <span className={styles.number}>
           {displayDashIfZero(player.assists)}
         </span>
-        <span className={styles.number}>{displayDashIfZero(player.fouls)}</span>
+        <span className={styles.number}>
+          {displayDashIfZero(player.caution)}
+        </span>
       </div>
     </li>
   );

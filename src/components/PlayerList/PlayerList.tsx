@@ -2,7 +2,7 @@ import { SyntheticEvent } from 'react';
 
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import { StartingPlayerOnGrid } from '@/apis';
+import { MatchUserResponse } from '@/apis/models';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import { mocked_getPlayersByTeamType, mocked_getTeamByType } from '@/mocks';
 import { TeamType, useSelectedPlayerStore } from '@/stores';
@@ -63,7 +63,7 @@ const PlayerListContent = ({
   players,
 }: {
   teamType: TeamType;
-  players: StartingPlayerOnGrid[];
+  players: MatchUserResponse[];
 }) => {
   const { isSelected, selectedPlayer, selectPlayer } = useSelectedPlayerStore();
 

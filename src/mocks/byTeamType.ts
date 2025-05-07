@@ -1,3 +1,4 @@
+import { MatchUserResponse } from '@/apis/models';
 import { TeamType } from '@/stores';
 
 export const dummyTeam1 = {
@@ -52,21 +53,24 @@ const playerNames = [
   '이용',
 ];
 
-export const mocked_getPlayersByTeamType = (teamType: TeamType) => {
+export const mocked_getPlayersByTeamType = (
+  teamType: TeamType,
+): MatchUserResponse[] => {
   const startingIdx = teamType === 'home' ? 0 : 11;
 
   return Array.from({ length: 11 }, (_, idx) => ({
     id: startingIdx + 1 + idx,
     name: playerNames[startingIdx + 1 + idx],
     number: 99,
-    position: 'FW',
+    matchPosition: 'FW',
     profileImageUrl: 'https://via.placeholder.com/150',
     goals: Math.max(0, 5 - idx),
     assists: Math.max(0, idx - 5),
-    fouls: 2,
+    caution: 2,
     yellowCards: idx % 2 === 0 ? 1 : 0,
     redCards: idx % 3 === 0 ? 1 : 0,
-    grid: gridPositions[idx],
+    sentOff: false,
+    matchGrid: `${gridPositions[idx]}`, // FIXME: 추후 변경 예정
   }));
 };
 

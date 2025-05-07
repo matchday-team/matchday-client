@@ -1,12 +1,12 @@
 import { SyntheticEvent } from 'react';
 
-import { StartingPlayerOnGrid } from '@/apis';
+import { MatchUserResponse } from '@/apis/models';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 
 import * as styles from './PlayerListItem.css';
 
 export interface ListItemProps {
-  player: StartingPlayerOnGrid;
+  player: MatchUserResponse;
 }
 
 const setFallbackImageIfLoadFail = (
@@ -28,7 +28,7 @@ export const PlayerListItem = ({ player }: ListItemProps) => {
     >
       <img
         className={styles.profileImage}
-        src={noProfilePlayerImage}
+        src='https://via.placeholder.com/150'
         alt=''
         onError={setFallbackImageIfLoadFail}
       />
@@ -37,7 +37,7 @@ export const PlayerListItem = ({ player }: ListItemProps) => {
           <span className={styles.number}>{player.number}</span>
           <span className={styles.name}>{player.name}</span>
         </div>
-        <span className={styles.position}>{player.position}</span>
+        <span className={styles.position}>{player.matchPosition}</span>
       </div>
     </li>
   );

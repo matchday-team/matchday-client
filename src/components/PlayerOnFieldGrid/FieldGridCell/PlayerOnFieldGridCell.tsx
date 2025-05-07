@@ -1,4 +1,4 @@
-import { StartingPlayerOnGrid } from '@/apis';
+import { MatchUserResponse } from '@/apis/models';
 import { SoccerballIcon } from '@/assets/icons';
 import { useIsDragOver } from '@/hooks';
 import { createFallbackImageHandler } from '@/utils/createFallbackImageHandler';
@@ -7,7 +7,7 @@ import * as styles from './PlayerOnFieldGridCell.css';
 import { commonCellContainer } from './commonStyle.css';
 
 interface PlayerOnFieldGridCellProps {
-  player: StartingPlayerOnGrid;
+  player: MatchUserResponse;
   isSelected?: boolean;
   onClick?: () => void;
 }
@@ -47,7 +47,8 @@ export const PlayerOnFieldGridCell = ({
       <div className={styles.playerImageContainer}>
         <img
           className={styles.playerImage}
-          src={player.profileImageUrl}
+          // src={player.profileImageUrl}
+          src='https://via.placeholder.com/150'
           alt={player.name}
           onError={fallbackImageHandler}
         />
