@@ -4,6 +4,7 @@ import type {
   MatchCreateRequest,
   MatchEventResponse,
   MatchInfoResponse,
+  MatchListResponse,
   MatchMemoResponse,
   MatchScoreResponse,
   MatchUserCreateRequest,
@@ -52,6 +53,12 @@ export const postMatch = async (data: MatchCreateRequest) => {
   });
 
   return response.json() as Promise<ApiResponse<number>>;
+};
+
+export const getMatchListByTeamId = async (teamId: number) => {
+  const response = await http.get(`v1/matches/teams/${teamId}`);
+
+  return response.json() as Promise<ApiResponse<MatchListResponse[]>>;
 };
 
 export const postMatchUser = async (

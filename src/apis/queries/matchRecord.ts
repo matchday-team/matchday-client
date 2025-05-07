@@ -1,5 +1,6 @@
 import { matchApi } from '@/apis/fetchers';
 
+// TODO: 파일명을 matches로 변경
 const queryKeyNamespaces = {
   matches: 'matches',
 };
@@ -27,6 +28,7 @@ const queryKeys = {
     teamId,
     'memo',
   ],
+  matchList: (teamId: number) => [queryKeyNamespaces.matches, 'list', teamId],
 };
 
 export const infoQuery = (matchId: number) => ({
@@ -52,4 +54,9 @@ export const playersQuery = (matchId: number) => ({
 export const memoQuery = (matchId: number, teamId: number) => ({
   queryKey: queryKeys.matchMemo(matchId, teamId),
   queryFn: () => matchApi.getMatchMemoByMatchIdAndTeamId(matchId, teamId),
+});
+
+export const listQuery = (teamId: number) => ({
+  queryKey: queryKeys.matchList(teamId),
+  queryFn: () => matchApi.getMatchListByTeamId(teamId),
 });
