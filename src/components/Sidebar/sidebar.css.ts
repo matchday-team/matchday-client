@@ -5,6 +5,7 @@ import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_SMALL } from '@/constants';
 import { lightThemeVars } from '@/styles/theme.css';
 
 const transitionTiming = 'cubic-bezier(0.4, 0, 0.2, 1)';
+const SIDEBAR_PADDING_OFFSET = 52;
 
 export const container = recipe({
   base: {
@@ -20,14 +21,17 @@ export const container = recipe({
     height: '100vh',
   },
   variants: {
-    width: {
-      default: {
+    isOpen: {
+      true: {
         width: SIDEBAR_WIDTH,
       },
-      toggle: {
+      false: {
         width: SIDEBAR_WIDTH_SMALL,
       },
     },
+  },
+  defaultVariants: {
+    isOpen: true,
   },
 });
 
@@ -48,7 +52,7 @@ export const logo = recipe({
     isOpen: {
       true: {
         margin: '20px 26px',
-        width: 308,
+        width: SIDEBAR_WIDTH - SIDEBAR_PADDING_OFFSET,
         height: 39,
       },
       false: {
@@ -72,7 +76,7 @@ export const logoText = style({
 });
 
 export const logoTitle = style({
-  lineHeight: '140%',
+  lineHeight: 1.4,
   letterSpacing: -0.4,
   color: lightThemeVars.color.black,
   fontSize: 16,
@@ -81,7 +85,7 @@ export const logoTitle = style({
 });
 
 export const logoSubtitle = style({
-  lineHeight: '140%',
+  lineHeight: 1.4,
   letterSpacing: -0.3,
   color: lightThemeVars.color.gray[500],
   fontSize: 12,
@@ -97,14 +101,28 @@ export const adminIcon = style({
   color: lightThemeVars.color.gray[600],
 });
 
-export const nav = style({
-  display: 'flex',
-  flex: 1,
-  flexDirection: 'column',
-  alignItems: 'flex-start',
-  gap: 16,
-  padding: 0,
-  width: 308,
+export const nav = recipe({
+  base: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: 16,
+    padding: 0,
+  },
+  variants: {
+    isOpen: {
+      true: {
+        width: SIDEBAR_WIDTH - SIDEBAR_PADDING_OFFSET,
+      },
+      false: {
+        width: SIDEBAR_WIDTH_SMALL,
+      },
+    },
+  },
+  defaultVariants: {
+    isOpen: true,
+  },
 });
 
 export const navItem = recipe({
@@ -161,15 +179,28 @@ export const navItemIcon = recipe({
   },
 });
 
-export const footer = style({
-  display: 'flex',
-  flexDirection: 'column',
-  flexShrink: 0,
-  alignItems: 'flex-start',
-  gap: 16,
-  padding: '1px 0',
-  width: 308,
-  height: 84,
+export const footer = recipe({
+  base: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexShrink: 0,
+    alignItems: 'flex-start',
+    gap: 16,
+    padding: '1px 0',
+  },
+  variants: {
+    isOpen: {
+      true: {
+        width: SIDEBAR_WIDTH - SIDEBAR_PADDING_OFFSET,
+      },
+      false: {
+        width: SIDEBAR_WIDTH_SMALL,
+      },
+    },
+  },
+  defaultVariants: {
+    isOpen: true,
+  },
 });
 
 export const footerItem = recipe({
@@ -178,7 +209,6 @@ export const footerItem = recipe({
     alignItems: 'center',
     justifyContent: 'space-between',
     transition: `background-color 0.3s ${transitionTiming}`,
-    cursor: 'pointer',
     width: '100%',
     overflow: 'hidden',
     textDecoration: 'none',
@@ -305,14 +335,14 @@ export const logoTextImage = style({
 });
 
 export const navLabel = style({
-  lineHeight: '140%',
+  lineHeight: 1.4,
   letterSpacing: -0.3,
   fontSize: 14,
   fontWeight: 500,
 });
 
 export const footerLabel = style({
-  lineHeight: '140%',
+  lineHeight: 1.4,
   letterSpacing: -0.3,
   fontSize: 14,
   fontWeight: 500,
