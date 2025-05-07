@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { StartingPlayer, Team } from '@/apis';
+import {
+  MatchEventResponse,
+  MatchUserResponse,
+  TeamResponse,
+} from '@/apis/models';
 import { lightThemeVars } from '@/styles/theme.css';
 
 import { MatchLogList } from './MatchLogList';
@@ -25,69 +29,86 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const mockHomeTeam: Team = {
+const mockHomeTeam: TeamResponse = {
   id: 1,
   name: 'FC 서울',
   teamColor: lightThemeVars.color.soccer.red,
-  logoImageUrl: 'https://example.com/logo1.png',
+  bottomColor: lightThemeVars.color.soccer.red,
+  stockingColor: lightThemeVars.color.soccer.red,
+  // logoImageUrl: 'https://example.com/logo1.png',
 };
 
-const mockAwayTeam: Team = {
+const mockAwayTeam: TeamResponse = {
   id: 2,
   name: '수원 삼성',
   teamColor: '#003A70',
-  logoImageUrl: 'https://example.com/logo2.png',
+  bottomColor: '#003A70',
+  stockingColor: '#003A70',
+  // logoImageUrl: 'https://example.com/logo2.png',
 };
 
-const mockHomePlayer: StartingPlayer = {
+const mockHomePlayer: MatchUserResponse = {
   id: 1,
   name: '홍길동',
   number: 10,
-  position: 'FW',
-  profileImageUrl: 'https://example.com/profile1.png',
+  matchPosition: 'FW',
+  // profileImageUrl: 'https://example.com/profile1.png',
   goals: 10,
   assists: 10,
-  fouls: 10,
+  caution: 10,
   yellowCards: 0,
   redCards: 0,
+  matchGrid: '1',
+  sentOff: false,
 };
 
-const mockAwayPlayer: StartingPlayer = {
+const mockAwayPlayer: MatchUserResponse = {
   id: 2,
   name: '이순신',
   number: 10,
-  position: 'FW',
-  profileImageUrl: 'https://example.com/profile2.png',
+  // profileImageUrl: 'https://example.com/profile2.png',
   goals: 10,
   assists: 10,
-  fouls: 10,
+  caution: 10,
   yellowCards: 0,
   redCards: 0,
+  matchGrid: '1',
+  sentOff: false,
+  matchPosition: 'FW',
 };
 
-const mockLogs = Array.from({ length: 10 }, (_, index) => [
-  {
-    id: index * 3 + 1,
-    time: new Date('2024-01-01'),
-    team: mockHomeTeam,
-    player: mockHomePlayer,
-    action: '유효 슈팅',
-  },
-  {
-    id: index * 3 + 2,
-    time: new Date('2024-01-01'),
-    team: mockAwayTeam,
-    player: mockAwayPlayer,
-    action: '골',
-  },
-  {
-    id: index * 3 + 3,
-    time: new Date('2024-01-01'),
-    team: mockHomeTeam,
-    player: mockHomePlayer,
-    action: '골',
-  },
-]).flat();
+const mockLogs: MatchEventResponse[] = Array.from(
+  { length: 10 },
+  (_, index) => [
+    {
+      id: index * 3 + 1,
+      eventLog: '유효 슈팅',
+      teamId: mockHomeTeam.id,
+      teamName: mockHomeTeam.name,
+      userId: mockHomePlayer.id,
+      userName: mockHomePlayer.name,
+      elapsedMinutes: 10,
+    },
+    {
+      id: index * 3 + 2,
+      eventLog: '골',
+      teamId: mockAwayTeam.id,
+      teamName: mockAwayTeam.name,
+      userId: mockAwayPlayer.id,
+      userName: mockAwayPlayer.name,
+      elapsedMinutes: 10,
+    },
+    {
+      id: index * 3 + 3,
+      eventLog: '골',
+      teamId: mockHomeTeam.id,
+      teamName: mockHomeTeam.name,
+      userId: mockHomePlayer.id,
+      userName: mockHomePlayer.name,
+      elapsedMinutes: 10,
+    },
+  ],
+).flat();
 
 export const Default: Story = {
   args: {

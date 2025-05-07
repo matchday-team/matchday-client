@@ -1,6 +1,6 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import { MatchLog, Team } from '@/apis';
+import { MatchEventResponse, TeamResponse } from '@/apis/models';
 
 import { EmptyList } from './EmptyList/EmptyList';
 import * as styles from './MatchLogList.css';
@@ -10,10 +10,10 @@ import { teamHomeColor } from './colors.css';
 
 interface MatchLogListProps {
   teams: {
-    home: Team;
-    away: Team;
+    home: TeamResponse;
+    away: TeamResponse;
   };
-  logs: MatchLog[];
+  logs: MatchEventResponse[];
 }
 
 export const MatchLogList = ({ teams, logs }: MatchLogListProps) => {
