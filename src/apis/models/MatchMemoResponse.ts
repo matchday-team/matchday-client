@@ -7,7 +7,5 @@
  */
 
 export interface MatchMemoResponse {
-  matchId: number;
-  teamId: number;
   memo: string;
 }

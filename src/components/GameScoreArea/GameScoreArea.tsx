@@ -1,20 +1,12 @@
-import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
+import { MatchScoreResponse, TeamResponse } from '@/apis/models';
 import { createFallbackImageHandler } from '@/utils';
 
 import * as styles from './GameScoreArea.css';
 
-interface Team {
-  name: string;
-  logoImageUrl?: string;
-}
-
 interface GameScoreAreaProps {
-  scores: {
-    home: number;
-    away: number;
-  };
-  homeTeam: Team;
-  awayTeam: Team;
+  scores: MatchScoreResponse;
+  homeTeam: TeamResponse;
+  awayTeam: TeamResponse;
 }
 
 export const GameScoreArea = ({
@@ -26,7 +18,7 @@ export const GameScoreArea = ({
     <div className={styles.container}>
       <TeamArea team={homeTeam} isHome />
       <div className={styles.score}>
-        {scores.home} : {scores.away}
+        {scores.homeScore.goalCount} : {scores.awayScore.goalCount}
       </div>
       <TeamArea team={awayTeam} />
     </div>
@@ -35,12 +27,19 @@ export const GameScoreArea = ({
 
 const fallbackImageHandler = createFallbackImageHandler();
 
-const TeamArea = ({ team, isHome }: { team: Team; isHome?: boolean }) => {
+const TeamArea = ({
+  team,
+  isHome,
+}: {
+  team: TeamResponse;
+  isHome?: boolean;
+}) => {
   return (
     <div className={styles.teamContainer}>
       <div className={styles.logoWrapper({ isHome })}>
         <img
-          src={team.logoImageUrl ?? noProfilePlayerImage}
+          // src={team.logoImageUrl ?? noProfilePlayerImage}
+          src='https://via.placeholder.com/150'
           alt=''
           className={styles.logo}
           onError={fallbackImageHandler}

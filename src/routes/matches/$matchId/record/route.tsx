@@ -1,11 +1,9 @@
 import { useState } from 'react';
 
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, useParams } from '@tanstack/react-router';
 
-import { StartingPlayer } from '@/apis';
-import { Team } from '@/apis';
-import { matchRecordQuery } from '@/apis/queries';
+import { matchRecordQuery, teamQuery } from '@/apis/queries';
 import {
   GameScoreArea,
   MatchLogList,
@@ -22,10 +20,8 @@ import {
   getTimeAgo,
   getUnixTimestampInSeconds,
 } from '@/components/MatchTimeController/timeUtils';
-import { dummyTeam1, dummyTeam2 } from '@/mocks';
 import { queryClient } from '@/react-query-provider';
 import { commonPaper } from '@/styles/paper.css';
-import { lightThemeVars } from '@/styles/theme.css';
 
 import { MatchRecordLayout } from './-components';
 
@@ -43,92 +39,19 @@ export const Route = createFileRoute('/matches/$matchId/record')({
   },
 });
 
-const mockHomeTeam: Team = {
-  id: 1,
-  name: 'FC 서울',
-  teamColor: lightThemeVars.color.soccer.red,
-  logoImageUrl: 'https://example.com/logo1.png',
-};
-
-const mockAwayTeam: Team = {
-  id: 2,
-  name: '수원 삼성',
-  teamColor: '#003A70',
-  logoImageUrl: 'https://example.com/logo2.png',
-};
-
-const mockHomePlayer: StartingPlayer = {
-  id: 1,
-  name: '홍길동',
-  number: 10,
-  position: 'FW',
-  profileImageUrl: 'https://example.com/profile1.png',
-  goals: 10,
-  assists: 10,
-  fouls: 10,
-  yellowCards: 0,
-  redCards: 0,
-};
-
-const mockAwayPlayer: StartingPlayer = {
-  id: 2,
-  name: '이순신',
-  number: 10,
-  position: 'FW',
-  profileImageUrl: 'https://example.com/profile2.png',
-  goals: 10,
-  assists: 10,
-  fouls: 10,
-  yellowCards: 0,
-  redCards: 0,
-};
-
-const mockLogs = Array.from({ length: 10 }, (_, index) => [
-  {
-    id: index * 3 + 1,
-    time: new Date('2024-01-01'),
-    team: mockHomeTeam,
-    player: mockHomePlayer,
-    action: '유효 슈팅',
-  },
-  {
-    id: index * 3 + 2,
-    time: new Date('2024-01-01'),
-    team: mockAwayTeam,
-    player: mockAwayPlayer,
-    action: '골',
-  },
-  {
-    id: index * 3 + 3,
-    time: new Date('2024-01-01'),
-    team: mockHomeTeam,
-    player: mockHomePlayer,
-    action: '골',
-  },
-]).flat();
-
-const statFields = [
-  '슈팅',
-  '유효 슈팅',
-  '코너킥',
-  '오프사이드',
-  '파울',
-  '경고',
-];
-
 // TO DO: 예시용 스타일로, 추후 제거 필요
 const s = (height: number | string) => ({
   height,
   backgroundColor: '#fff',
   borderRadius: 10,
 });
-
-const matchId = 6;
-
 function MatchRecordPage() {
-  const now = getUnixTimestampInSeconds();
-  const [memo, setMemo] = useState('');
+  const { matchId: _matchId } = useParams({ from: '/matches/$matchId/record' });
+  const matchId = Number(_matchId);
 
+  const { data: matchMemo } = useSuspenseQuery(
+    matchRecordQuery.memoQuery(matchId),
+  );
   const { data: matchInfo } = useSuspenseQuery(
     matchRecordQuery.infoQuery(matchId),
   );
@@ -142,10 +65,21 @@ function MatchRecordPage() {
     matchRecordQuery.playersQuery(matchId),
   );
 
+  // FIXME: 얘내는 순차 로딩을 하게 되는데...
+  const { data: homeTeam } = useSuspenseQuery(
+    teamQuery.byIdQuery(matchInfo.data.homeTeamId),
+  );
+  const { data: awayTeam } = useSuspenseQuery(
+    teamQuery.byIdQuery(matchInfo.data.awayTeamId),
+  );
+
+  const now = getUnixTimestampInSeconds();
+  const [memo, setMemo] = useState(matchMemo.data.memo);
+
   return (
     <MatchRecordLayout
-      team1Color={dummyTeam1.teamColor}
-      team2Color={dummyTeam2.teamColor}
+      team1Color={homeTeam.data.teamColor}
+      team2Color={awayTeam.data.teamColor}
       team1={
         <div
           className={commonPaper}
@@ -155,7 +89,10 @@ function MatchRecordPage() {
             flexDirection: 'column',
           }}
         >
-          <ToggleableStartingPlayers teamType='home' />
+          <ToggleableStartingPlayers
+            team={homeTeam.data}
+            players={matchPlayers.data.homeTeam.starters}
+          />
           <div
             style={{
               padding: '24px 8px',
@@ -165,12 +102,7 @@ function MatchRecordPage() {
             }}
           >
             <SubstitutionPlayerList teamType='home' />
-            <TeamStatCounterGrid
-              stats={statFields.map(title => ({
-                title,
-                value: Math.floor(Math.random() * 30),
-              }))}
-            />
+            <TeamStatCounterGrid stats={matchScore.data.homeScore} />
           </div>
         </div>
       }
@@ -183,7 +115,10 @@ function MatchRecordPage() {
             flexDirection: 'column',
           }}
         >
-          <ToggleableStartingPlayers teamType='away' />
+          <ToggleableStartingPlayers
+            team={awayTeam.data}
+            players={matchPlayers.data.awayTeam.starters}
+          />
           <div
             style={{
               padding: '24px 8px',
@@ -193,42 +128,20 @@ function MatchRecordPage() {
             }}
           >
             <SubstitutionPlayerList teamType='away' />
-            <TeamStatCounterGrid
-              stats={statFields.map(title => ({
-                title,
-                value: Math.floor(Math.random() * 30),
-              }))}
-            />
+            <TeamStatCounterGrid stats={matchScore.data.awayScore} />
           </div>
         </div>
       }
       teamStats={
         <div className={commonPaper} style={s(560)}>
           <GameScoreArea
-            scores={{
-              home: 0,
-              away: 0,
-            }}
-            homeTeam={dummyTeam1}
-            awayTeam={dummyTeam2}
+            scores={matchScore.data}
+            homeTeam={homeTeam.data}
+            awayTeam={awayTeam.data}
           />
           <TeamStatCompareCounterList
-            homeTeamStat={{
-              슈팅: 30,
-              '유효 슈팅': 25,
-              '코너 킥': 15,
-              '오프 사이드': 8,
-              파울: 20,
-              경고: 5,
-            }}
-            awayTeamStat={{
-              슈팅: 20,
-              '유효 슈팅': 10,
-              '코너 킥': 12,
-              '오프 사이드': 6,
-              파울: 15,
-              경고: 4,
-            }}
+            homeTeamStat={matchScore.data.homeScore}
+            awayTeamStat={matchScore.data.awayScore}
             maxValue={30}
           />
         </div>
@@ -240,6 +153,7 @@ function MatchRecordPage() {
       }
       timer={
         <div style={s(116)}>
+          {/* TODO: 추후 API 개발 완료 시 시간 처리 추가 필요 */}
           <MatchTimeController
             now={now}
             matchStatus={{
@@ -256,13 +170,16 @@ function MatchRecordPage() {
         <div style={s(284)}>
           <MatchSchedule
             items={[
-              { label: '장소', value: '한양대학교 대운동장' },
-              { label: '날짜', value: '2025-04-16 (수)' },
-              { label: '시간', value: '09 : 30 ~ 11 : 30' },
-              { label: '주심', value: '김태인' },
-              { label: '부심1', value: '김주용' },
-              { label: '부심2', value: '주유나' },
-              { label: '대기심', value: '김성빈' },
+              { label: '장소', value: matchInfo.data.stadium },
+              { label: '날짜', value: matchInfo.data.matchDate },
+              {
+                label: '시간',
+                value: `${matchInfo.data.startTime} ~ ${matchInfo.data.endTime}`,
+              },
+              { label: '주심', value: matchInfo.data.mainRefereeName },
+              { label: '부심1', value: matchInfo.data.assistantReferee1 },
+              { label: '부심2', value: matchInfo.data.assistantReferee2 },
+              { label: '대기심', value: matchInfo.data.fourthReferee },
             ]}
           />
         </div>
@@ -271,15 +188,16 @@ function MatchRecordPage() {
         <div style={s(228)}>
           <MatchLogList
             teams={{
-              home: dummyTeam1,
-              away: dummyTeam2,
+              home: homeTeam.data,
+              away: awayTeam.data,
             }}
-            logs={mockLogs}
+            logs={matchEvents.data}
           />
         </div>
       }
       memo={
         <div style={s(204)}>
+          {/* TODO: debounce 이후 update 연동 필요 */}
           <MatchRecordSimpleMemo value={memo} onChange={setMemo} />
         </div>
       }

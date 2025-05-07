@@ -22,12 +22,7 @@ const queryKeys = {
     matchId,
     'players',
   ],
-  matchMemo: (matchId: number, teamId: number) => [
-    queryKeyNamespaces.matches,
-    matchId,
-    teamId,
-    'memo',
-  ],
+  matchMemo: (matchId: number) => [queryKeyNamespaces.matches, matchId, 'memo'],
   matchList: (teamId: number) => [queryKeyNamespaces.matches, 'list', teamId],
 };
 
@@ -51,9 +46,9 @@ export const playersQuery = (matchId: number) => ({
   queryFn: () => matchApi.getMatchPlayersByMatchId(matchId),
 });
 
-export const memoQuery = (matchId: number, teamId: number) => ({
-  queryKey: queryKeys.matchMemo(matchId, teamId),
-  queryFn: () => matchApi.getMatchMemoByMatchIdAndTeamId(matchId, teamId),
+export const memoQuery = (matchId: number) => ({
+  queryKey: queryKeys.matchMemo(matchId),
+  queryFn: () => matchApi.getMatchMemoByMatchId(matchId),
 });
 
 export const listQuery = (teamId: number) => ({

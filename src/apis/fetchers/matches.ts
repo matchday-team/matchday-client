@@ -26,7 +26,7 @@ export const getMatchScoreByMatchId = async (matchId: number) => {
 export const getMatchEventsByMatchId = async (matchId: number) => {
   const response = await http.get(`v1/matches/${matchId}/history`);
 
-  return response.json() as Promise<ApiResponse<MatchEventResponse>>;
+  return response.json() as Promise<ApiResponse<MatchEventResponse[]>>;
 };
 
 export const getMatchPlayersByMatchId = async (matchId: number) => {
@@ -35,11 +35,8 @@ export const getMatchPlayersByMatchId = async (matchId: number) => {
   return response.json() as Promise<ApiResponse<MatchUserGroupResponse>>;
 };
 
-export const getMatchMemoByMatchIdAndTeamId = async (
-  matchId: number,
-  teamId: number,
-) => {
-  const response = await http.get(`v1/matches/${matchId}/teams/${teamId}/memo`);
+export const getMatchMemoByMatchId = async (matchId: number) => {
+  const response = await http.get(`v1/matches/${matchId}/memo`);
 
   return response.json() as Promise<ApiResponse<MatchMemoResponse>>;
 };
