@@ -1,11 +1,12 @@
 import { SyntheticEvent } from 'react';
 
-import { MatchUserResponse } from '@/apis/models';
+import { MatchUserResponse, TeamResponse } from '@/apis/models';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 
 import * as styles from './PlayerListItem.css';
 
 export interface ListItemProps {
+  team: TeamResponse;
   player: MatchUserResponse;
 }
 
@@ -15,6 +16,7 @@ const setFallbackImageIfLoadFail = (
   e.currentTarget.src = noProfilePlayerImage;
 };
 
+// TODO: team 추후에 사용하기
 export const PlayerListItem = ({ player }: ListItemProps) => {
   const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
     e.dataTransfer.setData('application/json', JSON.stringify(player));

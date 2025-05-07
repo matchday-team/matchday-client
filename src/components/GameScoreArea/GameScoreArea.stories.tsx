@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import FCSeoulLogo from '@/assets/images/teams/fcseoul.png';
-import FCSuwonLogo from '@/assets/images/teams/fcsuwon.png';
 import {
   teamAwayColor,
   teamHomeColor,
 } from '@/components/MatchLogList/colors.css';
+import { matchRecordMocks } from '@/mocks';
 
 import { GameScoreArea } from './GameScoreArea';
 
@@ -40,48 +39,34 @@ type Story = StoryObj<typeof GameScoreArea>;
 export const Default: Story = {
   args: {
     scores: {
-      home: 0,
-      away: 0,
+      homeScore: {
+        goalCount: 0,
+        shotCount: 0,
+        validShotCount: 0,
+        cornerKickCount: 0,
+        offsideCount: 0,
+        foulCount: 0,
+        warningCount: 0,
+      },
+      awayScore: {
+        goalCount: 0,
+        shotCount: 0,
+        validShotCount: 0,
+        cornerKickCount: 0,
+        offsideCount: 0,
+        foulCount: 0,
+        warningCount: 0,
+      },
+      homeTeamId: 1,
+      awayTeamId: 2,
+      matchId: 1,
     },
-    homeTeam: {
-      name: 'FC 서울',
-      logoImageUrl: FCSeoulLogo,
-    },
-    awayTeam: {
-      name: 'FC 수원',
-      logoImageUrl: FCSuwonLogo,
-    },
+    homeTeam: matchRecordMocks.mockHomeTeam,
+    awayTeam: matchRecordMocks.mockAwayTeam,
   },
 };
 
-export const NoImage: Story = {
-  args: {
-    scores: {
-      home: 0,
-      away: 0,
-    },
-    homeTeam: {
-      name: 'FC 서울',
-    },
-    awayTeam: {
-      name: 'FC 수원',
-    },
-  },
-};
-
-export const Custom: Story = {
-  args: {
-    scores: {
-      home: 17,
-      away: 3,
-    },
-    homeTeam: {
-      name: '한양대',
-      logoImageUrl: FCSeoulLogo,
-    },
-    awayTeam: {
-      name: '동국대',
-      logoImageUrl: FCSuwonLogo,
-    },
-  },
-};
+// FIXME: 추후 no image API 대응 필요
+// export const NoImage: Story = {
+//   args: {},
+// };

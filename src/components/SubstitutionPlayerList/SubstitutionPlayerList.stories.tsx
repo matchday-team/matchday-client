@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { matchRecordMocks } from '@/mocks';
+
 import { SubstitutionPlayerList } from './SubstitutionPlayerList';
 import * as styles from './SubstitutionPlayerList.stories.css';
 
@@ -24,13 +26,15 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    teamType: 'home',
+    team: matchRecordMocks.mockHomeTeam,
+    players: matchRecordMocks.mockSubPlayersByTeamType('home'),
   },
 };
 
 // FIXME: Query 연동 후 msw 활용한 mock 필요
 export const Empty: Story = {
   args: {
-    teamType: 'home',
+    team: matchRecordMocks.mockHomeTeam,
+    players: [],
   },
 };

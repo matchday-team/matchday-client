@@ -101,7 +101,10 @@ function MatchRecordPage() {
               gap: 20,
             }}
           >
-            <SubstitutionPlayerList teamType='home' />
+            <SubstitutionPlayerList
+              team={homeTeam.data}
+              players={matchPlayers.data.homeTeam.substitutes}
+            />
             <TeamStatCounterGrid stats={matchScore.data.homeScore} />
           </div>
         </div>
@@ -127,7 +130,10 @@ function MatchRecordPage() {
               gap: 20,
             }}
           >
-            <SubstitutionPlayerList teamType='away' />
+            <SubstitutionPlayerList
+              team={awayTeam.data}
+              players={matchPlayers.data.awayTeam.substitutes}
+            />
             <TeamStatCounterGrid stats={matchScore.data.awayScore} />
           </div>
         </div>

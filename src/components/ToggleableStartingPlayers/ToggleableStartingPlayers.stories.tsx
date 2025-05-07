@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { matchRecordMocks } from '@/mocks';
+import { mockHomeTeam } from '@/mocks/matchRecord';
+
 import { ToggleableStartingPlayers } from './ToggleableStartingPlayers';
 
 const meta = {
@@ -23,6 +26,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    teamType: 'home',
+    team: mockHomeTeam,
+    players: matchRecordMocks.mockPlayersByTeamType('home'),
   },
 };

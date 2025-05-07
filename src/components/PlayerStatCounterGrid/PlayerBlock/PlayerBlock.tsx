@@ -18,7 +18,6 @@ const setFallbackImageIfLoadFail = (
 };
 
 export const PlayerBlock = ({
-  team, // FIXME: profileImgUrl 조회에 필요함
   player: { number, name, matchPosition },
 }: PlayerBlockProps) => {
   const logoImageUrl = 'https://via.placeholder.com/150';

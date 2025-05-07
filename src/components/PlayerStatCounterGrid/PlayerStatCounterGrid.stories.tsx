@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import { teamColor } from '@/components/PlayerList/TeamColor.css';
+import { matchRecordMocks } from '@/mocks';
 import { useSelectedPlayerStore } from '@/stores';
 import { lightThemeVars } from '@/styles/theme.css';
 
@@ -51,7 +52,10 @@ export const OneYellowCard: Story = {
     Story => {
       useSelectedPlayerStore.setState({
         isSelected: true,
-        selectedPlayer: { teamType: 'home', id: 3 },
+        selectedPlayer: {
+          team: matchRecordMocks.mockHomeTeam,
+          player: matchRecordMocks.mockPlayersByTeamType('home')[2],
+        },
       });
 
       return <Story />;
@@ -64,7 +68,10 @@ export const OneRedCard: Story = {
     Story => {
       useSelectedPlayerStore.setState({
         isSelected: true,
-        selectedPlayer: { teamType: 'home', id: 1 },
+        selectedPlayer: {
+          team: matchRecordMocks.mockHomeTeam,
+          player: matchRecordMocks.mockPlayersByTeamType('home')[3],
+        },
       });
 
       return <Story />;

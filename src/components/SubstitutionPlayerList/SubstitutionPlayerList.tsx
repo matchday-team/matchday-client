@@ -1,19 +1,18 @@
-import { mocked_getSubstitutionPlayersByTeamType } from '@/mocks';
-import { TeamType } from '@/stores/selectedPlayer';
+import { MatchUserResponse, TeamResponse } from '@/apis/models';
 
 import { EmptyList } from './EmptyList';
 import { PlayerListItem } from './PlayerListItem';
 import * as styles from './SubstitutionPlayerList.css';
 
 interface SubstitutionPlayerListProps {
-  teamType: TeamType;
+  team: TeamResponse;
+  players: MatchUserResponse[];
 }
 
 export const SubstitutionPlayerList = ({
-  teamType,
+  team,
+  players,
 }: SubstitutionPlayerListProps) => {
-  const players = mocked_getSubstitutionPlayersByTeamType(teamType);
-
   return (
     <div className={styles.rootContainer}>
       <div className={styles.header}>
@@ -26,6 +25,7 @@ export const SubstitutionPlayerList = ({
           players.map(player => (
             <PlayerListItem
               key={`${player.number}-${player.name}`}
+              team={team}
               player={player}
             />
           ))
