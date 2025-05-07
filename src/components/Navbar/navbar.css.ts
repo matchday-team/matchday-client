@@ -17,12 +17,11 @@ export const navbar = style({
   boxShadow: `0 1px 2px ${lightThemeVars.color.black}1a`,
   backgroundColor: lightThemeVars.color.white.main,
   padding: '0 32px',
-  minWidth: 600,
   height: NAVBAR_HEIGHT,
 });
 
 export const title = style({
-  lineHeight: '140%',
+  lineHeight: 1.4,
   letterSpacing: -0.4,
   whiteSpace: 'nowrap',
   color: lightThemeVars.color.primary[700],
@@ -36,17 +35,20 @@ export const signUpButton = style({
   alignItems: 'center',
   justifyContent: 'center',
   gap: 6,
+  transition: 'background-color 0.2s ease, color 0.2s ease',
   border: `1px solid ${lightThemeVars.color.primary[700]}`,
   borderRadius: 8,
   cursor: 'pointer',
-  padding: '8px 20px',
+  padding: '8px 16px',
   height: 40,
-});
-
-export const signUpText = style({
-  lineHeight: '140%',
+  lineHeight: 1.4,
   letterSpacing: -0.35,
   color: lightThemeVars.color.primary[700],
   fontSize: 14,
   fontWeight: 600,
+  fontStyle: 'normal',
+  ':hover': {
+    background: lightThemeVars.color.primary[700],
+    color: lightThemeVars.color.white.main,
+  },
 });
