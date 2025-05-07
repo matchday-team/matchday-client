@@ -1,11 +1,21 @@
 import { http } from '@/apis/http';
-import { ApiResponse, UserJoinTeamRequest } from '@/apis/models';
+import {
+  ApiResponse,
+  TeamMemberListResponse,
+  UserJoinTeamRequest,
+} from '@/apis/models';
 import { TeamResponse } from '@/apis/models';
 
 export const getAllTeamList = async () => {
   const response = await http.get('v1/teams');
 
   return response.json() as Promise<ApiResponse<TeamResponse[]>>;
+};
+
+export const getMemberListByTeamId = async (teamId: number) => {
+  const response = await http.get(`v1/teams/${teamId}/users`);
+
+  return response.json() as Promise<ApiResponse<TeamMemberListResponse>>;
 };
 
 // NOTE: User, Team 중 어디에 놓을지 애매한 상황
