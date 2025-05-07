@@ -8,8 +8,8 @@ import {
 } from '@/apis/mutations';
 import { teamQuery } from '@/apis/queries';
 
+import * as styles from './UserCreateAndJoinForm.css';
 import { createSchema, uiSchema } from './UserCreateAndJoinForm.schema';
-import * as styles from './UserCreateForm.css';
 
 const log = (type: string) => console.log.bind(console, type);
 
