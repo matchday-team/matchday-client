@@ -1,3 +1,5 @@
+import { useIsDragOver } from '@/hooks';
+
 import { commonCellContainer } from './commonStyle.css';
 
 interface EmptyOnFieldGridCellProps {
@@ -7,5 +9,19 @@ interface EmptyOnFieldGridCellProps {
 export const EmptyOnFieldGridCell = ({
   onClick,
 }: EmptyOnFieldGridCellProps) => {
-  return <div className={commonCellContainer()} onClick={onClick}></div>;
+  const { isDragOver, hoverTargetRef } = useIsDragOver<HTMLDivElement>();
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'none';
+  };
+
+  return (
+    <div
+      className={commonCellContainer({ isDragOver })}
+      onClick={onClick}
+      ref={hoverTargetRef}
+      onDragOver={handleDragOver}
+    ></div>
+  );
 };

@@ -1,13 +1,13 @@
 import { SyntheticEvent } from 'react';
 
-import { StartingPlayer, Team } from '@/apis';
+import { MatchUserResponse, TeamResponse } from '@/apis/models';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 
 import * as styles from './PlayerBlock.css';
 
 export interface PlayerBlockProps {
-  team?: Team;
-  player: StartingPlayer;
+  team: TeamResponse;
+  player: MatchUserResponse;
 }
 
 // FIXME: noTeam 이미지도 필요
@@ -18,17 +18,17 @@ const setFallbackImageIfLoadFail = (
 };
 
 export const PlayerBlock = ({
-  team,
-  player: { number, name, position, profileImageUrl },
+  player: { number, name, matchPosition },
 }: PlayerBlockProps) => {
-  const logoImageUrl = team?.logoImageUrl;
+  const logoImageUrl = 'https://via.placeholder.com/150';
 
   return (
     <li className={styles.rootContainer}>
       <div className={styles.leftContainer}>
         <img
           className={styles.profileImage}
-          src={profileImageUrl}
+          // src={profileImageUrl}
+          src='https://via.placeholder.com/150'
           alt=''
           onError={setFallbackImageIfLoadFail}
         />
@@ -36,7 +36,7 @@ export const PlayerBlock = ({
         <span className={styles.name}>{name}</span>
       </div>
       <div className={styles.rightContainer}>
-        <span className={styles.position}>{position}</span>
+        <span className={styles.position}>{matchPosition}</span>
         <img
           src={logoImageUrl}
           alt=''

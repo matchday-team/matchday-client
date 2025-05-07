@@ -1,42 +1,40 @@
+import { ScoreResponse } from '@/apis/models';
 import { StatCounterItem } from '@/components/StatCounterItem';
+import { STAT_LIST, statMapper } from '@/constants';
 
 import * as styles from './TeamStatCounterGrid.css';
 
-interface TeamStat {
-  title: string;
-  value: number;
-}
-
 export interface TeamStatCounterGridProps {
-  stats: TeamStat[];
-  onStatChange?: (index: number, newValue: number) => void;
+  stats: ScoreResponse;
+  onStatChange?: (stat: keyof ScoreResponse, newValue: number) => void;
 }
 
 export const TeamStatCounterGrid = ({
   stats,
   onStatChange,
 }: TeamStatCounterGridProps) => {
-  const handleIncrement = (index: number) => {
+  const handleIncrement = (stat: keyof ScoreResponse) => {
     if (onStatChange) {
-      onStatChange(index, stats[index].value + 1);
+      onStatChange(stat, stats[stat] + 1);
     }
   };
 
-  const handleDecrement = (index: number) => {
-    if (onStatChange && stats[index].value > 0) {
-      onStatChange(index, stats[index].value - 1);
+  const handleDecrement = (stat: keyof ScoreResponse) => {
+    if (onStatChange && stats[stat] > 0) {
+      onStatChange(stat, stats[stat] - 1);
     }
   };
 
   return (
     <div className={styles.rootContainer}>
-      {stats.map((stat, index) => (
+      {STAT_LIST.map(stat => (
         <StatCounterItem
-          key={`${stat.title}-${index}`}
-          title={stat.title}
-          value={stat.value}
-          onIncrement={() => handleIncrement(index)}
-          onDecrement={() => handleDecrement(index)}
+          key={stat}
+          title={stat}
+          value={stats[statMapper[stat]]}
+          // FIXME: keyof 타입 캐스팅 없이도 가능하게?
+          onIncrement={() => handleIncrement(stat as keyof ScoreResponse)}
+          onDecrement={() => handleDecrement(stat as keyof ScoreResponse)}
         />
       ))}
     </div>

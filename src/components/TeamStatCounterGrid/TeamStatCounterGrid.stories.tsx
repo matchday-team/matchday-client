@@ -30,26 +30,30 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const statFields = [
-  '슈팅',
-  '유효 슈팅',
-  '코너킥',
-  '오프사이드',
-  '파울',
-  '경고',
-];
-
 export const Default: Story = {
   args: {
-    stats: statFields.map(title => ({
-      title,
-      value: Math.floor(Math.random() * 30),
-    })),
+    stats: {
+      goalCount: 13,
+      shotCount: 2,
+      validShotCount: 4,
+      cornerKickCount: 1,
+      offsideCount: 0,
+      foulCount: 24,
+      warningCount: 10,
+    },
   },
 };
 
 export const Empty: Story = {
   args: {
-    stats: statFields.map(title => ({ title, value: 0 })),
+    stats: {
+      goalCount: 0,
+      shotCount: 0,
+      validShotCount: 0,
+      cornerKickCount: 0,
+      offsideCount: 0,
+      foulCount: 0,
+      warningCount: 0,
+    },
   },
 };

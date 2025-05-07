@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { matchRecordMocks } from '@/mocks';
 import { lightThemeVars } from '@/styles/theme.css';
 
 import { PlayerOnFieldGridCell } from './PlayerOnFieldGridCell';
@@ -29,24 +30,12 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const commonMockPlayer = {
-  id: 1,
-  name: '손흥민',
-  number: 7,
-  profileImageUrl: 'https://example.com/image.jpg',
-  position: 'FW',
-};
-
 export const Default: Story = {
   args: {
     player: {
-      ...commonMockPlayer,
+      ...matchRecordMocks.mockPlayersByTeamType('home')[0],
       goals: 1,
       assists: 1,
-      fouls: 1,
-      yellowCards: 1,
-      redCards: 1,
-      grid: 1,
     },
   },
 };
@@ -54,13 +43,9 @@ export const Default: Story = {
 export const Selected: Story = {
   args: {
     player: {
-      ...commonMockPlayer,
+      ...matchRecordMocks.mockPlayersByTeamType('home')[0],
       goals: 1,
       assists: 1,
-      fouls: 1,
-      yellowCards: 1,
-      redCards: 1,
-      grid: 1,
     },
     isSelected: true,
   },
@@ -69,13 +54,9 @@ export const Selected: Story = {
 export const NoAssists: Story = {
   args: {
     player: {
-      ...commonMockPlayer,
+      ...matchRecordMocks.mockPlayersByTeamType('home')[0],
       goals: 1,
       assists: 0,
-      fouls: 1,
-      yellowCards: 1,
-      redCards: 1,
-      grid: 1,
     },
   },
 };
@@ -83,13 +64,9 @@ export const NoAssists: Story = {
 export const NoGoals: Story = {
   args: {
     player: {
-      ...commonMockPlayer,
+      ...matchRecordMocks.mockPlayersByTeamType('home')[0],
       goals: 0,
       assists: 1,
-      fouls: 1,
-      yellowCards: 1,
-      redCards: 1,
-      grid: 1,
     },
   },
 };
@@ -97,13 +74,9 @@ export const NoGoals: Story = {
 export const NoAttackPoints: Story = {
   args: {
     player: {
-      ...commonMockPlayer,
+      ...matchRecordMocks.mockPlayersByTeamType('home')[0],
       goals: 0,
       assists: 0,
-      fouls: 1,
-      yellowCards: 1,
-      redCards: 1,
-      grid: 1,
     },
   },
 };

@@ -1,0 +1,21 @@
+import { ScoreResponse } from '@/apis/models';
+
+type Stat = '슈팅' | '유효 슈팅' | '코너 킥' | '오프 사이드' | '파울' | '경고';
+
+export const STAT_LIST: Stat[] = [
+  '슈팅',
+  '유효 슈팅',
+  '코너 킥',
+  '오프 사이드',
+  '파울',
+  '경고',
+];
+
+export const statMapper: Record<Stat, keyof ScoreResponse> = {
+  슈팅: 'goalCount',
+  '유효 슈팅': 'validShotCount',
+  '코너 킥': 'cornerKickCount',
+  '오프 사이드': 'offsideCount',
+  파울: 'foulCount',
+  경고: 'warningCount',
+};

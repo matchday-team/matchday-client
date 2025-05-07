@@ -12,8 +12,9 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as AboutImport } from './routes/about'
+import { Route as AdminRouteImport } from './routes/admin/route'
 import { Route as IndexImport } from './routes/index'
-import { Route as MatchesRecordRouteImport } from './routes/matches/record/route'
+import { Route as MatchesMatchIdRecordRouteImport } from './routes/matches/$matchId/record/route'
 
 // Create/Update Routes
 
@@ -23,15 +24,21 @@ const AboutRoute = AboutImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AdminRouteRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
 } as any)
 
-const MatchesRecordRouteRoute = MatchesRecordRouteImport.update({
-  id: '/matches/record',
-  path: '/matches/record',
+const MatchesMatchIdRecordRouteRoute = MatchesMatchIdRecordRouteImport.update({
+  id: '/matches/$matchId/record',
+  path: '/matches/$matchId/record',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,6 +53,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRoute
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -53,11 +67,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
-    '/matches/record': {
-      id: '/matches/record'
-      path: '/matches/record'
-      fullPath: '/matches/record'
-      preLoaderRoute: typeof MatchesRecordRouteImport
+    '/matches/$matchId/record': {
+      id: '/matches/$matchId/record'
+      path: '/matches/$matchId/record'
+      fullPath: '/matches/$matchId/record'
+      preLoaderRoute: typeof MatchesMatchIdRecordRouteImport
       parentRoute: typeof rootRoute
     }
   }
@@ -67,42 +81,47 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteRoute
   '/about': typeof AboutRoute
-  '/matches/record': typeof MatchesRecordRouteRoute
+  '/matches/$matchId/record': typeof MatchesMatchIdRecordRouteRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteRoute
   '/about': typeof AboutRoute
-  '/matches/record': typeof MatchesRecordRouteRoute
+  '/matches/$matchId/record': typeof MatchesMatchIdRecordRouteRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteRoute
   '/about': typeof AboutRoute
-  '/matches/record': typeof MatchesRecordRouteRoute
+  '/matches/$matchId/record': typeof MatchesMatchIdRecordRouteRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/matches/record'
+  fullPaths: '/' | '/admin' | '/about' | '/matches/$matchId/record'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/matches/record'
-  id: '__root__' | '/' | '/about' | '/matches/record'
+  to: '/' | '/admin' | '/about' | '/matches/$matchId/record'
+  id: '__root__' | '/' | '/admin' | '/about' | '/matches/$matchId/record'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRouteRoute: typeof AdminRouteRoute
   AboutRoute: typeof AboutRoute
-  MatchesRecordRouteRoute: typeof MatchesRecordRouteRoute
+  MatchesMatchIdRecordRouteRoute: typeof MatchesMatchIdRecordRouteRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRouteRoute: AdminRouteRoute,
   AboutRoute: AboutRoute,
-  MatchesRecordRouteRoute: MatchesRecordRouteRoute,
+  MatchesMatchIdRecordRouteRoute: MatchesMatchIdRecordRouteRoute,
 }
 
 export const routeTree = rootRoute
@@ -116,18 +135,22 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/admin",
         "/about",
-        "/matches/record"
+        "/matches/$matchId/record"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
+    "/admin": {
+      "filePath": "admin/route.tsx"
+    },
     "/about": {
       "filePath": "about.tsx"
     },
-    "/matches/record": {
-      "filePath": "matches/record/route.tsx"
+    "/matches/$matchId/record": {
+      "filePath": "matches/$matchId/record/route.tsx"
     }
   }
 }

@@ -1,22 +1,13 @@
+import { ScoreResponse } from '@/apis/models';
 import { StatCompareCounter } from '@/components';
+import { STAT_LIST, statMapper } from '@/constants';
 
 import * as styles from './TeamStatCompareCounterList.css';
 
-type Stat = '슈팅' | '유효 슈팅' | '코너 킥' | '오프 사이드' | '파울' | '경고';
-
-const STAT_LIST: Stat[] = [
-  '슈팅',
-  '유효 슈팅',
-  '코너 킥',
-  '오프 사이드',
-  '파울',
-  '경고',
-];
-
 type TeamStatCompareCounterListProps = {
   maxValue: number;
-  homeTeamStat: Record<Stat, number>;
-  awayTeamStat: Record<Stat, number>;
+  homeTeamStat: ScoreResponse;
+  awayTeamStat: ScoreResponse;
 };
 
 export const TeamStatCompareCounterList = ({
@@ -30,8 +21,8 @@ export const TeamStatCompareCounterList = ({
         <StatCompareCounter
           key={stat}
           label={stat}
-          leftValue={homeTeamStat[stat]}
-          rightValue={awayTeamStat[stat]}
+          leftValue={homeTeamStat[statMapper[stat]]}
+          rightValue={awayTeamStat[statMapper[stat]]}
           maxValue={maxValue}
         />
       ))}

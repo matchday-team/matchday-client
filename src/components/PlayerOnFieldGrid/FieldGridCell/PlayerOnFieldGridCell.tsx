@@ -1,12 +1,13 @@
-import { StartingPlayerOnGrid } from '@/apis';
+import { MatchUserResponse } from '@/apis/models';
 import { SoccerballIcon } from '@/assets/icons';
+import { useIsDragOver } from '@/hooks';
 import { createFallbackImageHandler } from '@/utils/createFallbackImageHandler';
 
 import * as styles from './PlayerOnFieldGridCell.css';
 import { commonCellContainer } from './commonStyle.css';
 
 interface PlayerOnFieldGridCellProps {
-  player: StartingPlayerOnGrid;
+  player: MatchUserResponse;
   isSelected?: boolean;
   onClick?: () => void;
 }
@@ -18,12 +19,36 @@ export const PlayerOnFieldGridCell = ({
   isSelected,
   onClick,
 }: PlayerOnFieldGridCellProps) => {
+  const { isDragOver, hoverTargetRef } = useIsDragOver<HTMLDivElement>();
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move'; // Q. 필요할까?
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    console.log('drop', e, e.dataTransfer.getData('application/json'));
+
+    // NOTE:
+    // 1. ws API 호출 (Promise 반환)
+    // 2. Promise 대기
+    // 3. 성공 시 setQueryData로 업데이트
+    // 4. 100% 서버 상태에 의존하기 때문에 현재 구현할 수 없는 기능이긴 함
+  };
+
   return (
-    <div className={commonCellContainer({ isSelected })} onClick={onClick}>
+    <div
+      className={commonCellContainer({ isSelected, isDragOver })}
+      onClick={onClick}
+      ref={hoverTargetRef}
+      onDragOver={handleDragOver}
+      onDrop={handleDrop}
+    >
       <div className={styles.playerImageContainer}>
         <img
           className={styles.playerImage}
-          src={player.profileImageUrl}
+          // src={player.profileImageUrl}
+          src='https://via.placeholder.com/150'
           alt={player.name}
           onError={fallbackImageHandler}
         />
