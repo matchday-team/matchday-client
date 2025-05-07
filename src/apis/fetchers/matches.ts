@@ -6,6 +6,7 @@ import type {
   MatchInfoResponse,
   MatchMemoResponse,
   MatchScoreResponse,
+  MatchUserCreateRequest,
   MatchUserGroupResponse,
 } from '@/apis/models';
 
@@ -48,6 +49,20 @@ export const postMatch = async (data: MatchCreateRequest) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
+  });
+
+  return response.json() as Promise<ApiResponse<number>>;
+};
+
+export const postMatchUser = async (
+  matchId: number,
+  request: MatchUserCreateRequest,
+) => {
+  const response = await http.post(`v1/matches/${matchId}/users`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(request),
   });
 
   return response.json() as Promise<ApiResponse<number>>;
