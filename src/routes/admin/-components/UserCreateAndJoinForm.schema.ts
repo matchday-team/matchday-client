@@ -3,6 +3,8 @@ import { RJSFSchema, UiSchema } from '@rjsf/utils';
 
 import { TeamResponse } from '@/apis/models';
 
+import * as nameUtils from './nameUtils';
+
 export const createSchema = (teamList: TeamResponse[]): RJSFSchema => ({
   title: '선수 생성 및 등록',
   description: '임시 선수 생성 및 등록 폼. 아래 내용을 채주세요.',
@@ -12,7 +14,7 @@ export const createSchema = (teamList: TeamResponse[]): RJSFSchema => ({
     name: {
       type: 'string',
       title: '선수명',
-      default: '선수명1',
+      default: nameUtils.getRandomName(),
       minLength: 1,
       maxLength: 4,
     },
