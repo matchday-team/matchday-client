@@ -10,8 +10,9 @@ export const Route = createRootRoute({
 function Root() {
   return (
     <>
-      <MainLayout />
-      <Outlet />
+      <MainLayout>
+        <Outlet />
+      </MainLayout>
       <TanStackRouterDevtools />
     </>
   );
