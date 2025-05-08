@@ -39,10 +39,7 @@ export class SharedTypeSafeWebSocket<
 > {
   private requestDefinition: UserRequestMapperDefinition;
   private responseDefinition: UserResponseMapperDefinition;
-  private observersByChannel: Map<
-    keyof UserResponseMapperDefinition,
-    ResponseHandler<string>[]
-  >;
+  private observersByChannel: Map<string, ResponseHandler<string>[]>;
   private isConnected = false;
 
   // NOTE: 연결 상태가 아닐 때 클라이언트 요청이 발생하는 경우 해당 큐에서 대기.
@@ -152,12 +149,14 @@ export class SharedTypeSafeWebSocket<
           'oberversForChannel not found - it should never happen',
         );
       }
-      this.observersByChannel.set(
-        channelName,
-        oberversForChannel.filter(listener => listener !== newChannelObserver),
+
+      const nextOberversForChannel = oberversForChannel.filter(
+        listener => listener !== newChannelObserver,
       );
 
-      if (oberversForChannel.length === 0) {
+      this.observersByChannel.set(channelName, nextOberversForChannel);
+
+      if (nextOberversForChannel.length === 0) {
         console.log('no listeners left, unsubscribing', channelName);
         this.observersByChannel.delete(channelName);
         this.stompSubscriptions.get(channelName)?.unsubscribe();
