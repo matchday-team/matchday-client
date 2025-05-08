@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useParams } from '@tanstack/react-router';
@@ -81,7 +81,7 @@ function MatchRecordPage() {
   const now = getUnixTimestampInSeconds();
   const [memo, setMemo] = useState(matchMemo.data.memo);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const unsubErrorChannel = wsApi.subscribe('error', [], {
       error: error => {
         enqueueSnackbar(`[match error] ${error.message}`, {
