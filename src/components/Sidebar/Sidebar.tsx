@@ -28,11 +28,16 @@ interface NavItemProps {
 }
 
 function NavItem({ to, icon, label, isActive, isOpen }: NavItemProps) {
+  const ItemComponent = isOpen ? Link : 'div';
+
   return (
-    <Link to={to} className={styles.navItem({ active: isActive, isOpen })}>
+    <ItemComponent
+      to={to}
+      className={styles.navItem({ active: isActive, isOpen })}
+    >
       <div className={styles.navItemIcon({ isOpen })}>{icon}</div>
       {label && <span className={styles.navLabel}>{label}</span>}
-    </Link>
+    </ItemComponent>
   );
 }
 
@@ -45,14 +50,16 @@ interface FooterItemProps {
 }
 
 function FooterItem({ to, icon, label, showArrow, isOpen }: FooterItemProps) {
+  const ItemComponent = isOpen ? Link : 'div';
+
   return (
-    <Link to={to} className={styles.footerItem({ isOpen })}>
+    <ItemComponent to={to} className={styles.footerItem({ isOpen })}>
       <div className={styles.footerItemIcon({ isOpen })}>
         {icon}
         {label && <span className={styles.footerLabel}>{label}</span>}
       </div>
       {showArrow && <CheckRightIcon className={styles.icon} />}
-    </Link>
+    </ItemComponent>
   );
 }
 
@@ -108,9 +115,7 @@ export function Sidebar() {
   );
 
   return (
-    <aside
-      className={styles.container({ width: isOpen ? 'default' : 'toggle' })}
-    >
+    <aside className={styles.container({ isOpen })}>
       {showToggle && (
         <button onClick={toggle} className={styles.toggleButton({ isOpen })}>
           <CheckRightIcon className={styles.icon} />
@@ -132,7 +137,7 @@ export function Sidebar() {
         )}
       </div>
 
-      <div className={styles.nav}>
+      <div className={styles.nav({ isOpen })}>
         {navItems.map(item => (
           <NavItem
             key={item.label}
@@ -145,7 +150,7 @@ export function Sidebar() {
         ))}
       </div>
 
-      <div className={styles.footer}>
+      <div className={styles.footer({ isOpen })}>
         {footerItems.map(item => (
           <FooterItem
             key={item.label}
