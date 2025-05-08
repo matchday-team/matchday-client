@@ -20,6 +20,9 @@ importers:
       '@rjsf/validator-ajv8':
         specifier: 6.0.0-beta.1
         version: 6.0.0-beta.1(@rjsf/utils@6.0.0-beta.1(react@19.1.0))
+      '@stomp/stompjs':
+        specifier: ^7.1.1
+        version: 7.1.1
       '@tanstack/react-query':
         specifier: ^5.74.2
         version: 5.74.2(react@19.1.0)
@@ -1098,6 +1101,9 @@ packages:
 
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
+
+  '@stomp/stompjs@7.1.1':
+    resolution: {integrity: sha512-chcDs6YkAnKp1FqzwhGvh3i7v0+/ytzqWdKYw6XzINEKAzke/iD00dNgFPWSZEqktHOK+C1gSzXhLkLbARIaZw==}
 
   '@stoplight/better-ajv-errors@1.0.3':
     resolution: {integrity: sha512-0p9uXkuB22qGdNfy3VeEhxkU5uwvp/KrBTAbrLBURv6ilxIVwanKwjMc41lQfIVgPGcOkmLbTolfFrSsueu7zA==}
@@ -5415,6 +5421,8 @@ snapshots:
       '@types/hast': 3.0.4
 
   '@shikijs/vscode-textmate@10.0.2': {}
+
+  '@stomp/stompjs@7.1.1': {}
 
   '@stoplight/better-ajv-errors@1.0.3(ajv@8.17.1)':
     dependencies:
