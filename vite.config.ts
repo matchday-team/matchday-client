@@ -6,6 +6,10 @@ import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
+  define: {
+    // NOTE: sockjs 때문에 필요
+    global: 'window',
+  },
   plugins: [
     TanStackRouterVite({ target: 'react', autoCodeSplitting: true }),
     react(),

@@ -23,8 +23,6 @@ export const PlayerOnFieldGrid = ({
     players.map(player => [player.matchGrid, player]),
   );
 
-  console.log(players, playerGridMap);
-
   return (
     <FieldBackground>
       <div className={styles.grid}>
