@@ -1,10 +1,14 @@
-import { Outlet } from '@tanstack/react-router';
+import { ReactNode } from 'react';
 
 import { Layout, useSidebar } from '@/components';
 
 import * as styles from './MainLayout.css';
 
-export function MainLayout() {
+interface MainLayoutProps {
+  children: ReactNode;
+}
+
+export function MainLayout({ children }: MainLayoutProps) {
   const { width } = useSidebar();
 
   return (
@@ -16,7 +20,7 @@ export function MainLayout() {
           width: `calc(100% - ${width}px)`,
         }}
       >
-        <Outlet />
+        {children}
       </main>
     </Layout>
   );
