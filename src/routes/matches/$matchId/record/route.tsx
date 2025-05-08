@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useParams } from '@tanstack/react-router';
+import { useSnackbar } from 'notistack';
 
 import { matchRecordQuery, teamQuery } from '@/apis/queries';
+import { getWebSocketApi } from '@/apis/websockets';
 import {
   GameScoreArea,
   MatchLogList,
@@ -45,9 +47,12 @@ const s = (height: number | string) => ({
   backgroundColor: '#fff',
   borderRadius: 10,
 });
+
 function MatchRecordPage() {
+  const { enqueueSnackbar } = useSnackbar();
   const { matchId: _matchId } = useParams({ from: '/matches/$matchId/record' });
   const matchId = Number(_matchId);
+  const wsApi = getWebSocketApi();
 
   const { data: matchMemo } = useSuspenseQuery(
     matchRecordQuery.memoQuery(matchId),
@@ -75,6 +80,42 @@ function MatchRecordPage() {
 
   const now = getUnixTimestampInSeconds();
   const [memo, setMemo] = useState(matchMemo.data.memo);
+
+  useLayoutEffect(() => {
+    const unsubErrorChannel = wsApi.subscribe('error', [], {
+      error: error => {
+        enqueueSnackbar(`[match error] ${error.message}`, {
+          variant: 'error',
+        });
+      },
+    });
+
+    const unsubMatchChannel = wsApi.subscribe('match', [matchId], {
+      event: event => {
+        const {
+          id,
+          elapsedMinutes,
+          teamId,
+          teamName,
+          userId,
+          userName,
+          eventLog,
+        } = event;
+        console.log('match websocket event', event);
+        enqueueSnackbar(
+          `[id:${id}] [${elapsedMinutes}"] [teamId:${teamId}] [userId:${userId}] ${teamName} ${userName} ${eventLog}`,
+          {
+            variant: 'info',
+          },
+        );
+      },
+    });
+
+    return () => {
+      unsubErrorChannel();
+      unsubMatchChannel();
+    };
+  }, [matchId, wsApi, enqueueSnackbar]);
 
   return (
     <MatchRecordLayout
