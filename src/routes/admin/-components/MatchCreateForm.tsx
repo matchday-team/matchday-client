@@ -4,7 +4,8 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { MatchCreateRequest } from '@/apis/models/MatchCreateRequest';
 import { useCreateMatchMutation } from '@/apis/mutations';
-import { teamQuery } from '@/apis/queries';
+import { matchRecordQuery, teamQuery } from '@/apis/queries';
+import { queryClient } from '@/react-query-provider';
 
 import * as styles from './MatchCreateForm.css';
 import { createSchema, uiSchema } from './MatchCreateForm.schema';
@@ -17,6 +18,13 @@ export const MatchCreateForm = () => {
 
   const onSubmit = async (data: MatchCreateRequest) => {
     await createMatch(data);
+    // NOTE: 모든 팀의 모든 매치 목록을 갱신할 필요는 없음 -> 한 번에 하는 방법 = ?
+    queryClient.invalidateQueries({
+      queryKey: matchRecordQuery.queryKeys.matchList(data.homeTeamId),
+    });
+    queryClient.invalidateQueries({
+      queryKey: matchRecordQuery.queryKeys.matchList(data.awayTeamId),
+    });
   };
 
   return (

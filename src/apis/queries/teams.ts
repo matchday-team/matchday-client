@@ -4,7 +4,7 @@ const queryKeyNamespaces = {
   teams: 'teams',
 };
 
-const queryKeys = {
+export const queryKeys = {
   teamById: (teamId: number) => [queryKeyNamespaces.teams, teamId],
   teamList: () => [queryKeyNamespaces.teams, 'list'],
   teamMemberListById: (teamId: number) => [
