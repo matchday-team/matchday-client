@@ -8,7 +8,7 @@ export const mockHomeTeam: TeamResponse = {
   teamColor: lightThemeVars.color.soccer.red,
   bottomColor: lightThemeVars.color.soccer.red,
   stockingColor: lightThemeVars.color.soccer.red,
-  // logoImageUrl: 'https://example.com/logo1.png',
+  teamImg: 'https://example.com/logo1.png',
 };
 
 export const mockAwayTeam: TeamResponse = {
@@ -17,7 +17,7 @@ export const mockAwayTeam: TeamResponse = {
   teamColor: '#003A70',
   bottomColor: '#003A70',
   stockingColor: '#003A70',
-  // logoImageUrl: 'https://example.com/logo2.png',
+  teamImg: 'https://example.com/logo2.png',
 };
 
 export const mockHomePlayer: MatchUserResponse = {
@@ -31,8 +31,9 @@ export const mockHomePlayer: MatchUserResponse = {
   caution: 10,
   yellowCards: 0,
   redCards: 0,
-  matchGrid: '1',
+  matchGrid: 1,
   sentOff: false,
+  profileImg: 'https://example.com/profile1.png',
 };
 
 export const mockAwayPlayer: MatchUserResponse = {
@@ -45,9 +46,10 @@ export const mockAwayPlayer: MatchUserResponse = {
   caution: 10,
   yellowCards: 0,
   redCards: 0,
-  matchGrid: '1',
+  matchGrid: 1,
   sentOff: false,
   matchPosition: 'FW',
+  profileImg: 'https://example.com/profile2.png',
 };
 
 export const mockLogs: MatchEventResponse[] = Array.from(
@@ -125,14 +127,14 @@ export const mockPlayersByTeamType = (
     name: playerNames[startingIdx + 1 + idx],
     number: 99,
     matchPosition: 'FW',
-    profileImageUrl: 'https://via.placeholder.com/150',
+    profileImg: 'https://via.placeholder.com/150',
     goals: Math.max(0, 5 - idx),
     assists: Math.max(0, idx - 5),
     caution: 2,
     yellowCards: idx % 2 === 0 ? 1 : 0,
     redCards: idx % 3 === 0 ? 1 : 0,
     sentOff: false,
-    matchGrid: `${gridPositions[idx]}`, // FIXME: 추후 변경 예정
+    matchGrid: gridPositions[idx], // FIXME: 추후 변경 예정
   }));
 };
 

@@ -22,7 +22,7 @@ interface FormData {
   userId: number;
   teamId: number;
   matchPosition: string;
-  matchGrid: string;
+  matchGrid: number;
   role: MatchUserCreateRequestRole;
 }
 
@@ -46,7 +46,7 @@ export const UserMatchJoinForm = ({
     userId: -1,
     teamId: -1,
     matchPosition: 'FW',
-    matchGrid: '1',
+    matchGrid: 0,
     role: 'START_PLAYER',
   });
   const { data: teamMemberList } = useQuery({

@@ -19,7 +19,7 @@ export interface MatchUserResponse {
   /** 매치 포지션 */
   matchPosition: string;
   /** 경기장 그리드 위치 */
-  matchGrid: string;
+  matchGrid: number | null;
   /** 득점 수 */
   goals: number;
   /** 어시스트 수 */
@@ -32,4 +32,6 @@ export interface MatchUserResponse {
   caution: number;
   /** 퇴장 여부 (옐로 2장 이상 또는 레드 1장 이상) */
   sentOff: boolean;
+  /** 프로필 이미지 url */
+  profileImg: string;
 }

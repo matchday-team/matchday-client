@@ -12,4 +12,5 @@ export interface TeamResponse {
   teamColor: string;
   bottomColor: string;
   stockingColor: string;
+  teamImg: string;
 }

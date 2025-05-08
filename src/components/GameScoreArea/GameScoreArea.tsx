@@ -38,8 +38,7 @@ const TeamArea = ({
     <div className={styles.teamContainer}>
       <div className={styles.logoWrapper({ isHome })}>
         <img
-          // src={team.logoImageUrl ?? noProfilePlayerImage}
-          src='https://via.placeholder.com/150'
+          src={team.teamImg}
           alt=''
           className={styles.logo}
           onError={fallbackImageHandler}

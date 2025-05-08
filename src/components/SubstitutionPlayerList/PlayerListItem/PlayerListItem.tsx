@@ -30,7 +30,7 @@ export const PlayerListItem = ({ player }: ListItemProps) => {
     >
       <img
         className={styles.profileImage}
-        src='https://via.placeholder.com/150'
+        src={player.profileImg}
         alt=''
         onError={setFallbackImageIfLoadFail}
       />

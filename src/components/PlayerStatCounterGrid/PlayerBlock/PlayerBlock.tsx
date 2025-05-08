@@ -18,17 +18,15 @@ const setFallbackImageIfLoadFail = (
 };
 
 export const PlayerBlock = ({
-  player: { number, name, matchPosition },
+  team,
+  player: { number, name, matchPosition, profileImg },
 }: PlayerBlockProps) => {
-  const logoImageUrl = 'https://via.placeholder.com/150';
-
   return (
     <li className={styles.rootContainer}>
       <div className={styles.leftContainer}>
         <img
           className={styles.profileImage}
-          // src={profileImageUrl}
-          src='https://via.placeholder.com/150'
+          src={profileImg}
           alt=''
           onError={setFallbackImageIfLoadFail}
         />
@@ -38,7 +36,7 @@ export const PlayerBlock = ({
       <div className={styles.rightContainer}>
         <span className={styles.position}>{matchPosition}</span>
         <img
-          src={logoImageUrl}
+          src={team.teamImg}
           alt=''
           className={styles.teamLogo}
           onError={setFallbackImageIfLoadFail}

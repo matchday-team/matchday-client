@@ -42,8 +42,7 @@ export const PlayerList = ({ team, players }: PlayerListProps) => {
         <div className={styles.teamInfo}>
           <img
             className={styles.teamLogo}
-            // src={team.logoImageUrl}
-            src='https://via.placeholder.com/150'
+            src={team.teamImg}
             alt=''
             onError={setFallbackImageIfLoadFail}
           />

@@ -19,9 +19,8 @@ export const PlayerOnFieldGrid = ({
 }: PlayerOnFieldGridProps) => {
   const { isSelected, selectedPlayer, selectPlayer } = useSelectedPlayerStore();
 
-  // FIXME: matchGrid 수정 전까지 어쩔 수 없음
   const playerGridMap = new Map(
-    players.map(player => [Math.floor(Math.random() * 30), player]),
+    players.map(player => [player.matchGrid, player]),
   );
 
   console.log(players, playerGridMap);

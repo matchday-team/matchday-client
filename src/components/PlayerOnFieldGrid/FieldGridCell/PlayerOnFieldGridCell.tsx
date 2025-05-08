@@ -47,8 +47,7 @@ export const PlayerOnFieldGridCell = ({
       <div className={styles.playerImageContainer}>
         <img
           className={styles.playerImage}
-          // src={player.profileImageUrl}
-          src='https://via.placeholder.com/150'
+          src={player.profileImg}
           alt={player.name}
           onError={fallbackImageHandler}
         />
