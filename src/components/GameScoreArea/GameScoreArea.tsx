@@ -1,4 +1,5 @@
 import { MatchScoreResponse, TeamResponse } from '@/apis/models';
+import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import { createFallbackImageHandler } from '@/utils';
 
 import * as styles from './GameScoreArea.css';
@@ -38,7 +39,7 @@ const TeamArea = ({
     <div className={styles.teamContainer}>
       <div className={styles.logoWrapper({ isHome })}>
         <img
-          src={team.teamImg}
+          src={team.teamImg ?? noProfilePlayerImage}
           alt=''
           className={styles.logo}
           onError={fallbackImageHandler}

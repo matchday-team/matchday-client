@@ -26,7 +26,7 @@ export const PlayerBlock = ({
       <div className={styles.leftContainer}>
         <img
           className={styles.profileImage}
-          src={profileImg}
+          src={profileImg ?? noProfilePlayerImage}
           alt=''
           onError={setFallbackImageIfLoadFail}
         />
@@ -36,7 +36,7 @@ export const PlayerBlock = ({
       <div className={styles.rightContainer}>
         <span className={styles.position}>{matchPosition}</span>
         <img
-          src={team.teamImg}
+          src={team.teamImg ?? noProfilePlayerImage}
           alt=''
           className={styles.teamLogo}
           onError={setFallbackImageIfLoadFail}

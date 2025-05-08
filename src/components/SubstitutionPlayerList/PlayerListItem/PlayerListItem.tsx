@@ -30,7 +30,7 @@ export const PlayerListItem = ({ player }: ListItemProps) => {
     >
       <img
         className={styles.profileImage}
-        src={player.profileImg}
+        src={player.profileImg ?? noProfilePlayerImage}
         alt=''
         onError={setFallbackImageIfLoadFail}
       />

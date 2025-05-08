@@ -31,7 +31,7 @@ export const PlayerItem = ({
       <div className={styles.infoContainer}>
         <img
           className={styles.profileImage}
-          src={player.profileImg}
+          src={player.profileImg ?? noProfilePlayerImage}
           alt=''
           onError={setFallbackImageIfLoadFail}
         />

@@ -42,7 +42,7 @@ export const PlayerList = ({ team, players }: PlayerListProps) => {
         <div className={styles.teamInfo}>
           <img
             className={styles.teamLogo}
-            src={team.teamImg}
+            src={team.teamImg ?? noProfilePlayerImage}
             alt=''
             onError={setFallbackImageIfLoadFail}
           />
