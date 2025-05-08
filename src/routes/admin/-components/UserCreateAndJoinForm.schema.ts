@@ -38,7 +38,7 @@ export const createSchema = (teamList: TeamSearchResponse[]): RJSFSchema => ({
       oneOf: teamList.map(team => ({
         type: 'integer',
         title: `${team.name} (id: ${team.id})`,
-        enum: [team.id],
+        const: team.id,
       })),
       default: teamList[0]?.id,
     },

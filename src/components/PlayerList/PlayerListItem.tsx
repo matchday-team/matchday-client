@@ -31,8 +31,7 @@ export const PlayerItem = ({
       <div className={styles.infoContainer}>
         <img
           className={styles.profileImage}
-          // src={player.profileImageUrl}
-          src='https://via.placeholder.com/150'
+          src={player.profileImg ?? noProfilePlayerImage}
           alt=''
           onError={setFallbackImageIfLoadFail}
         />

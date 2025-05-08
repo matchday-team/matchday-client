@@ -1,5 +1,6 @@
 import { MatchUserResponse } from '@/apis/models';
 import { SoccerballIcon } from '@/assets/icons';
+import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import { useIsDragOver } from '@/hooks';
 import { createFallbackImageHandler } from '@/utils/createFallbackImageHandler';
 
@@ -47,9 +48,8 @@ export const PlayerOnFieldGridCell = ({
       <div className={styles.playerImageContainer}>
         <img
           className={styles.playerImage}
-          // src={player.profileImageUrl}
-          src='https://via.placeholder.com/150'
-          alt={player.name}
+          src={player.profileImg ?? noProfilePlayerImage}
+          alt=''
           onError={fallbackImageHandler}
         />
         <div className={styles.attackPointContainer}>

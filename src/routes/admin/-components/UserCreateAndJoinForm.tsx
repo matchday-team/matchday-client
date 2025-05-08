@@ -7,6 +7,7 @@ import {
   useUserJoinTeamMutation,
 } from '@/apis/mutations';
 import { teamQuery } from '@/apis/queries';
+import { queryClient } from '@/react-query-provider';
 
 import * as styles from './UserCreateAndJoinForm.css';
 import { createSchema, uiSchema } from './UserCreateAndJoinForm.schema';
@@ -33,6 +34,9 @@ export const UserCreateAndJoinForm = () => {
   }) => {
     const userId = (await createUser(name)).data;
     await userJoinTeam({ userId, teamId, number, defaultPosition });
+    queryClient.invalidateQueries({
+      queryKey: teamQuery.queryKeys.teamMemberListById(teamId),
+    });
   };
 
   return (

@@ -93,9 +93,11 @@ export const createSchema = (
       enum: ['FW', 'MF', 'DF', 'GK'],
     },
     matchGrid: {
-      type: 'string',
+      type: 'number',
       title: '선발 선수 위치',
-      default: 'A1', // FIXME: 규칙 알 수 없음
+      default: 0,
+      minimum: 0,
+      maximum: 29,
     },
   },
 });
