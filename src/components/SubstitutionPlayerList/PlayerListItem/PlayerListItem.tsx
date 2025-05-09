@@ -22,11 +22,13 @@ export const PlayerListItem = ({ player }: ListItemProps) => {
     e.dataTransfer.setData('application/json', JSON.stringify(player));
   };
 
+  const disabled = player.sentOff;
+
   return (
     <li
-      className={styles.rootContainer}
-      draggable={true}
-      onDragStart={handleDragStart}
+      className={styles.rootContainer({ disabled })}
+      draggable={!disabled}
+      onDragStart={disabled ? undefined : handleDragStart}
     >
       <img
         className={styles.profileImage}
@@ -36,10 +38,12 @@ export const PlayerListItem = ({ player }: ListItemProps) => {
       />
       <div className={styles.textContainer}>
         <div className={styles.textLeft}>
-          <span className={styles.number}>{player.number}</span>
-          <span className={styles.name}>{player.name}</span>
+          <span className={styles.number({ disabled })}>{player.number}</span>
+          <span className={styles.name({ disabled })}>{player.name}</span>
         </div>
-        <span className={styles.position}>{player.matchPosition}</span>
+        <span className={styles.position({ disabled })}>
+          {player.matchPosition}
+        </span>
       </div>
     </li>
   );
