@@ -46,12 +46,11 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const toggle = useCallback(() => {
-    if (!showToggle) return;
     setIsOpen(prev => !prev);
     setWidth(prev =>
       prev === SIDEBAR_WIDTH_SMALL ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_SMALL,
     );
-  }, [showToggle]);
+  }, []);
 
   return (
     <SidebarContext.Provider value={{ isOpen, width, toggle, showToggle }}>
