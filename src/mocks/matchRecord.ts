@@ -9,8 +9,8 @@ import { lightThemeVars } from '@/styles/theme.css';
 export const mockMatchInfo: MatchInfoResponse = {
   stadium: '한양대학교 대운동장',
   matchDate: '2025-04-16',
-  startTime: '09:30',
-  endTime: '11:30',
+  plannedStartTime: '09:30',
+  plannedEndTime: '11:30',
   mainRefereeName: '김태인',
   assistantReferee1: '김주용',
   assistantReferee2: '주유나',
@@ -19,7 +19,9 @@ export const mockMatchInfo: MatchInfoResponse = {
   homeTeamId: 1,
   awayTeamId: 2,
   firstHalfStartTime: '09:30',
-  secondHalfStartTime: '11:30',
+  firstHalfEndTime: '10:15',
+  secondHalfStartTime: '10:30',
+  secondHalfEndTime: '11:15',
 };
 
 export const mockHomeTeam: TeamResponse = {

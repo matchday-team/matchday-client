@@ -82,3 +82,28 @@ export const postMatchMemo = async (matchId: number, memo: string) => {
 
   return response.json() as Promise<ApiResponse<string>>;
 };
+
+export const patchMatchTimer = async (
+  matchId: number,
+  time: string, // hh:mm:ss 포맷
+  halfType: 'first' | 'second',
+  isStart: boolean,
+) => {
+  const fieldName = isStart ? 'startTime' : 'endTime';
+
+  const response = await http.patch(`v1/matches/${matchId}/${halfType}-time`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ [fieldName]: time }),
+  });
+
+  return response.json() as Promise<ApiResponse<string>>; // "시간 등록 완료"
+};
+
+// NOTE: 매치 시작 취소 기능 ('이벤트'를 모두 삭제한다)
+export const deleteMatchEvents = async (matchId: number) => {
+  const response = await http.delete(`v1/match-event/${matchId}`);
+
+  return response.json() as Promise<ApiResponse<string>>;
+};

@@ -1,56 +1,46 @@
-import { useEffect, useState } from 'react';
-
 import * as styles from './MatchTimeController.css';
 import { MatchTimerButton } from './MatchTimerButton';
-import { getTimerText } from './timeUtils';
+
+type MatchPeriod = 'not-started' | 'first' | 'half-time' | 'second' | 'end';
+
+type MatchPeriodName = '전반' | '후반';
+
+// TODO: 로직 소유 경계는 고민이 필요
+const periodNames: Record<MatchPeriod, MatchPeriodName> = {
+  'not-started': '전반',
+  first: '전반',
+  'half-time': '후반',
+  second: '후반',
+  end: '후반',
+};
 
 interface MatchTimeControllerProps {
-  now: number;
-  matchStatus: {
-    currentPeriod: number;
-    state: 'notStarted' | 'playing' | 'ended';
-    startedAt: number;
-    addedTime: number;
-  };
-  periodNames: string[];
+  timerText: string;
+  currentPeriod: MatchPeriod;
+  isPlaying: boolean;
+  addedTime: number;
   onStart?: () => void;
   onStop?: () => void;
+  onReset?: () => void;
 }
 
-// TODO: 서버 연동 필요
 export const MatchTimeController = ({
-  now,
-  matchStatus,
-  periodNames,
+  timerText: timerText,
+  currentPeriod,
+  isPlaying,
+  addedTime,
   onStart,
   onStop,
+  onReset,
 }: MatchTimeControllerProps) => {
-  const currentPeriodName = periodNames[matchStatus.currentPeriod - 1];
-  const [currentTime, setCurrentTime] = useState(
-    getTimerText(matchStatus.startedAt, now),
-  );
-
-  const isGameEnded =
-    matchStatus.state === 'ended' &&
-    matchStatus.currentPeriod === periodNames.length;
+  const isGameEnded = currentPeriod === 'end';
+  const isPlayingFirstHalf = currentPeriod === 'first';
 
   const buttonText = isGameEnded
     ? '게임 종료됨'
-    : matchStatus.state === 'notStarted' || matchStatus.state === 'ended'
-      ? `${currentPeriodName} 시작`
-      : `${currentPeriodName} 종료`;
-
-  useEffect(() => {
-    const updateTime = () => {
-      if (matchStatus.state === 'playing') {
-        setCurrentTime(getTimerText(matchStatus.startedAt, now));
-      }
-    };
-
-    const intervalId = setInterval(updateTime, 1000);
-
-    return () => clearInterval(intervalId);
-  }, [matchStatus.state, matchStatus.startedAt, now]);
+    : isPlaying
+      ? `${periodNames[currentPeriod]} 종료`
+      : `${periodNames[currentPeriod]} 시작`;
 
   return (
     <div className={styles.container}>
@@ -58,21 +48,28 @@ export const MatchTimeController = ({
         <div className={styles.timeDisplay}>
           {
             <span className={styles.additionalTime}>
-              {currentPeriodName}{' '}
-              {matchStatus.addedTime > 0 && `+${matchStatus.addedTime}"`}
+              {periodNames[currentPeriod]} {addedTime > 0 && `+${addedTime}"`}
             </span>
           }
         </div>
-        <span className={styles.mainTime}>{currentTime}</span>
+        <span className={styles.mainTime}>{timerText}</span>
       </div>
       <div className={styles.controlSection}>
         <MatchTimerButton
           variant='primary'
-          onClick={matchStatus.state === 'playing' ? onStop : onStart}
+          onClick={isPlaying ? onStop : onStart}
+          disabled={isGameEnded}
         >
           {buttonText}
         </MatchTimerButton>
-        <MatchTimerButton variant='danger'>시작 취소</MatchTimerButton>
+        {/* 정말 취소하시겠습니까? modal 필요 - 현재는 confirm으로 진행 */}
+        <MatchTimerButton
+          variant='danger'
+          disabled={!isPlayingFirstHalf}
+          onClick={onReset}
+        >
+          시작 취소
+        </MatchTimerButton>
       </div>
     </div>
   );

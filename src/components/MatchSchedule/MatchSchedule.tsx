@@ -27,8 +27,8 @@ export const MatchSchedule = ({ matchInfo }: MatchScheduleProps) => {
       },
       {
         label: '시간',
-        value: `${formatTime(matchInfo.startTime)} ~ ${formatTime(
-          matchInfo.endTime,
+        value: `${formatTime(matchInfo.plannedStartTime)} ~ ${formatTime(
+          matchInfo.plannedEndTime,
         )}`,
       },
       { label: '주심', value: matchInfo.mainRefereeName },

@@ -17,8 +17,8 @@ export interface MatchInfoResponse {
   stadium: string;
   /** 날짜 */
   matchDate: string;
-  startTime: string;
-  endTime: string;
+  plannedStartTime: string;
+  plannedEndTime: string;
   /** 주심 */
   mainRefereeName: string;
   /** 부심1 */
@@ -27,6 +27,8 @@ export interface MatchInfoResponse {
   assistantReferee2: string;
   /** 대기심 */
   fourthReferee: string;
-  firstHalfStartTime: string;
-  secondHalfStartTime: string;
+  firstHalfStartTime: string | null;
+  secondHalfStartTime: string | null;
+  firstHalfEndTime: string | null;
+  secondHalfEndTime: string | null;
 }
