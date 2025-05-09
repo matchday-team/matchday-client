@@ -114,3 +114,44 @@ export const useCreateOrUpdateMatchMemoMutation = (matchId: number) => {
     },
   });
 };
+
+export const usePatchMatchTimerMutation = (matchId: number) => {
+  const { enqueueSnackbar } = useSnackbar();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (data: {
+      halfType: 'first' | 'second';
+      isStart: boolean;
+      time: string;
+    }) => {
+      return matchApi.patchMatchTimer(
+        matchId,
+        data.time,
+        data.halfType,
+        data.isStart,
+      );
+    },
+    onSuccess: data => {
+      enqueueSnackbar(`[임시] 매치 시간 등록 성공 - ${JSON.stringify(data)}`, {
+        variant: 'success',
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: matchRecordQuery.queryKeys.matchInfo(matchId),
+      });
+    },
+    onError: async error => {
+      if (error instanceof HTTPError) {
+        const response = await error.response.json();
+
+        enqueueSnackbar(
+          `[임시] 매치 시간 등록 실패 - ${JSON.stringify(response)}`,
+          {
+            variant: 'error',
+          },
+        );
+      }
+    },
+  });
+};
