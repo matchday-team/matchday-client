@@ -3,6 +3,7 @@ import { MinusIcon, PlusIcon } from '@/assets/icons';
 import * as styles from './StatCounterItem.css';
 
 export interface StatCounterItemProps {
+  disabled?: boolean;
   title: string;
   value: number;
   onIncrement?: () => void;
@@ -11,6 +12,7 @@ export interface StatCounterItemProps {
 }
 
 export const StatCounterItem = ({
+  disabled,
   title,
   value,
   onIncrement,
@@ -25,7 +27,7 @@ export const StatCounterItem = ({
           className={styles.button}
           onClick={onDecrement}
           aria-label='감소'
-          disabled={value === 0}
+          disabled={disabled || value === 0}
         >
           <MinusIcon />
         </button>
@@ -34,6 +36,7 @@ export const StatCounterItem = ({
           className={styles.button}
           onClick={onIncrement}
           aria-label='증가'
+          disabled={disabled}
         >
           <PlusIcon />
         </button>

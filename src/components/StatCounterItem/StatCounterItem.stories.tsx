@@ -63,3 +63,11 @@ export const WithParentState: Story = {
     );
   },
 };
+
+export const Disabled: Story = {
+  args: {
+    title: '득점',
+    value: 0,
+    disabled: true,
+  },
+};
