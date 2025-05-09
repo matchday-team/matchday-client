@@ -57,6 +57,19 @@ export const commonText = style({
   fontStyle: 'normal',
 });
 
+export const name = style([
+  commonText,
+  {
+    width: 50,
+    textAlign: 'center',
+  },
+]);
+
+export const subInIcon = style({
+  transform: 'rotate(180deg)',
+  color: lightThemeVars.color.soccer.red,
+});
+
 export const position = style([
   commonText,
   {
@@ -69,7 +82,6 @@ export const number = style([
   commonText,
   {
     width: 17,
-    textAlign: 'center',
   },
 ]);
 
@@ -79,4 +91,36 @@ export const statContainer = style({
   justifyContent: 'space-between',
   width: 93,
   //gap: 36, // 원본 디자인
+});
+
+export const cautionContainer = style([
+  number,
+  {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 1,
+  },
+]);
+
+export const playerCautionCard = recipe({
+  base: {
+    borderRadius: 2,
+    width: 8,
+    height: 10,
+  },
+  variants: {
+    variant: {
+      empty: {
+        backgroundColor: lightThemeVars.color.white.background,
+      },
+      yellow: {
+        backgroundColor: lightThemeVars.color.soccer.yellow,
+      },
+      red: {
+        backgroundColor: lightThemeVars.color.soccer.red,
+      },
+    },
+  },
 });

@@ -38,3 +38,13 @@ export const Empty: Story = {
     players: [],
   },
 };
+
+export const DisabledPlayers: Story = {
+  args: {
+    team: matchRecordMocks.mockHomeTeam,
+    players: matchRecordMocks.mockSubPlayersByTeamType('home').map(player => ({
+      ...player,
+      sentOff: true,
+    })),
+  },
+};

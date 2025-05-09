@@ -71,3 +71,14 @@ export const postMatchUser = async (
 
   return response.json() as Promise<ApiResponse<number>>;
 };
+
+export const postMatchMemo = async (matchId: number, memo: string) => {
+  const response = await http.post(`v1/matches/${matchId}/memo`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ memo }),
+  });
+
+  return response.json() as Promise<ApiResponse<string>>;
+};

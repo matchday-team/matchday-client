@@ -11,13 +11,38 @@ export const container = style({
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
-  justifyContent: 'center',
-  gap: 18,
+  justifyContent: 'space-between',
   borderRadius: 10,
   backgroundColor: lightThemeVars.color.primary[800],
-  paddingTop: 20,
-  paddingBottom: 20,
+  padding: '20px 23px',
   height: 118,
+});
+
+export const scoreContainer = style({
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 4,
+  width: 105,
+});
+
+export const scoreText = style({
+  textAlign: 'center',
+  lineHeight: 1.4,
+  letterSpacing: -1,
+  color: lightThemeVars.color.white.main,
+  fontSize: 40,
+  fontWeight: 600,
+});
+
+export const colonText = style({
+  marginBottom: 6,
+  lineHeight: 1.4,
+  letterSpacing: -1,
+  color: lightThemeVars.color.white.main,
+  fontSize: 40,
+  fontWeight: 600,
 });
 
 export const teamContainer = style({
@@ -77,14 +102,4 @@ export const region = style({
   color: lightThemeVars.color.primary[300],
   fontSize: 14,
   fontWeight: 400,
-});
-
-export const score = style({
-  width: 92,
-  textAlign: 'center',
-  lineHeight: 1.13,
-  letterSpacing: -1,
-  color: lightThemeVars.color.white.main,
-  fontSize: 40,
-  fontWeight: 600,
 });

@@ -63,3 +63,19 @@ export const WithParentState: Story = {
     );
   },
 };
+
+export const OnlyButtonDisabled: Story = {
+  args: {
+    title: '득점',
+    value: 0,
+    buttonDisabled: true,
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    title: '득점',
+    value: 0,
+    disabled: true,
+  },
+};

@@ -11,15 +11,6 @@ export const playerImageContainer = style({
   height: 42,
 });
 
-export const attackPointContainer = style({
-  position: 'absolute',
-  bottom: 0,
-  left: 4, // NOTE: 중앙 정렬로 두면 하나만 표시될 때 중앙에 배치되므로, left offset으로 배치
-  display: 'flex',
-  justifyContent: 'center',
-  gap: '4px',
-});
-
 export const playerImage = style({
   boxSizing: 'border-box',
   border: `1px solid ${lightThemeVars.color.white.main}`,
@@ -29,11 +20,49 @@ export const playerImage = style({
   height: 36,
 });
 
+export const playerCautionContainer = style({
+  position: 'absolute',
+  top: 0,
+  right: 4,
+  display: 'flex',
+  flexDirection: 'row',
+  gap: 1,
+  width: 17, // NOTE: 카드 하나만 있을 때에도 좌측 정렬 되도록
+});
+
+export const playerCautionCard = recipe({
+  base: {
+    borderRadius: 2,
+    width: 8,
+    height: 10,
+  },
+  variants: {
+    variant: {
+      yellow: {
+        backgroundColor: lightThemeVars.color.soccer.yellow,
+      },
+      red: {
+        backgroundColor: lightThemeVars.color.soccer.red,
+      },
+    },
+  },
+});
+
+export const attackPointContainer = style({
+  position: 'absolute',
+  bottom: 0,
+  left: 4, // NOTE: 중앙 정렬로 두면 하나만 표시될 때 중앙에 배치되므로, left offset으로 배치
+  display: 'flex',
+  justifyContent: 'center',
+  gap: 4,
+});
+
 export const playerInfoContainer = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: '4px',
+  gap: 2,
+  width: 'calc(100% + 1px)', // NOTE: 공간이 1px 부족해서 추가
   lineHeight: 1.4,
   letterSpacing: -0.35,
   fontSize: 14,

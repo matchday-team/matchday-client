@@ -52,6 +52,10 @@ export const PlayerOnFieldGridCell = ({
           alt=''
           onError={fallbackImageHandler}
         />
+        <div className={styles.playerCautionContainer}>
+          {player.yellowCards > 0 && <PlayerCaution variant='yellow' />}
+          {player.redCards > 0 && <PlayerCaution variant='red' />}
+        </div>
         <div className={styles.attackPointContainer}>
           <AttackPointMark count={player.goals} />
           <AttackPointMark count={player.assists} />
@@ -72,4 +76,8 @@ const AttackPointMark = ({ count }: { count: number }) => {
       <span className={styles.attackPointCount}>{count}</span>
     </div>
   );
+};
+
+const PlayerCaution = ({ variant }: { variant: 'yellow' | 'red' }) => {
+  return <div className={styles.playerCautionCard({ variant })} />;
 };

@@ -1,6 +1,7 @@
 import { SyntheticEvent } from 'react';
 
 import { MatchUserResponse } from '@/apis/models';
+import { ChevronDownIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 
 import * as styles from './PlayerListItem.css';
@@ -36,17 +37,28 @@ export const PlayerItem = ({
           onError={setFallbackImageIfLoadFail}
         />
         <span className={styles.number}>{player.number}</span>
-        <span className={styles.commonText}>{player.name}</span>
+        <span className={styles.name}>{player.name}</span>
+        {/* TODO: 교체 인 여부가 추가되면 분기 처리 추가 */}
+        <ChevronDownIcon className={styles.subInIcon} />
+        <span className={styles.position}>{player.matchPosition}</span>
       </div>
-      <span className={styles.position}>{player.matchPosition}</span>
       <div className={styles.statContainer}>
         <span className={styles.number}>{displayDashIfZero(player.goals)}</span>
         <span className={styles.number}>
           {displayDashIfZero(player.assists)}
         </span>
-        <span className={styles.number}>
-          {displayDashIfZero(player.caution)}
-        </span>
+        <div className={styles.cautionContainer}>
+          <div
+            className={styles.playerCautionCard({
+              variant: player.yellowCards > 0 ? 'yellow' : 'empty',
+            })}
+          />
+          <div
+            className={styles.playerCautionCard({
+              variant: player.redCards > 0 ? 'red' : 'empty',
+            })}
+          />
+        </div>
       </div>
     </li>
   );
