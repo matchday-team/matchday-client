@@ -1,6 +1,26 @@
-import { MatchEventResponse, MatchUserResponse } from '@/apis/models';
+import {
+  MatchEventResponse,
+  MatchInfoResponse,
+  MatchUserResponse,
+} from '@/apis/models';
 import { TeamResponse } from '@/apis/models';
 import { lightThemeVars } from '@/styles/theme.css';
+
+export const mockMatchInfo: MatchInfoResponse = {
+  stadium: '한양대학교 대운동장',
+  matchDate: '2025-04-16 (수)',
+  startTime: '09:30',
+  endTime: '11:30',
+  mainRefereeName: '김태인',
+  assistantReferee1: '김주용',
+  assistantReferee2: '주유나',
+  fourthReferee: '김성빈',
+  id: 1,
+  homeTeamId: 1,
+  awayTeamId: 2,
+  firstHalfStartTime: '09:30',
+  secondHalfStartTime: '11:30',
+};
 
 export const mockHomeTeam: TeamResponse = {
   id: 1,

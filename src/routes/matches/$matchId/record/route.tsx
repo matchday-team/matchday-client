@@ -215,20 +215,7 @@ function MatchRecordPage() {
       }
       info={
         <div style={s(284)}>
-          <MatchSchedule
-            items={[
-              { label: '장소', value: matchInfo.data.stadium },
-              { label: '날짜', value: matchInfo.data.matchDate },
-              {
-                label: '시간',
-                value: `${matchInfo.data.startTime} ~ ${matchInfo.data.endTime}`,
-              },
-              { label: '주심', value: matchInfo.data.mainRefereeName },
-              { label: '부심1', value: matchInfo.data.assistantReferee1 },
-              { label: '부심2', value: matchInfo.data.assistantReferee2 },
-              { label: '대기심', value: matchInfo.data.fourthReferee },
-            ]}
-          />
+          <MatchSchedule matchInfo={matchInfo.data} />
         </div>
       }
       log={
