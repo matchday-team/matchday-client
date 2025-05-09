@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import { Button } from './Button';
 import * as styles from './MatchTimeController.css';
+import { MatchTimerButton } from './MatchTimerButton';
 import { getTimerText } from './timeUtils';
 
 interface MatchTimeControllerProps {
@@ -17,6 +17,7 @@ interface MatchTimeControllerProps {
   onStop?: () => void;
 }
 
+// TODO: 서버 연동 필요
 export const MatchTimeController = ({
   now,
   matchStatus,
@@ -65,13 +66,13 @@ export const MatchTimeController = ({
         <span className={styles.mainTime}>{currentTime}</span>
       </div>
       <div className={styles.controlSection}>
-        <Button
-          disabled={isGameEnded}
-          isActive={!isGameEnded}
+        <MatchTimerButton
+          variant='primary'
           onClick={matchStatus.state === 'playing' ? onStop : onStart}
         >
           {buttonText}
-        </Button>
+        </MatchTimerButton>
+        <MatchTimerButton variant='danger'>시작 취소</MatchTimerButton>
       </div>
     </div>
   );

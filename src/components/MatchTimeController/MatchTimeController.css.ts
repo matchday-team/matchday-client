@@ -49,6 +49,6 @@ export const controlSection = style({
   display: 'flex',
   flexDirection: 'column',
   borderLeft: `1px solid ${lightThemeVars.color.primary[100]}`,
-  width: 78,
+  width: 84,
   height: '100%',
 });
