@@ -32,12 +32,34 @@ export const profileImage = style({
   height: 32,
 });
 
-export const textContainer = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  width: 152,
-  height: 44,
+const commonTextStyle = {
+  lineHeight: 1.4,
+  letterSpacing: -0.35,
+  fontSize: 14,
+  fontWeight: 500,
+};
+
+export const textContainer = recipe({
+  base: [
+    commonTextStyle,
+    {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      width: 136,
+      height: 44,
+    },
+  ],
+  variants: {
+    disabled: {
+      true: {
+        color: lightThemeVars.color.gray[300],
+      },
+      false: {
+        color: lightThemeVars.color.black,
+      },
+    },
+  },
 });
 
 export const textLeft = style({
@@ -46,54 +68,76 @@ export const textLeft = style({
   gap: 8,
 });
 
-const commonTextStyle = {
-  lineHeight: 1.4,
-  letterSpacing: -0.35,
-  fontSize: 14,
-  color: lightThemeVars.color.black,
-  fontWeight: 500,
-};
-
-export const number = recipe({
-  base: [
-    commonTextStyle,
-    {
-      width: 17,
-      textAlign: 'center',
-    },
-  ],
+// NOTE: 디자인 상 폰트 고정 폭 미적용 상태이므로, 디자인 상 93px width로 우선 고정
+export const statContainer = recipe({
+  base: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    gap: 16,
+  },
   variants: {
     disabled: {
       true: {
         color: lightThemeVars.color.gray[300],
       },
-    },
-  },
-});
-
-export const name = recipe({
-  base: [commonTextStyle],
-  variants: {
-    disabled: {
-      true: {
-        color: lightThemeVars.color.gray[300],
+      false: {
+        color: lightThemeVars.color.black,
       },
     },
   },
 });
 
-export const position = recipe({
-  base: [
-    commonTextStyle,
-    {
-      color: lightThemeVars.color.gray['500'],
-      fontWeight: 400,
-    },
-  ],
+export const number = style([
+  commonTextStyle,
+  {
+    width: 17,
+    textAlign: 'center',
+  },
+]);
+
+export const name = style([
+  commonTextStyle,
+  {
+    width: 47, // NOTE: 4글자에 대한 최소한의 크기
+  },
+]);
+
+export const sentOffIcon = style({
+  color: lightThemeVars.color.primary[700],
+});
+
+export const position = style([
+  commonTextStyle,
+  {
+    color: lightThemeVars.color.gray['500'],
+    fontWeight: 400,
+  },
+]);
+
+export const cautionContainer = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 1,
+  width: 17,
+});
+
+export const playerCautionCard = recipe({
+  base: {
+    borderRadius: 2,
+    width: 8,
+    height: 10,
+  },
   variants: {
-    disabled: {
-      true: {
-        color: lightThemeVars.color.gray[300],
+    variant: {
+      empty: {
+        backgroundColor: lightThemeVars.color.white.background,
+      },
+      yellow: {
+        backgroundColor: lightThemeVars.color.soccer.yellow,
+      },
+      red: {
+        backgroundColor: lightThemeVars.color.soccer.red,
       },
     },
   },
