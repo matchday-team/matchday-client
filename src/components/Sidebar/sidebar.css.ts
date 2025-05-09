@@ -193,8 +193,6 @@ export const footer = recipe({
     flexDirection: 'column',
     flexShrink: 0,
     alignItems: 'flex-start',
-    // gap: 12,
-    // marginBottom: 16,
     overflow: 'hidden',
   },
   variants: {
