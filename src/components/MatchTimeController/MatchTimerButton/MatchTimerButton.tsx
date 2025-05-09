@@ -1,5 +1,4 @@
 import { ExclamationIcon } from '@/assets/icons';
-import { lightThemeVars } from '@/styles/theme.css';
 
 import * as styles from './MatchTimerButton.css';
 
@@ -21,14 +20,7 @@ export const MatchTimerButton = ({
       {...props}
     >
       {variant === 'danger' && (
-        <ExclamationIcon
-          color={
-            // FIXME: Vanilla Extract에서 처리하고 싶은데 방법=?
-            !disabled
-              ? lightThemeVars.color.warning
-              : lightThemeVars.color.gray[300]
-          }
-        />
+        <ExclamationIcon className={styles.dangerIcon({ disabled })} />
       )}
       {children}
     </button>

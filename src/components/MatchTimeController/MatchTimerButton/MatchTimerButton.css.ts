@@ -48,3 +48,15 @@ export const rootContainer = recipe({
     },
   },
 });
+
+export const dangerIcon = recipe({
+  variants: {
+    disabled: {
+      true: { color: lightThemeVars.color.gray[300] },
+      false: { color: lightThemeVars.color.warning },
+    },
+  },
+  defaultVariants: {
+    disabled: false,
+  },
+});
