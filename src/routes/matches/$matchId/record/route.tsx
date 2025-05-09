@@ -12,22 +12,18 @@ import {
   MatchLogList,
   MatchRecordSimpleMemo,
   MatchSchedule,
-  MatchTimeController,
   PlayerStatCounterGrid,
   SubstitutionPlayerList,
   TeamStatCompareCounterList,
   TeamStatCounterGrid,
   ToggleableStartingPlayers,
 } from '@/components';
-import {
-  getTimeAgo,
-  getUnixTimestampInSeconds,
-} from '@/components/MatchTimeController/timeUtils';
 import { queryClient } from '@/react-query-provider';
 import { commonPaper } from '@/styles/paper.css';
 import { debounce } from '@/utils';
 
 import { MatchRecordLayout } from './-components';
+import { MatchTimeControllerAdapter } from './-components/MatchRecordLayout/MatchTimeControllerAdapter';
 
 export const Route = createFileRoute('/matches/$matchId/record')({
   component: MatchRecordPage,
@@ -90,8 +86,6 @@ function MatchRecordPage() {
     setMemo(newMemo);
     debouncedUpdateMemo(newMemo);
   };
-
-  const now = getUnixTimestampInSeconds();
 
   useEffect(() => {
     const unsubErrorChannel = wsApi.subscribe('error', [], {
@@ -212,17 +206,7 @@ function MatchRecordPage() {
       }
       timer={
         <div style={s(116)}>
-          {/* TODO: 추후 API 개발 완료 시 시간 처리 추가 필요 */}
-          <MatchTimeController
-            now={now}
-            matchStatus={{
-              currentPeriod: 1,
-              state: 'playing',
-              startedAt: getTimeAgo({ minutes: 50, seconds: 0, now }),
-              addedTime: 5,
-            }}
-            periodNames={['전반', '후반']}
-          />
+          <MatchTimeControllerAdapter matchId={matchId} />
         </div>
       }
       info={

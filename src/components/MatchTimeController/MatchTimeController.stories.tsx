@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { lightThemeVars } from '@/styles/theme.css';
 
 import { MatchTimeController } from './MatchTimeController';
-import { getTimeAgo, getUnixTimestampInSeconds } from './timeUtils';
 
 const meta: Meta<typeof MatchTimeController> = {
   title: 'Components/MatchTimeController',
@@ -30,82 +29,47 @@ const meta: Meta<typeof MatchTimeController> = {
 export default meta;
 type Story = StoryObj<typeof MatchTimeController>;
 
-const now = getUnixTimestampInSeconds();
-
 export const Default: Story = {
   args: {
-    now,
-    matchStatus: {
-      currentPeriod: 1,
-      state: 'playing',
-      startedAt: getTimeAgo({ minutes: 50, seconds: 0, now }),
-      addedTime: 5,
-    },
-    periodNames: ['전반', '후반'],
+    timerText: '17:00',
+    currentPeriod: 'first',
+    isPlaying: true,
+    addedTime: 0,
   },
 };
 
 export const NotStarted: Story = {
   args: {
-    now,
-    matchStatus: {
-      currentPeriod: 1,
-      state: 'notStarted',
-      startedAt: getTimeAgo({ minutes: 0, seconds: 0, now }),
-      addedTime: 0,
-    },
-    periodNames: ['전반', '후반'],
+    timerText: '00:00',
+    currentPeriod: 'not-started',
+    isPlaying: false,
+    addedTime: 0,
   },
 };
 
 export const FirstHalfEnded: Story = {
   args: {
-    now,
-    matchStatus: {
-      currentPeriod: 1,
-      state: 'ended',
-      startedAt: getTimeAgo({ minutes: 45, seconds: 0, now }),
-      addedTime: 0,
-    },
-    periodNames: ['전반', '후반'],
+    timerText: '45:00',
+    currentPeriod: 'half-time',
+    isPlaying: false,
+    addedTime: 3,
   },
 };
 
 export const SecondHalfPlaying: Story = {
   args: {
-    now,
-    matchStatus: {
-      currentPeriod: 2,
-      state: 'playing',
-      startedAt: getTimeAgo({ minutes: 60, seconds: 30, now }),
-      addedTime: 0,
-    },
-    periodNames: ['전반', '후반'],
+    timerText: '61:37',
+    currentPeriod: 'second',
+    isPlaying: true,
+    addedTime: 0,
   },
 };
 
 export const SecondHalfEnded: Story = {
   args: {
-    now,
-    matchStatus: {
-      currentPeriod: 2,
-      state: 'ended',
-      startedAt: getTimeAgo({ minutes: 91, seconds: 30, now }),
-      addedTime: 1,
-    },
-    periodNames: ['전반', '후반'],
-  },
-};
-
-export const Quarter: Story = {
-  args: {
-    now,
-    matchStatus: {
-      currentPeriod: 2,
-      state: 'playing',
-      startedAt: getTimeAgo({ minutes: 8, seconds: 45, now }),
-      addedTime: 0,
-    },
-    periodNames: ['1쿼터', '2쿼터', '3쿼터', '4쿼터'],
+    timerText: '90:00',
+    currentPeriod: 'end',
+    isPlaying: false,
+    addedTime: 6,
   },
 };
