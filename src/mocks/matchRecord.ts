@@ -8,7 +8,7 @@ import { lightThemeVars } from '@/styles/theme.css';
 
 export const mockMatchInfo: MatchInfoResponse = {
   stadium: '한양대학교 대운동장',
-  matchDate: '2025-04-16 (수)',
+  matchDate: '2025-04-16',
   startTime: '09:30',
   endTime: '11:30',
   mainRefereeName: '김태인',

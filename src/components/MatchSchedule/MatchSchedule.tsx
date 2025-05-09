@@ -3,16 +3,22 @@ import { useMemo } from 'react';
 import { MatchInfoResponse } from '@/apis/models';
 
 import * as styles from './MatchSchedule.css';
+import { getKoreanWeekday } from './timeUtil';
 
 interface MatchScheduleProps {
   matchInfo: MatchInfoResponse;
 }
 
 export const MatchSchedule = ({ matchInfo }: MatchScheduleProps) => {
-  const scheduleItems = useMemo(
-    () => [
+  const scheduleItems = useMemo(() => {
+    const [year, month, day] = matchInfo.matchDate.split('-').map(Number);
+
+    return [
       { label: '장소', value: matchInfo.stadium },
-      { label: '날짜', value: matchInfo.matchDate },
+      {
+        label: '날짜',
+        value: `${matchInfo.matchDate} (${getKoreanWeekday(year, month, day)})`,
+      },
       {
         label: '시간',
         value: `${matchInfo.startTime.split(':').join(' : ')} ~ ${matchInfo.endTime.split(':').join(' : ')}`,
@@ -21,9 +27,8 @@ export const MatchSchedule = ({ matchInfo }: MatchScheduleProps) => {
       { label: '부심1', value: matchInfo.assistantReferee1 },
       { label: '부심2', value: matchInfo.assistantReferee2 },
       { label: '대기심', value: matchInfo.fourthReferee },
-    ],
-    [matchInfo],
-  );
+    ];
+  }, [matchInfo]);
 
   return (
     <div className={styles.container}>
