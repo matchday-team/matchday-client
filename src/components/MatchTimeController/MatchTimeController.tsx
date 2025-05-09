@@ -1,8 +1,12 @@
 import * as styles from './MatchTimeController.css';
 import { MatchTimerButton } from './MatchTimerButton';
 
+type MatchPeriod = 'not-started' | 'first' | 'half-time' | 'second' | 'end';
+
+type MatchPeriodName = '전반' | '후반';
+
 // TODO: 로직 소유 경계는 고민이 필요
-const periodNames = {
+const periodNames: Record<MatchPeriod, MatchPeriodName> = {
   'not-started': '전반',
   first: '전반',
   'half-time': '후반',
@@ -12,7 +16,7 @@ const periodNames = {
 
 interface MatchTimeControllerProps {
   timerText: string;
-  currentPeriod: 'not-started' | 'first' | 'half-time' | 'second' | 'end';
+  currentPeriod: MatchPeriod;
   isPlaying: boolean;
   addedTime: number;
   onStart?: () => void;
