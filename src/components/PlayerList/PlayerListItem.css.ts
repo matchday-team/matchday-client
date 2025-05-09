@@ -64,6 +64,11 @@ export const name = style([
   },
 ]);
 
+export const subInIcon = style({
+  transform: 'rotate(180deg)',
+  color: lightThemeVars.color.soccer.red,
+});
+
 export const position = style([
   commonText,
   {
