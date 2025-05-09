@@ -7,7 +7,7 @@ import {
 } from '@/apis/mutations';
 import { matchRecordQuery } from '@/apis/queries';
 import { MatchTimeController } from '@/components';
-import { useForceRerender } from '@/hooks';
+import { useIntervalRerender } from '@/hooks';
 import {
   formatMMSSfromSeconds,
   getHHMMSSofDate,
@@ -67,7 +67,7 @@ export const MatchTimeControllerAdapter = ({
   const { period, startedAt } = calcMatchStatus(matchInfo.data);
   const isGamePlaying = period === 'first' || period === 'second';
 
-  useForceRerender(isGamePlaying);
+  useIntervalRerender(isGamePlaying);
 
   const { mutateAsync: patchMatchTimer } = usePatchMatchTimerMutation(matchId);
   const { mutateAsync: cancelMatchStart } =

@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-export const useForceRerender = (enabled: boolean, interval = 1000) => {
-  const [_, update] = useState(0);
+export const useIntervalRerender = (enabled: boolean, interval = 1000) => {
+  const [, update] = useState(0);
   useEffect(() => {
     if (!enabled) {
       return;

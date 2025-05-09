@@ -1,2 +1,2 @@
 export * from './useIsDragOver';
-export * from './useForceRerender';
+export * from './useIntervalRerender';
