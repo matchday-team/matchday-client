@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useParams } from '@tanstack/react-router';
 import { useSnackbar } from 'notistack';
 
+import { useCreateOrUpdateMatchMemoMutation } from '@/apis/mutations';
 import { matchRecordQuery, teamQuery } from '@/apis/queries';
 import { getWebSocketApi } from '@/apis/websockets';
 import {
@@ -24,6 +25,7 @@ import {
 } from '@/components/MatchTimeController/timeUtils';
 import { queryClient } from '@/react-query-provider';
 import { commonPaper } from '@/styles/paper.css';
+import { debounce } from '@/utils';
 
 import { MatchRecordLayout } from './-components';
 
@@ -69,7 +71,6 @@ function MatchRecordPage() {
   const { data: matchPlayers } = useSuspenseQuery(
     matchRecordQuery.playersQuery(matchId),
   );
-
   // FIXME: 얘내는 순차 로딩을 하게 되는데...
   const { data: homeTeam } = useSuspenseQuery(
     teamQuery.byIdQuery(matchInfo.data.homeTeamId),
@@ -78,8 +79,19 @@ function MatchRecordPage() {
     teamQuery.byIdQuery(matchInfo.data.awayTeamId),
   );
 
-  const now = getUnixTimestampInSeconds();
+  const { mutateAsync: updateMatchMemo } =
+    useCreateOrUpdateMatchMemoMutation(matchId);
+
   const [memo, setMemo] = useState(matchMemo.data.memo);
+  const debouncedUpdateMemo = useCallback(debounce(updateMatchMemo, 500), [
+    updateMatchMemo,
+  ]);
+  const updateMemo = (newMemo: string) => {
+    setMemo(newMemo);
+    debouncedUpdateMemo(newMemo);
+  };
+
+  const now = getUnixTimestampInSeconds();
 
   useEffect(() => {
     const unsubErrorChannel = wsApi.subscribe('error', [], {
@@ -232,7 +244,7 @@ function MatchRecordPage() {
       memo={
         <div style={s(204)}>
           {/* TODO: debounce 이후 update 연동 필요 */}
-          <MatchRecordSimpleMemo value={memo} onChange={setMemo} />
+          <MatchRecordSimpleMemo value={memo} onChange={updateMemo} />
         </div>
       }
     />
