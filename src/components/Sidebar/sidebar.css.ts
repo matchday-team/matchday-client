@@ -5,7 +5,6 @@ import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_SMALL } from '@/constants';
 import { lightThemeVars } from '@/styles/theme.css';
 
 const transitionTiming = 'cubic-bezier(0.4, 0, 0.2, 1)';
-const SIDEBAR_PADDING_OFFSET = 52;
 
 export const container = recipe({
   base: {
@@ -40,7 +39,8 @@ export const logo = recipe({
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    transition: `width 0.3s ${transitionTiming}`,
+    margin: '21px 0 23px 16px',
+    width: '100%',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
@@ -51,15 +51,13 @@ export const logo = recipe({
   variants: {
     isOpen: {
       true: {
-        margin: '20px 26px',
-        width: SIDEBAR_WIDTH - SIDEBAR_PADDING_OFFSET,
+        width: SIDEBAR_WIDTH - 16,
         height: 39,
       },
       false: {
         justifyContent: 'center',
-        margin: '22px 16px',
         width: SIDEBAR_WIDTH_SMALL - 32,
-        height: 32,
+        height: 39,
       },
     },
   },
@@ -95,7 +93,7 @@ export const logoSubtitle = style({
 
 export const adminIcon = style({
   position: 'absolute',
-  right: 0,
+  right: 18,
   width: 24,
   height: 24,
   color: lightThemeVars.color.gray[600],
@@ -107,13 +105,12 @@ export const nav = recipe({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'flex-start',
-    gap: 16,
-    padding: 0,
+    overflow: 'hidden',
   },
   variants: {
     isOpen: {
       true: {
-        width: SIDEBAR_WIDTH - SIDEBAR_PADDING_OFFSET,
+        width: SIDEBAR_WIDTH,
       },
       false: {
         width: SIDEBAR_WIDTH_SMALL,
@@ -131,14 +128,25 @@ export const navItem = recipe({
     alignItems: 'center',
     alignSelf: 'stretch',
     gap: 16,
-    transition: `background-color 0.3s ${transitionTiming}, color 0.3s ${transitionTiming}`,
+    transition: `background-color 0.3s ${transitionTiming}`,
     width: '100%',
+    height: 44,
     overflow: 'hidden',
     textDecoration: 'none',
     whiteSpace: 'nowrap',
-    color: lightThemeVars.color.gray[600],
+    color: lightThemeVars.color.gray[500],
     fontSize: 14,
     fontWeight: 500,
+    selectors: {
+      '&:hover': {
+        backgroundColor: lightThemeVars.color.white.hover,
+      },
+      '&:focus-visible': {
+        outline: 'none',
+        boxShadow: `0 0 0 2px ${lightThemeVars.color.primary[300]}`,
+        backgroundColor: lightThemeVars.color.white.hover,
+      },
+    },
   },
   variants: {
     active: {
@@ -148,10 +156,10 @@ export const navItem = recipe({
     },
     isOpen: {
       true: {
-        padding: '8px 26px',
+        padding: '4px 0',
       },
       false: {
-        padding: '8px 0',
+        padding: '4px 0',
       },
     },
   },
@@ -165,12 +173,12 @@ export const navItemIcon = recipe({
     display: 'flex',
     alignItems: 'center',
     gap: 12,
+    marginLeft: 18,
   },
   variants: {
     isOpen: {
       false: {
         justifyContent: 'flex-start',
-        marginLeft: 18,
       },
     },
   },
@@ -185,13 +193,14 @@ export const footer = recipe({
     flexDirection: 'column',
     flexShrink: 0,
     alignItems: 'flex-start',
-    gap: 16,
-    padding: '1px 0',
+    // gap: 12,
+    // marginBottom: 16,
+    overflow: 'hidden',
   },
   variants: {
     isOpen: {
       true: {
-        width: SIDEBAR_WIDTH - SIDEBAR_PADDING_OFFSET,
+        width: SIDEBAR_WIDTH,
       },
       false: {
         width: SIDEBAR_WIDTH_SMALL,
@@ -210,19 +219,30 @@ export const footerItem = recipe({
     justifyContent: 'space-between',
     transition: `background-color 0.3s ${transitionTiming}`,
     width: '100%',
+    height: 40,
     overflow: 'hidden',
     textDecoration: 'none',
     whiteSpace: 'nowrap',
     color: lightThemeVars.color.gray[500],
     fontSize: 14,
+    selectors: {
+      '&:hover': {
+        backgroundColor: lightThemeVars.color.white.hover,
+      },
+      '&:focus-visible': {
+        outline: 'none',
+        boxShadow: `0 0 0 2px ${lightThemeVars.color.primary[300]}`,
+        backgroundColor: lightThemeVars.color.white.hover,
+      },
+    },
   },
   variants: {
     isOpen: {
       true: {
-        padding: '12px 26px',
+        padding: '2px 0',
       },
       false: {
-        padding: '12px 0',
+        padding: '2px 0',
       },
     },
   },
@@ -235,13 +255,13 @@ export const footerItemIcon = recipe({
   base: {
     display: 'flex',
     alignItems: 'center',
-    gap: 12,
+    gap: 16,
+    marginLeft: 18,
   },
   variants: {
     isOpen: {
       false: {
         justifyContent: 'flex-start',
-        marginLeft: 18,
       },
     },
   },
@@ -260,8 +280,7 @@ export const toggleButton = recipe({
     alignItems: 'center',
     justifyContent: 'center',
     transform: 'translateY(-50%)',
-    transition: `transform 0.3s ${transitionTiming}, background-color 0.3s ${transitionTiming}`,
-    border: `1px solid ${lightThemeVars.color.gray[100]}`,
+    border: 'none',
     borderRadius: '50%',
     boxShadow: `0 2px 4px ${lightThemeVars.color.black}0d`,
     backgroundColor: lightThemeVars.color.white.main,
@@ -286,7 +305,7 @@ export const matchDayLogo = recipe({
     display: 'flex',
     flexShrink: 0,
     alignItems: 'center',
-    gap: 10.667,
+    gap: 10,
     transition: `width 0.3s ${transitionTiming}`,
     marginBottom: 8,
     width: 139,
@@ -297,7 +316,7 @@ export const matchDayLogo = recipe({
   variants: {
     isOpen: {
       true: {
-        padding: '12px 26px',
+        padding: '12px 0',
       },
       false: {
         padding: '12px 0',
@@ -313,6 +332,14 @@ export const matchDayIcon = style({
   flexShrink: 0,
   width: 28,
   height: 28,
+});
+
+export const rightIcon = style({
+  position: 'absolute',
+  right: 18,
+  flexShrink: 0,
+  width: 24,
+  height: 24,
 });
 
 export const icon = style({
@@ -331,7 +358,7 @@ export const logoImage = style({
 export const logoTextImage = style({
   flexShrink: 0,
   width: 90,
-  height: 14,
+  height: 10,
 });
 
 export const navLabel = style({
