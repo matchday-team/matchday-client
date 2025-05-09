@@ -61,6 +61,7 @@ export const name = style([
   commonText,
   {
     width: 50,
+    textAlign: 'center',
   },
 ]);
 
@@ -81,7 +82,6 @@ export const number = style([
   commonText,
   {
     width: 17,
-    textAlign: 'center',
   },
 ]);
 

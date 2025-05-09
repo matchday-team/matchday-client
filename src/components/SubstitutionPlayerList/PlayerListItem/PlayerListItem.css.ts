@@ -65,7 +65,7 @@ export const textContainer = recipe({
 export const textLeft = style({
   display: 'flex',
   alignItems: 'center',
-  gap: 8,
+  gap: 6,
 });
 
 // NOTE: 디자인 상 폰트 고정 폭 미적용 상태이므로, 디자인 상 93px width로 우선 고정
@@ -90,7 +90,7 @@ export const statContainer = recipe({
 export const number = style([
   commonTextStyle,
   {
-    width: 17,
+    width: 18,
     textAlign: 'center',
   },
 ]);
@@ -98,7 +98,8 @@ export const number = style([
 export const name = style([
   commonTextStyle,
   {
-    width: 47, // NOTE: 4글자에 대한 최소한의 크기
+    width: 50,
+    textAlign: 'center',
   },
 ]);
 
