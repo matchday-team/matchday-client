@@ -1,7 +1,10 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { MatchInfoResponse } from '@/apis/models';
-import { usePatchMatchTimerMutation } from '@/apis/mutations';
+import {
+  useCancelMatchStartMutation,
+  usePatchMatchTimerMutation,
+} from '@/apis/mutations';
 import { matchRecordQuery } from '@/apis/queries';
 import { MatchTimeController } from '@/components';
 import { useForceRerender } from '@/hooks';
@@ -67,6 +70,8 @@ export const MatchTimeControllerAdapter = ({
   useForceRerender(isGamePlaying);
 
   const { mutateAsync: patchMatchTimer } = usePatchMatchTimerMutation(matchId);
+  const { mutateAsync: cancelMatchStart } =
+    useCancelMatchStartMutation(matchId);
 
   const startMatchTimer = () => {
     patchMatchTimer({
@@ -97,7 +102,7 @@ export const MatchTimeControllerAdapter = ({
         stopMatchTimer();
       }}
       onReset={() => {
-        console.log('onReset');
+        cancelMatchStart();
       }}
     />
   );

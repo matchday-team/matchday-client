@@ -100,3 +100,10 @@ export const patchMatchTimer = async (
 
   return response.json() as Promise<ApiResponse<string>>; // "시간 등록 완료"
 };
+
+// NOTE: 매치 시작 취소 기능 ('이벤트'를 모두 삭제한다)
+export const deleteMatchEvents = async (matchId: number) => {
+  const response = await http.delete(`v1/match-event/${matchId}`);
+
+  return response.json() as Promise<ApiResponse<string>>;
+};
