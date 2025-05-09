@@ -38,9 +38,15 @@ export const label = style({
 });
 
 export const value = style({
+  display: '-webkit-box',
+  flex: 1,
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
   lineHeight: 1.4,
   letterSpacing: -0.35,
   color: lightThemeVars.color.gray[500],
   fontSize: 14,
   fontWeight: 500,
+  WebkitLineClamp: 1,
+  WebkitBoxOrient: 'vertical',
 });
