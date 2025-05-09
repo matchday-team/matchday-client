@@ -4,23 +4,41 @@ import { recipe } from '@vanilla-extract/recipes';
 import { teamColor } from '@/components/PlayerList/TeamColor.css';
 import { lightThemeVars } from '@/styles/theme.css';
 
-export const rootContainer = style({
-  display: 'flex',
-  flexDirection: 'column',
-  flexGrow: 1, // NOTE: flex 부모일 때는 부모가 설정한 영역 사용
-  alignItems: 'center',
-  gap: 10,
-  border: `1px solid ${lightThemeVars.color.primary['100']}`,
-  borderRadius: 6,
-  padding: 9,
+export const rootContainer = recipe({
+  base: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 1, // NOTE: flex 부모일 때는 부모가 설정한 영역 사용
+    alignItems: 'center',
+    gap: 10,
+    border: `1px solid ${lightThemeVars.color.primary['100']}`,
+    borderRadius: 6,
+    padding: 9,
+  },
+  variants: {
+    disabled: {
+      true: {
+        backgroundColor: lightThemeVars.color.white.hover,
+      },
+    },
+  },
 });
 
-export const title = style({
-  lineHeight: 1.4,
-  letterSpacing: -0.35,
-  color: lightThemeVars.color.gray['500'],
-  fontSize: 14,
-  fontWeight: 400,
+export const title = recipe({
+  base: {
+    lineHeight: 1.4,
+    letterSpacing: -0.35,
+    color: lightThemeVars.color.gray['500'],
+    fontSize: 14,
+    fontWeight: 400,
+  },
+  variants: {
+    disabled: {
+      true: {
+        color: lightThemeVars.color.gray['300'],
+      },
+    },
+  },
 });
 
 export const value = recipe({
@@ -29,7 +47,7 @@ export const value = recipe({
     textAlign: 'center',
     lineHeight: '1',
     letterSpacing: -0.35,
-    color: lightThemeVars.color.black,
+    color: lightThemeVars.color.gray[600],
 
     fontSize: 32,
     fontWeight: 500,
@@ -70,7 +88,8 @@ export const button = style({
 
   // FIXME: Base Button에 들어갈 스타일로 보임.
   ':disabled': {
-    backgroundColor: 'transparent',
+    border: 'none',
+    backgroundColor: lightThemeVars.color.primary[100],
     cursor: 'not-allowed',
   },
 });
