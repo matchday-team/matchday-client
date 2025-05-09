@@ -18,8 +18,10 @@ export const GameScoreArea = ({
   return (
     <div className={styles.container}>
       <TeamArea team={homeTeam} isHome />
-      <div className={styles.score}>
-        {scores.homeScore.goalCount} : {scores.awayScore.goalCount}
+      <div className={styles.scoreContainer}>
+        <span className={styles.scoreText}>{scores.homeScore.goalCount}</span>
+        <span className={styles.colonText}>:</span>
+        <span className={styles.scoreText}>{scores.awayScore.goalCount}</span>
       </div>
       <TeamArea team={awayTeam} />
     </div>

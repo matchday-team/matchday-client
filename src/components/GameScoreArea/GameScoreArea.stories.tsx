@@ -19,7 +19,7 @@ const meta = {
     Story => (
       <div
         style={{
-          width: 300,
+          width: 280,
           ...assignInlineVars({
             [teamHomeColor]: '#D91920',
             [teamAwayColor]: '#003A70',
@@ -40,7 +40,7 @@ export const Default: Story = {
   args: {
     scores: {
       homeScore: {
-        goalCount: 0,
+        goalCount: 20,
         shotCount: 0,
         validShotCount: 0,
         cornerKickCount: 0,
@@ -49,7 +49,7 @@ export const Default: Story = {
         warningCount: 0,
       },
       awayScore: {
-        goalCount: 0,
+        goalCount: 19,
         shotCount: 0,
         validShotCount: 0,
         cornerKickCount: 0,
