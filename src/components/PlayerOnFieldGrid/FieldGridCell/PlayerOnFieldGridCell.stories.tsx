@@ -80,3 +80,43 @@ export const NoAttackPoints: Story = {
     },
   },
 };
+
+export const NoCards: Story = {
+  args: {
+    player: {
+      ...matchRecordMocks.mockPlayersByTeamType('home')[0],
+      yellowCards: 0,
+      redCards: 0,
+    },
+  },
+};
+
+export const YellowCard: Story = {
+  args: {
+    player: {
+      ...matchRecordMocks.mockPlayersByTeamType('home')[0],
+      yellowCards: 1,
+      redCards: 0,
+    },
+  },
+};
+
+export const YellowAndRedCard: Story = {
+  args: {
+    player: {
+      ...matchRecordMocks.mockPlayersByTeamType('home')[0],
+      yellowCards: 1,
+      redCards: 1,
+    },
+  },
+};
+
+export const DirectRedCard: Story = {
+  args: {
+    player: {
+      ...matchRecordMocks.mockPlayersByTeamType('home')[0],
+      yellowCards: 0,
+      redCards: 1,
+    },
+  },
+};
