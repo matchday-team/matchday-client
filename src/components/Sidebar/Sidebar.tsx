@@ -28,16 +28,11 @@ interface NavItemProps {
 }
 
 function NavItem({ to, icon, label, isActive, isOpen }: NavItemProps) {
-  const ItemComponent = isOpen ? Link : 'div';
-
   return (
-    <ItemComponent
-      to={to}
-      className={styles.navItem({ active: isActive, isOpen })}
-    >
+    <Link to={to} className={styles.navItem({ active: isActive, isOpen })}>
       <div className={styles.navItemIcon({ isOpen })}>{icon}</div>
       {label && <span className={styles.navLabel}>{label}</span>}
-    </ItemComponent>
+    </Link>
   );
 }
 
@@ -50,16 +45,14 @@ interface FooterItemProps {
 }
 
 function FooterItem({ to, icon, label, showArrow, isOpen }: FooterItemProps) {
-  const ItemComponent = isOpen ? Link : 'div';
-
   return (
-    <ItemComponent to={to} className={styles.footerItem({ isOpen })}>
+    <Link to={to} className={styles.footerItem({ isOpen })}>
       <div className={styles.footerItemIcon({ isOpen })}>
         {icon}
         {label && <span className={styles.footerLabel}>{label}</span>}
       </div>
-      {showArrow && <CheckRightIcon className={styles.icon} />}
-    </ItemComponent>
+      {showArrow && <CheckRightIcon className={styles.rightIcon} />}
+    </Link>
   );
 }
 
