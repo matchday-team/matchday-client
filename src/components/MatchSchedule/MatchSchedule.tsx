@@ -9,6 +9,12 @@ interface MatchScheduleProps {
   matchInfo: MatchInfoResponse;
 }
 
+const formatTime = (time: string) => {
+  const [hour, minute] = time.split(':');
+
+  return `${hour.padStart(2, '0')} : ${minute.padStart(2, '0')}`;
+};
+
 export const MatchSchedule = ({ matchInfo }: MatchScheduleProps) => {
   const scheduleItems = useMemo(() => {
     const [year, month, day] = matchInfo.matchDate.split('-').map(Number);
@@ -21,7 +27,9 @@ export const MatchSchedule = ({ matchInfo }: MatchScheduleProps) => {
       },
       {
         label: '시간',
-        value: `${matchInfo.startTime.split(':').join(' : ')} ~ ${matchInfo.endTime.split(':').join(' : ')}`,
+        value: `${formatTime(matchInfo.startTime)} ~ ${formatTime(
+          matchInfo.endTime,
+        )}`,
       },
       { label: '주심', value: matchInfo.mainRefereeName },
       { label: '부심1', value: matchInfo.assistantReferee1 },
