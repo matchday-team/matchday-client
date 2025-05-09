@@ -17,7 +17,7 @@ export const attackPointContainer = style({
   left: 4, // NOTE: 중앙 정렬로 두면 하나만 표시될 때 중앙에 배치되므로, left offset으로 배치
   display: 'flex',
   justifyContent: 'center',
-  gap: '4px',
+  gap: 4,
 });
 
 export const playerImage = style({
@@ -33,7 +33,8 @@ export const playerInfoContainer = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: '4px',
+  gap: 2,
+  width: 'calc(100% + 1px)', // NOTE: 공간이 1px 부족해서 추가
   lineHeight: 1.4,
   letterSpacing: -0.35,
   fontSize: 14,
