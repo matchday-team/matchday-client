@@ -51,7 +51,7 @@ export const PlayerList = ({ team, players }: PlayerListProps) => {
         <div className={styles.statContainer}>
           <span className={styles.stat}>득점</span>
           <span className={styles.stat}>어시스트</span>
-          <span className={styles.stat}>파울</span>
+          <span className={styles.stat}>경고</span>
         </div>
       </div>
       {players.length > 0 ? (
