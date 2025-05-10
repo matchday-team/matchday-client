@@ -142,7 +142,6 @@ function MatchRecordPage() {
           />
           <div
             style={{
-              padding: '24px 8px',
               display: 'flex',
               flexDirection: 'column',
               gap: 20,
@@ -171,7 +170,6 @@ function MatchRecordPage() {
           />
           <div
             style={{
-              padding: '24px 8px',
               display: 'flex',
               flexDirection: 'column',
               gap: 20,

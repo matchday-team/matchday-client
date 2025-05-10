@@ -6,14 +6,25 @@ import { lightThemeVars } from '@/styles/theme.css';
 
 export const rootContainer = recipe({
   base: {
+    boxSizing: 'border-box',
     display: 'flex',
-    flexDirection: 'column',
-    flexGrow: 1, // NOTE: flex 부모일 때는 부모가 설정한 영역 사용
+    flexDirection: 'column', // NOTE: flex 부모일 때는 부모가 설정한 영역 사용
+    flexGrow: 1,
     alignItems: 'center',
-    gap: 10,
-    border: `1px solid ${lightThemeVars.color.primary['100']}`,
-    borderRadius: 6,
-    padding: 9,
+    gap: 5,
+    borderRight: `1px solid ${lightThemeVars.color.primary['100']}`,
+    padding: '12px 7px',
+    height: 73,
+
+    selectors: {
+      '&:nth-child(n+5)': {
+        borderTop: `1px solid ${lightThemeVars.color.primary['100']}`,
+      },
+      // NOTE: 2*4 그리드 기준이므로 그리드 구성 변경 시마다 반영 필요
+      '&:nth-child(4n)': {
+        borderRight: 'none',
+      },
+    },
   },
   variants: {
     disabled: {
@@ -43,14 +54,14 @@ export const title = recipe({
 
 export const value = recipe({
   base: {
-    width: 35,
+    width: 25,
     textAlign: 'center',
-    lineHeight: '1',
-    letterSpacing: -0.35,
+    lineHeight: 1,
+    letterSpacing: -0.5,
     color: lightThemeVars.color.gray[600],
 
-    fontSize: 32,
-    fontWeight: 500,
+    fontSize: 20,
+    fontWeight: 600,
   },
   variants: {
     colorIntegration: {
@@ -78,8 +89,8 @@ export const button = style({
   border: `1px solid ${lightThemeVars.color.primary['300']}`,
   borderRadius: '50%',
   cursor: 'pointer',
-  width: 24,
-  height: 24,
+  width: 20,
+  height: 20,
   color: lightThemeVars.color.gray['600'],
 
   ':hover': {

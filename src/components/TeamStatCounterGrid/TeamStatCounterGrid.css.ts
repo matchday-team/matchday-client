@@ -1,8 +1,17 @@
 import { style } from '@vanilla-extract/css';
 
+import { lightThemeVars } from '@/styles/theme.css';
+
 export const rootContainer = style({
-  display: 'grid',
-  gridTemplateRows: 'repeat(2, 80px)',
-  gridTemplateColumns: 'repeat(3, 110px)',
-  gap: 4,
+  display: 'flex',
+  flexDirection: 'column',
+});
+
+// NOTE: grid로 4*2 구성하고 싶었지만, 컨테이너 padding에도 border를 적용해야 하므로 flex로 렌더링
+export const gridLine = style({
+  display: 'flex',
+  flexDirection: 'row',
+  borderTop: `1px solid ${lightThemeVars.color.primary['100']}`,
+  paddingRight: 3,
+  paddingLeft: 3,
 });

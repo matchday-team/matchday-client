@@ -25,18 +25,35 @@ export const TeamStatCounterGrid = ({
     }
   };
 
+  const firstLine = STAT_LIST.slice(0, 4);
+  const secondLine = STAT_LIST.slice(4, 8);
+
+  // NOTE: grid로 4*2 구성하고 싶었지만, 컨테이너 padding에도 border를 적용해야 하므로 flex로 렌더링
   return (
     <div className={styles.rootContainer}>
-      {STAT_LIST.map(stat => (
-        <StatCounterItem
-          key={stat}
-          title={stat}
-          value={stats[statMapper[stat]]}
-          // FIXME: keyof 타입 캐스팅 없이도 가능하게?
-          onIncrement={() => handleIncrement(stat as keyof ScoreResponse)}
-          onDecrement={() => handleDecrement(stat as keyof ScoreResponse)}
-        />
-      ))}
+      <div className={styles.gridLine}>
+        {firstLine.map(stat => (
+          <StatCounterItem
+            key={stat}
+            title={stat}
+            value={stats[statMapper[stat]]}
+            // FIXME: keyof 타입 캐스팅 없이도 가능하게?
+            onIncrement={() => handleIncrement(stat as keyof ScoreResponse)}
+            onDecrement={() => handleDecrement(stat as keyof ScoreResponse)}
+          />
+        ))}
+      </div>
+      <div className={styles.gridLine}>
+        {secondLine.map(stat => (
+          <StatCounterItem
+            key={stat}
+            title={stat}
+            value={stats[statMapper[stat]]}
+            onIncrement={() => handleIncrement(stat as keyof ScoreResponse)}
+            onDecrement={() => handleDecrement(stat as keyof ScoreResponse)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
