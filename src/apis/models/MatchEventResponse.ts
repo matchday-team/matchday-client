@@ -5,6 +5,7 @@
  * MatchDay 요구사항에 대한 REST API
  * OpenAPI spec version: 0.0.1
  */
+import { MatchEventType } from '@/constants';
 
 /**
  * 경기 이벤트 응답 DTO
@@ -23,5 +24,5 @@ export interface MatchEventResponse {
   /** 선수 이름 */
   userName: string;
   /** 이벤트 로그 */
-  eventLog: string;
+  eventLog: MatchEventType; // NOTE: 임의로 매핑
 }
