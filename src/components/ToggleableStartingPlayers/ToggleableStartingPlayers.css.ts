@@ -1,16 +1,20 @@
 import { style } from '@vanilla-extract/css';
 
+import { commonPaper } from '@/styles/paper.css';
 import { lightThemeVars } from '@/styles/theme.css';
 
-export const rootContainer = style({
-  position: 'relative',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-end',
-  gap: 5,
-  width: '100%',
-  height: 462,
-});
+export const rootContainer = style([
+  commonPaper,
+  {
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+    gap: 5,
+    width: '100%',
+    height: 462,
+  },
+]);
 
 export const toggleButton = style({
   position: 'absolute',

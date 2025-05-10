@@ -134,6 +134,7 @@ function MatchRecordPage() {
             ...s('auto'),
             display: 'flex',
             flexDirection: 'column',
+            gap: 8,
           }}
         >
           <ToggleableStartingPlayers
@@ -142,10 +143,8 @@ function MatchRecordPage() {
           />
           <div
             style={{
-              padding: '24px 8px',
               display: 'flex',
               flexDirection: 'column',
-              gap: 20,
             }}
           >
             <SubstitutionPlayerList
@@ -163,6 +162,7 @@ function MatchRecordPage() {
             ...s('auto'),
             display: 'flex',
             flexDirection: 'column',
+            gap: 8,
           }}
         >
           <ToggleableStartingPlayers
@@ -171,10 +171,8 @@ function MatchRecordPage() {
           />
           <div
             style={{
-              padding: '24px 8px',
               display: 'flex',
               flexDirection: 'column',
-              gap: 20,
             }}
           >
             <SubstitutionPlayerList

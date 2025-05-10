@@ -4,6 +4,7 @@ import {
   MatchUserResponse,
 } from '@/apis/models';
 import { TeamResponse } from '@/apis/models';
+import { MatchEventType } from '@/constants';
 import { lightThemeVars } from '@/styles/theme.css';
 
 export const mockMatchInfo: MatchInfoResponse = {
@@ -44,8 +45,8 @@ export const mockAwayTeam: TeamResponse = {
 
 export const mockHomePlayer: MatchUserResponse = {
   id: 1,
-  name: '홍길동',
-  number: 10,
+  name: '호나우두',
+  number: 99,
   matchPosition: 'FW',
   // profileImageUrl: 'https://example.com/profile1.png',
   goals: 10,
@@ -79,7 +80,7 @@ export const mockLogs: MatchEventResponse[] = Array.from(
   (_, index) => [
     {
       id: index * 3 + 1,
-      eventLog: '유효 슈팅',
+      eventLog: 'VALID_SHOT' as MatchEventType,
       teamId: mockHomeTeam.id,
       teamName: mockHomeTeam.name,
       userId: mockHomePlayer.id,
@@ -88,7 +89,7 @@ export const mockLogs: MatchEventResponse[] = Array.from(
     },
     {
       id: index * 3 + 2,
-      eventLog: '골',
+      eventLog: 'GOAL' as MatchEventType,
       teamId: mockAwayTeam.id,
       teamName: mockAwayTeam.name,
       userId: mockAwayPlayer.id,
@@ -97,12 +98,12 @@ export const mockLogs: MatchEventResponse[] = Array.from(
     },
     {
       id: index * 3 + 3,
-      eventLog: '골',
+      eventLog: 'GOAL' as MatchEventType,
       teamId: mockHomeTeam.id,
       teamName: mockHomeTeam.name,
       userId: mockHomePlayer.id,
       userName: mockHomePlayer.name,
-      elapsedMinutes: 10,
+      elapsedMinutes: 9999,
     },
   ],
 ).flat();

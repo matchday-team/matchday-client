@@ -24,4 +24,6 @@ export interface ScoreResponse {
   foulCount: number;
   /** 경고 횟수 */
   warningCount: number;
+  /** 자책골 횟수 */
+  ownGoalCount: number; // FIXME: 서버에서 추가 필요
 }

@@ -40,6 +40,7 @@ export const Default: Story = {
       offsideCount: 0,
       foulCount: 24,
       warningCount: 10,
+      ownGoalCount: 0,
     },
   },
 };
@@ -54,6 +55,7 @@ export const Empty: Story = {
       offsideCount: 0,
       foulCount: 0,
       warningCount: 0,
+      ownGoalCount: 0,
     },
   },
 };

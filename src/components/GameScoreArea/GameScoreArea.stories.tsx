@@ -47,6 +47,7 @@ export const Default: Story = {
         offsideCount: 0,
         foulCount: 0,
         warningCount: 0,
+        ownGoalCount: 0,
       },
       awayScore: {
         goalCount: 19,
@@ -56,6 +57,7 @@ export const Default: Story = {
         offsideCount: 0,
         foulCount: 0,
         warningCount: 0,
+        ownGoalCount: 0,
       },
       homeTeamId: 1,
       awayTeamId: 2,

@@ -47,6 +47,7 @@ export const Default: Story = {
       foulCount: 10,
       warningCount: 3,
       shotCount: 12,
+      ownGoalCount: 0,
     },
     awayTeamStat: {
       goalCount: 8,
@@ -56,6 +57,7 @@ export const Default: Story = {
       foulCount: 14,
       warningCount: 2,
       shotCount: 8,
+      ownGoalCount: 0,
     },
   },
 };
@@ -71,6 +73,7 @@ export const Empty: Story = {
       foulCount: 0,
       warningCount: 0,
       shotCount: 0,
+      ownGoalCount: 0,
     },
     awayTeamStat: {
       goalCount: 0,
@@ -80,6 +83,7 @@ export const Empty: Story = {
       foulCount: 0,
       warningCount: 0,
       shotCount: 0,
+      ownGoalCount: 0,
     },
   },
 };
@@ -95,6 +99,7 @@ export const Max20: Story = {
       foulCount: 12,
       warningCount: 2,
       shotCount: 10,
+      ownGoalCount: 0,
     },
     awayTeamStat: {
       goalCount: 10,
@@ -104,6 +109,7 @@ export const Max20: Story = {
       foulCount: 12,
       warningCount: 2,
       shotCount: 10,
+      ownGoalCount: 0,
     },
   },
 };

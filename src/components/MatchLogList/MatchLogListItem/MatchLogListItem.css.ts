@@ -13,7 +13,7 @@ export const rootContainer = recipe({
     flexShrink: 0,
     alignItems: 'center',
 
-    gap: 20,
+    gap: 12,
     borderBottom: `1px solid ${lightThemeVars.color.primary[100]}`,
     padding: '0 20px',
     height: 36,
@@ -41,7 +41,7 @@ export const rootContainer = recipe({
 });
 
 // NOTE: 중복 제거 필요해보임 (Typography)
-export const commonText = style({
+const commonText = style({
   lineHeight: 1.4,
   letterSpacing: -0.35,
   fontSize: 14,
@@ -49,7 +49,7 @@ export const commonText = style({
   fontStyle: 'normal',
 });
 
-export const commonLineClamp = style({
+const commonLineClamp = style({
   display: '-webkit-box',
   overflow: 'hidden',
   WebkitLineClamp: 1,
@@ -59,10 +59,30 @@ export const commonLineClamp = style({
 export const teamName = style([
   commonText,
   commonLineClamp,
-  // NOTE: 우선 임의로 길이를 지정해서 ... 처리 추가함
   {
     width: 50,
   },
 ]);
 
-export const text = style([commonText]);
+export const time = style([
+  commonText,
+  {
+    width: 30,
+  },
+]);
+
+export const name = style([
+  commonText,
+  {
+    width: 50,
+    textAlign: 'center',
+  },
+]);
+
+export const event = style([
+  commonText,
+  commonLineClamp,
+  {
+    flex: 1,
+  },
+]);
