@@ -7,9 +7,10 @@ export const rootContainer = recipe({
   base: {
     display: 'flex',
     alignItems: 'center',
-    gap: 14,
     transition: 'background-color 0.3s ease',
-    padding: '6px 24px',
+    paddingTop: 6,
+    paddingBottom: 6,
+    paddingLeft: 24,
     userSelect: 'none', // NOTE: 드래그 할 때 텍스트 선택되는 문제를 방지하기 위함
 
     ':hover': {
@@ -21,15 +22,21 @@ export const rootContainer = recipe({
       true: {
         cursor: 'not-allowed',
       },
+      false: {
+        cursor: 'grab',
+      },
     },
+  },
+  defaultVariants: {
+    disabled: false,
   },
 });
 
 export const profileImage = style({
-  borderRadius: 100,
+  borderRadius: '50%',
   objectFit: 'cover',
-  width: 32,
-  height: 32,
+  width: 28,
+  height: 28,
 });
 
 const commonTextStyle = {
@@ -43,11 +50,12 @@ export const textContainer = recipe({
   base: [
     commonTextStyle,
     {
+      marginLeft: 10,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
       width: 136,
-      height: 44,
+      height: 20,
     },
   ],
   variants: {
@@ -74,6 +82,7 @@ export const statContainer = recipe({
     display: 'flex',
     justifyContent: 'space-between',
     gap: 16,
+    marginLeft: 33,
   },
   variants: {
     disabled: {

@@ -1,14 +1,10 @@
 import { style } from '@vanilla-extract/css';
 
-import { lightThemeVars } from '@/styles/theme.css';
-
 export const rootContainer = style({
   boxSizing: 'border-box',
   display: 'flex',
   flexDirection: 'column',
-  border: `1px solid ${lightThemeVars.color.primary['100']}`,
-  borderRadius: 10,
-  height: 186,
+  height: 264,
 });
 
 export const header = style({
@@ -28,7 +24,15 @@ export const title = style({
 
 export const list = style({
   display: 'flex',
+  flex: 1,
   flexDirection: 'column',
-  height: 144,
   overflowY: 'auto',
+
+  // FIXME: 디자인과 일치하지는 않는데 - 우선 진행
+  maskImage: `linear-gradient(
+    to bottom,
+    #fff 30%,
+    rgba(255,255,255,0.70) 75%,
+    rgba(255,255,255,0.3) 100%
+  )`,
 });
