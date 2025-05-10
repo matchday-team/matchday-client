@@ -21,6 +21,15 @@ export const STAT_LIST: Stat[] = [
   '자책골',
 ];
 
+export const STAT_LIST_FOR_COMPARE: Stat[] = [
+  '슈팅',
+  '유효 슈팅',
+  '코너 킥',
+  '오프 사이드',
+  '파울',
+  '경고',
+];
+
 export const statMapper: Record<Stat, keyof ScoreResponse> = {
   득점: 'goalCount',
   슈팅: 'goalCount',
