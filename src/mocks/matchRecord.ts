@@ -44,8 +44,8 @@ export const mockAwayTeam: TeamResponse = {
 
 export const mockHomePlayer: MatchUserResponse = {
   id: 1,
-  name: '홍길동',
-  number: 10,
+  name: '호나우두',
+  number: 99,
   matchPosition: 'FW',
   // profileImageUrl: 'https://example.com/profile1.png',
   goals: 10,
@@ -102,7 +102,7 @@ export const mockLogs: MatchEventResponse[] = Array.from(
       teamName: mockHomeTeam.name,
       userId: mockHomePlayer.id,
       userName: mockHomePlayer.name,
-      elapsedMinutes: 10,
+      elapsedMinutes: 9999,
     },
   ],
 ).flat();

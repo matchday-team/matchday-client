@@ -17,10 +17,10 @@ export const MatchLogListItem = ({ teams, log }: MatchLogListItemProps) => {
         team: log.teamId === teams.home.id ? 'home' : 'away',
       })}
     >
-      <span className={styles.text}>{log.elapsedMinutes}&quot;</span>
+      <span className={styles.time}>{log.elapsedMinutes}&quot;</span>
       <span className={styles.teamName}>{log.teamName}</span>
-      <span className={styles.text}>{log.userName}</span>
-      <span className={styles.text}>{log.eventLog}</span>
+      <span className={styles.name}>{log.userName}</span>
+      <span className={styles.event}>{log.eventLog}</span>
     </li>
   );
 };
