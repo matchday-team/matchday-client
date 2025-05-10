@@ -1,6 +1,6 @@
 import { ScoreResponse } from '@/apis/models';
 
-type Stat =
+export type Stat =
   | '득점'
   | '슈팅'
   | '유효 슈팅'
