@@ -60,38 +60,18 @@ const router = createRouter({
   routeTree: rootRoute,
 });
 
-export const Default: Story = {
+const createStory = (viewportName: string): Story => ({
   args: {
     children: <HomeContent />,
   },
   parameters: {
     viewport: {
-      defaultViewport: 'largeScreen',
+      defaultViewport: viewportName,
     },
   },
   render: () => <RouterProvider router={router} />,
-};
+});
 
-export const SmallScreen: Story = {
-  args: {
-    children: <HomeContent />,
-  },
-  parameters: {
-    viewport: {
-      defaultViewport: 'smallScreen',
-    },
-  },
-  render: () => <RouterProvider router={router} />,
-};
-
-export const LargeScreen: Story = {
-  args: {
-    children: <HomeContent />,
-  },
-  parameters: {
-    viewport: {
-      defaultViewport: 'largeScreen',
-    },
-  },
-  render: () => <RouterProvider router={router} />,
-};
+export const Default = createStory('largeScreen');
+export const SmallScreen = createStory('smallScreen');
+export const LargeScreen = createStory('largeScreen');
