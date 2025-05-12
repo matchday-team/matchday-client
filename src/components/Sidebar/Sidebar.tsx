@@ -16,10 +16,10 @@ import {
   UserIcon,
 } from '@/assets/icons';
 
-import { FooterItem } from './FooterItem';
-import { NavItem } from './NavItem';
-import { useSidebar } from './context';
-import * as styles from './sidebar.css';
+import { useSidebar } from './Context';
+import { FooterItemList } from './FooterItem/FooterItem';
+import { NavItemList } from './NavItem/NavItem';
+import * as styles from './Sidebar.css';
 
 export function Sidebar() {
   const { isOpen, toggle, showToggle } = useSidebar();
@@ -98,29 +98,15 @@ export function Sidebar() {
       </div>
 
       <div className={styles.nav({ isOpen })}>
-        {navItems.map(item => (
-          <NavItem
-            key={item.label}
-            to={item.to}
-            icon={item.icon}
-            label={isOpen ? item.label : undefined}
-            isActive={currentPath === item.path}
-            isOpen={isOpen}
-          />
-        ))}
+        <NavItemList
+          items={navItems}
+          isOpen={isOpen}
+          currentPath={currentPath}
+        />
       </div>
 
       <div className={styles.footer({ isOpen })}>
-        {footerItems.map(item => (
-          <FooterItem
-            key={item.label}
-            to={item.to}
-            icon={item.icon}
-            label={isOpen ? item.label : undefined}
-            showArrow={isOpen}
-            isOpen={isOpen}
-          />
-        ))}
+        <FooterItemList items={footerItems} isOpen={isOpen} />
       </div>
 
       <div className={styles.matchDayLogo({ isOpen })}>
