@@ -2,6 +2,6 @@ import {
   label,
   navItem,
   navItemIcon,
-} from '@/components/Sidebar/sidebarCommon.css.ts';
+} from '@/components/Sidebar/SidebarCommon.css';
 
 export { navItem, navItemIcon, label };

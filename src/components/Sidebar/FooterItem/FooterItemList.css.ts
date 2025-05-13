@@ -5,7 +5,7 @@ import {
   footerItemIcon,
   label,
   transitionTiming,
-} from '@/components/Sidebar/sidebarCommon.css.ts';
+} from '@/components/Sidebar/SidebarCommon.css';
 import { lightThemeVars } from '@/styles/theme.css';
 
 export { footer, footerItemIcon, label, transitionTiming };

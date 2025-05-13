@@ -4,7 +4,7 @@ import { Link } from '@tanstack/react-router';
 
 import { CheckRightIcon } from '@/assets/icons';
 
-import * as styles from './FooterItem.css';
+import * as styles from './FooterItemList.css';
 
 interface FooterItemProps {
   to: string;

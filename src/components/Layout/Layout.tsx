@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { Sidebar, SidebarProvider } from '@/components/Sidebar';
 
-import * as styles from './layout.css';
+import * as styles from './Layout.css';
 
 interface LayoutProps {
   children: ReactNode;

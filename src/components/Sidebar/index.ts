@@ -1,2 +1,4 @@
 export * from './Sidebar';
-export * from './Context';
+export * from './SidebarContext';
+export * from './NavItem';
+export * from './FooterItem';

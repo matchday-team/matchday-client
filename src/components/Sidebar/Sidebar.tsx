@@ -16,10 +16,10 @@ import {
   UserIcon,
 } from '@/assets/icons';
 
-import { useSidebar } from './Context';
-import { FooterItemList } from './FooterItem/FooterItem';
-import { NavItemList } from './NavItem/NavItem';
+import { FooterItemList } from './FooterItem';
+import { NavItemList } from './NavItem';
 import * as styles from './Sidebar.css';
+import { useSidebar } from './SidebarContext';
 
 export function Sidebar() {
   const { isOpen, toggle, showToggle } = useSidebar();

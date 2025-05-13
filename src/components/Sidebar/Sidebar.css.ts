@@ -10,7 +10,7 @@ import {
   icon,
   nav,
   transitionTiming,
-} from './sidebarCommon.css';
+} from './SidebarCommon.css';
 
 export { nav, footerItemIcon, footer, icon, transitionTiming };
 

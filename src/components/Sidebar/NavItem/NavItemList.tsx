@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import { Link } from '@tanstack/react-router';
 
-import * as styles from './Navitem.css';
+import * as styles from './NavItemList.css';
 
 interface NavItemProps {
   to: string;
