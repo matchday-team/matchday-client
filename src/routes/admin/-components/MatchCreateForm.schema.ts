@@ -16,8 +16,8 @@ export const createSchema = (teamList: TeamSearchResponse[]): RJSFSchema => ({
     'matchType',
     'stadium',
     'matchDate',
-    'startTime',
-    'endTime',
+    'plannedStartTime',
+    'plannedEndTime',
     'mainRefereeName',
     'assistantReferee1',
     'assistantReferee2',
@@ -69,12 +69,12 @@ export const createSchema = (teamList: TeamSearchResponse[]): RJSFSchema => ({
       format: 'date',
       default: timeUtils.YYYYMMDD(),
     },
-    startTime: {
+    plannedStartTime: {
       type: 'string',
       title: '경기 시작 시간',
       default: timeUtils.nowHHMMSS(),
     },
-    endTime: {
+    plannedEndTime: {
       type: 'string',
       title: '경기 종료 시간',
       default: timeUtils.twoHoursLaterHHMMSS(),
