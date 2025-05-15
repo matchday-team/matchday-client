@@ -1,8 +1,6 @@
 import { teamApi } from '@/apis/fetchers';
 
-const queryKeyNamespaces = {
-  teams: 'teams',
-};
+import { queryKeyNamespaces } from './_namespaces';
 
 export const queryKeys = {
   teamById: (teamId: number) => [queryKeyNamespaces.teams, teamId],
