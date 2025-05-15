@@ -1,3 +1,4 @@
+import { DeepOmit } from '@/\butils-type';
 import { ApiResponse, MatchEventResponse } from '@/apis/models';
 
 import {
@@ -18,7 +19,7 @@ type MatchEventType =
   | 'RED_CARD'
   | 'OWN_GOAL';
 
-export interface MatchRecordRequest {
+export interface MatchRecordPlayerStatRequest {
   token: string; // 현재는 Archives로 등록된 user의 ID
   data: {
     userId: number;
@@ -28,10 +29,20 @@ export interface MatchRecordRequest {
 }
 
 export const requestMapperDefinition = {
-  record: {
+  recordPlayerStat: {
     channelMapper: (matchId: number) => `/app/match/${matchId}`,
-    requestMapper: (payload: MatchRecordRequest) => {
-      return JSON.stringify(payload);
+    requestMapper: (
+      payload: DeepOmit<MatchRecordPlayerStatRequest, 'data.description'>,
+    ) => {
+      // NOTE: description 필드는 무의미해서 요청에서 제외하고 빈 값으로 전달
+      return JSON.stringify({
+        token: payload.token,
+        data: {
+          userId: payload.data.userId,
+          eventType: payload.data.eventType,
+          description: '',
+        },
+      });
     },
   },
 } satisfies RequestMapperDefinition;
