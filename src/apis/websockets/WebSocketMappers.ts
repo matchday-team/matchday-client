@@ -1,24 +1,11 @@
 import { DeepOmit } from '@/\butils-type';
 import { ApiResponse, MatchEventResponse } from '@/apis/models';
+import { MatchEventType } from '@/constants';
 
 import {
   RequestMapperDefinition,
   ResponseMapperDefinition,
 } from './SharedTypeSafeWebSocket';
-
-export enum MatchEventType {
-  GOAL = 'GOAL',
-  ASSIST = 'ASSIST',
-  SHOT = 'SHOT',
-  VALID_SHOT = 'VALID_SHOT',
-  FOUL = 'FOUL',
-  OFFSIDE = 'OFFSIDE',
-  SUB_IN = 'SUB_IN',
-  SUB_OUT = 'SUB_OUT',
-  YELLOW_CARD = 'YELLOW_CARD',
-  RED_CARD = 'RED_CARD',
-  OWN_GOAL = 'OWN_GOAL',
-}
 
 export interface MatchRecordPlayerStatRequest {
   token: string; // 현재는 Archives로 등록된 user의 ID

@@ -80,7 +80,7 @@ export const mockLogs: MatchEventResponse[] = Array.from(
   (_, index) => [
     {
       id: index * 3 + 1,
-      eventLog: 'VALID_SHOT' as MatchEventType,
+      eventLog: MatchEventType.VALID_SHOT,
       teamId: mockHomeTeam.id,
       teamName: mockHomeTeam.name,
       userId: mockHomePlayer.id,
@@ -89,7 +89,7 @@ export const mockLogs: MatchEventResponse[] = Array.from(
     },
     {
       id: index * 3 + 2,
-      eventLog: 'GOAL' as MatchEventType,
+      eventLog: MatchEventType.GOAL,
       teamId: mockAwayTeam.id,
       teamName: mockAwayTeam.name,
       userId: mockAwayPlayer.id,
@@ -98,7 +98,7 @@ export const mockLogs: MatchEventResponse[] = Array.from(
     },
     {
       id: index * 3 + 3,
-      eventLog: 'GOAL' as MatchEventType,
+      eventLog: MatchEventType.GOAL,
       teamId: mockHomeTeam.id,
       teamName: mockHomeTeam.name,
       userId: mockHomePlayer.id,

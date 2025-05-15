@@ -7,7 +7,6 @@ import { useSnackbar } from 'notistack';
 import { useCreateOrUpdateMatchMemoMutation } from '@/apis/mutations';
 import { matchRecordQuery, teamQuery } from '@/apis/queries';
 import { getWebSocketApi } from '@/apis/websockets';
-import { MatchEventType } from '@/apis/websockets/WebSocketMappers';
 import {
   GameScoreArea,
   MatchLogList,
@@ -19,6 +18,7 @@ import {
   TeamStatCounterGrid,
   ToggleableStartingPlayers,
 } from '@/components';
+import { MatchEventType } from '@/constants';
 import { queryClient } from '@/react-query-provider';
 import { commonPaper } from '@/styles/paper.css';
 import { debounce } from '@/utils';
