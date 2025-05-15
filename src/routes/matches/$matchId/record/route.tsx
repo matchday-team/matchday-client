@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useParams } from '@tanstack/react-router';
 import { useSnackbar } from 'notistack';
 
 import { useCreateOrUpdateMatchMemoMutation } from '@/apis/mutations';
 import { matchRecordQuery, teamQuery } from '@/apis/queries';
 import { getWebSocketApi } from '@/apis/websockets';
+import { MatchEventType } from '@/apis/websockets/WebSocketMappers';
 import {
   GameScoreArea,
   MatchLogList,
@@ -35,6 +36,7 @@ export const Route = createFileRoute('/matches/$matchId/record')({
       queryClient.ensureQueryData(matchRecordQuery.scoreQuery(matchId)),
       queryClient.ensureQueryData(matchRecordQuery.eventsQuery(matchId)),
       queryClient.ensureQueryData(matchRecordQuery.playersQuery(matchId)),
+      queryClient.ensureQueryData(matchRecordQuery.memoQuery(matchId)),
     ]);
   },
 });
@@ -47,6 +49,7 @@ const s = (height: number | string) => ({
 });
 
 function MatchRecordPage() {
+  const queryClient = useQueryClient();
   const { enqueueSnackbar } = useSnackbar();
   const { matchId: _matchId } = useParams({ from: '/matches/$matchId/record' });
   const matchId = Number(_matchId);
@@ -114,6 +117,9 @@ function MatchRecordPage() {
             variant: 'info',
           },
         );
+        queryClient.invalidateQueries({
+          queryKey: matchRecordQuery.queryKeys.matchById(matchId), // 일단은 전체 갱신하고 추후 최적화
+        });
       },
     });
 
@@ -121,7 +127,7 @@ function MatchRecordPage() {
       unsubErrorChannel();
       unsubMatchChannel();
     };
-  }, [matchId, wsApi, enqueueSnackbar]);
+  }, [matchId, wsApi, enqueueSnackbar, queryClient]);
 
   return (
     <MatchRecordLayout
@@ -199,7 +205,44 @@ function MatchRecordPage() {
       }
       selectedPlayer={
         <div style={s(302)}>
-          <PlayerStatCounterGrid />
+          <PlayerStatCounterGrid
+            onGoal={(playerId: number) => {
+              wsApi.send('recordPlayerStat', [matchId], {
+                token: playerId.toString(),
+                data: {
+                  userId: playerId,
+                  eventType: MatchEventType.GOAL,
+                },
+              });
+            }}
+            onAssist={(playerId: number) => {
+              wsApi.send('recordPlayerStat', [matchId], {
+                token: playerId.toString(),
+                data: {
+                  userId: playerId,
+                  eventType: MatchEventType.ASSIST,
+                },
+              });
+            }}
+            onYellowCard={(playerId: number) => {
+              wsApi.send('recordPlayerStat', [matchId], {
+                token: playerId.toString(),
+                data: {
+                  userId: playerId,
+                  eventType: MatchEventType.YELLOW_CARD,
+                },
+              });
+            }}
+            onRedCard={(playerId: number) => {
+              wsApi.send('recordPlayerStat', [matchId], {
+                token: playerId.toString(),
+                data: {
+                  userId: playerId,
+                  eventType: MatchEventType.RED_CARD,
+                },
+              });
+            }}
+          />
         </div>
       }
       timer={
