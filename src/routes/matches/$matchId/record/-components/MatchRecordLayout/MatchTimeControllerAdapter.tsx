@@ -1,6 +1,10 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { MatchInfoResponse } from '@/apis/models';
+import {
+  MatchHalfTimeRequestHalfType,
+  MatchHalfTimeRequestTimeType,
+  MatchInfoResponse,
+} from '@/apis/models';
 import {
   useCancelMatchStartMutation,
   usePatchMatchTimerMutation,
@@ -75,16 +79,22 @@ export const MatchTimeControllerAdapter = ({
 
   const startMatchTimer = () => {
     patchMatchTimer({
-      halfType: period === 'not-started' ? 'first' : 'second',
-      isStart: true,
+      halfType:
+        period === 'not-started'
+          ? MatchHalfTimeRequestHalfType.FIRST_HALF
+          : MatchHalfTimeRequestHalfType.SECOND_HALF,
+      timeType: MatchHalfTimeRequestTimeType.START_TIME,
       time: getHHMMSSofDate(),
     });
   };
 
   const stopMatchTimer = () => {
     patchMatchTimer({
-      halfType: period === 'first' ? 'first' : 'second',
-      isStart: false,
+      halfType:
+        period === 'first'
+          ? MatchHalfTimeRequestHalfType.FIRST_HALF
+          : MatchHalfTimeRequestHalfType.SECOND_HALF,
+      timeType: MatchHalfTimeRequestTimeType.END_TIME,
       time: getHHMMSSofDate(),
     });
   };

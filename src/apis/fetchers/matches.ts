@@ -3,6 +3,7 @@ import type {
   ApiResponse,
   MatchCreateRequest,
   MatchEventResponse,
+  MatchHalfTimeRequest,
   MatchInfoResponse,
   MatchListResponse,
   MatchMemoResponse,
@@ -85,17 +86,13 @@ export const postMatchMemo = async (matchId: number, memo: string) => {
 
 export const patchMatchTimer = async (
   matchId: number,
-  time: string, // hh:mm:ss 포맷
-  halfType: 'first' | 'second',
-  isStart: boolean,
+  request: MatchHalfTimeRequest,
 ) => {
-  const fieldName = isStart ? 'startTime' : 'endTime';
-
-  const response = await http.patch(`v1/matches/${matchId}/${halfType}-time`, {
+  const response = await http.patch(`v1/matches/${matchId}/time`, {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ [fieldName]: time }),
+    body: JSON.stringify(request),
   });
 
   return response.json() as Promise<ApiResponse<string>>; // "시간 등록 완료"
