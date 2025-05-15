@@ -7,5 +7,11 @@
  */
 
 export interface UserCreateRequest {
+  /** 유저 이름 */
   name: string;
+  /**
+   * 유저 프로필 이미지명
+   * @nullable
+   */
+  profileImg: string | null;
 }

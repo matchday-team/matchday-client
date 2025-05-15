@@ -6,7 +6,10 @@
  * OpenAPI spec version: 0.0.1
  */
 
+/**
+ * 프로필 사진 등록/조회 URL 응답
+ */
 export interface S3PresignedResponse {
+  /** 프로필 등록/조회 URL */
   url: string;
-  fileName: string;
 }

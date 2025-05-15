@@ -6,12 +6,11 @@
  * OpenAPI spec version: 0.0.1
  */
 
-/**
- * 팀명 검색 응답 객체
- */
-export interface TeamSearchResponse {
-  /** 팀 ID */
-  id: number;
-  /** 팀 이름 */
-  name: string;
+export interface MatchUserGridUpdateRequest {
+  /**
+   * 매치에서의 선수 그리드 좌표
+   * @minimum 0
+   * @maximum 29
+   */
+  matchGrid: number;
 }

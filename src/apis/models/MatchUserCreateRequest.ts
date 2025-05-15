@@ -13,12 +13,23 @@ import type { MatchUserCreateRequestRole } from './MatchUserCreateRequestRole';
 export interface MatchUserCreateRequest {
   /** 사용자 ID */
   userId: number;
-  /** 팀 ID */
-  teamId: number;
+  /**
+   * 팀 ID
+   * @nullable
+   */
+  teamId: number | null;
   /** 매치에서의 역할 */
   role: MatchUserCreateRequestRole;
-  /** 매치에서의 포지션 */
-  matchPosition: string;
-  /** 매치에서의 그리드 위치 */
-  matchGrid: number;
+  /**
+   * 매치에서의 포지션
+   * @nullable
+   */
+  matchPosition: string | null;
+  /**
+   * 매치에서의 선수 그리드 좌표(0~29)
+   * @minimum 0
+   * @maximum 29
+   * @nullable
+   */
+  matchGrid: number | null;
 }

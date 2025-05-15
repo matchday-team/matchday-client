@@ -6,6 +6,9 @@
  * OpenAPI spec version: 0.0.1
  */
 
+/**
+ * 매치 정보 응답 객체
+ */
 export interface MatchInfoResponse {
   /** id */
   id: number;
@@ -19,16 +22,28 @@ export interface MatchInfoResponse {
   matchDate: string;
   plannedStartTime: string;
   plannedEndTime: string;
-  /** 주심 */
-  mainRefereeName: string;
-  /** 부심1 */
-  assistantReferee1: string;
-  /** 부심2 */
-  assistantReferee2: string;
-  /** 대기심 */
-  fourthReferee: string;
-  firstHalfStartTime: string | null;
-  secondHalfStartTime: string | null;
-  firstHalfEndTime: string | null;
-  secondHalfEndTime: string | null;
+  /**
+   * 주심
+   * @nullable
+   */
+  mainRefereeName: string | null;
+  /**
+   * 부심1
+   * @nullable
+   */
+  assistantReferee1: string | null;
+  /**
+   * 부심2
+   * @nullable
+   */
+  assistantReferee2: string | null;
+  /**
+   * 대기심
+   * @nullable
+   */
+  fourthReferee: string | null;
+  firstHalfStartTime: string;
+  firstHalfEndTime: string;
+  secondHalfStartTime: string;
+  secondHalfEndTime: string;
 }

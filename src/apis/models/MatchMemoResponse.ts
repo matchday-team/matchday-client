@@ -6,6 +6,13 @@
  * OpenAPI spec version: 0.0.1
  */
 
+/**
+ * 매치별 메모 응답 객체
+ */
 export interface MatchMemoResponse {
-  memo: string;
+  /**
+   * 메모
+   * @nullable
+   */
+  memo: string | null;
 }

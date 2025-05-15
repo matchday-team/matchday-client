@@ -5,6 +5,7 @@
  * MatchDay 요구사항에 대한 REST API
  * OpenAPI spec version: 0.0.1
  */
+import type { MatchCreateRequestMatchState } from './MatchCreateRequestMatchState';
 import type { MatchCreateRequestMatchType } from './MatchCreateRequestMatchType';
 
 export interface MatchCreateRequest {
@@ -20,14 +21,28 @@ export interface MatchCreateRequest {
   stadium: string;
   /** 경기 일자 */
   matchDate: string;
-  startTime: string;
-  endTime: string;
-  /** 주심 */
-  mainRefereeName: string;
-  /** 부심1 */
-  assistantReferee1: string;
-  /** 부심2 */
-  assistantReferee2: string;
-  /** 대기심 */
-  fourthReferee: string;
+  plannedStartTime: string;
+  plannedEndTime: string;
+  /**
+   * 주심
+   * @nullable
+   */
+  mainRefereeName: string | null;
+  /**
+   * 부심1
+   * @nullable
+   */
+  assistantReferee1: string | null;
+  /**
+   * 부심2
+   * @nullable
+   */
+  assistantReferee2: string | null;
+  /**
+   * 대기심
+   * @nullable
+   */
+  fourthReferee: string | null;
+  /** 경기 상태 (SCHEDULED, ONGOING, FINISHED) */
+  matchState: MatchCreateRequestMatchState;
 }

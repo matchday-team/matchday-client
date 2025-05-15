@@ -6,11 +6,23 @@
  * OpenAPI spec version: 0.0.1
  */
 
+/**
+ * 팀 정보 응답 객체
+ */
 export interface TeamResponse {
+  /** 팀 ID */
   id: number;
+  /** 팀 이름 */
   name: string;
+  /** 팀 컬러(상의 컬러) */
   teamColor: string;
+  /** 팀 하의 컬러 */
   bottomColor: string;
+  /** 팀 스타킹 컬러 */
   stockingColor: string;
-  teamImg: string;
+  /**
+   * 팀 이미지
+   * @nullable
+   */
+  teamImg: string | null;
 }

@@ -7,6 +7,9 @@
  */
 import type { MatchListResponseMatchState } from './MatchListResponseMatchState';
 
+/**
+ * 매치 리스트 응답 객체
+ */
 export interface MatchListResponse {
   /** 매치 ID */
   matchId: number;
@@ -20,8 +23,8 @@ export interface MatchListResponse {
   awayTeamName: string;
   /** 매치명 */
   matchTitle: string;
-  matchStartTime: string;
-  matchEndTime: string;
+  plannedStartTime: string;
+  plannedEndTime: string;
   /** 매치 장소 */
   stadium: string;
   /** 홈팀 스코어 */
