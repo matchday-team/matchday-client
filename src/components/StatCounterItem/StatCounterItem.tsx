@@ -29,7 +29,8 @@ export const StatCounterItem = ({
           className={styles.button}
           onClick={onDecrement}
           aria-label='감소'
-          disabled={disabled || buttonDisabled || value === 0}
+          disabled={true} // 현재 기능 미구현
+          // disabled={disabled || buttonDisabled || value === 0}
         >
           <MinusIcon />
         </button>
