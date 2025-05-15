@@ -1,1 +1,1 @@
-export * from 'deep-utility-types';
+export type { DeepOmit } from 'deep-utility-types';
