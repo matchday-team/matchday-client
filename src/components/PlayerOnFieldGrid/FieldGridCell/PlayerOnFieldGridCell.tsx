@@ -11,6 +11,7 @@ interface PlayerOnFieldGridCellProps {
   player: MatchUserResponse;
   isSelected?: boolean;
   onClick?: () => void;
+  onSwap?: (inPlayerId: number, outPlayerId: number) => void;
 }
 
 const fallbackImageHandler = createFallbackImageHandler();
@@ -19,6 +20,7 @@ export const PlayerOnFieldGridCell = ({
   player,
   isSelected,
   onClick,
+  onSwap,
 }: PlayerOnFieldGridCellProps) => {
   const { isDragOver, hoverTargetRef } = useIsDragOver<HTMLDivElement>();
 
@@ -27,8 +29,15 @@ export const PlayerOnFieldGridCell = ({
     e.dataTransfer.dropEffect = 'move'; // Q. 필요할까?
   };
 
+  // handleSwap을 여기까지 전달하기는 좀 먼데?
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    console.log('drop', e, e.dataTransfer.getData('application/json'));
+    const rawData = e.dataTransfer.getData('application/json');
+    const playerComingIn = JSON.parse(rawData) as MatchUserResponse;
+
+    console.log('playerComingIn', playerComingIn);
+    console.log('player', player);
+    console.log('onSwap', onSwap);
+    onSwap?.(playerComingIn.id, player.id);
 
     // NOTE:
     // 1. ws API 호출 (Promise 반환)

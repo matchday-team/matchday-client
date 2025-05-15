@@ -13,9 +13,10 @@ import { teamColor } from './TeamColor.css';
 interface PlayerListProps {
   team?: TeamResponse;
   players: MatchUserResponse[];
+  onSwap?: (inPlayerId: number, outPlayerId: number) => void;
 }
 
-export const PlayerList = ({ team, players }: PlayerListProps) => {
+export const PlayerList = ({ team, players, onSwap }: PlayerListProps) => {
   const setFallbackImageIfLoadFail = (
     e: SyntheticEvent<HTMLImageElement, Event>,
   ) => {
@@ -55,7 +56,7 @@ export const PlayerList = ({ team, players }: PlayerListProps) => {
         </div>
       </div>
       {players.length > 0 ? (
-        <PlayerListContent team={team} players={players} />
+        <PlayerListContent team={team} players={players} onSwap={onSwap} />
       ) : (
         <EmptyContent />
       )}
@@ -66,9 +67,11 @@ export const PlayerList = ({ team, players }: PlayerListProps) => {
 const PlayerListContent = ({
   team,
   players,
+  onSwap,
 }: {
   team: TeamResponse;
   players: MatchUserResponse[];
+  onSwap?: (inPlayerId: number, outPlayerId: number) => void;
 }) => {
   const { isSelected, selectedPlayer, selectPlayer } = useSelectedPlayerStore();
 
@@ -80,6 +83,7 @@ const PlayerListContent = ({
           player={player}
           isSelected={isSelected && selectedPlayer.player.id === player.id}
           onClick={() => selectPlayer({ team, player })}
+          onSwap={onSwap}
         />
       ))}
     </ul>

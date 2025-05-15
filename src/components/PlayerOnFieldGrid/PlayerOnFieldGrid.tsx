@@ -11,11 +11,13 @@ const TOTAL_CELLS = 30;
 interface PlayerOnFieldGridProps {
   team?: TeamResponse;
   players: MatchUserResponse[];
+  onSwap?: (inPlayerId: number, outPlayerId: number) => void;
 }
 
 export const PlayerOnFieldGrid = ({
   team,
   players,
+  onSwap,
 }: PlayerOnFieldGridProps) => {
   const { isSelected, selectedPlayer, selectPlayer } = useSelectedPlayerStore();
 
@@ -45,6 +47,7 @@ export const PlayerOnFieldGrid = ({
                 }
                 selectPlayer({ team, player });
               }}
+              onSwap={onSwap}
             />
           );
         })}

@@ -90,6 +90,18 @@ function MatchRecordPage() {
     debouncedUpdateMemo(newMemo);
   };
 
+  const handleSwap = (inPlayerId: number, outPlayerId: number) => {
+    console.log('handleSwap', inPlayerId, outPlayerId);
+
+    wsApi.send('recordPlayerExchange', [matchId], {
+      token: matchPlayers.data.homeTeam.starters[0].id.toString(),
+      data: {
+        fromMatchUserId: outPlayerId,
+        toUserId: inPlayerId,
+      },
+    });
+  };
+
   useEffect(() => {
     const unsubErrorChannel = wsApi.subscribe('error', [], {
       error: error => {
@@ -146,6 +158,7 @@ function MatchRecordPage() {
           <ToggleableStartingPlayers
             team={homeTeam.data}
             players={matchPlayers.data.homeTeam.starters}
+            onSwap={handleSwap}
           />
           <div
             style={{
@@ -157,7 +170,11 @@ function MatchRecordPage() {
               team={homeTeam.data}
               players={matchPlayers.data.homeTeam.substitutes}
             />
-            <TeamStatCounterGrid stats={matchScore.data.homeScore} />
+            <TeamStatCounterGrid
+              team={homeTeam.data}
+              stats={matchScore.data.homeScore}
+              onStatChange={handleTeamStatChange}
+            />
           </div>
         </div>
       }
@@ -174,6 +191,7 @@ function MatchRecordPage() {
           <ToggleableStartingPlayers
             team={awayTeam.data}
             players={matchPlayers.data.awayTeam.starters}
+            onSwap={handleSwap}
           />
           <div
             style={{
