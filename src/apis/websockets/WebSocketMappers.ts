@@ -6,18 +6,19 @@ import {
   ResponseMapperDefinition,
 } from './SharedTypeSafeWebSocket';
 
-type MatchEventType =
-  | 'GOAL'
-  | 'ASSIST'
-  | 'SHOT'
-  | 'VALID_SHOT'
-  | 'FOUL'
-  | 'OFFSIDE'
-  | 'SUB_IN'
-  | 'SUB_OUT'
-  | 'YELLOW_CARD'
-  | 'RED_CARD'
-  | 'OWN_GOAL';
+export enum MatchEventType {
+  GOAL = 'GOAL',
+  ASSIST = 'ASSIST',
+  SHOT = 'SHOT',
+  VALID_SHOT = 'VALID_SHOT',
+  FOUL = 'FOUL',
+  OFFSIDE = 'OFFSIDE',
+  SUB_IN = 'SUB_IN',
+  SUB_OUT = 'SUB_OUT',
+  YELLOW_CARD = 'YELLOW_CARD',
+  RED_CARD = 'RED_CARD',
+  OWN_GOAL = 'OWN_GOAL',
+}
 
 export interface MatchRecordPlayerStatRequest {
   token: string; // 현재는 Archives로 등록된 user의 ID
