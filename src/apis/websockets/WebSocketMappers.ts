@@ -52,15 +52,31 @@ export const requestMapperDefinition = {
   },
   recordPlayerExchange: {
     channelMapper: (matchId: number) => `/app/match/${matchId}/exchange`,
-    requestMapper: (payload: MatchRecordPlayerExchangeRequest) => {
-      return JSON.stringify(payload);
+    requestMapper: (
+      payload: DeepOmit<MatchRecordPlayerExchangeRequest, 'data.message'>,
+    ) => {
+      // NOTE: message 필드는 무의미해서 요청에서 제외하고 빈 값으로 전달
+      return JSON.stringify({
+        token: payload.token,
+        data: {
+          fromMatchUserId: payload.data.fromMatchUserId,
+          toUserId: payload.data.toUserId,
+          message: '',
+        },
+      });
     },
   },
   recordTeamStat: {
     channelMapper: (matchId: number, teamId: number) =>
       `/app/match/${matchId}/teams/${teamId}`,
     requestMapper: (payload: MatchRecordTeamStatRequest) => {
-      return JSON.stringify(payload);
+      return JSON.stringify({
+        token: payload.token,
+        data: {
+          eventType: payload.data.eventType,
+          description: '',
+        },
+      });
     },
   },
 } satisfies RequestMapperDefinition;

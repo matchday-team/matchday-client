@@ -1,4 +1,4 @@
-import { ScoreResponse } from '@/apis/models';
+import { ScoreResponse, TeamResponse } from '@/apis/models';
 import { StatCounterItem } from '@/components/StatCounterItem';
 import {
   MatchEventType,
@@ -11,20 +11,26 @@ import {
 import * as styles from './TeamStatCounterGrid.css';
 
 export interface TeamStatCounterGridProps {
+  team: TeamResponse;
   stats: ScoreResponse;
-  onStatChange?: (stat: MatchEventType, isIncrement: boolean) => void;
+  onStatChange?: (
+    matchEvent: MatchEventType,
+    teamId: number,
+    isIncrement: boolean,
+  ) => void;
 }
 
 export const TeamStatCounterGrid = ({
+  team,
   stats,
   onStatChange,
 }: TeamStatCounterGridProps) => {
   const handleIncrement = (stat: Stat) => {
-    onStatChange?.(mapStatRequestField[stat], true);
+    onStatChange?.(mapStatRequestField[stat], team.id, true);
   };
 
   const handleDecrement = (stat: Stat) => {
-    onStatChange?.(mapStatRequestField[stat], false);
+    onStatChange?.(mapStatRequestField[stat], team.id, false);
   };
 
   const firstLine = teamStatList.slice(0, 4);

@@ -102,6 +102,17 @@ function MatchRecordPage() {
     });
   };
 
+  // FIXME: 생략된 prop: isIncrement: boolean - 현재는 항상 증가만 가능
+  const handleTeamStatChange = (matchEvent: MatchEventType, teamId: number) => {
+    wsApi.send('recordTeamStat', [matchId, teamId], {
+      token: '', // FIXME: 임시
+      data: {
+        eventType: matchEvent,
+        description: '',
+      },
+    });
+  };
+
   useEffect(() => {
     const unsubErrorChannel = wsApi.subscribe('error', [], {
       error: error => {
@@ -203,7 +214,11 @@ function MatchRecordPage() {
               team={awayTeam.data}
               players={matchPlayers.data.awayTeam.substitutes}
             />
-            <TeamStatCounterGrid stats={matchScore.data.awayScore} />
+            <TeamStatCounterGrid
+              team={awayTeam.data}
+              stats={matchScore.data.awayScore}
+              onStatChange={handleTeamStatChange}
+            />
           </div>
         </div>
       }
