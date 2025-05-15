@@ -29,6 +29,23 @@ export interface MatchRecordPlayerStatRequest {
   };
 }
 
+export interface MatchRecordPlayerExchangeRequest {
+  token: string; // 현재는 Archives로 등록된 user의 ID
+  data: {
+    fromMatchUserId: number; // 교체할 선수의 매치 유저 아이디
+    toUserId: number; // 교체할 선수의 유저 아이디
+    message: string; // 교체 사유 등
+  };
+}
+
+export interface MatchRecordTeamStatRequest {
+  token: string; // 현재는 Archives로 등록된 user의 ID
+  data: {
+    eventType: MatchEventType;
+    description: string;
+  };
+}
+
 export const requestMapperDefinition = {
   recordPlayerStat: {
     channelMapper: (matchId: number) => `/app/match/${matchId}`,
@@ -44,6 +61,19 @@ export const requestMapperDefinition = {
           description: '',
         },
       });
+    },
+  },
+  recordPlayerExchange: {
+    channelMapper: (matchId: number) => `/app/match/${matchId}/exchange`,
+    requestMapper: (payload: MatchRecordPlayerExchangeRequest) => {
+      return JSON.stringify(payload);
+    },
+  },
+  recordTeamStat: {
+    channelMapper: (matchId: number, teamId: number) =>
+      `/app/match/${matchId}/teams/${teamId}`,
+    requestMapper: (payload: MatchRecordTeamStatRequest) => {
+      return JSON.stringify(payload);
     },
   },
 } satisfies RequestMapperDefinition;
