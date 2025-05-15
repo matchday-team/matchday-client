@@ -1,6 +1,6 @@
-import { DeepOmit } from '@/\butils-type';
 import { ApiResponse, MatchEventResponse } from '@/apis/models';
 import { MatchEventType } from '@/constants';
+import type { DeepOmit } from '@/utils';
 
 import {
   RequestMapperDefinition,
