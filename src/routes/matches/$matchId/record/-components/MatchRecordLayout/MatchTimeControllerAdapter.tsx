@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 
 import {
   MatchHalfTimeRequestHalfType,
@@ -64,6 +64,7 @@ export const MatchTimeControllerAdapter = ({
 }: {
   matchId: number;
 }) => {
+  const queryClient = useQueryClient();
   const { data: matchInfo } = useSuspenseQuery(
     matchRecordQuery.infoQuery(matchId),
   );
@@ -113,6 +114,9 @@ export const MatchTimeControllerAdapter = ({
       }}
       onReset={() => {
         cancelMatchStart();
+        queryClient.invalidateQueries({
+          queryKey: matchRecordQuery.queryKeys.matchById(matchId),
+        });
       }}
     />
   );
