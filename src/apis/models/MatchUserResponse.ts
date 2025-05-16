@@ -10,8 +10,10 @@
  * 매치 참가자 통계 응답
  */
 export interface MatchUserResponse {
-  /** 유저 ID */
+  /** 매치유저 ID */
   id: number;
+  /** 유저 ID */
+  userId: number;
   /** 유저 이름 */
   name: string;
   /** 등번호 */
