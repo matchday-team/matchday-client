@@ -50,6 +50,6 @@ export const mapStatRequestField: Record<Stat, MatchEventType> = {
   '코너 킥': MatchEventType.CORNER_KICK,
   '오프 사이드': MatchEventType.OFFSIDE,
   파울: MatchEventType.FOUL,
-  경고: MatchEventType.CAUTION,
+  경고: MatchEventType.WARNING,
   자책골: MatchEventType.OWN_GOAL,
 };
