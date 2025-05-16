@@ -24,7 +24,7 @@ const setFallbackImageIfLoadFail = (
 };
 
 // TODO: team 추후에 사용하기
-export const PlayerListItem = ({ player, onSwap }: ListItemProps) => {
+export const PlayerListItem = ({ team, player, onSwap }: ListItemProps) => {
   const disabled = player.subOut || player.sentOff;
 
   const { isDragOver, hoverTargetRef } = useIsDragOver<HTMLLIElement>();

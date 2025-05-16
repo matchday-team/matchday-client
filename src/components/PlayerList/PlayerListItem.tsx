@@ -1,6 +1,6 @@
 import { SyntheticEvent } from 'react';
 
-import { MatchUserResponse } from '@/apis/models';
+import { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { ChevronDownIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import { useIsDragOver } from '@/hooks';
@@ -9,6 +9,7 @@ import * as styles from './PlayerListItem.css';
 
 interface PlayerItemProps {
   isSelected: boolean;
+  team: TeamResponse;
   player: MatchUserResponse;
   onClick: () => void;
   onSwap?: (inPlayerId: number, outPlayerId: number) => void;
@@ -20,6 +21,7 @@ const displayDashIfZero = (value: number) => {
 
 export const PlayerItem = ({
   isSelected,
+  team,
   player,
   onClick,
   onSwap,

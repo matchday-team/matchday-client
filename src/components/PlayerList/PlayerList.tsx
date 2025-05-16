@@ -11,7 +11,7 @@ import { PlayerItem } from './PlayerListItem';
 import { teamColor } from './TeamColor.css';
 
 interface PlayerListProps {
-  team?: TeamResponse;
+  team: TeamResponse;
   players: MatchUserResponse[];
   onSwap?: (inPlayerId: number, outPlayerId: number) => void;
 }
@@ -80,6 +80,7 @@ const PlayerListContent = ({
       {players.map(player => (
         <PlayerItem
           key={player.id}
+          team={team}
           player={player}
           isSelected={isSelected && selectedPlayer.player.id === player.id}
           onClick={() => selectPlayer({ team, player })}

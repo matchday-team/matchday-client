@@ -7,7 +7,7 @@ import { PlayerOnFieldGrid } from '@/components/PlayerOnFieldGrid';
 import * as styles from './ToggleableStartingPlayers.css';
 
 interface ToggleableStartingPlayersProps {
-  team?: TeamResponse;
+  team: TeamResponse;
   players: MatchUserResponse[];
   onSwap?: (inPlayerId: number, outPlayerId: number) => void;
 }

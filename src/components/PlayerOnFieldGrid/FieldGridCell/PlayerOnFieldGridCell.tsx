@@ -1,4 +1,4 @@
-import { MatchUserResponse } from '@/apis/models';
+import { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { SoccerballIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import { useIsDragOver } from '@/hooks';
@@ -8,6 +8,7 @@ import * as styles from './PlayerOnFieldGridCell.css';
 import { commonCellContainer } from './commonStyle.css';
 
 interface PlayerOnFieldGridCellProps {
+  team: TeamResponse;
   player: MatchUserResponse;
   isSelected?: boolean;
   onClick?: () => void;
@@ -17,6 +18,7 @@ interface PlayerOnFieldGridCellProps {
 const fallbackImageHandler = createFallbackImageHandler();
 
 export const PlayerOnFieldGridCell = ({
+  team,
   player,
   isSelected,
   onClick,
