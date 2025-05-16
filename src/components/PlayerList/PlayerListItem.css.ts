@@ -31,12 +31,22 @@ export const rootContainer = recipe({
         borderBottom: `2px dashed ${teamColor}`,
       },
     },
+    isDragOver: {
+      true: {
+        backgroundColor: lightThemeVars.color.gray[100], // NOTE: 일반 hover보다 조금 더 명확히 보이게
+      },
+    },
+  },
+  defaultVariants: {
+    isSelected: false,
+    isDragOver: false,
   },
 });
 
 export const profileImage = style({
   borderRadius: '50%',
   objectFit: 'cover',
+  pointerEvents: 'none', // NOTE: 드래그 할 때 텍스트 선택되는 문제를 방지하기 위함
   width: 24,
   height: 24,
 });

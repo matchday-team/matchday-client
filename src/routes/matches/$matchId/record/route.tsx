@@ -199,6 +199,7 @@ function MatchRecordPage() {
             <SubstitutionPlayerList
               team={homeTeam.data}
               players={homeTeamSubstitutes}
+              onSwap={handleSwap}
             />
             <TeamStatCounterGrid
               team={homeTeam.data}
@@ -232,6 +233,7 @@ function MatchRecordPage() {
             <SubstitutionPlayerList
               team={awayTeam.data}
               players={awayTeamSubstitutes}
+              onSwap={handleSwap}
             />
             <TeamStatCounterGrid
               team={awayTeam.data}

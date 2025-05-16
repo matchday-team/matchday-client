@@ -24,26 +24,22 @@ export const PlayerOnFieldGridCell = ({
 }: PlayerOnFieldGridCellProps) => {
   const { isDragOver, hoverTargetRef } = useIsDragOver<HTMLDivElement>();
 
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'move'; // Q. 필요할까?
+  const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
+    e.dataTransfer.setData('application/json', JSON.stringify(player));
   };
 
-  // handleSwap을 여기까지 전달하기는 좀 먼데?
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+  };
+
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     const rawData = e.dataTransfer.getData('application/json');
     const playerComingIn = JSON.parse(rawData) as MatchUserResponse;
 
-    console.log('playerComingIn', playerComingIn);
-    console.log('player', player);
-    console.log('onSwap', onSwap);
-    onSwap?.(playerComingIn.id, player.id);
+    console.log('handleDrop - playerComingIn:', playerComingIn, player);
 
-    // NOTE:
-    // 1. ws API 호출 (Promise 반환)
-    // 2. Promise 대기
-    // 3. 성공 시 setQueryData로 업데이트
-    // 4. 100% 서버 상태에 의존하기 때문에 현재 구현할 수 없는 기능이긴 함
+    onSwap?.(playerComingIn.id, player.id);
   };
 
   return (
@@ -51,8 +47,10 @@ export const PlayerOnFieldGridCell = ({
       className={commonCellContainer({ isSelected, isDragOver })}
       onClick={onClick}
       ref={hoverTargetRef}
+      onDragStart={handleDragStart}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
+      draggable={true}
     >
       <div className={styles.playerImageContainer}>
         <img

@@ -3,6 +3,7 @@ import { SyntheticEvent } from 'react';
 import { MatchUserResponse } from '@/apis/models';
 import { ChevronDownIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
+import { useIsDragOver } from '@/hooks';
 
 import * as styles from './PlayerListItem.css';
 
@@ -10,6 +11,7 @@ interface PlayerItemProps {
   isSelected: boolean;
   player: MatchUserResponse;
   onClick: () => void;
+  onSwap?: (inPlayerId: number, outPlayerId: number) => void;
 }
 
 const displayDashIfZero = (value: number) => {
@@ -20,15 +22,45 @@ export const PlayerItem = ({
   isSelected,
   player,
   onClick,
+  onSwap,
 }: PlayerItemProps) => {
+  const { isDragOver, hoverTargetRef } = useIsDragOver<HTMLLIElement>();
+
   const setFallbackImageIfLoadFail = (
     e: SyntheticEvent<HTMLImageElement, Event>,
   ) => {
     e.currentTarget.src = noProfilePlayerImage;
   };
 
+  const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
+    e.dataTransfer.setData('application/json', JSON.stringify(player));
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLLIElement>) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLLIElement>) => {
+    const playerComingIn = JSON.parse(
+      e.dataTransfer.getData('application/json'),
+    ) as MatchUserResponse;
+
+    console.log('handleDrop - playerComingIn:', playerComingIn, player);
+
+    onSwap?.(playerComingIn.id, player.id);
+  };
+
   return (
-    <li className={styles.rootContainer({ isSelected })} onClick={onClick}>
+    <li
+      className={styles.rootContainer({ isSelected, isDragOver })}
+      onClick={onClick}
+      onDragStart={handleDragStart}
+      onDragOver={handleDragOver}
+      onDrop={handleDrop}
+      draggable={true}
+      ref={hoverTargetRef}
+    >
       <div className={styles.infoContainer}>
         <img
           className={styles.profileImage}
@@ -38,8 +70,7 @@ export const PlayerItem = ({
         />
         <span className={styles.number}>{player.number}</span>
         <span className={styles.name}>{player.name}</span>
-        {/* TODO: 교체 인 여부가 추가되면 분기 처리 추가 */}
-        <ChevronDownIcon className={styles.subInIcon} />
+        {player.subIn && <ChevronDownIcon className={styles.subInIcon} />}
         <span className={styles.position}>{player.matchPosition}</span>
       </div>
       <div className={styles.statContainer}>

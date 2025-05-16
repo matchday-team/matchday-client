@@ -7,6 +7,7 @@ export const playerImageContainer = style({
   position: 'relative',
   display: 'flex',
   justifyContent: 'center',
+  pointerEvents: 'none', // NOTE: 드래그 되지 않게
   width: 60,
   height: 42,
 });
