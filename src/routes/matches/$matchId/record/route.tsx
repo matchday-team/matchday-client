@@ -4,6 +4,7 @@ import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useParams } from '@tanstack/react-router';
 import { useSnackbar } from 'notistack';
 
+import { MatchUserResponse, TeamGroupedUsers } from '@/apis/models';
 import { useCreateOrUpdateMatchMemoMutation } from '@/apis/mutations';
 import { matchRecordQuery, teamQuery } from '@/apis/queries';
 import { getWebSocketApi } from '@/apis/websockets';
@@ -48,6 +49,26 @@ const s = (height: number | string) => ({
   borderRadius: 10,
 });
 
+const dividePlayers = ({ starters, substitutes }: TeamGroupedUsers) => {
+  const result = {
+    starters: [] as MatchUserResponse[],
+    substitutes: [] as MatchUserResponse[],
+  };
+
+  starters.forEach(player => {
+    const targetArray =
+      player.subOut || player.sentOff ? result.substitutes : result.starters;
+    targetArray.push(player);
+  });
+
+  substitutes.forEach(player => {
+    const targetArray = player.subIn ? result.starters : result.substitutes;
+    targetArray.push(player);
+  });
+
+  return result;
+};
+
 function MatchRecordPage() {
   const queryClient = useQueryClient();
   const { enqueueSnackbar } = useSnackbar();
@@ -70,6 +91,11 @@ function MatchRecordPage() {
   const { data: matchPlayers } = useSuspenseQuery(
     matchRecordQuery.playersQuery(matchId),
   );
+  const { starters: homeTeamStarters, substitutes: homeTeamSubstitutes } =
+    dividePlayers(matchPlayers.data.homeTeam);
+  const { starters: awayTeamStarters, substitutes: awayTeamSubstitutes } =
+    dividePlayers(matchPlayers.data.awayTeam);
+
   // FIXME: 얘내는 순차 로딩을 하게 되는데...
   const { data: homeTeam } = useSuspenseQuery(
     teamQuery.byIdQuery(matchInfo.data.homeTeamId),
@@ -161,7 +187,7 @@ function MatchRecordPage() {
         >
           <ToggleableStartingPlayers
             team={homeTeam.data}
-            players={matchPlayers.data.homeTeam.starters}
+            players={homeTeamStarters}
             onSwap={handleSwap}
           />
           <div
@@ -172,7 +198,7 @@ function MatchRecordPage() {
           >
             <SubstitutionPlayerList
               team={homeTeam.data}
-              players={matchPlayers.data.homeTeam.substitutes}
+              players={homeTeamSubstitutes}
             />
             <TeamStatCounterGrid
               team={homeTeam.data}
@@ -194,7 +220,7 @@ function MatchRecordPage() {
         >
           <ToggleableStartingPlayers
             team={awayTeam.data}
-            players={matchPlayers.data.awayTeam.starters}
+            players={awayTeamStarters}
             onSwap={handleSwap}
           />
           <div
@@ -205,7 +231,7 @@ function MatchRecordPage() {
           >
             <SubstitutionPlayerList
               team={awayTeam.data}
-              players={matchPlayers.data.awayTeam.substitutes}
+              players={awayTeamSubstitutes}
             />
             <TeamStatCounterGrid
               team={awayTeam.data}
