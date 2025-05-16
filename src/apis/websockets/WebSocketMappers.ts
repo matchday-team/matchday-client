@@ -1,6 +1,5 @@
 import { ApiResponse, MatchEventResponse } from '@/apis/models';
 import { MatchEventType } from '@/constants';
-import type { DeepOmit } from '@/utils';
 
 import {
   RequestMapperDefinition,
@@ -8,74 +7,56 @@ import {
 } from './SharedTypeSafeWebSocket';
 
 export interface MatchRecordPlayerStatRequest {
-  token: string; // 현재는 Archives로 등록된 user의 ID
-  data: {
-    userId: number;
-    eventType: MatchEventType;
-    description: string;
-  };
+  matchUserId: number;
+  eventType: MatchEventType;
+  description: string;
 }
 
 export interface MatchRecordPlayerExchangeRequest {
-  token: string; // 현재는 Archives로 등록된 user의 ID
-  data: {
-    fromMatchUserId: number; // 교체할 선수의 매치 유저 아이디
-    toUserId: number; // 교체할 선수의 유저 아이디
-    message: string; // 교체 사유 등
-  };
+  fromMatchUserId: number;
+  toMatchUserId: number;
+  message: string;
 }
 
 export interface MatchRecordTeamStatRequest {
-  token: string; // 현재는 Archives로 등록된 user의 ID
-  data: {
-    eventType: MatchEventType;
-    description: string;
-  };
+  eventType: MatchEventType;
+  description: string;
 }
 
 export const requestMapperDefinition = {
   recordPlayerStat: {
     channelMapper: (matchId: number) => `/app/match/${matchId}`,
     requestMapper: (
-      payload: DeepOmit<MatchRecordPlayerStatRequest, 'data.description'>,
+      payload: Omit<MatchRecordPlayerStatRequest, 'description'>,
     ) => {
       // NOTE: description 필드는 무의미해서 요청에서 제외하고 빈 값으로 전달
       return JSON.stringify({
-        token: payload.token,
-        data: {
-          userId: payload.data.userId,
-          eventType: payload.data.eventType,
-          description: '',
-        },
+        ...payload,
+        description: '',
       });
     },
   },
   recordPlayerExchange: {
     channelMapper: (matchId: number) => `/app/match/${matchId}/exchange`,
     requestMapper: (
-      payload: DeepOmit<MatchRecordPlayerExchangeRequest, 'data.message'>,
+      payload: Omit<MatchRecordPlayerExchangeRequest, 'message'>,
     ) => {
       // NOTE: message 필드는 무의미해서 요청에서 제외하고 빈 값으로 전달
       return JSON.stringify({
-        token: payload.token,
-        data: {
-          fromMatchUserId: payload.data.fromMatchUserId,
-          toUserId: payload.data.toUserId,
-          message: '',
-        },
+        ...payload,
+        message: '',
       });
     },
   },
   recordTeamStat: {
     channelMapper: (matchId: number, teamId: number) =>
       `/app/match/${matchId}/teams/${teamId}`,
-    requestMapper: (payload: MatchRecordTeamStatRequest) => {
+    requestMapper: (
+      payload: Omit<MatchRecordTeamStatRequest, 'description'>,
+    ) => {
       return JSON.stringify({
-        token: payload.token,
-        data: {
-          eventType: payload.data.eventType,
-          description: '',
-        },
+        ...payload,
+        description: '',
       });
     },
   },
