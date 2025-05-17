@@ -13,7 +13,7 @@ interface PlayerItemProps {
   team: TeamResponse;
   player: MatchUserResponse;
   onClick: () => void;
-  onSwap?: (inPlayerId: number, outPlayerId: number) => void;
+  onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }
 
 const displayDashIfZero = (value: number) => {
@@ -61,7 +61,7 @@ export const PlayerItem = ({
       e.dataTransfer.getData('application/json'),
     ) as MatchUserResponse;
 
-    onSwap?.(playerComingIn.id, player.id);
+    onSwap(playerComingIn.id, player.id);
   };
 
   return (

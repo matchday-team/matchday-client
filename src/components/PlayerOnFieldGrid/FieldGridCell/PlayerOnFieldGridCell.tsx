@@ -53,7 +53,7 @@ export const PlayerOnFieldGridCell = ({
     const rawData = e.dataTransfer.getData('application/json');
     const playerComingIn = JSON.parse(rawData) as MatchUserResponse;
 
-    onSwap?.(playerComingIn.id, player.id);
+    onSwap(playerComingIn.id, player.id);
   };
 
   return (

@@ -11,7 +11,7 @@ import * as styles from './PlayerListItem.css';
 export interface ListItemProps {
   team: TeamResponse;
   player: MatchUserResponse;
-  onSwap?: (inPlayerId: number, outPlayerId: number) => void;
+  onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }
 
 const displayDashIfZero = (value: number) => {
@@ -55,7 +55,7 @@ export const PlayerListItem = ({ team, player, onSwap }: ListItemProps) => {
       e.dataTransfer.getData('application/json'),
     ) as MatchUserResponse;
 
-    onSwap?.(player.id, playerGoingOut.id);
+    onSwap(player.id, playerGoingOut.id);
   };
 
   return (

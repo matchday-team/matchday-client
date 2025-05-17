@@ -7,7 +7,7 @@ import * as styles from './SubstitutionPlayerList.css';
 interface SubstitutionPlayerListProps {
   team: TeamResponse;
   players: MatchUserResponse[];
-  onSwap?: (inPlayerId: number, outPlayerId: number) => void;
+  onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }
 
 export const SubstitutionPlayerList = ({
