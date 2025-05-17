@@ -34,10 +34,6 @@ export const MatchModifyView = () => {
     enabled: selectedMatchId !== -1,
   });
 
-  if (!homeTeam || !awayTeam) {
-    return null;
-  }
-
   return (
     <div className={styles.rootContainer}>
       <UserMatchJoinForm
@@ -49,20 +45,24 @@ export const MatchModifyView = () => {
       />
       <div>
         <h2>home</h2>
-        <ToggleableStartingPlayers
-          team={homeTeam.data}
-          players={matchPlayerList?.data.homeTeam.starters ?? []}
-          onSwap={() => {}}
-        />
+        {homeTeam && (
+          <ToggleableStartingPlayers
+            team={homeTeam.data}
+            players={matchPlayerList?.data.homeTeam.starters ?? []}
+            onSwap={() => {}}
+          />
+        )}
       </div>
 
       <div>
         <h2>away</h2>
-        <ToggleableStartingPlayers
-          team={awayTeam.data}
-          players={matchPlayerList?.data.awayTeam.starters ?? []}
-          onSwap={() => {}}
-        />
+        {awayTeam && (
+          <ToggleableStartingPlayers
+            team={awayTeam.data}
+            players={matchPlayerList?.data.awayTeam.starters ?? []}
+            onSwap={() => {}}
+          />
+        )}
       </div>
     </div>
   );
