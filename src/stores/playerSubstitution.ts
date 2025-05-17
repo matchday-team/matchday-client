@@ -51,7 +51,6 @@ export const useSubstitutionStore = create<SubstitutionStore>((set, get) => ({
     player: MatchUserResponse,
   ) => {
     set({ isActive: true, selection: { type: source, team, player } });
-    console.log('beginSubstitution:', source, team, player);
   },
   finishSubstitution: () => {
     set({

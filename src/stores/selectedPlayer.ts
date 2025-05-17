@@ -83,7 +83,6 @@ export const useSelectedPlayerStore = create<SelectedPlayerStore>(set => ({
   selectedPlayer: undefined,
   selectPlayer: (selectedPlayer: SelectedPlayer) => {
     set({ isSelected: true, selectedPlayer });
-    console.log('selected:', selectedPlayer);
   },
   unselectPlayer: () => set({ isSelected: false, selectedPlayer: undefined }),
 }));

@@ -117,8 +117,6 @@ function MatchRecordPage() {
   };
 
   const handleSwap = (inPlayerId: number, outPlayerId: number) => {
-    console.log('handleSwap', inPlayerId, outPlayerId);
-
     wsApi.send('recordPlayerExchange', [matchId], {
       fromMatchUserId: outPlayerId,
       toMatchUserId: inPlayerId,
@@ -162,7 +160,6 @@ function MatchRecordPage() {
           userName,
           eventLog,
         } = event;
-        console.log('match websocket event', event);
         enqueueSnackbar(
           `[id:${id}] [${elapsedMinutes}"] [teamId:${teamId}] [userId:${userId}] ${teamName} ${userName} ${eventLog}`,
           {
