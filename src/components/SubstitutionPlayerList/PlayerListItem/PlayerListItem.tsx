@@ -32,7 +32,7 @@ export const PlayerListItem = ({ team, player, onSwap }: ListItemProps) => {
     player.subOut || player.sentOff || !getIsSubstitutionTarget('bench', team);
 
   const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
-    e.dataTransfer.setData('application/text', player.id.toString());
+    e.dataTransfer.setData('text/plain', player.id.toString());
     beginSubstitution('bench', team, player);
   };
 
@@ -50,7 +50,7 @@ export const PlayerListItem = ({ team, player, onSwap }: ListItemProps) => {
       return;
     }
 
-    const playerGoingOutId = Number(e.dataTransfer.getData('application/text'));
+    const playerGoingOutId = Number(e.dataTransfer.getData('text/plain'));
     onSwap(player.id, playerGoingOutId);
   };
 

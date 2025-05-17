@@ -39,7 +39,7 @@ export const PlayerItem = ({
   };
 
   const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
-    e.dataTransfer.setData('application/text', player.id.toString());
+    e.dataTransfer.setData('text/plain', player.id.toString());
     beginSubstitution('starter', team, player);
   };
 
@@ -57,7 +57,7 @@ export const PlayerItem = ({
       return;
     }
 
-    const playerComingInId = Number(e.dataTransfer.getData('application/text'));
+    const playerComingInId = Number(e.dataTransfer.getData('text/plain'));
     onSwap(playerComingInId, player.id);
   };
 

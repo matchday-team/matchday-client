@@ -32,7 +32,7 @@ export const PlayerOnFieldGridCell = ({
   const disabled = player.subIn || !getIsSubstitutionTarget('starter', team);
 
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
-    e.dataTransfer.setData('application/text', player.id.toString());
+    e.dataTransfer.setData('text/plain', player.id.toString());
     beginSubstitution('starter', team, player);
   };
 
@@ -50,7 +50,7 @@ export const PlayerOnFieldGridCell = ({
       return;
     }
 
-    const playerComingInId = Number(e.dataTransfer.getData('application/text'));
+    const playerComingInId = Number(e.dataTransfer.getData('text/plain'));
     onSwap(playerComingInId, player.id);
   };
 
