@@ -15,5 +15,5 @@ pre-commit:
 
 pre-push:
   jobs:
-    - run: pnpm exec vite build
+    - run: pnpm build
       stage_fixed: true
