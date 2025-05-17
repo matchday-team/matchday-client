@@ -1,10 +1,12 @@
 import { StrictMode } from 'react';
 
+import Hotjar from '@hotjar/browser';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { SnackbarProvider } from 'notistack';
 import { createRoot } from 'react-dom/client';
 
+import { HOTJAR_SITE_ID, HOTJAR_VERSION } from './constants';
 import { ReactQueryClientProvider } from './react-query-provider';
 import { routeTree } from './routeTree.gen';
 import './styles/font.css';
@@ -14,6 +16,10 @@ import './styles/reset.css';
 if (import.meta.env.DEV && import.meta.env.VITE_USE_MSW === 'true') {
   const { initializeMSW } = await import('./mocks');
   await initializeMSW();
+}
+
+if (import.meta.env.VITE_USE_HOTJAR === 'true') {
+  Hotjar.init(HOTJAR_SITE_ID, HOTJAR_VERSION);
 }
 
 const router = createRouter({
