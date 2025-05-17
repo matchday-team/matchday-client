@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@hotjar/browser':
+        specifier: ^1.0.9
+        version: 1.0.9
       '@rjsf/core':
         specifier: 6.0.0-beta.1
         version: 6.0.0-beta.1(@rjsf/utils@6.0.0-beta.1(react@19.1.0))(react@19.1.0)
@@ -674,6 +677,9 @@ packages:
 
   '@gerrit0/mini-shiki@3.3.0':
     resolution: {integrity: sha512-frvArO0+s5Viq68uSod5SieLPVM2cLpXoQ1e07lURwgADXpL/MOypM7jPz9otks0g2DIe2YedDAeVrDyYJZRxA==}
+
+  '@hotjar/browser@1.0.9':
+    resolution: {integrity: sha512-n9akDMod8BLGpYEQCrHwlYWWd63c1HlhUSXNIDfClZtKYXbUjIUOFlNZNNcUxgHTCsi4l2i+SWKsGsO0t93S8w==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -5002,6 +5008,8 @@ snapshots:
       '@shikijs/themes': 3.3.0
       '@shikijs/types': 3.3.0
       '@shikijs/vscode-textmate': 10.0.2
+
+  '@hotjar/browser@1.0.9': {}
 
   '@humanfs/core@0.19.1': {}
 
