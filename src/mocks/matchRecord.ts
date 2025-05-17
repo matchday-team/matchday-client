@@ -163,10 +163,10 @@ export const mockPlayersByTeamType = (
     caution: 2,
     yellowCards: idx % 2 === 0 ? 1 : 0,
     redCards: idx % 3 === 0 ? 1 : 0,
-    sentOff: false,
+    sentOff: idx % 3 === 0, // NOTE: 레드 받으면 sentOff
     matchGrid: gridPositions[idx], // FIXME: 추후 변경 예정
-    subIn: false,
-    subOut: false,
+    subIn: idx % 4 === 0,
+    subOut: idx % 2 === 0,
   }));
 };
 
