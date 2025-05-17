@@ -34,7 +34,7 @@ export const compareStatList: Stat[] = [
 
 export const mapStatResponseField: Record<Stat, keyof ScoreResponse> = {
   득점: 'goalCount',
-  슈팅: 'goalCount',
+  슈팅: 'shotCount',
   '유효 슈팅': 'validShotCount',
   '코너 킥': 'cornerKickCount',
   '오프 사이드': 'offsideCount',
