@@ -2,9 +2,24 @@ import { create } from 'zustand';
 
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
 
-type DragSourceType = 'starter' | 'bench';
+type SelectionType = 'starter' | 'bench';
 
-export type SubstitutionStore =
+type BeginSubstitution = (
+  source: SelectionType,
+  team: TeamResponse,
+  player: MatchUserResponse,
+) => void;
+
+type getIsSubstitutionTarget = (
+  targetType: SelectionType,
+  team: TeamResponse,
+) => boolean;
+
+export type SubstitutionStore = {
+  beginSubstitution: BeginSubstitution;
+  finishSubstitution: () => void;
+  getIsSubstitutionTarget: getIsSubstitutionTarget;
+} & (
   | {
       isActive: false;
       selection: {
@@ -12,35 +27,16 @@ export type SubstitutionStore =
         team: null;
         player: null;
       };
-      beginSubstitution: (
-        source: DragSourceType,
-        team: TeamResponse,
-        player: MatchUserResponse,
-      ) => void;
-      finishSubstitution: () => void;
-      getIsSubstitutionTarget: (
-        targetType: DragSourceType,
-        team: TeamResponse,
-      ) => boolean;
     }
   | {
       isActive: true;
       selection: {
-        type: DragSourceType;
+        type: SelectionType;
         team: TeamResponse;
         player: MatchUserResponse;
       };
-      beginSubstitution: (
-        source: DragSourceType,
-        team: TeamResponse,
-        player: MatchUserResponse,
-      ) => void;
-      finishSubstitution: () => void;
-      getIsSubstitutionTarget: (
-        targetType: DragSourceType,
-        team: TeamResponse,
-      ) => boolean;
-    };
+    }
+);
 
 export const useSubstitutionStore = create<SubstitutionStore>((set, get) => ({
   isActive: false,
@@ -50,7 +46,7 @@ export const useSubstitutionStore = create<SubstitutionStore>((set, get) => ({
     player: null,
   },
   beginSubstitution: (
-    source: DragSourceType,
+    source: SelectionType,
     team: TeamResponse,
     player: MatchUserResponse,
   ) => {
@@ -63,7 +59,7 @@ export const useSubstitutionStore = create<SubstitutionStore>((set, get) => ({
       selection: { type: null, team: null, player: null },
     });
   },
-  getIsSubstitutionTarget: (targetType: DragSourceType, team: TeamResponse) => {
+  getIsSubstitutionTarget: (targetType: SelectionType, team: TeamResponse) => {
     const { isActive: isDragging, selection: dragSource } = get();
 
     return (
