@@ -23,15 +23,6 @@ export const PlayerList = ({ team, players, onSwap }: PlayerListProps) => {
     e.currentTarget.src = noProfilePlayerImage;
   };
 
-  // NOTE: 아예 빈 상태는 team 없이도 표시 가능
-  if (!team) {
-    return (
-      <div className={styles.rootContainer}>
-        <EmptyContent />
-      </div>
-    );
-  }
-
   return (
     <div
       className={styles.rootContainer}

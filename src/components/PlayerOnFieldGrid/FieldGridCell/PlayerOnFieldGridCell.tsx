@@ -2,6 +2,7 @@ import { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { SoccerballIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import { useIsDragOver } from '@/hooks';
+import { useSubstitutionStore } from '@/stores';
 import { createFallbackImageHandler } from '@/utils/createFallbackImageHandler';
 
 import * as styles from './PlayerOnFieldGridCell.css';
@@ -26,33 +27,49 @@ export const PlayerOnFieldGridCell = ({
 }: PlayerOnFieldGridCellProps) => {
   const { isDragOver, hoverTargetRef } = useIsDragOver<HTMLDivElement>();
 
+  const { getIsSubstitutionTarget, beginSubstitution, finishSubstitution } =
+    useSubstitutionStore();
+  const disabled = player.subIn || !getIsSubstitutionTarget('starter', team);
+
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
     e.dataTransfer.setData('application/json', JSON.stringify(player));
+    beginSubstitution('starter', team, player);
   };
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    if (disabled) {
+      return;
+    }
+
     e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
   };
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    if (disabled) {
+      return;
+    }
+
     const rawData = e.dataTransfer.getData('application/json');
     const playerComingIn = JSON.parse(rawData) as MatchUserResponse;
-
-    console.log('handleDrop - playerComingIn:', playerComingIn, player);
 
     onSwap?.(playerComingIn.id, player.id);
   };
 
   return (
     <div
-      className={commonCellContainer({ isSelected, isDragOver })}
+      className={commonCellContainer({
+        isSelected,
+        isDragOver,
+        disabled,
+      })}
       onClick={onClick}
       ref={hoverTargetRef}
       onDragStart={handleDragStart}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
-      draggable={true}
+      onDragEnd={finishSubstitution}
+      draggable={!disabled}
     >
       <div className={styles.playerImageContainer}>
         <img

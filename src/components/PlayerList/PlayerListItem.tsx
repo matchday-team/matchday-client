@@ -4,6 +4,7 @@ import { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { ChevronDownIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import { useIsDragOver } from '@/hooks';
+import { useSubstitutionStore } from '@/stores';
 
 import * as styles from './PlayerListItem.css';
 
@@ -27,6 +28,9 @@ export const PlayerItem = ({
   onSwap,
 }: PlayerItemProps) => {
   const { isDragOver, hoverTargetRef } = useIsDragOver<HTMLLIElement>();
+  const { getIsSubstitutionTarget, beginSubstitution, finishSubstitution } =
+    useSubstitutionStore();
+  const disabled = player.subIn || !getIsSubstitutionTarget('starter', team);
 
   const setFallbackImageIfLoadFail = (
     e: SyntheticEvent<HTMLImageElement, Event>,
@@ -36,31 +40,39 @@ export const PlayerItem = ({
 
   const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
     e.dataTransfer.setData('application/json', JSON.stringify(player));
+    beginSubstitution('starter', team, player);
   };
 
   const handleDragOver = (e: React.DragEvent<HTMLLIElement>) => {
+    if (disabled) {
+      return;
+    }
+
     e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
   };
 
   const handleDrop = (e: React.DragEvent<HTMLLIElement>) => {
+    if (disabled) {
+      return;
+    }
+
     const playerComingIn = JSON.parse(
       e.dataTransfer.getData('application/json'),
     ) as MatchUserResponse;
-
-    console.log('handleDrop - playerComingIn:', playerComingIn, player);
 
     onSwap?.(playerComingIn.id, player.id);
   };
 
   return (
     <li
-      className={styles.rootContainer({ isSelected, isDragOver })}
+      className={styles.rootContainer({ isSelected, isDragOver, disabled })}
       onClick={onClick}
       onDragStart={handleDragStart}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
-      draggable={true}
+      onDragEnd={finishSubstitution}
+      draggable={!disabled}
       ref={hoverTargetRef}
     >
       <div className={styles.infoContainer}>

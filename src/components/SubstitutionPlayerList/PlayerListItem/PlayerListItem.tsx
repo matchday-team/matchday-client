@@ -4,6 +4,7 @@ import { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { ChevronDownIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import { useIsDragOver } from '@/hooks';
+import { useSubstitutionStore } from '@/stores';
 
 import * as styles from './PlayerListItem.css';
 
@@ -25,16 +26,15 @@ const setFallbackImageIfLoadFail = (
 
 // TODO: team 추후에 사용하기
 export const PlayerListItem = ({ team, player, onSwap }: ListItemProps) => {
-  const disabled = player.subOut || player.sentOff;
-
   const { isDragOver, hoverTargetRef } = useIsDragOver<HTMLLIElement>();
+  const { getIsSubstitutionTarget, beginSubstitution, finishSubstitution } =
+    useSubstitutionStore();
+  const disabled =
+    player.subOut || player.sentOff || !getIsSubstitutionTarget('bench', team);
 
   const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
-    if (disabled) {
-      return;
-    }
-
     e.dataTransfer.setData('application/json', JSON.stringify(player));
+    beginSubstitution('bench', team, player);
   };
 
   const handleDragOver = (e: React.DragEvent<HTMLLIElement>) => {
@@ -55,8 +55,6 @@ export const PlayerListItem = ({ team, player, onSwap }: ListItemProps) => {
       e.dataTransfer.getData('application/json'),
     ) as MatchUserResponse;
 
-    console.log('handleDrop - playerGoingOut:', playerGoingOut, player);
-
     onSwap?.(player.id, playerGoingOut.id);
   };
 
@@ -67,6 +65,7 @@ export const PlayerListItem = ({ team, player, onSwap }: ListItemProps) => {
       onDragStart={handleDragStart}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
+      onDragEnd={finishSubstitution}
       ref={hoverTargetRef}
     >
       <img
