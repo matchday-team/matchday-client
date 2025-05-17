@@ -24,7 +24,6 @@ const setFallbackImageIfLoadFail = (
   e.currentTarget.src = noProfilePlayerImage;
 };
 
-// TODO: team 추후에 사용하기
 export const PlayerListItem = ({ team, player, onSwap }: ListItemProps) => {
   const { isDragOver, hoverTargetRef } = useIsDragOver<HTMLLIElement>();
   const { getIsSubstitutionTarget, beginSubstitution, finishSubstitution } =
@@ -33,7 +32,7 @@ export const PlayerListItem = ({ team, player, onSwap }: ListItemProps) => {
     player.subOut || player.sentOff || !getIsSubstitutionTarget('bench', team);
 
   const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
-    e.dataTransfer.setData('application/json', JSON.stringify(player));
+    e.dataTransfer.setData('application/text', player.id.toString());
     beginSubstitution('bench', team, player);
   };
 
@@ -51,11 +50,8 @@ export const PlayerListItem = ({ team, player, onSwap }: ListItemProps) => {
       return;
     }
 
-    const playerGoingOut = JSON.parse(
-      e.dataTransfer.getData('application/json'),
-    ) as MatchUserResponse;
-
-    onSwap(player.id, playerGoingOut.id);
+    const playerGoingOutId = Number(e.dataTransfer.getData('application/text'));
+    onSwap(player.id, playerGoingOutId);
   };
 
   return (
