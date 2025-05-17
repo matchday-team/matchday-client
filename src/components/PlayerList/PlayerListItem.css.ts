@@ -36,10 +36,33 @@ export const rootContainer = recipe({
         backgroundColor: lightThemeVars.color.gray[100], // NOTE: 일반 hover보다 조금 더 명확히 보이게
       },
     },
+    disabled: {
+      true: {
+        cursor: 'not-allowed',
+        ':hover': {
+          backgroundColor: 'transparent',
+        },
+      },
+      false: {
+        cursor: 'grab',
+      },
+    },
   },
+  compoundVariants: [
+    {
+      variants: {
+        disabled: true,
+        isDragOver: true,
+      },
+      style: {
+        backgroundColor: lightThemeVars.color.warning, // NOTE: 교체할 수 없음을 표시
+      },
+    },
+  ],
   defaultVariants: {
     isSelected: false,
     isDragOver: false,
+    disabled: false,
   },
 });
 

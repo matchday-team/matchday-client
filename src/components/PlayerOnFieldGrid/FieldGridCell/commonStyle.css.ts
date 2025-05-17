@@ -35,15 +35,32 @@ export const commonCellContainer = recipe({
         userSelect: 'none',
       },
     },
-    isNotAllowed: {
+    disabled: {
       true: {
-        backgroundColor: lightThemeVars.color.soccer.red, // FIXME: 더 좋은 컬러 필요
+        cursor: 'not-allowed',
+        ':hover': {
+          backgroundColor: 'transparent',
+        },
+      },
+      false: {
+        cursor: 'grab',
       },
     },
   },
+  compoundVariants: [
+    {
+      variants: {
+        disabled: true,
+        isDragOver: true,
+      },
+      style: {
+        backgroundColor: lightThemeVars.color.warning, // NOTE: 교체할 수 없음을 표시
+      },
+    },
+  ],
   defaultVariants: {
     isSelected: false,
     isDragOver: false,
-    isNotAllowed: false,
+    disabled: false,
   },
 });

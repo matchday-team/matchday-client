@@ -13,7 +13,7 @@ export const EmptyOnFieldGridCell = ({
 
   return (
     <div
-      className={commonCellContainer({ isDragOver, isNotAllowed: isDragOver })}
+      className={commonCellContainer({ isDragOver, disabled: isDragOver })}
       onClick={onClick}
       ref={hoverTargetRef}
     ></div>
