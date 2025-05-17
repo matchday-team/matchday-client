@@ -83,6 +83,11 @@ export const createSchema = (
           title: '교체',
           const: 'SUB_PLAYER',
         },
+        {
+          type: 'string',
+          title: '기록관',
+          const: 'ARCHIVES',
+        },
       ],
       default: 'START_PLAYER',
     },

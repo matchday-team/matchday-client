@@ -20,7 +20,9 @@ export const MatchLogListItem = ({ teams, log }: MatchLogListItemProps) => {
     >
       <span className={styles.time}>{log.elapsedMinutes}&quot;</span>
       <span className={styles.teamName}>{log.teamName}</span>
-      <span className={styles.name}>{log.userName}</span>
+      <span className={styles.name}>
+        {log.userName === 'UNKNOWN' ? '-' : log.userName}
+      </span>
       <span className={styles.event}>{MatchEventNameMap[log.eventLog]}</span>
     </li>
   );

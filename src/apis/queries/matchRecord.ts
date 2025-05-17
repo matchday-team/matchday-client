@@ -6,6 +6,7 @@ const queryKeyNamespaces = {
 };
 
 export const queryKeys = {
+  matchById: (matchId: number) => [queryKeyNamespaces.matches, matchId],
   matchInfo: (matchId: number) => [queryKeyNamespaces.matches, matchId, 'info'],
   matchScore: (matchId: number) => [
     queryKeyNamespaces.matches,

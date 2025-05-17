@@ -40,6 +40,13 @@ export default tseslint.config(
     },
     rules: {
       '@typescript-eslint/no-unused-vars': 'off',
+      '@typescript-eslint/naming-convention': [
+        'error',
+        {
+          selector: 'typeLike', // interface, type, class, enum 등
+          format: ['PascalCase'],
+        },
+      ],
       'unused-imports/no-unused-imports': 'error',
       'unused-imports/no-unused-vars': [
         'warn',

@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useParams } from '@tanstack/react-router';
 import { useSnackbar } from 'notistack';
 
+import { MatchUserResponse, TeamGroupedUsers } from '@/apis/models';
 import { useCreateOrUpdateMatchMemoMutation } from '@/apis/mutations';
 import { matchRecordQuery, teamQuery } from '@/apis/queries';
 import { getWebSocketApi } from '@/apis/websockets';
@@ -18,6 +19,7 @@ import {
   TeamStatCounterGrid,
   ToggleableStartingPlayers,
 } from '@/components';
+import { MatchEventType } from '@/constants';
 import { queryClient } from '@/react-query-provider';
 import { commonPaper } from '@/styles/paper.css';
 import { debounce } from '@/utils';
@@ -35,6 +37,7 @@ export const Route = createFileRoute('/matches/$matchId/record')({
       queryClient.ensureQueryData(matchRecordQuery.scoreQuery(matchId)),
       queryClient.ensureQueryData(matchRecordQuery.eventsQuery(matchId)),
       queryClient.ensureQueryData(matchRecordQuery.playersQuery(matchId)),
+      queryClient.ensureQueryData(matchRecordQuery.memoQuery(matchId)),
     ]);
   },
 });
@@ -46,7 +49,44 @@ const s = (height: number | string) => ({
   borderRadius: 10,
 });
 
+const dividePlayers = ({ starters, substitutes }: TeamGroupedUsers) => {
+  const result = {
+    starters: [] as MatchUserResponse[],
+    substitutes: [] as MatchUserResponse[],
+  };
+
+  starters.forEach(player => {
+    const targetArray =
+      player.subOut || player.sentOff ? result.substitutes : result.starters;
+    targetArray.push(player);
+  });
+
+  substitutes.forEach(player => {
+    const targetArray = player.subIn ? result.starters : result.substitutes;
+    targetArray.push(player);
+  });
+
+  result.starters.sort((a, b) => (b.matchGrid ?? 0) - (a.matchGrid ?? 0));
+
+  result.substitutes.sort((a, b) => {
+    const aDisabled = a.subOut || a.sentOff;
+    const bDisabled = b.subOut || b.sentOff;
+
+    // 둘 다 disabled거나 아닐 때는 matchGrid 순으로 정렬
+    if (aDisabled === bDisabled) {
+      return (b.matchGrid ?? 0) - (a.matchGrid ?? 0);
+    } else if (aDisabled && !bDisabled) {
+      return 1; // a만 disabled면 a를 뒤로
+    } else {
+      return -1; // b만 disabled면 b를 뒤로
+    }
+  });
+
+  return result;
+};
+
 function MatchRecordPage() {
+  const queryClient = useQueryClient();
   const { enqueueSnackbar } = useSnackbar();
   const { matchId: _matchId } = useParams({ from: '/matches/$matchId/record' });
   const matchId = Number(_matchId);
@@ -67,6 +107,11 @@ function MatchRecordPage() {
   const { data: matchPlayers } = useSuspenseQuery(
     matchRecordQuery.playersQuery(matchId),
   );
+  const { starters: homeTeamStarters, substitutes: homeTeamSubstitutes } =
+    dividePlayers(matchPlayers.data.homeTeam);
+  const { starters: awayTeamStarters, substitutes: awayTeamSubstitutes } =
+    dividePlayers(matchPlayers.data.awayTeam);
+
   // FIXME: 얘내는 순차 로딩을 하게 되는데...
   const { data: homeTeam } = useSuspenseQuery(
     teamQuery.byIdQuery(matchInfo.data.homeTeamId),
@@ -78,13 +123,37 @@ function MatchRecordPage() {
   const { mutateAsync: updateMatchMemo } =
     useCreateOrUpdateMatchMemoMutation(matchId);
 
-  const [memo, setMemo] = useState(matchMemo.data.memo);
+  const [memo, setMemo] = useState(matchMemo.data.memo ?? ''); // NOTE: 기본 값이 `null`이어서 빈 문자열로 초기화 필요
   const debouncedUpdateMemo = useCallback(debounce(updateMatchMemo, 500), [
     updateMatchMemo,
   ]);
   const updateMemo = (newMemo: string) => {
     setMemo(newMemo);
     debouncedUpdateMemo(newMemo);
+  };
+
+  const handleSwap = (inPlayerId: number, outPlayerId: number) => {
+    wsApi.send('recordPlayerExchange', [matchId], {
+      fromMatchUserId: outPlayerId,
+      toMatchUserId: inPlayerId,
+    });
+  };
+
+  // FIXME: 생략된 prop: isIncrement: boolean - 현재는 항상 증가만 가능
+  const handleTeamStatChange = (matchEvent: MatchEventType, teamId: number) => {
+    wsApi.send('recordTeamStat', [matchId, teamId], {
+      eventType: matchEvent,
+    });
+  };
+
+  const handlePlayerStatChange = (
+    playerId: number,
+    matchEvent: MatchEventType,
+  ) => {
+    wsApi.send('recordPlayerStat', [matchId], {
+      matchUserId: playerId,
+      eventType: matchEvent,
+    });
   };
 
   useEffect(() => {
@@ -107,13 +176,15 @@ function MatchRecordPage() {
           userName,
           eventLog,
         } = event;
-        console.log('match websocket event', event);
         enqueueSnackbar(
           `[id:${id}] [${elapsedMinutes}"] [teamId:${teamId}] [userId:${userId}] ${teamName} ${userName} ${eventLog}`,
           {
             variant: 'info',
           },
         );
+        queryClient.invalidateQueries({
+          queryKey: matchRecordQuery.queryKeys.matchById(matchId), // 일단은 전체 갱신하고 추후 최적화
+        });
       },
     });
 
@@ -121,7 +192,7 @@ function MatchRecordPage() {
       unsubErrorChannel();
       unsubMatchChannel();
     };
-  }, [matchId, wsApi, enqueueSnackbar]);
+  }, [matchId, wsApi, enqueueSnackbar, queryClient]);
 
   return (
     <MatchRecordLayout
@@ -139,7 +210,8 @@ function MatchRecordPage() {
         >
           <ToggleableStartingPlayers
             team={homeTeam.data}
-            players={matchPlayers.data.homeTeam.starters}
+            players={homeTeamStarters}
+            onSwap={handleSwap}
           />
           <div
             style={{
@@ -149,9 +221,14 @@ function MatchRecordPage() {
           >
             <SubstitutionPlayerList
               team={homeTeam.data}
-              players={matchPlayers.data.homeTeam.substitutes}
+              players={homeTeamSubstitutes}
+              onSwap={handleSwap}
             />
-            <TeamStatCounterGrid stats={matchScore.data.homeScore} />
+            <TeamStatCounterGrid
+              team={homeTeam.data}
+              stats={matchScore.data.homeScore}
+              onStatChange={handleTeamStatChange}
+            />
           </div>
         </div>
       }
@@ -167,7 +244,8 @@ function MatchRecordPage() {
         >
           <ToggleableStartingPlayers
             team={awayTeam.data}
-            players={matchPlayers.data.awayTeam.starters}
+            players={awayTeamStarters}
+            onSwap={handleSwap}
           />
           <div
             style={{
@@ -177,9 +255,14 @@ function MatchRecordPage() {
           >
             <SubstitutionPlayerList
               team={awayTeam.data}
-              players={matchPlayers.data.awayTeam.substitutes}
+              players={awayTeamSubstitutes}
+              onSwap={handleSwap}
             />
-            <TeamStatCounterGrid stats={matchScore.data.awayScore} />
+            <TeamStatCounterGrid
+              team={awayTeam.data}
+              stats={matchScore.data.awayScore}
+              onStatChange={handleTeamStatChange}
+            />
           </div>
         </div>
       }
@@ -199,7 +282,7 @@ function MatchRecordPage() {
       }
       selectedPlayer={
         <div style={s(302)}>
-          <PlayerStatCounterGrid />
+          <PlayerStatCounterGrid onStatChange={handlePlayerStatChange} />
         </div>
       }
       timer={

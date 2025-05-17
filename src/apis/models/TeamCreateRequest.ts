@@ -27,4 +27,9 @@ export interface TeamCreateRequest {
    * @minLength 1
    */
   stockingColor: string;
+  /**
+   * 팀 이미지명
+   * @nullable
+   */
+  teamImg: string | null;
 }

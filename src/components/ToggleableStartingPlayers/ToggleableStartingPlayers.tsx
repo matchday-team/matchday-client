@@ -7,13 +7,15 @@ import { PlayerOnFieldGrid } from '@/components/PlayerOnFieldGrid';
 import * as styles from './ToggleableStartingPlayers.css';
 
 interface ToggleableStartingPlayersProps {
-  team?: TeamResponse;
+  team: TeamResponse;
   players: MatchUserResponse[];
+  onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }
 
 export const ToggleableStartingPlayers = ({
   team,
   players,
+  onSwap,
 }: ToggleableStartingPlayersProps) => {
   const [isGridView, setIsGridView] = useState(true);
 
@@ -26,9 +28,9 @@ export const ToggleableStartingPlayers = ({
         {isGridView ? '리스트 보기' : '포메이션 보기'}
       </button>
       {isGridView ? (
-        <PlayerOnFieldGrid team={team} players={players} />
+        <PlayerOnFieldGrid team={team} players={players} onSwap={onSwap} />
       ) : (
-        <PlayerList team={team} players={players} />
+        <PlayerList team={team} players={players} onSwap={onSwap} />
       )}
     </div>
   );

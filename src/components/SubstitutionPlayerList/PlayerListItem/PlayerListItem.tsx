@@ -3,12 +3,15 @@ import { SyntheticEvent } from 'react';
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { ChevronDownIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
+import { useIsDragOver } from '@/hooks';
+import { useSubstitutionStore } from '@/stores';
 
 import * as styles from './PlayerListItem.css';
 
 export interface ListItemProps {
   team: TeamResponse;
   player: MatchUserResponse;
+  onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }
 
 const displayDashIfZero = (value: number) => {
@@ -21,19 +24,45 @@ const setFallbackImageIfLoadFail = (
   e.currentTarget.src = noProfilePlayerImage;
 };
 
-// TODO: team 추후에 사용하기
-export const PlayerListItem = ({ player }: ListItemProps) => {
+export const PlayerListItem = ({ team, player, onSwap }: ListItemProps) => {
+  const { isDragOver, hoverTargetRef } = useIsDragOver<HTMLLIElement>();
+  const { getIsSubstitutionTarget, beginSubstitution, finishSubstitution } =
+    useSubstitutionStore();
+  const disabled =
+    player.subOut || player.sentOff || !getIsSubstitutionTarget('bench', team);
+
   const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
-    e.dataTransfer.setData('application/json', JSON.stringify(player));
+    e.dataTransfer.setData('text/plain', player.id.toString());
+    beginSubstitution('bench', team, player);
   };
 
-  const disabled = player.sentOff;
+  const handleDragOver = (e: React.DragEvent<HTMLLIElement>) => {
+    if (disabled) {
+      return;
+    }
+
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLLIElement>) => {
+    if (disabled) {
+      return;
+    }
+
+    const playerGoingOutId = Number(e.dataTransfer.getData('text/plain'));
+    onSwap(player.id, playerGoingOutId);
+  };
 
   return (
     <li
-      className={styles.rootContainer({ disabled })}
+      className={styles.rootContainer({ disabled, isDragOver })}
       draggable={!disabled}
-      onDragStart={disabled ? undefined : handleDragStart}
+      onDragStart={handleDragStart}
+      onDragOver={handleDragOver}
+      onDrop={handleDrop}
+      onDragEnd={finishSubstitution}
+      ref={hoverTargetRef}
     >
       <img
         className={styles.profileImage}
@@ -47,7 +76,7 @@ export const PlayerListItem = ({ player }: ListItemProps) => {
           <span className={styles.number}>{player.number}</span>
           <span className={styles.name}>{player.name}</span>
         </div>
-        {disabled && <ChevronDownIcon className={styles.sentOffIcon} />}
+        {player.subOut && <ChevronDownIcon className={styles.sentOffIcon} />}
         <span className={styles.position}>{player.matchPosition}</span>
       </div>
 

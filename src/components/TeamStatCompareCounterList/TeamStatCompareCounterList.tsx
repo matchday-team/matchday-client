@@ -1,6 +1,6 @@
 import { ScoreResponse } from '@/apis/models';
 import { StatCompareCounter } from '@/components';
-import { STAT_LIST_FOR_COMPARE, statMapper } from '@/constants';
+import { compareStatList, mapStatResponseField } from '@/constants';
 
 import * as styles from './TeamStatCompareCounterList.css';
 
@@ -17,12 +17,12 @@ export const TeamStatCompareCounterList = ({
 }: TeamStatCompareCounterListProps) => {
   return (
     <div className={styles.container}>
-      {STAT_LIST_FOR_COMPARE.map(stat => (
+      {compareStatList.map(stat => (
         <StatCompareCounter
           key={stat}
           label={stat}
-          leftValue={homeTeamStat[statMapper[stat]]}
-          rightValue={awayTeamStat[statMapper[stat]]}
+          leftValue={homeTeamStat[mapStatResponseField[stat]]}
+          rightValue={awayTeamStat[mapStatResponseField[stat]]}
           maxValue={maxValue}
         />
       ))}

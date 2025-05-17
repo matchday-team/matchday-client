@@ -27,6 +27,7 @@ export const Default: Story = {
   args: {
     team: matchRecordMocks.mockHomeTeam,
     players: matchRecordMocks.mockPlayersByTeamType('home'),
+    onSwap: () => {},
   },
 };
 
@@ -34,6 +35,7 @@ export const FullPlayers: Story = {
   args: {
     team: matchRecordMocks.mockHomeTeam,
     players: matchRecordMocks.mockPlayersByTeamType('home'),
+    onSwap: () => {},
   },
 };
 
@@ -42,5 +44,6 @@ export const EmptyPlayers: Story = {
   args: {
     team: matchRecordMocks.mockAwayTeam,
     players: [],
+    onSwap: () => {},
   },
 };

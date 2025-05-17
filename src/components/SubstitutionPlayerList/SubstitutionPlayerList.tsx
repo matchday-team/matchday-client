@@ -7,11 +7,13 @@ import * as styles from './SubstitutionPlayerList.css';
 interface SubstitutionPlayerListProps {
   team: TeamResponse;
   players: MatchUserResponse[];
+  onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }
 
 export const SubstitutionPlayerList = ({
   team,
   players,
+  onSwap,
 }: SubstitutionPlayerListProps) => {
   return (
     <div className={styles.rootContainer}>
@@ -27,6 +29,7 @@ export const SubstitutionPlayerList = ({
               key={`${player.number}-${player.name}`}
               team={team}
               player={player}
+              onSwap={onSwap}
             />
           ))
         )}

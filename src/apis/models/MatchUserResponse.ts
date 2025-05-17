@@ -10,15 +10,23 @@
  * 매치 참가자 통계 응답
  */
 export interface MatchUserResponse {
-  /** 유저 ID */
+  /** 매치유저 ID */
   id: number;
+  /** 유저 ID */
+  userId: number;
   /** 유저 이름 */
   name: string;
   /** 등번호 */
   number: number;
-  /** 매치 포지션 */
-  matchPosition: string;
-  /** 경기장 그리드 위치 */
+  /**
+   * 매치 포지션
+   * @nullable
+   */
+  matchPosition: string | null;
+  /**
+   * 선수 그리드 좌표
+   * @nullable
+   */
   matchGrid: number | null;
   /** 득점 수 */
   goals: number;
@@ -32,6 +40,13 @@ export interface MatchUserResponse {
   caution: number;
   /** 퇴장 여부 (옐로 2장 이상 또는 레드 1장 이상) */
   sentOff: boolean;
-  /** 프로필 이미지 url */
-  profileImg: string;
+  /**
+   * 프로필 이미지 url
+   * @nullable
+   */
+  profileImg: string | null;
+  /** 교체인 여부 */
+  subIn: boolean;
+  /** 교체아웃 여부 */
+  subOut: boolean;
 }

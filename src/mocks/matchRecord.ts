@@ -45,6 +45,7 @@ export const mockAwayTeam: TeamResponse = {
 
 export const mockHomePlayer: MatchUserResponse = {
   id: 1,
+  userId: 1,
   name: '호나우두',
   number: 99,
   matchPosition: 'FW',
@@ -57,10 +58,13 @@ export const mockHomePlayer: MatchUserResponse = {
   matchGrid: 1,
   sentOff: false,
   profileImg: 'https://example.com/profile1.png',
+  subIn: false,
+  subOut: false,
 };
 
 export const mockAwayPlayer: MatchUserResponse = {
   id: 2,
+  userId: 2,
   name: '이순신',
   number: 10,
   // profileImageUrl: 'https://example.com/profile2.png',
@@ -73,6 +77,8 @@ export const mockAwayPlayer: MatchUserResponse = {
   sentOff: false,
   matchPosition: 'FW',
   profileImg: 'https://example.com/profile2.png',
+  subIn: false,
+  subOut: false,
 };
 
 export const mockLogs: MatchEventResponse[] = Array.from(
@@ -80,7 +86,7 @@ export const mockLogs: MatchEventResponse[] = Array.from(
   (_, index) => [
     {
       id: index * 3 + 1,
-      eventLog: 'VALID_SHOT' as MatchEventType,
+      eventLog: MatchEventType.VALID_SHOT,
       teamId: mockHomeTeam.id,
       teamName: mockHomeTeam.name,
       userId: mockHomePlayer.id,
@@ -89,7 +95,7 @@ export const mockLogs: MatchEventResponse[] = Array.from(
     },
     {
       id: index * 3 + 2,
-      eventLog: 'GOAL' as MatchEventType,
+      eventLog: MatchEventType.GOAL,
       teamId: mockAwayTeam.id,
       teamName: mockAwayTeam.name,
       userId: mockAwayPlayer.id,
@@ -98,7 +104,7 @@ export const mockLogs: MatchEventResponse[] = Array.from(
     },
     {
       id: index * 3 + 3,
-      eventLog: 'GOAL' as MatchEventType,
+      eventLog: MatchEventType.GOAL,
       teamId: mockHomeTeam.id,
       teamName: mockHomeTeam.name,
       userId: mockHomePlayer.id,
@@ -147,6 +153,7 @@ export const mockPlayersByTeamType = (
 
   return Array.from({ length: 11 }, (_, idx) => ({
     id: startingIdx + 1 + idx,
+    userId: startingIdx + 1 + idx,
     name: playerNames[startingIdx + 1 + idx],
     number: 99,
     matchPosition: 'FW',
@@ -156,8 +163,10 @@ export const mockPlayersByTeamType = (
     caution: 2,
     yellowCards: idx % 2 === 0 ? 1 : 0,
     redCards: idx % 3 === 0 ? 1 : 0,
-    sentOff: false,
+    sentOff: idx % 3 === 0, // NOTE: 레드 받으면 sentOff
     matchGrid: gridPositions[idx], // FIXME: 추후 변경 예정
+    subIn: idx % 4 === 0,
+    subOut: idx % 2 === 0,
   }));
 };
 

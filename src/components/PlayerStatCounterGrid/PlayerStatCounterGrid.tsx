@@ -1,9 +1,8 @@
-import { useState } from 'react';
-
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import { teamColor } from '@/components/PlayerList/TeamColor.css';
 import { StatCounterItem } from '@/components/StatCounterItem';
+import { MatchEventType } from '@/constants';
 import { useSelectedPlayerStore } from '@/stores';
 
 import { CardBlock } from './CardBlock';
@@ -13,28 +12,30 @@ import * as styles from './PlayerStatCounterGrid.css';
 
 const statFields = ['득점', '어시스트'];
 
-export const PlayerStatCounterGrid = () => {
+type PlayerStatCounterGridProps = {
+  onStatChange: (playerId: number, matchEvent: MatchEventType) => void;
+};
+
+export const PlayerStatCounterGrid = ({
+  onStatChange,
+}: PlayerStatCounterGridProps) => {
   const { selectedPlayer } = useSelectedPlayerStore();
 
-  const [goals, setGoals] = useState(selectedPlayer?.player.goals ?? 0);
-  const [assists, setAssists] = useState(selectedPlayer?.player.assists ?? 0);
-  const [yellowCards, setYellowCards] = useState(
-    selectedPlayer?.player.yellowCards ?? 0,
-  );
-  const [redCards, setRedCards] = useState(
-    selectedPlayer?.player.redCards ?? 0,
-  );
-
-  const isYellow = yellowCards > 0;
-  const isRed = redCards > 0;
+  const isYellow = selectedPlayer && selectedPlayer.player.yellowCards > 0;
+  const isRed = selectedPlayer && selectedPlayer.player.redCards > 0;
 
   const handleCardClick = () => {
-    if (redCards === 0 && yellowCards === 0) {
-      setYellowCards(yellowCards + 1);
-    } else if (yellowCards > 0) {
-      setRedCards(redCards + 1);
+    if (!selectedPlayer) {
+      return;
+    }
+
+    if (
+      selectedPlayer.player.redCards === 0 &&
+      selectedPlayer.player.yellowCards === 0
+    ) {
+      onStatChange(selectedPlayer.player.id, MatchEventType.YELLOW_CARD);
     } else {
-      setYellowCards(yellowCards + 1);
+      onStatChange(selectedPlayer.player.id, MatchEventType.RED_CARD);
     }
   };
 
@@ -57,21 +58,18 @@ export const PlayerStatCounterGrid = () => {
               key={title}
               colorIntegration={false}
               title={title}
-              value={title === '득점' ? goals : assists}
+              value={
+                title === '득점'
+                  ? selectedPlayer.player.goals
+                  : selectedPlayer.player.assists
+              }
               onIncrement={() => {
-                // NOTE: DEMO 용도로만 임시로 로컬 상태 사용
-                if (title === '득점') {
-                  setGoals(goals + 1);
-                } else if (title === '어시스트') {
-                  setAssists(assists + 1);
-                }
-              }}
-              onDecrement={() => {
-                if (title === '득점') {
-                  setGoals(goals - 1);
-                } else if (title === '어시스트') {
-                  setAssists(assists - 1);
-                }
+                onStatChange(
+                  selectedPlayer.player.id,
+                  title === '득점'
+                    ? MatchEventType.GOAL
+                    : MatchEventType.ASSIST,
+                );
               }}
             />
           ))}

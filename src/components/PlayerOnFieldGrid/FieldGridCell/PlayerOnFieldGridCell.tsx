@@ -1,49 +1,73 @@
-import { MatchUserResponse } from '@/apis/models';
+import { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { SoccerballIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import { useIsDragOver } from '@/hooks';
+import { useSubstitutionStore } from '@/stores';
 import { createFallbackImageHandler } from '@/utils/createFallbackImageHandler';
 
 import * as styles from './PlayerOnFieldGridCell.css';
 import { commonCellContainer } from './commonStyle.css';
 
 interface PlayerOnFieldGridCellProps {
+  team: TeamResponse;
   player: MatchUserResponse;
   isSelected?: boolean;
-  onClick?: () => void;
+  onClick: () => void;
+  onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }
 
 const fallbackImageHandler = createFallbackImageHandler();
 
 export const PlayerOnFieldGridCell = ({
+  team,
   player,
   isSelected,
   onClick,
+  onSwap,
 }: PlayerOnFieldGridCellProps) => {
   const { isDragOver, hoverTargetRef } = useIsDragOver<HTMLDivElement>();
 
+  const { getIsSubstitutionTarget, beginSubstitution, finishSubstitution } =
+    useSubstitutionStore();
+  const disabled = player.subIn || !getIsSubstitutionTarget('starter', team);
+
+  const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
+    e.dataTransfer.setData('text/plain', player.id.toString());
+    beginSubstitution('starter', team, player);
+  };
+
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    if (disabled) {
+      return;
+    }
+
     e.preventDefault();
-    e.dataTransfer.dropEffect = 'move'; // Q. 필요할까?
+    e.dataTransfer.dropEffect = 'move';
   };
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    console.log('drop', e, e.dataTransfer.getData('application/json'));
+    if (disabled) {
+      return;
+    }
 
-    // NOTE:
-    // 1. ws API 호출 (Promise 반환)
-    // 2. Promise 대기
-    // 3. 성공 시 setQueryData로 업데이트
-    // 4. 100% 서버 상태에 의존하기 때문에 현재 구현할 수 없는 기능이긴 함
+    const playerComingInId = Number(e.dataTransfer.getData('text/plain'));
+    onSwap(playerComingInId, player.id);
   };
 
   return (
     <div
-      className={commonCellContainer({ isSelected, isDragOver })}
+      className={commonCellContainer({
+        isSelected,
+        isDragOver,
+        disabled,
+      })}
       onClick={onClick}
       ref={hoverTargetRef}
+      onDragStart={handleDragStart}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
+      onDragEnd={finishSubstitution}
+      draggable={!disabled}
     >
       <div className={styles.playerImageContainer}>
         <img

@@ -5,8 +5,13 @@
  * MatchDay 요구사항에 대한 REST API
  * OpenAPI spec version: 0.0.1
  */
+import type { MatchHalfTimeRequestHalfType } from './MatchHalfTimeRequestHalfType';
+import type { MatchHalfTimeRequestTimeType } from './MatchHalfTimeRequestTimeType';
 
 export interface MatchHalfTimeRequest {
-  startTime: string;
-  endTime: string;
+  /** 전/후반  */
+  halfType: MatchHalfTimeRequestHalfType;
+  /** 시작/종료 시간 */
+  timeType: MatchHalfTimeRequestTimeType;
+  time: string;
 }

@@ -1,37 +1,63 @@
 import { ApiResponse, MatchEventResponse } from '@/apis/models';
+import { MatchEventType } from '@/constants';
 
 import {
   RequestMapperDefinition,
   ResponseMapperDefinition,
 } from './SharedTypeSafeWebSocket';
 
-type MatchEventType =
-  | 'GOAL'
-  | 'ASSIST'
-  | 'SHOT'
-  | 'VALID_SHOT'
-  | 'FOUL'
-  | 'OFFSIDE'
-  | 'SUB_IN'
-  | 'SUB_OUT'
-  | 'YELLOW_CARD'
-  | 'RED_CARD'
-  | 'OWN_GOAL';
+export interface MatchRecordPlayerStatRequest {
+  matchUserId: number;
+  eventType: MatchEventType;
+  description: string;
+}
 
-export interface MatchRecordRequest {
-  token: string; // 현재는 Archives로 등록된 user의 ID
-  data: {
-    userId: number;
-    eventType: MatchEventType;
-    description: string;
-  };
+export interface MatchRecordPlayerExchangeRequest {
+  fromMatchUserId: number;
+  toMatchUserId: number;
+  message: string;
+}
+
+export interface MatchRecordTeamStatRequest {
+  eventType: MatchEventType;
+  description: string;
 }
 
 export const requestMapperDefinition = {
-  record: {
+  recordPlayerStat: {
     channelMapper: (matchId: number) => `/app/match/${matchId}`,
-    requestMapper: (payload: MatchRecordRequest) => {
-      return JSON.stringify(payload);
+    requestMapper: (
+      payload: Omit<MatchRecordPlayerStatRequest, 'description'>,
+    ) => {
+      // NOTE: description 필드는 무의미해서 요청에서 제외하고 빈 값으로 전달
+      return JSON.stringify({
+        ...payload,
+        description: '',
+      });
+    },
+  },
+  recordPlayerExchange: {
+    channelMapper: (matchId: number) => `/app/match/${matchId}/exchange`,
+    requestMapper: (
+      payload: Omit<MatchRecordPlayerExchangeRequest, 'message'>,
+    ) => {
+      // NOTE: message 필드는 무의미해서 요청에서 제외하고 빈 값으로 전달
+      return JSON.stringify({
+        ...payload,
+        message: '',
+      });
+    },
+  },
+  recordTeamStat: {
+    channelMapper: (matchId: number, teamId: number) =>
+      `/app/match/${matchId}/teams/${teamId}`,
+    requestMapper: (
+      payload: Omit<MatchRecordTeamStatRequest, 'description'>,
+    ) => {
+      return JSON.stringify({
+        ...payload,
+        description: '',
+      });
     },
   },
 } satisfies RequestMapperDefinition;

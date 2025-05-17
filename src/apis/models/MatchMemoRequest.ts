@@ -7,5 +7,9 @@
  */
 
 export interface MatchMemoRequest {
-  memo: string;
+  /**
+   * 매치 메모
+   * @nullable
+   */
+  memo: string | null;
 }

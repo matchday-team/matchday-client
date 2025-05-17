@@ -6,10 +6,32 @@
  * OpenAPI spec version: 0.0.1
  */
 
+/**
+ * 팀 멤버 응답 객체
+ */
 export interface TeamMemberResponse {
+  /** 팀 멤버 ID */
   id: number;
+  /** 멤버 이름 */
   name: string;
-  number: number;
-  defaultPosition: string;
-  isActive: boolean;
+  /**
+   * 선수 Number
+   * @nullable
+   */
+  number: number | null;
+  /**
+   * 고정 포지션
+   * @nullable
+   */
+  defaultPosition: string | null;
+  /**
+   * 현재 팀에서 활동 여부
+   * @nullable
+   */
+  isActive: boolean | null;
+  /**
+   * 프로필 이미지
+   * @nullable
+   */
+  imageUrl: string | null;
 }

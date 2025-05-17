@@ -35,6 +35,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Unselected: Story = {
+  args: {
+    onStatChange: () => {},
+  },
   decorators: [
     Story => {
       useSelectedPlayerStore.setState({
@@ -48,6 +51,9 @@ export const Unselected: Story = {
 };
 
 export const OneYellowCard: Story = {
+  args: {
+    onStatChange: () => {},
+  },
   decorators: [
     Story => {
       useSelectedPlayerStore.setState({
@@ -64,6 +70,9 @@ export const OneYellowCard: Story = {
 };
 
 export const OneRedCard: Story = {
+  args: {
+    onStatChange: () => {},
+  },
   decorators: [
     Story => {
       useSelectedPlayerStore.setState({

@@ -11,30 +11,51 @@ export const rootContainer = recipe({
     paddingTop: 6,
     paddingBottom: 6,
     paddingLeft: 24,
-    userSelect: 'none', // NOTE: 드래그 할 때 텍스트 선택되는 문제를 방지하기 위함
+    userSelect: 'none',
 
     ':hover': {
       backgroundColor: lightThemeVars.color.white.hover,
     },
   },
   variants: {
+    isDragOver: {
+      true: {
+        backgroundColor: lightThemeVars.color.gray[100], // NOTE: 일반 hover보다 조금 더 명확히 보이게
+      },
+    },
     disabled: {
       true: {
         cursor: 'not-allowed',
+        ':hover': {
+          backgroundColor: 'transparent',
+        },
       },
       false: {
         cursor: 'grab',
       },
     },
   },
+  compoundVariants: [
+    {
+      variants: {
+        disabled: true,
+        isDragOver: true,
+      },
+      style: {
+        backgroundColor: lightThemeVars.color.warning, // NOTE: 교체할 수 없음을 표시
+      },
+    },
+  ],
   defaultVariants: {
     disabled: false,
+    isDragOver: false,
   },
 });
 
 export const profileImage = style({
   borderRadius: '50%',
   objectFit: 'cover',
+  pointerEvents: 'none', // NOTE: 드래그 할 때 텍스트 선택되는 문제를 방지하기 위함
   width: 28,
   height: 28,
 });

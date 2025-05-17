@@ -11,17 +11,11 @@ export const EmptyOnFieldGridCell = ({
 }: EmptyOnFieldGridCellProps) => {
   const { isDragOver, hoverTargetRef } = useIsDragOver<HTMLDivElement>();
 
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'none';
-  };
-
   return (
     <div
-      className={commonCellContainer({ isDragOver })}
+      className={commonCellContainer({ isDragOver, disabled: isDragOver })}
       onClick={onClick}
       ref={hoverTargetRef}
-      onDragOver={handleDragOver}
     ></div>
   );
 };

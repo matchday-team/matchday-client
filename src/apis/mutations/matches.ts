@@ -3,7 +3,11 @@ import { HTTPError } from 'ky';
 import { useSnackbar } from 'notistack';
 
 import { matchApi } from '@/apis/fetchers';
-import { MatchCreateRequest, MatchUserCreateRequest } from '@/apis/models';
+import {
+  MatchCreateRequest,
+  MatchHalfTimeRequest,
+  MatchUserCreateRequest,
+} from '@/apis/models';
 import { matchRecordQuery } from '@/apis/queries';
 
 export const useCreateMatchMutation = () => {
@@ -120,17 +124,8 @@ export const usePatchMatchTimerMutation = (matchId: number) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (data: {
-      halfType: 'first' | 'second';
-      isStart: boolean;
-      time: string;
-    }) => {
-      return matchApi.patchMatchTimer(
-        matchId,
-        data.time,
-        data.halfType,
-        data.isStart,
-      );
+    mutationFn: (request: MatchHalfTimeRequest) => {
+      return matchApi.patchMatchTimer(matchId, request);
     },
     onSuccess: data => {
       enqueueSnackbar(`[임시] 매치 시간 등록 성공 - ${JSON.stringify(data)}`, {

@@ -6,9 +6,21 @@
  * OpenAPI spec version: 0.0.1
  */
 
+/**
+ * User 정보 응답 객체
+ */
 export interface UserInfoResponse {
+  /** 유저 ID */
   userId: number;
+  /** 유저 이름 */
   userName: string;
+  /**
+   * 프로필 이미지
+   * @nullable
+   */
+  profileImg: string | null;
+  /** 유저가 소속된 팀 ID */
   teamIds: number[];
+  /** 유저가 소속된 매치 ID */
   matchIds: number[];
 }

@@ -3,6 +3,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 // FIXME: teamColor 공통화 필요
 import { teamColor } from '@/components/PlayerList/TeamColor.css';
+import { matchRecordMocks } from '@/mocks';
 import { lightThemeVars } from '@/styles/theme.css';
 
 import { TeamStatCounterGrid } from './TeamStatCounterGrid';
@@ -32,6 +33,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    team: matchRecordMocks.mockHomeTeam,
     stats: {
       goalCount: 13,
       shotCount: 2,
@@ -47,6 +49,7 @@ export const Default: Story = {
 
 export const Empty: Story = {
   args: {
+    team: matchRecordMocks.mockHomeTeam,
     stats: {
       goalCount: 0,
       shotCount: 0,

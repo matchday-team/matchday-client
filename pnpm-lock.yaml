@@ -144,6 +144,9 @@ importers:
       chromatic:
         specifier: ^11.28.2
         version: 11.28.2
+      deep-utility-types:
+        specifier: ^1.3.1
+        version: 1.3.1
       eslint:
         specifier: ^9.21.0
         version: 9.24.0(jiti@2.4.2)
@@ -2313,6 +2316,10 @@ packages:
 
   deep-object-diff@1.1.9:
     resolution: {integrity: sha512-Rn+RuwkmkDwCi2/oXOFS9Gsr5lJZu/yTGpK7wAaAIE75CC+LCGEZHpY6VQJa/RoJcrmaA/docWJZvYohlNkWPA==}
+
+  deep-utility-types@1.3.1:
+    resolution: {integrity: sha512-93XgEr+ga1cIvckCfjm0n+TyDuZupbFDGRPA6D+X+sodF7dMTKUPk0eETXMo5+JGpfFDfIOtlIR7GsG/ysVqEQ==}
+    engines: {node: '>=16'}
 
   deepmerge@4.3.1:
     resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
@@ -6931,6 +6938,8 @@ snapshots:
   deep-is@0.1.4: {}
 
   deep-object-diff@1.1.9: {}
+
+  deep-utility-types@1.3.1: {}
 
   deepmerge@4.3.1: {}
 
