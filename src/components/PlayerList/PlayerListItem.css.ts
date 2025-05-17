@@ -98,9 +98,21 @@ export const name = style([
   },
 ]);
 
-export const subInIcon = style({
-  transform: 'rotate(180deg)',
-  color: lightThemeVars.color.soccer.red,
+export const subInIcon = recipe({
+  base: {
+    transform: 'rotate(180deg)',
+    color: lightThemeVars.color.soccer.red,
+  },
+  variants: {
+    visible: {
+      false: {
+        visibility: 'hidden',
+      },
+    },
+  },
+  defaultVariants: {
+    visible: true,
+  },
 });
 
 export const position = style([

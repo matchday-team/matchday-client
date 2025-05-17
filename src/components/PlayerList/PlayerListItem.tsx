@@ -84,7 +84,9 @@ export const PlayerItem = ({
         />
         <span className={styles.number}>{player.number}</span>
         <span className={styles.name}>{player.name}</span>
-        {player.subIn && <ChevronDownIcon className={styles.subInIcon} />}
+        <ChevronDownIcon
+          className={styles.subInIcon({ visible: player.subIn })}
+        />
         <span className={styles.position}>{player.matchPosition}</span>
       </div>
       <div className={styles.statContainer}>
