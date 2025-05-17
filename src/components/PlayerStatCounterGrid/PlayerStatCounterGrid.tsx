@@ -2,6 +2,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import { teamColor } from '@/components/PlayerList/TeamColor.css';
 import { StatCounterItem } from '@/components/StatCounterItem';
+import { MatchEventType } from '@/constants';
 import { useSelectedPlayerStore } from '@/stores';
 
 import { CardBlock } from './CardBlock';
@@ -12,17 +13,11 @@ import * as styles from './PlayerStatCounterGrid.css';
 const statFields = ['득점', '어시스트'];
 
 type PlayerStatCounterGridProps = {
-  onGoal?: (playerId: number) => void;
-  onAssist?: (playerId: number) => void;
-  onYellowCard?: (playerId: number) => void;
-  onRedCard?: (playerId: number) => void;
+  onStatChange: (playerId: number, matchEvent: MatchEventType) => void;
 };
 
 export const PlayerStatCounterGrid = ({
-  onGoal,
-  onAssist,
-  onYellowCard,
-  onRedCard,
+  onStatChange,
 }: PlayerStatCounterGridProps) => {
   const { selectedPlayer } = useSelectedPlayerStore();
 
@@ -38,11 +33,9 @@ export const PlayerStatCounterGrid = ({
       selectedPlayer.player.redCards === 0 &&
       selectedPlayer.player.yellowCards === 0
     ) {
-      onYellowCard?.(selectedPlayer.player.id);
-    } else if (selectedPlayer.player.yellowCards > 0) {
-      onRedCard?.(selectedPlayer.player.id);
+      onStatChange(selectedPlayer.player.id, MatchEventType.YELLOW_CARD);
     } else {
-      onYellowCard?.(selectedPlayer.player.id);
+      onStatChange(selectedPlayer.player.id, MatchEventType.RED_CARD);
     }
   };
 
@@ -71,12 +64,12 @@ export const PlayerStatCounterGrid = ({
                   : selectedPlayer.player.assists
               }
               onIncrement={() => {
-                // NOTE: DEMO 용도로만 임시로 로컬 상태 사용
-                if (title === '득점') {
-                  onGoal?.(selectedPlayer.player.id);
-                } else if (title === '어시스트') {
-                  onAssist?.(selectedPlayer.player.id);
-                }
+                onStatChange(
+                  selectedPlayer.player.id,
+                  title === '득점'
+                    ? MatchEventType.GOAL
+                    : MatchEventType.ASSIST,
+                );
               }}
             />
           ))}

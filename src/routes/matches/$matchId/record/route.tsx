@@ -132,6 +132,16 @@ function MatchRecordPage() {
     });
   };
 
+  const handlePlayerStatChange = (
+    playerId: number,
+    matchEvent: MatchEventType,
+  ) => {
+    wsApi.send('recordPlayerStat', [matchId], {
+      matchUserId: playerId,
+      eventType: matchEvent,
+    });
+  };
+
   useEffect(() => {
     const unsubErrorChannel = wsApi.subscribe('error', [], {
       error: error => {
@@ -259,32 +269,7 @@ function MatchRecordPage() {
       }
       selectedPlayer={
         <div style={s(302)}>
-          <PlayerStatCounterGrid
-            onGoal={(playerId: number) => {
-              wsApi.send('recordPlayerStat', [matchId], {
-                matchUserId: playerId,
-                eventType: MatchEventType.GOAL,
-              });
-            }}
-            onAssist={(playerId: number) => {
-              wsApi.send('recordPlayerStat', [matchId], {
-                matchUserId: playerId,
-                eventType: MatchEventType.ASSIST,
-              });
-            }}
-            onYellowCard={(playerId: number) => {
-              wsApi.send('recordPlayerStat', [matchId], {
-                matchUserId: playerId,
-                eventType: MatchEventType.YELLOW_CARD,
-              });
-            }}
-            onRedCard={(playerId: number) => {
-              wsApi.send('recordPlayerStat', [matchId], {
-                matchUserId: playerId,
-                eventType: MatchEventType.RED_CARD,
-              });
-            }}
-          />
+          <PlayerStatCounterGrid onStatChange={handlePlayerStatChange} />
         </div>
       }
       timer={
