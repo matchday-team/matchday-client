@@ -84,6 +84,7 @@ export default tseslint.config(
       'prefer-arrow-callback': 'error', // 일반 함수 대신 화살표 함수 사용
       'no-plusplus': 'error', // ++ 연산자 사용 금지
       'no-unneeded-ternary': 'error', // 불필요한 삼항 연산자 사용 금지
+      'no-duplicate-imports': 'error', // 동일 모듈에서 임포트 여러 회 금지
     },
   },
   {
