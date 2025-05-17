@@ -9,7 +9,7 @@ import * as styles from './ToggleableStartingPlayers.css';
 interface ToggleableStartingPlayersProps {
   team: TeamResponse;
   players: MatchUserResponse[];
-  onSwap?: (inPlayerId: number, outPlayerId: number) => void;
+  onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }
 
 export const ToggleableStartingPlayers = ({

@@ -13,7 +13,7 @@ import { teamColor } from './TeamColor.css';
 interface PlayerListProps {
   team: TeamResponse;
   players: MatchUserResponse[];
-  onSwap?: (inPlayerId: number, outPlayerId: number) => void;
+  onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }
 
 export const PlayerList = ({ team, players, onSwap }: PlayerListProps) => {
@@ -62,7 +62,7 @@ const PlayerListContent = ({
 }: {
   team: TeamResponse;
   players: MatchUserResponse[];
-  onSwap?: (inPlayerId: number, outPlayerId: number) => void;
+  onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }) => {
   const { isSelected, selectedPlayer, selectPlayer } = useSelectedPlayerStore();
 

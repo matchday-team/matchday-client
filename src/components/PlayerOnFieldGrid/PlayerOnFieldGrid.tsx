@@ -11,7 +11,7 @@ const TOTAL_CELLS = 30;
 interface PlayerOnFieldGridProps {
   team: TeamResponse;
   players: MatchUserResponse[];
-  onSwap?: (inPlayerId: number, outPlayerId: number) => void;
+  onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }
 
 export const PlayerOnFieldGrid = ({

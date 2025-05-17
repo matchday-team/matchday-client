@@ -12,8 +12,8 @@ interface PlayerOnFieldGridCellProps {
   team: TeamResponse;
   player: MatchUserResponse;
   isSelected?: boolean;
-  onClick?: () => void;
-  onSwap?: (inPlayerId: number, outPlayerId: number) => void;
+  onClick: () => void;
+  onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }
 
 const fallbackImageHandler = createFallbackImageHandler();

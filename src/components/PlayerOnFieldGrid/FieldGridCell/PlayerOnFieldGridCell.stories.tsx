@@ -38,6 +38,8 @@ export const Default: Story = {
       goals: 1,
       assists: 1,
     },
+    onClick: () => {},
+    onSwap: () => {},
   },
 };
 
@@ -50,6 +52,8 @@ export const Selected: Story = {
       assists: 1,
     },
     isSelected: true,
+    onClick: () => {},
+    onSwap: () => {},
   },
 };
 
@@ -61,6 +65,8 @@ export const NoAssists: Story = {
       goals: 1,
       assists: 0,
     },
+    onClick: () => {},
+    onSwap: () => {},
   },
 };
 
@@ -72,6 +78,8 @@ export const NoGoals: Story = {
       goals: 0,
       assists: 1,
     },
+    onClick: () => {},
+    onSwap: () => {},
   },
 };
 
@@ -83,6 +91,8 @@ export const NoAttackPoints: Story = {
       goals: 0,
       assists: 0,
     },
+    onClick: () => {},
+    onSwap: () => {},
   },
 };
 
@@ -94,6 +104,8 @@ export const NoCards: Story = {
       yellowCards: 0,
       redCards: 0,
     },
+    onClick: () => {},
+    onSwap: () => {},
   },
 };
 
@@ -105,6 +117,8 @@ export const YellowCard: Story = {
       yellowCards: 1,
       redCards: 0,
     },
+    onClick: () => {},
+    onSwap: () => {},
   },
 };
 
@@ -116,6 +130,8 @@ export const YellowAndRedCard: Story = {
       yellowCards: 1,
       redCards: 1,
     },
+    onClick: () => {},
+    onSwap: () => {},
   },
 };
 
@@ -127,5 +143,7 @@ export const DirectRedCard: Story = {
       yellowCards: 0,
       redCards: 1,
     },
+    onClick: () => {},
+    onSwap: () => {},
   },
 };
