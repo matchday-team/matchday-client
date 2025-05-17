@@ -10,7 +10,7 @@ type BeginSubstitution = (
   player: MatchUserResponse,
 ) => void;
 
-type getIsSubstitutionTarget = (
+type GetIsSubstitutionTarget = (
   targetType: SelectionType,
   team: TeamResponse,
 ) => boolean;
@@ -18,7 +18,7 @@ type getIsSubstitutionTarget = (
 export type SubstitutionStore = {
   beginSubstitution: BeginSubstitution;
   finishSubstitution: () => void;
-  getIsSubstitutionTarget: getIsSubstitutionTarget;
+  getIsSubstitutionTarget: GetIsSubstitutionTarget;
 } & (
   | {
       isActive: false;
