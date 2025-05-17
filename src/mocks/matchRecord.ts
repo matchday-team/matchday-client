@@ -45,6 +45,7 @@ export const mockAwayTeam: TeamResponse = {
 
 export const mockHomePlayer: MatchUserResponse = {
   id: 1,
+  userId: 1,
   name: '호나우두',
   number: 99,
   matchPosition: 'FW',
@@ -57,10 +58,13 @@ export const mockHomePlayer: MatchUserResponse = {
   matchGrid: 1,
   sentOff: false,
   profileImg: 'https://example.com/profile1.png',
+  subIn: false,
+  subOut: false,
 };
 
 export const mockAwayPlayer: MatchUserResponse = {
   id: 2,
+  userId: 2,
   name: '이순신',
   number: 10,
   // profileImageUrl: 'https://example.com/profile2.png',
@@ -73,6 +77,8 @@ export const mockAwayPlayer: MatchUserResponse = {
   sentOff: false,
   matchPosition: 'FW',
   profileImg: 'https://example.com/profile2.png',
+  subIn: false,
+  subOut: false,
 };
 
 export const mockLogs: MatchEventResponse[] = Array.from(
@@ -147,6 +153,7 @@ export const mockPlayersByTeamType = (
 
   return Array.from({ length: 11 }, (_, idx) => ({
     id: startingIdx + 1 + idx,
+    userId: startingIdx + 1 + idx,
     name: playerNames[startingIdx + 1 + idx],
     number: 99,
     matchPosition: 'FW',
@@ -158,6 +165,8 @@ export const mockPlayersByTeamType = (
     redCards: idx % 3 === 0 ? 1 : 0,
     sentOff: false,
     matchGrid: gridPositions[idx], // FIXME: 추후 변경 예정
+    subIn: false,
+    subOut: false,
   }));
 };
 

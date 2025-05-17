@@ -32,6 +32,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    team: matchRecordMocks.mockHomeTeam,
     player: {
       ...matchRecordMocks.mockPlayersByTeamType('home')[0],
       goals: 1,
@@ -42,6 +43,7 @@ export const Default: Story = {
 
 export const Selected: Story = {
   args: {
+    team: matchRecordMocks.mockHomeTeam,
     player: {
       ...matchRecordMocks.mockPlayersByTeamType('home')[0],
       goals: 1,
@@ -53,6 +55,7 @@ export const Selected: Story = {
 
 export const NoAssists: Story = {
   args: {
+    team: matchRecordMocks.mockHomeTeam,
     player: {
       ...matchRecordMocks.mockPlayersByTeamType('home')[0],
       goals: 1,
@@ -63,6 +66,7 @@ export const NoAssists: Story = {
 
 export const NoGoals: Story = {
   args: {
+    team: matchRecordMocks.mockHomeTeam,
     player: {
       ...matchRecordMocks.mockPlayersByTeamType('home')[0],
       goals: 0,
@@ -73,6 +77,7 @@ export const NoGoals: Story = {
 
 export const NoAttackPoints: Story = {
   args: {
+    team: matchRecordMocks.mockHomeTeam,
     player: {
       ...matchRecordMocks.mockPlayersByTeamType('home')[0],
       goals: 0,
@@ -83,6 +88,7 @@ export const NoAttackPoints: Story = {
 
 export const NoCards: Story = {
   args: {
+    team: matchRecordMocks.mockHomeTeam,
     player: {
       ...matchRecordMocks.mockPlayersByTeamType('home')[0],
       yellowCards: 0,
@@ -93,6 +99,7 @@ export const NoCards: Story = {
 
 export const YellowCard: Story = {
   args: {
+    team: matchRecordMocks.mockHomeTeam,
     player: {
       ...matchRecordMocks.mockPlayersByTeamType('home')[0],
       yellowCards: 1,
@@ -103,6 +110,7 @@ export const YellowCard: Story = {
 
 export const YellowAndRedCard: Story = {
   args: {
+    team: matchRecordMocks.mockHomeTeam,
     player: {
       ...matchRecordMocks.mockPlayersByTeamType('home')[0],
       yellowCards: 1,
@@ -113,6 +121,7 @@ export const YellowAndRedCard: Story = {
 
 export const DirectRedCard: Story = {
   args: {
+    team: matchRecordMocks.mockHomeTeam,
     player: {
       ...matchRecordMocks.mockPlayersByTeamType('home')[0],
       yellowCards: 0,
