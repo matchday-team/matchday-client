@@ -2,14 +2,12 @@ import { defineConfig } from 'orval';
 
 export default defineConfig({
   matchday: {
-    input: 'http://175.106.99.16:8080/v3/api-docs',
+    input: 'https://dev-api.matchday-planner.com/v3/api-docs',
     output: {
       mode: 'tags-split',
       target: './src/apis',
       schemas: './src/apis/models',
-      client: 'fetch',
-      httpClient: 'fetch',
-      mock: true,
+      mock: false,
       namingConvention: 'PascalCase',
       override: {
         requestOptions: false,
