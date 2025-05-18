@@ -20,7 +20,6 @@ export { nav, footerItemIcon, footer, icon, transitionTiming };
 
 export const container = recipe({
   base: {
-    position: 'fixed',
     zIndex: 100,
     top: 0,
     left: 0,
@@ -30,6 +29,12 @@ export const container = recipe({
     borderRight: `1px solid ${lightThemeVars.color.gray[100]}`,
     backgroundColor: lightThemeVars.color.white.main,
     height: '100vh',
+
+    '@media': {
+      [`(max-width: ${SIDEBAR_BREAKPOINT}px)`]: {
+        position: 'fixed',
+      },
+    },
   },
   variants: {
     isOpen: {

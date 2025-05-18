@@ -2,11 +2,7 @@ import { ReactNode, useCallback, useEffect, useState } from 'react';
 
 import { Navbar } from '@/components/Navbar';
 import { Sidebar } from '@/components/Sidebar';
-import {
-  SIDEBAR_BREAKPOINT,
-  SIDEBAR_WIDTH,
-  SIDEBAR_WIDTH_SMALL,
-} from '@/constants';
+import { SIDEBAR_BREAKPOINT } from '@/constants';
 
 import * as styles from './Layout.css';
 
@@ -37,15 +33,7 @@ export function Layout({ children }: LayoutProps) {
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <div className={styles.mainContent}>
         <Navbar isOpen={isOpen} />
-        <main
-          className={styles.contentArea}
-          style={{
-            paddingLeft: isOpen ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_SMALL + 16,
-            width: `calc(100% - ${isOpen ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_SMALL - 16}px)`,
-          }}
-        >
-          {children}
-        </main>
+        <main className={styles.contentArea}>{children}</main>
       </div>
     </div>
   );

@@ -18,7 +18,6 @@ export const mainContent = style({
 
 export const contentArea = style({
   flex: 1,
-  marginLeft: 'auto',
   backgroundColor: lightThemeVars.color.white.background,
   padding: 16,
   paddingTop: NAVBAR_HEIGHT + 16,
