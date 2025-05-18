@@ -22,6 +22,7 @@ import {
 import { MatchEventType } from '@/constants';
 import { usePageTitle } from '@/hooks';
 import { queryClient } from '@/react-query-provider';
+import { useSelectedPlayerStore } from '@/stores';
 import { commonPaper } from '@/styles/paper.css';
 import { debounce } from '@/utils';
 
@@ -158,6 +159,11 @@ function MatchRecordPage() {
   };
 
   usePageTitle(matchInfo.data.title);
+
+  const unselectPlayer = useSelectedPlayerStore(state => state.unselectPlayer);
+  useEffect(() => {
+    unselectPlayer();
+  }, []);
 
   useEffect(() => {
     const unsubErrorChannel = wsApi.subscribe('error', [], {
