@@ -13,7 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as AboutImport } from './routes/about'
 import { Route as LoginRouteImport } from './routes/login/route'
-import { Route as IndexImport } from './routes/index'
+import { Route as IndexRouteImport } from './routes/index/route'
 import { Route as UsersCreateRouteImport } from './routes/users/create/route'
 import { Route as MatchesCreateRouteImport } from './routes/matches/create/route'
 import { Route as MatchesMatchIdRecordRouteImport } from './routes/matches/$matchId/record/route'
@@ -33,7 +33,7 @@ const LoginRouteRoute = LoginRouteImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const IndexRoute = IndexImport.update({
+const IndexRouteRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
@@ -71,7 +71,7 @@ declare module '@tanstack/react-router' {
       id: '/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexImport
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRoute
     }
     '/login': {
@@ -122,7 +122,7 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof IndexRouteRoute
   '/login': typeof LoginRouteRoute
   '/about': typeof AboutRoute
   '/matches/create': typeof MatchesCreateRouteRoute
@@ -132,7 +132,7 @@ export interface FileRoutesByFullPath {
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/': typeof IndexRouteRoute
   '/login': typeof LoginRouteRoute
   '/about': typeof AboutRoute
   '/matches/create': typeof MatchesCreateRouteRoute
@@ -143,7 +143,7 @@ export interface FileRoutesByTo {
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/': typeof IndexRoute
+  '/': typeof IndexRouteRoute
   '/login': typeof LoginRouteRoute
   '/about': typeof AboutRoute
   '/matches/create': typeof MatchesCreateRouteRoute
@@ -184,7 +184,7 @@ export interface FileRouteTypes {
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  IndexRouteRoute: typeof IndexRouteRoute
   LoginRouteRoute: typeof LoginRouteRoute
   AboutRoute: typeof AboutRoute
   MatchesCreateRouteRoute: typeof MatchesCreateRouteRoute
@@ -194,7 +194,7 @@ export interface RootRouteChildren {
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  IndexRouteRoute: IndexRouteRoute,
   LoginRouteRoute: LoginRouteRoute,
   AboutRoute: AboutRoute,
   MatchesCreateRouteRoute: MatchesCreateRouteRoute,
@@ -223,7 +223,7 @@ export const routeTree = rootRoute
       ]
     },
     "/": {
-      "filePath": "index.tsx"
+      "filePath": "index/route.tsx"
     },
     "/login": {
       "filePath": "login/route.tsx"
