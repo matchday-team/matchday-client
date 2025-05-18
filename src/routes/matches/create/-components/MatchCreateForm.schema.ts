@@ -22,6 +22,8 @@ export const createSchema = (teamList: TeamSearchResponse[]): RJSFSchema => ({
     'assistantReferee2',
     'fourthReferee',
     'matchState',
+    'firstHalfPeriod',
+    'secondHalfPeriod',
   ],
   properties: {
     title: {
@@ -103,6 +105,16 @@ export const createSchema = (teamList: TeamSearchResponse[]): RJSFSchema => ({
       title: '매치 상태',
       enum: ['SCHEDULED', 'ONGOING', 'FINISHED'],
       default: 'SCHEDULED',
+    },
+    firstHalfPeriod: {
+      type: 'integer',
+      title: '전반 시간',
+      default: 45,
+    },
+    secondHalfPeriod: {
+      type: 'integer',
+      title: '후반 시간',
+      default: 45,
     },
   },
 });
