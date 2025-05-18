@@ -23,10 +23,9 @@ import * as styles from './Sidebar.css';
 interface SidebarProps {
   isOpen: boolean;
   toggle: () => void;
-  showToggle: boolean;
 }
 
-export function Sidebar({ isOpen, toggle, showToggle }: SidebarProps) {
+export function Sidebar({ isOpen, toggle }: SidebarProps) {
   const matches = useMatches();
   const currentPath = matches[matches.length - 1]?.pathname || '/';
   const navItems = useMemo(
@@ -77,13 +76,11 @@ export function Sidebar({ isOpen, toggle, showToggle }: SidebarProps) {
 
   return (
     <aside className={styles.container({ isOpen })}>
-      {showToggle && (
-        <button onClick={toggle} className={styles.toggleButton}>
-          <CheckRightIcon
-            className={`${styles.rightIcon} ${isOpen ? styles.rotateIcon : ''}`}
-          />
-        </button>
-      )}
+      <button onClick={toggle} className={styles.toggleButton}>
+        <CheckRightIcon
+          className={`${styles.rightIcon} ${isOpen ? styles.rotateIcon : ''}`}
+        />
+      </button>
 
       <div className={styles.logo({ isOpen })}>
         <img src={SeoulLogo} alt='FC 서울' className={styles.logoImage} />

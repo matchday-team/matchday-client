@@ -1,7 +1,11 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_SMALL } from '@/constants';
+import {
+  SIDEBAR_BREAKPOINT,
+  SIDEBAR_WIDTH,
+  SIDEBAR_WIDTH_SMALL,
+} from '@/constants';
 import { lightThemeVars } from '@/styles/theme.css';
 
 import {
@@ -123,6 +127,13 @@ export const toggleButton = style({
   cursor: 'pointer',
   width: 36,
   height: 36,
+
+  '@media': {
+    [`(min-width: ${SIDEBAR_BREAKPOINT}px)`]: {
+      display: 'none',
+    },
+  },
+
   selectors: {
     '&::after': {
       position: 'absolute',
