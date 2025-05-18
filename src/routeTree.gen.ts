@@ -15,9 +15,9 @@ import { Route as AboutImport } from './routes/about'
 import { Route as LoginRouteImport } from './routes/login/route'
 import { Route as IndexRouteImport } from './routes/index/route'
 import { Route as UsersCreateRouteImport } from './routes/users/create/route'
+import { Route as MatchesEntryRouteImport } from './routes/matches/entry/route'
 import { Route as MatchesCreateRouteImport } from './routes/matches/create/route'
 import { Route as MatchesMatchIdRecordRouteImport } from './routes/matches/$matchId/record/route'
-import { Route as MatchesMatchIdEntryRouteImport } from './routes/matches/$matchId/entry/route'
 
 // Create/Update Routes
 
@@ -45,6 +45,12 @@ const UsersCreateRouteRoute = UsersCreateRouteImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const MatchesEntryRouteRoute = MatchesEntryRouteImport.update({
+  id: '/matches/entry',
+  path: '/matches/entry',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const MatchesCreateRouteRoute = MatchesCreateRouteImport.update({
   id: '/matches/create',
   path: '/matches/create',
@@ -54,12 +60,6 @@ const MatchesCreateRouteRoute = MatchesCreateRouteImport.update({
 const MatchesMatchIdRecordRouteRoute = MatchesMatchIdRecordRouteImport.update({
   id: '/matches/$matchId/record',
   path: '/matches/$matchId/record',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const MatchesMatchIdEntryRouteRoute = MatchesMatchIdEntryRouteImport.update({
-  id: '/matches/$matchId/entry',
-  path: '/matches/$matchId/entry',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -95,18 +95,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MatchesCreateRouteImport
       parentRoute: typeof rootRoute
     }
+    '/matches/entry': {
+      id: '/matches/entry'
+      path: '/matches/entry'
+      fullPath: '/matches/entry'
+      preLoaderRoute: typeof MatchesEntryRouteImport
+      parentRoute: typeof rootRoute
+    }
     '/users/create': {
       id: '/users/create'
       path: '/users/create'
       fullPath: '/users/create'
       preLoaderRoute: typeof UsersCreateRouteImport
-      parentRoute: typeof rootRoute
-    }
-    '/matches/$matchId/entry': {
-      id: '/matches/$matchId/entry'
-      path: '/matches/$matchId/entry'
-      fullPath: '/matches/$matchId/entry'
-      preLoaderRoute: typeof MatchesMatchIdEntryRouteImport
       parentRoute: typeof rootRoute
     }
     '/matches/$matchId/record': {
@@ -126,8 +126,8 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRouteRoute
   '/about': typeof AboutRoute
   '/matches/create': typeof MatchesCreateRouteRoute
+  '/matches/entry': typeof MatchesEntryRouteRoute
   '/users/create': typeof UsersCreateRouteRoute
-  '/matches/$matchId/entry': typeof MatchesMatchIdEntryRouteRoute
   '/matches/$matchId/record': typeof MatchesMatchIdRecordRouteRoute
 }
 
@@ -136,8 +136,8 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRouteRoute
   '/about': typeof AboutRoute
   '/matches/create': typeof MatchesCreateRouteRoute
+  '/matches/entry': typeof MatchesEntryRouteRoute
   '/users/create': typeof UsersCreateRouteRoute
-  '/matches/$matchId/entry': typeof MatchesMatchIdEntryRouteRoute
   '/matches/$matchId/record': typeof MatchesMatchIdRecordRouteRoute
 }
 
@@ -147,8 +147,8 @@ export interface FileRoutesById {
   '/login': typeof LoginRouteRoute
   '/about': typeof AboutRoute
   '/matches/create': typeof MatchesCreateRouteRoute
+  '/matches/entry': typeof MatchesEntryRouteRoute
   '/users/create': typeof UsersCreateRouteRoute
-  '/matches/$matchId/entry': typeof MatchesMatchIdEntryRouteRoute
   '/matches/$matchId/record': typeof MatchesMatchIdRecordRouteRoute
 }
 
@@ -159,8 +159,8 @@ export interface FileRouteTypes {
     | '/login'
     | '/about'
     | '/matches/create'
+    | '/matches/entry'
     | '/users/create'
-    | '/matches/$matchId/entry'
     | '/matches/$matchId/record'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -168,8 +168,8 @@ export interface FileRouteTypes {
     | '/login'
     | '/about'
     | '/matches/create'
+    | '/matches/entry'
     | '/users/create'
-    | '/matches/$matchId/entry'
     | '/matches/$matchId/record'
   id:
     | '__root__'
@@ -177,8 +177,8 @@ export interface FileRouteTypes {
     | '/login'
     | '/about'
     | '/matches/create'
+    | '/matches/entry'
     | '/users/create'
-    | '/matches/$matchId/entry'
     | '/matches/$matchId/record'
   fileRoutesById: FileRoutesById
 }
@@ -188,8 +188,8 @@ export interface RootRouteChildren {
   LoginRouteRoute: typeof LoginRouteRoute
   AboutRoute: typeof AboutRoute
   MatchesCreateRouteRoute: typeof MatchesCreateRouteRoute
+  MatchesEntryRouteRoute: typeof MatchesEntryRouteRoute
   UsersCreateRouteRoute: typeof UsersCreateRouteRoute
-  MatchesMatchIdEntryRouteRoute: typeof MatchesMatchIdEntryRouteRoute
   MatchesMatchIdRecordRouteRoute: typeof MatchesMatchIdRecordRouteRoute
 }
 
@@ -198,8 +198,8 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRouteRoute: LoginRouteRoute,
   AboutRoute: AboutRoute,
   MatchesCreateRouteRoute: MatchesCreateRouteRoute,
+  MatchesEntryRouteRoute: MatchesEntryRouteRoute,
   UsersCreateRouteRoute: UsersCreateRouteRoute,
-  MatchesMatchIdEntryRouteRoute: MatchesMatchIdEntryRouteRoute,
   MatchesMatchIdRecordRouteRoute: MatchesMatchIdRecordRouteRoute,
 }
 
@@ -217,8 +217,8 @@ export const routeTree = rootRoute
         "/login",
         "/about",
         "/matches/create",
+        "/matches/entry",
         "/users/create",
-        "/matches/$matchId/entry",
         "/matches/$matchId/record"
       ]
     },
@@ -234,11 +234,11 @@ export const routeTree = rootRoute
     "/matches/create": {
       "filePath": "matches/create/route.tsx"
     },
+    "/matches/entry": {
+      "filePath": "matches/entry/route.tsx"
+    },
     "/users/create": {
       "filePath": "users/create/route.tsx"
-    },
-    "/matches/$matchId/entry": {
-      "filePath": "matches/$matchId/entry/route.tsx"
     },
     "/matches/$matchId/record": {
       "filePath": "matches/$matchId/record/route.tsx"

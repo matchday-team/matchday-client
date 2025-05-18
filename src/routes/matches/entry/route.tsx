@@ -7,7 +7,7 @@ import { queryClient } from '@/react-query-provider';
 import * as styles from './-components/MatchCreatePage.css';
 import { MatchModifyView } from './-components/MatchModifyView';
 
-export const Route = createFileRoute('/matches/$matchId/entry')({
+export const Route = createFileRoute('/matches/entry')({
   component: MatchEntryPage,
   loader: async () => {
     await queryClient.ensureQueryData(teamQuery.listAllQuery);
