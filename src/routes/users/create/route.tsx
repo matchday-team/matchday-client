@@ -1,10 +1,8 @@
-import { useEffect } from 'react';
-
 import { createFileRoute } from '@tanstack/react-router';
 
 import { teamQuery } from '@/apis/queries';
+import { usePageTitle } from '@/hooks';
 import { queryClient } from '@/react-query-provider';
-import { usePageTitleStore } from '@/stores';
 
 import { UserCreateAndJoinForm } from './-components';
 import * as styles from './-components/UserCreatePage.css';
@@ -17,10 +15,7 @@ export const Route = createFileRoute('/users/create')({
 });
 
 function UserCreatePage() {
-  const { setTitle } = usePageTitleStore();
-  useEffect(() => {
-    setTitle('유저 생성');
-  }, []);
+  usePageTitle('유저 생성');
 
   return (
     <div className={styles.rootContainer}>
