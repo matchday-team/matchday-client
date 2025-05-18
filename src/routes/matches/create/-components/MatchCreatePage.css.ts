@@ -6,14 +6,14 @@ export const rootContainer = style({
   flexDirection: 'column',
   gap: 8,
   padding: 16,
-  height: '100vh',
 });
 
 export const formsContainer = style({
   boxSizing: 'border-box',
-  display: 'grid',
-  flex: 1,
-  gridTemplateColumns: 'repeat(5, 1fr)',
+  display: 'flex',
+  flexDirection: 'row',
+  flexGrow: 1,
   gap: 16,
+  maxWidth: 512,
   overflow: 'hidden',
 });

@@ -5,9 +5,15 @@ import { commonContainer } from './commonStyle.css';
 export const rootContainer = style([
   commonContainer,
   {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
-    gridColumn: 'span 3',
+    display: 'flex',
+    flexDirection: 'row',
+    flexShrink: 0,
     gap: 16,
+    width: 1240,
   },
 ]);
+
+export const fieldContainer = style({
+  flexShrink: 0,
+  width: 354,
+});
