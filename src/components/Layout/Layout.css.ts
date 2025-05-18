@@ -1,9 +1,12 @@
 import { style } from '@vanilla-extract/css';
 
+import { NAVBAR_HEIGHT, SIDEBAR_WIDTH_SMALL } from '@/constants';
+import { lightThemeVars } from '@/styles/theme.css';
+
 export const layoutContainer = style({
   display: 'flex',
   width: '100%',
-  minHeight: '100vh',
+  height: '100vh',
 });
 
 export const mainContent = style({
@@ -11,12 +14,15 @@ export const mainContent = style({
   flex: 1,
   flexDirection: 'column',
   width: '100%',
-  minHeight: '100vh',
+  height: '100%',
+  overflow: 'hidden',
 });
 
 export const contentArea = style({
   flex: 1,
-  backgroundColor: '#f5f5f5',
-  padding: 16,
+  backgroundColor: lightThemeVars.color.white.background,
+  paddingTop: NAVBAR_HEIGHT + 16,
+  paddingRight: SIDEBAR_WIDTH_SMALL + 16,
+  paddingLeft: SIDEBAR_WIDTH_SMALL + 16,
   overflow: 'auto',
 });

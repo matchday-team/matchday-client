@@ -1,7 +1,11 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_SMALL } from '@/constants';
+import {
+  SIDEBAR_BREAKPOINT,
+  SIDEBAR_WIDTH,
+  SIDEBAR_WIDTH_SMALL,
+} from '@/constants';
 import { lightThemeVars } from '@/styles/theme.css';
 
 import {
@@ -16,7 +20,6 @@ export { nav, footerItemIcon, footer, icon, transitionTiming };
 
 export const container = recipe({
   base: {
-    position: 'fixed',
     zIndex: 100,
     top: 0,
     left: 0,
@@ -25,7 +28,13 @@ export const container = recipe({
     transition: `width 0.3s ${transitionTiming}`,
     borderRight: `1px solid ${lightThemeVars.color.gray[100]}`,
     backgroundColor: lightThemeVars.color.white.main,
-    height: '100vh',
+    height: '100%',
+
+    '@media': {
+      [`(max-width: ${SIDEBAR_BREAKPOINT}px)`]: {
+        position: 'fixed',
+      },
+    },
   },
   variants: {
     isOpen: {
@@ -123,6 +132,13 @@ export const toggleButton = style({
   cursor: 'pointer',
   width: 36,
   height: 36,
+
+  '@media': {
+    [`(min-width: ${SIDEBAR_BREAKPOINT}px)`]: {
+      display: 'none',
+    },
+  },
+
   selectors: {
     '&::after': {
       position: 'absolute',

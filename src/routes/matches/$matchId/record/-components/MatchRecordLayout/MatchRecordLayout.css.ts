@@ -5,16 +5,10 @@ export const rootContainer = style({
   display: 'flex',
   flexDirection: 'row',
   flexGrow: 1,
-  justifyContent: 'flex-start',
-  '@media': {
-    '(min-width: 1440px)': {
-      justifyContent: 'center',
-    },
-  },
+  justifyContent: 'center',
   gap: 16,
   marginTop: 16,
-  minWidth: 1380,
-  height: 964,
+  minWidth: 1320,
 });
 
 const flexColumn = style({

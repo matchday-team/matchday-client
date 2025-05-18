@@ -1,23 +1,36 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
-import { NAVBAR_HEIGHT } from '@/constants';
+import { NAVBAR_HEIGHT, SIDEBAR_WIDTH, SIDEBAR_WIDTH_SMALL } from '@/constants';
 import { lightThemeVars } from '@/styles/theme.css';
 
-export const navbar = style({
-  boxSizing: 'border-box',
-  position: 'fixed',
-  zIndex: 30,
-  top: 0,
-  right: 0,
-  left: 0,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  transition: 'left 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-  boxShadow: `0 1px 2px ${lightThemeVars.color.black}1a`,
-  backgroundColor: lightThemeVars.color.white.main,
-  padding: '0 32px',
-  height: NAVBAR_HEIGHT,
+export const navbar = recipe({
+  base: {
+    boxSizing: 'border-box',
+    position: 'fixed',
+    zIndex: 30,
+    top: 0,
+    right: 0,
+    left: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    transition: 'left 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+    boxShadow: `0 1px 2px ${lightThemeVars.color.black}1a`,
+    backgroundColor: lightThemeVars.color.white.main,
+    padding: '0 32px',
+    height: NAVBAR_HEIGHT,
+  },
+  variants: {
+    isOpen: {
+      true: {
+        left: SIDEBAR_WIDTH,
+      },
+      false: {
+        left: SIDEBAR_WIDTH_SMALL,
+      },
+    },
+  },
 });
 
 export const title = style({
