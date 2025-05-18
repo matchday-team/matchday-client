@@ -1,5 +1,3 @@
-import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_SMALL } from '@/constants';
-
 import * as styles from './Navbar.css';
 
 interface NavbarProps {
@@ -8,10 +6,7 @@ interface NavbarProps {
 
 export function Navbar({ isOpen }: NavbarProps) {
   return (
-    <header
-      className={styles.navbar}
-      style={{ left: `${isOpen ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_SMALL}px` }}
-    >
+    <header className={styles.navbar({ isOpen })}>
       <h1 className={styles.title}>교내 리그 3R 매치 기록</h1>
       <button className={styles.signUpButton} onClick={() => {}}>
         등록하기
