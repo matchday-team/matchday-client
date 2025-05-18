@@ -51,7 +51,7 @@ export const signUpButton = style({
   transition: 'background-color 0.2s ease, color 0.2s ease',
   border: `1px solid ${lightThemeVars.color.primary[700]}`,
   borderRadius: 8,
-  cursor: 'pointer',
+  cursor: 'not-allowed', // FIXME: 구현 완료 후 다시 변경
   padding: '8px 16px',
   height: 40,
   lineHeight: 1.4,

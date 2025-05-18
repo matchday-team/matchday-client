@@ -15,6 +15,7 @@ export const footerItem = style({
   alignItems: 'center',
   justifyContent: 'space-between',
   transition: `background-color 0.3s ${transitionTiming}`,
+  cursor: 'not-allowed', // FIXME: 구현 완료 후 다시 변경
   width: '100%',
   height: 44,
   overflow: 'hidden',
