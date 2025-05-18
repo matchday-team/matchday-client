@@ -44,16 +44,14 @@ export function Layout({ children }: LayoutProps) {
       <Sidebar isOpen={isOpen} toggle={toggle} showToggle={showToggle} />
       <div className={styles.mainContent}>
         <Navbar width={width} />
-        <main className={styles.contentArea}>
-          <main
-            className={styles.contentAreaNested}
-            style={{
-              paddingLeft: width,
-              width: `calc(100% - ${width}px)`,
-            }}
-          >
-            {children}
-          </main>
+        <main
+          className={styles.contentArea}
+          style={{
+            paddingLeft: width + 16,
+            width: `calc(100% - ${width - 16}px)`,
+          }}
+        >
+          {children}
         </main>
       </div>
     </div>
