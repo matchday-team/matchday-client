@@ -2,8 +2,7 @@
 import { RJSFSchema, UiSchema } from '@rjsf/utils';
 
 import { TeamSearchResponse } from '@/apis/models';
-
-import * as timeUtils from './timeUtils';
+import { timeUtils } from '@/utils';
 
 export const createSchema = (teamList: TeamSearchResponse[]): RJSFSchema => ({
   title: '매치 생성',

@@ -12,11 +12,7 @@ import {
 import { matchRecordQuery } from '@/apis/queries';
 import { MatchTimeController } from '@/components';
 import { useIntervalRerender } from '@/hooks';
-import {
-  formatMMSSfromSeconds,
-  getHHMMSSofDate,
-  getTodaySeconds,
-} from '@/utils';
+import { timeUtils } from '@/utils';
 
 const MIN_45_IN_SECONDS = 45 * 60;
 const MIN_90_IN_SECONDS = 90 * 60;
@@ -26,21 +22,21 @@ const calcMatchStatus = (matchInfo: MatchInfoResponse) => {
   if (!matchInfo.firstHalfStartTime) {
     return {
       period: 'not-started',
-      startedAt: getTodaySeconds(),
+      startedAt: timeUtils.getTodaySeconds(),
     } as const;
   }
 
   if (!matchInfo.firstHalfEndTime) {
     return {
       period: 'first',
-      startedAt: getTodaySeconds(matchInfo.firstHalfStartTime),
+      startedAt: timeUtils.getTodaySeconds(matchInfo.firstHalfStartTime),
     } as const;
   }
 
   if (!matchInfo.secondHalfStartTime) {
     return {
       period: 'half-time',
-      startedAt: getTodaySeconds() - MIN_45_IN_SECONDS,
+      startedAt: timeUtils.getTodaySeconds() - MIN_45_IN_SECONDS,
     } as const;
   }
 
@@ -48,13 +44,14 @@ const calcMatchStatus = (matchInfo: MatchInfoResponse) => {
     return {
       period: 'second',
       startedAt:
-        getTodaySeconds(matchInfo.secondHalfStartTime) - MIN_45_IN_SECONDS,
+        timeUtils.getTodaySeconds(matchInfo.secondHalfStartTime) -
+        MIN_45_IN_SECONDS,
     } as const;
   }
 
   return {
     period: 'end',
-    startedAt: getTodaySeconds() - MIN_90_IN_SECONDS,
+    startedAt: timeUtils.getTodaySeconds() - MIN_90_IN_SECONDS,
   } as const;
 };
 
@@ -85,7 +82,7 @@ export const MatchTimeControllerAdapter = ({
           ? MatchHalfTimeRequestHalfType.FIRST_HALF
           : MatchHalfTimeRequestHalfType.SECOND_HALF,
       timeType: MatchHalfTimeRequestTimeType.START_TIME,
-      time: getHHMMSSofDate(),
+      time: timeUtils.getHHMMSSofDate(),
     });
   };
 
@@ -96,13 +93,15 @@ export const MatchTimeControllerAdapter = ({
           ? MatchHalfTimeRequestHalfType.FIRST_HALF
           : MatchHalfTimeRequestHalfType.SECOND_HALF,
       timeType: MatchHalfTimeRequestTimeType.END_TIME,
-      time: getHHMMSSofDate(),
+      time: timeUtils.getHHMMSSofDate(),
     });
   };
 
   return (
     <MatchTimeController
-      timerText={formatMMSSfromSeconds(getTodaySeconds() - startedAt)}
+      timerText={timeUtils.formatMMSSfromSeconds(
+        timeUtils.getTodaySeconds() - startedAt,
+      )}
       currentPeriod={period}
       isPlaying={isGamePlaying}
       addedTime={0} // FIXME: 현재는 추가 시간 기능이 없음 (메모 사용 권장)

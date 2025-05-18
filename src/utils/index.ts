@@ -1,4 +1,5 @@
 export * from './createFallbackImageHandler';
 export * from './debounce';
-export * from './timeUtils';
+export * as timeUtils from './timeUtils';
 export * from './types';
+export * as nameUtils from './nameUtils';
