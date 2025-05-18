@@ -6,7 +6,7 @@ import { timeUtils } from '@/utils';
 
 export const createSchema = (teamList: TeamSearchResponse[]): RJSFSchema => ({
   title: '매치 생성',
-  description: '임시 매치 생성 폼. 아래 내용을 채주세요.',
+  description: '임시 매치 생성 폼. 아래 내용을 채워주세요.',
   type: 'object',
   required: [
     'title',
