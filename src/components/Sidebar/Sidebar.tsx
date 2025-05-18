@@ -1,7 +1,5 @@
 import { useMemo } from 'react';
 
-import { useMatches } from '@tanstack/react-router';
-
 import {
   CheckRightIcon,
   HelpCircleIcon,
@@ -10,7 +8,6 @@ import {
   LogoTextIcon,
   PlayerIcon,
   RecordIcon,
-  SearchIcon,
   SeoulLogo,
   SettingsIcon,
   UserIcon,
@@ -26,49 +23,33 @@ interface SidebarProps {
 }
 
 export function Sidebar({ isOpen, toggle }: SidebarProps) {
-  const matches = useMatches();
-  const currentPath = matches[matches.length - 1]?.pathname || '/';
-  const navItems = useMemo(
-    () => [
-      {
-        to: '/',
-        icon: <HomeIcon className={styles.icon} />,
-        label: '홈 (매치 리스트)',
-        path: '/',
-      },
-      {
-        to: '/matches/56/record',
-        icon: <RecordIcon className={styles.icon} />,
-        label: '매치 기록 (id: 56)',
-        path: '/matches/56/record',
-      },
-      {
-        to: '/matches/56',
-        icon: <SearchIcon className={styles.icon} />,
-        label: '매치 조회 (id: 56)',
-        path: '/matches/56',
-      },
-      {
-        to: '/matches/create',
-        icon: <RecordIcon className={styles.icon} />,
-        label: '매치 생성',
-        path: '/matches/create',
-      },
-      {
-        to: '/matches/56/entry',
-        icon: <PlayerIcon className={styles.icon} />,
-        label: '명단 등록 (id: 56)',
-        path: '/matches/56/entry',
-      },
-      {
-        to: '/users/create',
-        icon: <PlayerIcon className={styles.icon} />,
-        label: '유저 생성',
-        path: '/users/create',
-      },
-    ],
-    [],
-  );
+  const navItems = [
+    {
+      to: '/',
+      icon: <HomeIcon className={styles.icon} />,
+      label: '홈 (매치 리스트)',
+    },
+    {
+      to: '.',
+      icon: <RecordIcon className={styles.icon} />,
+      label: '매치 기록/조회',
+    },
+    {
+      to: '/matches/create',
+      icon: <RecordIcon className={styles.icon} />,
+      label: '매치 생성',
+    },
+    {
+      to: '/matches/entry',
+      icon: <PlayerIcon className={styles.icon} />,
+      label: '명단 등록',
+    },
+    {
+      to: '/users/create',
+      icon: <PlayerIcon className={styles.icon} />,
+      label: '유저 생성',
+    },
+  ];
 
   const footerItems = useMemo(
     () => [
@@ -110,11 +91,7 @@ export function Sidebar({ isOpen, toggle }: SidebarProps) {
       </div>
 
       <div className={styles.nav({ isOpen })}>
-        <NavItemList
-          items={navItems}
-          isOpen={isOpen}
-          currentPath={currentPath}
-        />
+        <NavItemList items={navItems} isOpen={isOpen} />
       </div>
 
       <div className={styles.footer({ isOpen })}>
