@@ -8,7 +8,7 @@ export const rootContainer = style({
   justifyContent: 'center',
   gap: 16,
   marginTop: 16,
-  height: 964,
+  minWidth: 1320,
 });
 
 const flexColumn = style({
