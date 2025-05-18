@@ -20,8 +20,9 @@ import {
   ToggleableStartingPlayers,
 } from '@/components';
 import { MatchEventType } from '@/constants';
+import { usePageTitle } from '@/hooks';
 import { queryClient } from '@/react-query-provider';
-import { usePageTitleStore } from '@/stores';
+import { useSelectedPlayerStore } from '@/stores';
 import { commonPaper } from '@/styles/paper.css';
 import { debounce } from '@/utils';
 
@@ -89,7 +90,6 @@ const dividePlayers = ({ starters, substitutes }: TeamGroupedUsers) => {
 function MatchRecordPage() {
   const queryClient = useQueryClient();
   const { enqueueSnackbar } = useSnackbar();
-  const { setTitle } = usePageTitleStore();
   const { matchId: _matchId } = useParams({ from: '/matches/$matchId/record' });
   const matchId = Number(_matchId);
   const wsApi = getWebSocketApi();
@@ -158,8 +158,11 @@ function MatchRecordPage() {
     });
   };
 
+  usePageTitle(matchInfo.data.title);
+
+  const unselectPlayer = useSelectedPlayerStore(state => state.unselectPlayer);
   useEffect(() => {
-    setTitle(matchInfo.data.title);
+    unselectPlayer();
   }, []);
 
   useEffect(() => {

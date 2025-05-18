@@ -8,13 +8,13 @@ interface NavItemProps {
   to: string;
   icon: ReactNode;
   label?: string;
-  isActive: boolean;
   isOpen: boolean;
 }
 
-export function NavItem({ to, icon, label, isActive, isOpen }: NavItemProps) {
+export function NavItem({ to, icon, label, isOpen }: NavItemProps) {
   return (
-    <Link to={to} className={styles.navItem({ active: isActive })}>
+    // TODO: match 기반으로 설계 다시해서 active 처리
+    <Link to={to} className={styles.navItem({ active: false })}>
       <div className={styles.navItemIcon({ isOpen })}>{icon}</div>
       {label && <span className={styles.label}>{label}</span>}
     </Link>
@@ -26,13 +26,11 @@ interface NavItemListProps {
     to: string;
     icon: ReactNode;
     label?: string;
-    path: string;
   }>;
   isOpen: boolean;
-  currentPath: string;
 }
 
-export function NavItemList({ items, isOpen, currentPath }: NavItemListProps) {
+export function NavItemList({ items, isOpen }: NavItemListProps) {
   return (
     <>
       {items.map(item => (
@@ -41,7 +39,6 @@ export function NavItemList({ items, isOpen, currentPath }: NavItemListProps) {
           to={item.to}
           icon={item.icon}
           label={isOpen ? item.label : undefined}
-          isActive={currentPath === item.path}
           isOpen={isOpen}
         />
       ))}

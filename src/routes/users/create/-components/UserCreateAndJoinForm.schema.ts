@@ -6,7 +6,7 @@ import { nameUtils } from '@/utils';
 
 export const createSchema = (teamList: TeamSearchResponse[]): RJSFSchema => ({
   title: '선수 생성 및 등록',
-  description: '임시 선수 생성 및 등록 폼. 아래 내용을 채주세요.',
+  description: '임시 선수 생성 및 등록 폼. 아래 내용을 채워주세요.',
   type: 'object',
   required: ['name', 'number', 'defaultPosition', 'teamId'],
   properties: {
