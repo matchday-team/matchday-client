@@ -18,4 +18,3 @@ export * from './Layout';
 export * from './Navbar';
 export * from './PlayerOnFieldGrid';
 export * from './ToggleableStartingPlayers';
-export * from './MainLayout';

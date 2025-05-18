@@ -19,13 +19,16 @@ import {
 import { FooterItemList } from './FooterItem';
 import { NavItemList } from './NavItem';
 import * as styles from './Sidebar.css';
-import { useSidebar } from './SidebarContext';
 
-export function Sidebar() {
-  const { isOpen, toggle, showToggle } = useSidebar();
+interface SidebarProps {
+  isOpen: boolean;
+  toggle: () => void;
+  showToggle: boolean;
+}
+
+export function Sidebar({ isOpen, toggle, showToggle }: SidebarProps) {
   const matches = useMatches();
   const currentPath = matches[matches.length - 1]?.pathname || '/';
-
   const navItems = useMemo(
     () => [
       {
