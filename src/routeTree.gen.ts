@@ -12,9 +12,11 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as AboutImport } from './routes/about'
-import { Route as AdminRouteImport } from './routes/admin/route'
 import { Route as IndexImport } from './routes/index'
+import { Route as UsersCreateRouteImport } from './routes/users/create/route'
+import { Route as MatchesCreateRouteImport } from './routes/matches/create/route'
 import { Route as MatchesMatchIdRecordRouteImport } from './routes/matches/$matchId/record/route'
+import { Route as MatchesMatchIdEntryRouteImport } from './routes/matches/$matchId/entry/route'
 
 // Create/Update Routes
 
@@ -24,21 +26,33 @@ const AboutRoute = AboutImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const AdminRouteRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
 } as any)
 
+const UsersCreateRouteRoute = UsersCreateRouteImport.update({
+  id: '/users/create',
+  path: '/users/create',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MatchesCreateRouteRoute = MatchesCreateRouteImport.update({
+  id: '/matches/create',
+  path: '/matches/create',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const MatchesMatchIdRecordRouteRoute = MatchesMatchIdRecordRouteImport.update({
   id: '/matches/$matchId/record',
   path: '/matches/$matchId/record',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MatchesMatchIdEntryRouteRoute = MatchesMatchIdEntryRouteImport.update({
+  id: '/matches/$matchId/entry',
+  path: '/matches/$matchId/entry',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -53,18 +67,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
-      parentRoute: typeof rootRoute
-    }
     '/about': {
       id: '/about'
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutImport
+      parentRoute: typeof rootRoute
+    }
+    '/matches/create': {
+      id: '/matches/create'
+      path: '/matches/create'
+      fullPath: '/matches/create'
+      preLoaderRoute: typeof MatchesCreateRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/users/create': {
+      id: '/users/create'
+      path: '/users/create'
+      fullPath: '/users/create'
+      preLoaderRoute: typeof UsersCreateRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/matches/$matchId/entry': {
+      id: '/matches/$matchId/entry'
+      path: '/matches/$matchId/entry'
+      fullPath: '/matches/$matchId/entry'
+      preLoaderRoute: typeof MatchesMatchIdEntryRouteImport
       parentRoute: typeof rootRoute
     }
     '/matches/$matchId/record': {
@@ -81,46 +109,75 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRouteRoute
   '/about': typeof AboutRoute
+  '/matches/create': typeof MatchesCreateRouteRoute
+  '/users/create': typeof UsersCreateRouteRoute
+  '/matches/$matchId/entry': typeof MatchesMatchIdEntryRouteRoute
   '/matches/$matchId/record': typeof MatchesMatchIdRecordRouteRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRouteRoute
   '/about': typeof AboutRoute
+  '/matches/create': typeof MatchesCreateRouteRoute
+  '/users/create': typeof UsersCreateRouteRoute
+  '/matches/$matchId/entry': typeof MatchesMatchIdEntryRouteRoute
   '/matches/$matchId/record': typeof MatchesMatchIdRecordRouteRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/admin': typeof AdminRouteRoute
   '/about': typeof AboutRoute
+  '/matches/create': typeof MatchesCreateRouteRoute
+  '/users/create': typeof UsersCreateRouteRoute
+  '/matches/$matchId/entry': typeof MatchesMatchIdEntryRouteRoute
   '/matches/$matchId/record': typeof MatchesMatchIdRecordRouteRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/about' | '/matches/$matchId/record'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/matches/create'
+    | '/users/create'
+    | '/matches/$matchId/entry'
+    | '/matches/$matchId/record'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/about' | '/matches/$matchId/record'
-  id: '__root__' | '/' | '/admin' | '/about' | '/matches/$matchId/record'
+  to:
+    | '/'
+    | '/about'
+    | '/matches/create'
+    | '/users/create'
+    | '/matches/$matchId/entry'
+    | '/matches/$matchId/record'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/matches/create'
+    | '/users/create'
+    | '/matches/$matchId/entry'
+    | '/matches/$matchId/record'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AdminRouteRoute: typeof AdminRouteRoute
   AboutRoute: typeof AboutRoute
+  MatchesCreateRouteRoute: typeof MatchesCreateRouteRoute
+  UsersCreateRouteRoute: typeof UsersCreateRouteRoute
+  MatchesMatchIdEntryRouteRoute: typeof MatchesMatchIdEntryRouteRoute
   MatchesMatchIdRecordRouteRoute: typeof MatchesMatchIdRecordRouteRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AdminRouteRoute: AdminRouteRoute,
   AboutRoute: AboutRoute,
+  MatchesCreateRouteRoute: MatchesCreateRouteRoute,
+  UsersCreateRouteRoute: UsersCreateRouteRoute,
+  MatchesMatchIdEntryRouteRoute: MatchesMatchIdEntryRouteRoute,
   MatchesMatchIdRecordRouteRoute: MatchesMatchIdRecordRouteRoute,
 }
 
@@ -135,19 +192,27 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/admin",
         "/about",
+        "/matches/create",
+        "/users/create",
+        "/matches/$matchId/entry",
         "/matches/$matchId/record"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/admin": {
-      "filePath": "admin/route.tsx"
-    },
     "/about": {
       "filePath": "about.tsx"
+    },
+    "/matches/create": {
+      "filePath": "matches/create/route.tsx"
+    },
+    "/users/create": {
+      "filePath": "users/create/route.tsx"
+    },
+    "/matches/$matchId/entry": {
+      "filePath": "matches/$matchId/entry/route.tsx"
     },
     "/matches/$matchId/record": {
       "filePath": "matches/$matchId/record/route.tsx"

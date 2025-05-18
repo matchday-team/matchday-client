@@ -2,8 +2,7 @@
 import { RJSFSchema, UiSchema } from '@rjsf/utils';
 
 import { TeamSearchResponse } from '@/apis/models';
-
-import * as nameUtils from './nameUtils';
+import { nameUtils } from '@/utils';
 
 export const createSchema = (teamList: TeamSearchResponse[]): RJSFSchema => ({
   title: '선수 생성 및 등록',

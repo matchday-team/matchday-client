@@ -2,8 +2,8 @@ import {
   MatchEventResponse,
   MatchInfoResponse,
   MatchUserResponse,
+  TeamResponse,
 } from '@/apis/models';
-import { TeamResponse } from '@/apis/models';
 import { MatchEventType } from '@/constants';
 import { lightThemeVars } from '@/styles/theme.css';
 
@@ -23,6 +23,9 @@ export const mockMatchInfo: MatchInfoResponse = {
   firstHalfEndTime: '10:15',
   secondHalfStartTime: '10:30',
   secondHalfEndTime: '11:15',
+  title: 'K리그 1 25라운드',
+  firstHalfPeriod: 45,
+  secondHalfPeriod: 45,
 };
 
 export const mockHomeTeam: TeamResponse = {

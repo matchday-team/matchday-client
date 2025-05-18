@@ -43,7 +43,7 @@ export const MatchModifyView = () => {
         onSelectTeam={setSelectedTeamId}
         onSelectMatch={setSelectedMatchId}
       />
-      <div>
+      <div className={styles.fieldContainer}>
         <h2>home</h2>
         {homeTeam && (
           <ToggleableStartingPlayers
@@ -54,7 +54,7 @@ export const MatchModifyView = () => {
         )}
       </div>
 
-      <div>
+      <div className={styles.fieldContainer}>
         <h2>away</h2>
         {awayTeam && (
           <ToggleableStartingPlayers
