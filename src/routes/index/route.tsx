@@ -3,6 +3,7 @@ import { createFileRoute } from '@tanstack/react-router';
 
 import { matchRecordQuery, userQuery } from '@/apis/queries';
 import { CommonLoader } from '@/components';
+import { usePageTitle } from '@/hooks';
 import { queryClient } from '@/react-query-provider';
 
 import { TeamList } from './-components';
@@ -16,6 +17,8 @@ export const Route = createFileRoute('/')({
 });
 
 function MyTeamMatchListPage() {
+  usePageTitle('매치 리스트');
+
   const { data: user } = useSuspenseQuery(userQuery.meQuery);
   const { data: matchList, isLoading } = useQuery({
     ...matchRecordQuery.listQuery(user!.teamId!),
