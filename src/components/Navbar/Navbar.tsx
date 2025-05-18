@@ -1,3 +1,5 @@
+import { usePageTitleStore } from '@/stores';
+
 import * as styles from './Navbar.css';
 
 interface NavbarProps {
@@ -5,9 +7,11 @@ interface NavbarProps {
 }
 
 export function Navbar({ isOpen }: NavbarProps) {
+  const { title } = usePageTitleStore();
+
   return (
     <header className={styles.navbar({ isOpen })}>
-      <h1 className={styles.title}>교내 리그 3R 매치 기록</h1>
+      <h1 className={styles.title}>{title}</h1>
       <button className={styles.signUpButton} onClick={() => {}}>
         등록하기
       </button>

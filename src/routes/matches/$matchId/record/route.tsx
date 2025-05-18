@@ -21,6 +21,7 @@ import {
 } from '@/components';
 import { MatchEventType } from '@/constants';
 import { queryClient } from '@/react-query-provider';
+import { usePageTitleStore } from '@/stores';
 import { commonPaper } from '@/styles/paper.css';
 import { debounce } from '@/utils';
 
@@ -88,6 +89,7 @@ const dividePlayers = ({ starters, substitutes }: TeamGroupedUsers) => {
 function MatchRecordPage() {
   const queryClient = useQueryClient();
   const { enqueueSnackbar } = useSnackbar();
+  const { setTitle } = usePageTitleStore();
   const { matchId: _matchId } = useParams({ from: '/matches/$matchId/record' });
   const matchId = Number(_matchId);
   const wsApi = getWebSocketApi();
@@ -155,6 +157,10 @@ function MatchRecordPage() {
       eventType: matchEvent,
     });
   };
+
+  useEffect(() => {
+    setTitle('경기명'); // FIXME: 서버에서 경기명 필드 추가 필요
+  }, []);
 
   useEffect(() => {
     const unsubErrorChannel = wsApi.subscribe('error', [], {
