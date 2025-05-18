@@ -159,7 +159,7 @@ function MatchRecordPage() {
   };
 
   useEffect(() => {
-    setTitle('경기명'); // FIXME: 서버에서 경기명 필드 추가 필요
+    setTitle(matchInfo.data.title);
   }, []);
 
   useEffect(() => {

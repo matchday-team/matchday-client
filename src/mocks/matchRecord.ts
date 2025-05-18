@@ -23,7 +23,7 @@ export const mockMatchInfo: MatchInfoResponse = {
   firstHalfEndTime: '10:15',
   secondHalfStartTime: '10:30',
   secondHalfEndTime: '11:15',
-  title: '한양대학교 대운동장',
+  title: 'K리그 1 25라운드',
   firstHalfPeriod: 45,
   secondHalfPeriod: 45,
 };
