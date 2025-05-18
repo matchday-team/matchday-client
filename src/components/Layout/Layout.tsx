@@ -16,13 +16,11 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   const [isOpen, setIsOpen] = useState(true);
-  const [width, setWidth] = useState(SIDEBAR_WIDTH);
 
   useEffect(() => {
     const handleResize = () => {
       const isSmallScreen = window.innerWidth <= SIDEBAR_BREAKPOINT;
       setIsOpen(!isSmallScreen);
-      setWidth(isSmallScreen ? SIDEBAR_WIDTH_SMALL : SIDEBAR_WIDTH);
     };
 
     handleResize();
@@ -32,21 +30,18 @@ export function Layout({ children }: LayoutProps) {
 
   const toggle = useCallback(() => {
     setIsOpen(prev => !prev);
-    setWidth(prev =>
-      prev === SIDEBAR_WIDTH_SMALL ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_SMALL,
-    );
   }, []);
 
   return (
     <div className={styles.layoutContainer}>
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <div className={styles.mainContent}>
-        <Navbar width={width} />
+        <Navbar isOpen={isOpen} />
         <main
           className={styles.contentArea}
           style={{
-            paddingLeft: width + 16,
-            width: `calc(100% - ${width - 16}px)`,
+            paddingLeft: isOpen ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_SMALL + 16,
+            width: `calc(100% - ${isOpen ? SIDEBAR_WIDTH : SIDEBAR_WIDTH_SMALL - 16}px)`,
           }}
         >
           {children}
