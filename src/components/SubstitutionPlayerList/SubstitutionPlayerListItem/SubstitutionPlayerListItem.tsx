@@ -6,9 +6,9 @@ import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import { useIsDragOver } from '@/hooks';
 import { useSubstitutionStore } from '@/stores';
 
-import * as styles from './PlayerListItem.css';
+import * as styles from './SubstitutionPlayerListItem.css';
 
-export interface ListItemProps {
+export interface SubstitutionPlayerListItemProps {
   team: TeamResponse;
   player: MatchUserResponse;
   onSwap: (inPlayerId: number, outPlayerId: number) => void;
@@ -24,7 +24,11 @@ const setFallbackImageIfLoadFail = (
   e.currentTarget.src = noProfilePlayerImage;
 };
 
-export const PlayerListItem = ({ team, player, onSwap }: ListItemProps) => {
+export const SubstitutionPlayerListItem = ({
+  team,
+  player,
+  onSwap,
+}: SubstitutionPlayerListItemProps) => {
   const { isDragOver, hoverTargetRef } = useIsDragOver<HTMLLIElement>();
   const { getIsSubstitutionTarget, beginSubstitution, finishSubstitution } =
     useSubstitutionStore();
