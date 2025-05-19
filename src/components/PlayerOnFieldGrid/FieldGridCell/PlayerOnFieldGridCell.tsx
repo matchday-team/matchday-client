@@ -1,5 +1,5 @@
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
-import { SoccerballIcon } from '@/assets/icons';
+import { FootballShoeIcon, SoccerballIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import { useIsDragOver } from '@/hooks';
 import { useSubstitutionStore } from '@/stores';
@@ -81,8 +81,8 @@ export const PlayerOnFieldGridCell = ({
           {player.redCards > 0 && <PlayerCaution variant='red' />}
         </div>
         <div className={styles.attackPointContainer}>
-          <AttackPointMark count={player.goals} />
-          <AttackPointMark count={player.assists} />
+          <AttackPointMark type='goal' count={player.goals} />
+          <AttackPointMark type='assist' count={player.assists} />
         </div>
       </div>
       <div className={styles.playerInfoContainer}>
@@ -93,10 +93,16 @@ export const PlayerOnFieldGridCell = ({
   );
 };
 
-const AttackPointMark = ({ count }: { count: number }) => {
+const AttackPointMark = ({
+  type,
+  count,
+}: {
+  type: 'goal' | 'assist';
+  count: number;
+}) => {
   return (
     <div className={styles.attackPointMarkContainer({ isEmpty: count === 0 })}>
-      <SoccerballIcon />
+      {type === 'goal' ? <SoccerballIcon /> : <FootballShoeIcon />}
       <span className={styles.attackPointCount}>{count}</span>
     </div>
   );
