@@ -37,7 +37,7 @@ export const MatchTimeController = ({
   const isPlayingFirstHalf = currentPeriod === 'first';
 
   const buttonText = isGameEnded
-    ? '게임 종료됨'
+    ? '게임 종료'
     : isPlaying
       ? `${periodNames[currentPeriod]} 종료`
       : `${periodNames[currentPeriod]} 시작`;
