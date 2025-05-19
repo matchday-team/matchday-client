@@ -17,32 +17,29 @@ export const rootContainer = recipe({
     fontWeight: 600,
 
     ':disabled': {
+      backgroundColor: lightThemeVars.color.gray[100],
       cursor: 'not-allowed',
+      color: lightThemeVars.color.gray[300],
     },
   },
   variants: {
     variant: {
       primary: {
-        background: lightThemeVars.color.primary[700],
+        backgroundColor: lightThemeVars.color.primary[700],
         color: lightThemeVars.color.white.main,
-        ':hover': {
-          background: lightThemeVars.color.primary['700Darken'],
-        },
-        ':disabled': {
-          borderBottom: `1px solid ${lightThemeVars.color.primary[100]}`,
-          background: lightThemeVars.color.white.main,
-          color: lightThemeVars.color.primary[100],
+        selectors: {
+          '&:not(:disabled):hover': {
+            backgroundColor: lightThemeVars.color.primary['700Darken'],
+          },
         },
       },
       danger: {
         backgroundColor: lightThemeVars.color.white.main,
         color: lightThemeVars.color.black,
-        ':hover': {
-          background: lightThemeVars.color.white.hover, // NOTE: 임의 추가
-        },
-        ':disabled': {
-          background: lightThemeVars.color.gray[100],
-          color: lightThemeVars.color.gray[300],
+        selectors: {
+          '&:not(:disabled):hover': {
+            backgroundColor: lightThemeVars.color.white.hover, // NOTE: 임의 추가
+          },
         },
       },
     },
