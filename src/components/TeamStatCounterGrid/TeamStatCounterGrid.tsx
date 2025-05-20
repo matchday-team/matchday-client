@@ -43,6 +43,7 @@ export const TeamStatCounterGrid = ({
         {firstLine.map(stat => (
           <StatCounterItem
             key={stat}
+            type='grid'
             title={stat}
             value={stats[mapStatResponseField[stat]]}
             onIncrement={() => handleIncrement(stat)}
@@ -54,6 +55,7 @@ export const TeamStatCounterGrid = ({
         {secondLine.map(stat => (
           <StatCounterItem
             key={stat}
+            type='grid'
             title={stat}
             value={stats[mapStatResponseField[stat]]}
             onIncrement={() => handleIncrement(stat)}
