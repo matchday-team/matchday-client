@@ -19,6 +19,7 @@ export const rootContainer = recipe({
     },
     type: {
       grid: {
+        gap: 5,
         borderRight: `1px solid ${lightThemeVars.color.primary['100']}`,
         padding: '12px 7px',
         height: 73,
@@ -33,6 +34,7 @@ export const rootContainer = recipe({
         },
       },
       standalone: {
+        gap: 10,
         padding: '12px 16px',
         width: 127,
         height: 86,
