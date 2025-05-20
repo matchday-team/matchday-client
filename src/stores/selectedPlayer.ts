@@ -28,7 +28,7 @@ const syncWithQueryCache = (query: QueryCacheNotifyEvent) => {
 
   const matchPlayers = queryClient.getQueryData<
     ApiResponse<MatchUserGroupResponse>
-  >(matchRecordQuery.queryKeys.matchPlayers(matchId));
+  >(matchRecordQuery.playersQuery(matchId).queryKey);
   if (!matchPlayers?.data) {
     return;
   }

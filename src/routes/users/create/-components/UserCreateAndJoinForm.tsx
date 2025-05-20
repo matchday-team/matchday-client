@@ -35,7 +35,7 @@ export const UserCreateAndJoinForm = () => {
     const userId = (await createUser(name)).data;
     await userJoinTeam({ userId, teamId, number, defaultPosition });
     queryClient.invalidateQueries({
-      queryKey: teamQuery.queryKeys.teamMemberListById(teamId),
+      queryKey: teamQuery.listTeamMemberQuery(teamId).queryKey,
     });
   };
 

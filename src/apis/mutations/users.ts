@@ -56,7 +56,7 @@ export const useLoginMutation = () => {
       });
 
       setIsLoggedIn(true);
-      queryClient.invalidateQueries({ queryKey: userQuery.queryKeys.me() });
+      queryClient.invalidateQueries({ queryKey: userQuery.meQuery.queryKey });
       navigate({ to: '/' });
     },
     onError: () => {

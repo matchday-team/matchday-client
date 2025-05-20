@@ -1,3 +1,5 @@
+import { queryOptions } from '@tanstack/react-query';
+
 import { matchApi } from '@/apis/fetchers';
 
 // TODO: 파일명을 matches로 변경
@@ -5,7 +7,7 @@ const queryKeyNamespaces = {
   matches: 'matches',
 };
 
-export const queryKeys = {
+const queryKeys = {
   matchById: (matchId: number) => [queryKeyNamespaces.matches, matchId],
   matchInfo: (matchId: number) => [queryKeyNamespaces.matches, matchId, 'info'],
   matchScore: (matchId: number) => [
@@ -27,32 +29,38 @@ export const queryKeys = {
   matchList: (teamId: number) => [queryKeyNamespaces.matches, 'list', teamId],
 };
 
-export const infoQuery = (matchId: number) => ({
-  queryKey: queryKeys.matchInfo(matchId),
-  queryFn: () => matchApi.getMatchInfoByMatchId(matchId),
-});
+export const infoQuery = (matchId: number) =>
+  queryOptions({
+    queryKey: queryKeys.matchInfo(matchId),
+    queryFn: () => matchApi.getMatchInfoByMatchId(matchId),
+  });
 
-export const scoreQuery = (matchId: number) => ({
-  queryKey: queryKeys.matchScore(matchId),
-  queryFn: () => matchApi.getMatchScoreByMatchId(matchId),
-});
+export const scoreQuery = (matchId: number) =>
+  queryOptions({
+    queryKey: queryKeys.matchScore(matchId),
+    queryFn: () => matchApi.getMatchScoreByMatchId(matchId),
+  });
 
-export const eventsQuery = (matchId: number) => ({
-  queryKey: queryKeys.matchEvents(matchId),
-  queryFn: () => matchApi.getMatchEventsByMatchId(matchId),
-});
+export const eventsQuery = (matchId: number) =>
+  queryOptions({
+    queryKey: queryKeys.matchEvents(matchId),
+    queryFn: () => matchApi.getMatchEventsByMatchId(matchId),
+  });
 
-export const playersQuery = (matchId: number) => ({
-  queryKey: queryKeys.matchPlayers(matchId),
-  queryFn: () => matchApi.getMatchPlayersByMatchId(matchId),
-});
+export const playersQuery = (matchId: number) =>
+  queryOptions({
+    queryKey: queryKeys.matchPlayers(matchId),
+    queryFn: () => matchApi.getMatchPlayersByMatchId(matchId),
+  });
 
-export const memoQuery = (matchId: number) => ({
-  queryKey: queryKeys.matchMemo(matchId),
-  queryFn: () => matchApi.getMatchMemoByMatchId(matchId),
-});
+export const memoQuery = (matchId: number) =>
+  queryOptions({
+    queryKey: queryKeys.matchMemo(matchId),
+    queryFn: () => matchApi.getMatchMemoByMatchId(matchId),
+  });
 
-export const listQuery = (teamId: number) => ({
-  queryKey: queryKeys.matchList(teamId),
-  queryFn: () => matchApi.getMatchListByTeamId(teamId),
-});
+export const listQuery = (teamId: number) =>
+  queryOptions({
+    queryKey: queryKeys.matchList(teamId),
+    queryFn: () => matchApi.getMatchListByTeamId(teamId),
+  });

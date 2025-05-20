@@ -75,7 +75,7 @@ export const UserMatchJoinForm = ({
       role,
     });
     queryClient.invalidateQueries({
-      queryKey: matchRecordQuery.queryKeys.matchPlayers(matchId),
+      queryKey: matchRecordQuery.playersQuery(matchId).queryKey,
     });
   };
 

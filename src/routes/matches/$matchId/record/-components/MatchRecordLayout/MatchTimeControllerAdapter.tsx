@@ -114,7 +114,7 @@ export const MatchTimeControllerAdapter = ({
       onReset={() => {
         cancelMatchStart();
         queryClient.invalidateQueries({
-          queryKey: matchRecordQuery.queryKeys.matchById(matchId),
+          queryKey: matchRecordQuery.infoQuery(matchId).queryKey,
         });
       }}
     />

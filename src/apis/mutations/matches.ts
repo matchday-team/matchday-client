@@ -68,15 +68,19 @@ export const useCreateOrUpdateMatchMemoMutation = (matchId: number) => {
     },
     onMutate: async (newMemo: string) => {
       await queryClient.cancelQueries({
-        queryKey: matchRecordQuery.queryKeys.matchMemo(matchId),
+        queryKey: matchRecordQuery.memoQuery(matchId).queryKey,
       });
 
       const previousMemo = queryClient.getQueryData(
-        matchRecordQuery.queryKeys.matchMemo(matchId),
+        matchRecordQuery.memoQuery(matchId).queryKey,
       );
 
-      // NOTE: optimistic update
-      queryClient.setQueryData(matchRecordQuery.queryKeys.matchMemo(matchId), {
+      if (!previousMemo) {
+        return;
+      }
+
+      queryClient.setQueryData(matchRecordQuery.memoQuery(matchId).queryKey, {
+        ...previousMemo,
         data: {
           memo: newMemo,
         },
@@ -99,11 +103,10 @@ export const useCreateOrUpdateMatchMemoMutation = (matchId: number) => {
         );
       }
 
-      queryClient.setQueryData(matchRecordQuery.queryKeys.matchMemo(matchId), {
-        data: {
-          memo: context.previousMemo,
-        },
-      });
+      queryClient.setQueryData(
+        matchRecordQuery.memoQuery(matchId).queryKey,
+        context.previousMemo,
+      );
 
       if (error instanceof HTTPError) {
         const response = await error.response.json();
@@ -133,7 +136,7 @@ export const usePatchMatchTimerMutation = (matchId: number) => {
       });
 
       queryClient.invalidateQueries({
-        queryKey: matchRecordQuery.queryKeys.matchInfo(matchId),
+        queryKey: matchRecordQuery.infoQuery(matchId).queryKey,
       });
     },
     onError: async error => {

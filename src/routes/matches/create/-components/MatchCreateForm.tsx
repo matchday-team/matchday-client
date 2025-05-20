@@ -20,10 +20,10 @@ export const MatchCreateForm = () => {
     await createMatch(data);
     // NOTE: 모든 팀의 모든 매치 목록을 갱신할 필요는 없음 -> 한 번에 하는 방법 = ?
     queryClient.invalidateQueries({
-      queryKey: matchRecordQuery.queryKeys.matchList(data.homeTeamId),
+      queryKey: matchRecordQuery.listQuery(data.homeTeamId).queryKey,
     });
     queryClient.invalidateQueries({
-      queryKey: matchRecordQuery.queryKeys.matchList(data.awayTeamId),
+      queryKey: matchRecordQuery.listQuery(data.awayTeamId).queryKey,
     });
   };
 

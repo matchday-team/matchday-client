@@ -1,14 +1,16 @@
+import { queryOptions } from '@tanstack/react-query';
+
 import { tempUser } from '@/constants/tempUser';
 import { useLoggedInUserStore } from '@/stores';
 import { delay } from '@/utils';
 
 import { queryKeyNamespaces } from './_namespaces';
 
-export const queryKeys = {
+const queryKeys = {
   me: () => [queryKeyNamespaces.users, 'me'],
 };
 
-export const meQuery = {
+export const meQuery = queryOptions({
   queryKey: queryKeys.me(),
   queryFn: () =>
     delay(500).then(() => {
@@ -17,4 +19,4 @@ export const meQuery = {
       }
       return null;
     }),
-};
+});

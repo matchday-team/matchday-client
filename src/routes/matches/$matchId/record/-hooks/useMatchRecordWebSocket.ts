@@ -29,14 +29,20 @@ export const useMatchRecordWebSocket = () => {
         enqueueSnackbar(`[match memo] ${newMemo}`, {
           variant: 'info',
         });
-        queryClient.setQueryData(
-          matchRecordQuery.queryKeys.matchMemo(matchId),
-          {
-            data: {
-              memo: newMemo,
-            },
-          },
+        const prevData = queryClient.getQueryData(
+          matchRecordQuery.memoQuery(matchId).queryKey,
         );
+        if (prevData) {
+          queryClient.setQueryData(
+            matchRecordQuery.memoQuery(matchId).queryKey,
+            {
+              ...prevData,
+              data: {
+                memo: newMemo,
+              },
+            },
+          );
+        }
       },
     });
 
@@ -58,7 +64,7 @@ export const useMatchRecordWebSocket = () => {
           },
         );
         queryClient.invalidateQueries({
-          queryKey: matchRecordQuery.queryKeys.matchById(matchId), // 일단은 전체 갱신하고 추후 최적화
+          queryKey: matchRecordQuery.infoQuery(matchId).queryKey, // 일단은 전체 갱신하고 추후 최적화
         });
       },
     });
