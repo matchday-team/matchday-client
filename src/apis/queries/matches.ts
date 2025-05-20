@@ -8,7 +8,6 @@ const queryKeyNamespaces = {
 };
 
 const queryKeys = {
-  matchById: (matchId: number) => [queryKeyNamespaces.matches, matchId],
   matchInfo: (matchId: number) => [queryKeyNamespaces.matches, matchId, 'info'],
   matchScore: (matchId: number) => [
     queryKeyNamespaces.matches,
@@ -27,6 +26,10 @@ const queryKeys = {
   ],
   matchMemo: (matchId: number) => [queryKeyNamespaces.matches, matchId, 'memo'],
   matchList: (teamId: number) => [queryKeyNamespaces.matches, 'list', teamId],
+};
+
+export const rangeQueryKeys = {
+  byId: (matchId: number) => [queryKeyNamespaces.matches, matchId],
 };
 
 export const info = (matchId: number) =>
