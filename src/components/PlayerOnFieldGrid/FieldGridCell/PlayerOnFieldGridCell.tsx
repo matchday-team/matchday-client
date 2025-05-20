@@ -1,5 +1,9 @@
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
-import { FootballShoeIcon, SoccerballIcon } from '@/assets/icons';
+import {
+  ChevronDownIcon,
+  FootballShoeIcon,
+  SoccerballIcon,
+} from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import { useIsDragOver } from '@/hooks';
 import { useSubstitutionStore } from '@/stores';
@@ -76,6 +80,9 @@ export const PlayerOnFieldGridCell = ({
           alt=''
           onError={fallbackImageHandler}
         />
+        <div className={styles.subInContainer({ visible: player.subIn })}>
+          <ChevronDownIcon className={styles.subInIcon} />
+        </div>
         <div className={styles.playerCautionContainer}>
           {player.yellowCards > 0 && <PlayerCaution variant='yellow' />}
           {player.redCards > 0 && <PlayerCaution variant='red' />}

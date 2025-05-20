@@ -31,6 +31,36 @@ export const playerCautionContainer = style({
   width: 17, // NOTE: 카드 하나만 있을 때에도 좌측 정렬 되도록
 });
 
+export const subInContainer = recipe({
+  base: {
+    position: 'absolute',
+    top: 0,
+    left: 4,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: '50%',
+    backgroundColor: lightThemeVars.color.white.main,
+    width: 14,
+    height: 14,
+  },
+  variants: {
+    visible: {
+      true: {
+        visibility: 'visible',
+      },
+      false: {
+        visibility: 'hidden',
+      },
+    },
+  },
+});
+
+export const subInIcon = style({
+  transform: 'rotate(180deg)',
+  color: lightThemeVars.color.soccer.red,
+});
+
 export const playerCautionCard = recipe({
   base: {
     borderRadius: 2,
