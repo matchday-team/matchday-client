@@ -52,10 +52,9 @@ export const playerCautionCard = recipe({
 export const attackPointContainer = style({
   position: 'absolute',
   bottom: 0,
-  left: 4, // NOTE: 중앙 정렬로 두면 하나만 표시될 때 중앙에 배치되므로, left offset으로 배치
+  left: -2, // NOTE: 중앙 정렬로 두면 하나만 표시될 때 중앙에 배치되므로, left offset으로 배치
   display: 'flex',
   justifyContent: 'center',
-  gap: 4,
 });
 
 export const playerInfoContainer = style({
@@ -68,6 +67,30 @@ export const playerInfoContainer = style({
   letterSpacing: -0.35,
   fontSize: 14,
   fontWeight: 600,
+});
+
+export const ownGoalContainer = recipe({
+  base: {
+    boxSizing: 'border-box',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    border: `1px solid ${lightThemeVars.color.soccer.red}`,
+    borderRadius: '50%',
+    backgroundColor: lightThemeVars.color.white.main,
+    padding: 1,
+    color: lightThemeVars.color.soccer.red,
+  },
+  variants: {
+    visible: {
+      true: {
+        visibility: 'visible',
+      },
+      false: {
+        visibility: 'hidden',
+      },
+    },
+  },
 });
 
 export const attackPointMarkContainer = recipe({

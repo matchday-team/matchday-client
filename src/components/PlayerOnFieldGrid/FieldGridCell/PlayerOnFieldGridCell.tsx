@@ -82,6 +82,7 @@ export const PlayerOnFieldGridCell = ({
         </div>
         <div className={styles.attackPointContainer}>
           <AttackPointMark type='goal' count={player.goals} />
+          <AttackPointMark type='ownGoal' count={player.redCards} />
           <AttackPointMark type='assist' count={player.assists} />
         </div>
       </div>
@@ -97,9 +98,17 @@ const AttackPointMark = ({
   type,
   count,
 }: {
-  type: 'goal' | 'assist';
+  type: 'goal' | 'assist' | 'ownGoal';
   count: number;
 }) => {
+  if (type === 'ownGoal') {
+    return (
+      <div className={styles.ownGoalContainer({ visible: count > 0 })}>
+        <SoccerballIcon />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.attackPointMarkContainer({ isEmpty: count === 0 })}>
       {type === 'goal' ? <SoccerballIcon /> : <FootballShoeIcon />}
