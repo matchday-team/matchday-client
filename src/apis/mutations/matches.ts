@@ -164,7 +164,7 @@ export const useCancelMatchStartMutation = (matchId: number) => {
       });
 
       queryClient.invalidateQueries({
-        queryKey: matchRecordQuery.queryKeys.matchInfo(matchId),
+        queryKey: matchRecordQuery.queryKeys.matchById(matchId),
       });
     },
     onError: async error => {
