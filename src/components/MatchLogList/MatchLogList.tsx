@@ -14,10 +14,18 @@ interface MatchLogListProps {
     home: TeamResponse;
     away: TeamResponse;
   };
+  matchLength: {
+    first: number;
+    second: number;
+  };
   logs: MatchEventResponse[];
 }
 
-export const MatchLogList = ({ teams, logs }: MatchLogListProps) => {
+export const MatchLogList = ({
+  teams,
+  matchLength,
+  logs,
+}: MatchLogListProps) => {
   const listElemRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
@@ -44,7 +52,12 @@ export const MatchLogList = ({ teams, logs }: MatchLogListProps) => {
           <EmptyList />
         ) : (
           logs.map(log => (
-            <MatchLogListItem key={log.id} teams={teams} log={log} />
+            <MatchLogListItem
+              key={log.id}
+              teams={teams}
+              matchLength={matchLength}
+              log={log}
+            />
           ))
         )}
       </ul>
