@@ -72,6 +72,7 @@ export const PlayerStatCounterGrid = ({
               title={stat.title}
               type='standalone'
               value={stat.value}
+              colorIntegration={false}
               onIncrement={() => {
                 onStatChange(selectedPlayer.player.id, stat.eventType);
               }}
