@@ -57,6 +57,7 @@ export default tseslint.config(
           argsIgnorePattern: '^_',
         },
       ],
+      'vanilla-extract/no-empty-style-blocks': 'off',
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
