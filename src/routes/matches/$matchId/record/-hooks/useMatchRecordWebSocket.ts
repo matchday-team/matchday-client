@@ -61,7 +61,7 @@ export const useMatchRecordWebSocket = () => {
           },
         );
         queryClient.invalidateQueries({
-          queryKey: matchQuery.info(matchId).queryKey, // 일단은 전체 갱신하고 추후 최적화
+          queryKey: matchQuery.rangeQueryKeys.byId(matchId), // 일단은 전체 갱신하고 추후 최적화
         });
       },
     });
