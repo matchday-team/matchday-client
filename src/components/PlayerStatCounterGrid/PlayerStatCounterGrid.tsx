@@ -19,9 +19,6 @@ export const PlayerStatCounterGrid = ({
 }: PlayerStatCounterGridProps) => {
   const { selectedPlayer } = useSelectedPlayerStore();
 
-  const isYellow = selectedPlayer && selectedPlayer.player.yellowCards > 0;
-  const isRed = selectedPlayer && selectedPlayer.player.redCards > 0;
-
   const handleCardClick = () => {
     if (!selectedPlayer) {
       return;
@@ -54,7 +51,7 @@ export const PlayerStatCounterGrid = ({
     },
     {
       title: '자책골',
-      value: selectedPlayer.player.assists, // FIXME: ownGoals여야 함
+      value: selectedPlayer.player.ownGoals,
       eventType: MatchEventType.OWN_GOAL,
     },
   ];

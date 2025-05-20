@@ -89,7 +89,7 @@ export const PlayerOnFieldGridCell = ({
         </div>
         <div className={styles.attackPointContainer}>
           <AttackPointMark type='goal' count={player.goals} />
-          <AttackPointMark type='ownGoal' count={player.redCards} />
+          <AttackPointMark type='ownGoal' count={player.ownGoals} />
           <AttackPointMark type='assist' count={player.assists} />
         </div>
       </div>
