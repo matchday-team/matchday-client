@@ -133,6 +133,9 @@ function MatchRecordPage() {
     setMemo(newMemo);
     debouncedUpdateMemo(newMemo);
   };
+  useEffect(() => {
+    setMemo(matchMemo.data.memo ?? '');
+  }, [matchMemo]);
 
   const handleSwap = (inPlayerId: number, outPlayerId: number) => {
     wsApi.send('recordPlayerExchange', [matchId], {
@@ -174,6 +177,22 @@ function MatchRecordPage() {
       },
     });
 
+    const unsubMatchMemoChannel = wsApi.subscribe('matchmemo', [matchId], {
+      memo: newMemo => {
+        enqueueSnackbar(`[match memo] ${newMemo}`, {
+          variant: 'info',
+        });
+        queryClient.setQueryData(
+          matchRecordQuery.queryKeys.matchMemo(matchId),
+          {
+            data: {
+              memo: newMemo,
+            },
+          },
+        );
+      },
+    });
+
     const unsubMatchChannel = wsApi.subscribe('match', [matchId], {
       event: event => {
         const {
@@ -199,6 +218,7 @@ function MatchRecordPage() {
 
     return () => {
       unsubErrorChannel();
+      unsubMatchMemoChannel();
       unsubMatchChannel();
     };
   }, [matchId, wsApi, enqueueSnackbar, queryClient]);
