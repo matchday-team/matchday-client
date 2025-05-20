@@ -29,37 +29,37 @@ const queryKeys = {
   matchList: (teamId: number) => [queryKeyNamespaces.matches, 'list', teamId],
 };
 
-export const infoQuery = (matchId: number) =>
+export const info = (matchId: number) =>
   queryOptions({
     queryKey: queryKeys.matchInfo(matchId),
     queryFn: () => matchApi.getMatchInfoByMatchId(matchId),
   });
 
-export const scoreQuery = (matchId: number) =>
+export const score = (matchId: number) =>
   queryOptions({
     queryKey: queryKeys.matchScore(matchId),
     queryFn: () => matchApi.getMatchScoreByMatchId(matchId),
   });
 
-export const eventsQuery = (matchId: number) =>
+export const events = (matchId: number) =>
   queryOptions({
     queryKey: queryKeys.matchEvents(matchId),
     queryFn: () => matchApi.getMatchEventsByMatchId(matchId),
   });
 
-export const playersQuery = (matchId: number) =>
+export const players = (matchId: number) =>
   queryOptions({
     queryKey: queryKeys.matchPlayers(matchId),
     queryFn: () => matchApi.getMatchPlayersByMatchId(matchId),
   });
 
-export const memoQuery = (matchId: number) =>
+export const memo = (matchId: number) =>
   queryOptions({
     queryKey: queryKeys.matchMemo(matchId),
     queryFn: () => matchApi.getMatchMemoByMatchId(matchId),
   });
 
-export const listQuery = (teamId: number) =>
+export const list = (teamId: number) =>
   queryOptions({
     queryKey: queryKeys.matchList(teamId),
     queryFn: () => matchApi.getMatchListByTeamId(teamId),

@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const useIntervalRerender = (enabled: boolean, interval = 1000) => {
   const [, update] = useState(0);

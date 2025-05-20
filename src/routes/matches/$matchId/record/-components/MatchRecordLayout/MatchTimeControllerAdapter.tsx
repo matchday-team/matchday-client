@@ -9,7 +9,7 @@ import {
   useCancelMatchStartMutation,
   usePatchMatchTimerMutation,
 } from '@/apis/mutations';
-import { matchRecordQuery } from '@/apis/queries';
+import { matchQuery } from '@/apis/queries';
 import { MatchTimeController } from '@/components';
 import { useIntervalRerender } from '@/hooks';
 import { timeUtils } from '@/utils';
@@ -62,9 +62,7 @@ export const MatchTimeControllerAdapter = ({
   matchId: number;
 }) => {
   const queryClient = useQueryClient();
-  const { data: matchInfo } = useSuspenseQuery(
-    matchRecordQuery.infoQuery(matchId),
-  );
+  const { data: matchInfo } = useSuspenseQuery(matchQuery.info(matchId));
 
   const { period, startedAt } = calcMatchStatus(matchInfo.data);
   const isGamePlaying = period === 'first' || period === 'second';
@@ -114,7 +112,7 @@ export const MatchTimeControllerAdapter = ({
       onReset={() => {
         cancelMatchStart();
         queryClient.invalidateQueries({
-          queryKey: matchRecordQuery.infoQuery(matchId).queryKey,
+          queryKey: matchQuery.info(matchId).queryKey,
         });
       }}
     />

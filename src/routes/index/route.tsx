@@ -1,7 +1,7 @@
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 
-import { matchRecordQuery, teamQuery, userQuery } from '@/apis/queries';
+import { matchQuery, teamQuery, userQuery } from '@/apis/queries';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import { CommonLoader } from '@/components';
 import { usePageTitle } from '@/hooks';
@@ -16,20 +16,20 @@ const fallbackImageHandler = createFallbackImageHandler();
 export const Route = createFileRoute('/')({
   component: MyTeamMatchListPage,
   loader: () => {
-    return queryClient.ensureQueryData(userQuery.meQuery);
+    return queryClient.ensureQueryData(userQuery.me);
   },
 });
 
 function MyTeamMatchListPage() {
   usePageTitle('매치 리스트');
 
-  const { data: user } = useSuspenseQuery(userQuery.meQuery);
+  const { data: user } = useSuspenseQuery(userQuery.me);
   const { data: team } = useQuery({
-    ...teamQuery.byIdQuery(user!.teamId!),
+    ...teamQuery.byId(user!.teamId!),
     enabled: Boolean(user?.teamId),
   });
   const { data: matchList, isLoading } = useQuery({
-    ...matchRecordQuery.listQuery(user!.teamId!),
+    ...matchQuery.list(user!.teamId!),
     enabled: Boolean(user?.teamId),
   });
 

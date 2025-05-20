@@ -14,18 +14,18 @@ const queryKeys = {
   ],
 };
 
-export const byIdQuery = (teamId: number) =>
+export const byId = (teamId: number) =>
   queryOptions({
     queryKey: queryKeys.teamById(teamId),
     queryFn: () => teamApi.getTeamById(teamId),
   });
 
-export const listAllQuery = queryOptions({
+export const listAll = queryOptions({
   queryKey: queryKeys.teamList(),
   queryFn: () => teamApi.getAllTeamList(),
 });
 
-export const listTeamMemberQuery = (teamId: number) =>
+export const memberList = (teamId: number) =>
   queryOptions({
     queryKey: queryKeys.teamMemberListById(teamId),
     queryFn: () => teamApi.getMemberListByTeamId(teamId),

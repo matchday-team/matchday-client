@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useParams } from '@tanstack/react-router';
 
-import { matchRecordQuery, teamQuery } from '@/apis/queries';
+import { matchQuery, teamQuery } from '@/apis/queries';
 import {
   GameScoreArea,
   MatchLogList,
@@ -32,11 +32,11 @@ export const Route = createFileRoute('/matches/$matchId/record')({
     const matchId = Number(params.matchId);
 
     return Promise.all([
-      queryClient.ensureQueryData(matchRecordQuery.infoQuery(matchId)),
-      queryClient.ensureQueryData(matchRecordQuery.scoreQuery(matchId)),
-      queryClient.ensureQueryData(matchRecordQuery.eventsQuery(matchId)),
-      queryClient.ensureQueryData(matchRecordQuery.playersQuery(matchId)),
-      queryClient.ensureQueryData(matchRecordQuery.memoQuery(matchId)),
+      queryClient.ensureQueryData(matchQuery.info(matchId)),
+      queryClient.ensureQueryData(matchQuery.score(matchId)),
+      queryClient.ensureQueryData(matchQuery.events(matchId)),
+      queryClient.ensureQueryData(matchQuery.players(matchId)),
+      queryClient.ensureQueryData(matchQuery.memo(matchId)),
     ]);
   },
 });
@@ -48,18 +48,10 @@ function MatchRecordPage() {
     useMatchRecordWebSocket();
 
   const { memo, updateMemo } = useSyncMatchMemo(matchId);
-  const { data: matchInfo } = useSuspenseQuery(
-    matchRecordQuery.infoQuery(matchId),
-  );
-  const { data: matchScore } = useSuspenseQuery(
-    matchRecordQuery.scoreQuery(matchId),
-  );
-  const { data: matchEvents } = useSuspenseQuery(
-    matchRecordQuery.eventsQuery(matchId),
-  );
-  const { data: matchPlayers } = useSuspenseQuery(
-    matchRecordQuery.playersQuery(matchId),
-  );
+  const { data: matchInfo } = useSuspenseQuery(matchQuery.info(matchId));
+  const { data: matchScore } = useSuspenseQuery(matchQuery.score(matchId));
+  const { data: matchEvents } = useSuspenseQuery(matchQuery.events(matchId));
+  const { data: matchPlayers } = useSuspenseQuery(matchQuery.players(matchId));
   const { starters: homeTeamStarters, substitutes: homeTeamSubstitutes } =
     dividePlayers(matchPlayers.data.homeTeam);
   const { starters: awayTeamStarters, substitutes: awayTeamSubstitutes } =
@@ -67,10 +59,10 @@ function MatchRecordPage() {
 
   // FIXME: 얘내는 순차 로딩을 하게 되는데...
   const { data: homeTeam } = useSuspenseQuery(
-    teamQuery.byIdQuery(matchInfo.data.homeTeamId),
+    teamQuery.byId(matchInfo.data.homeTeamId),
   );
   const { data: awayTeam } = useSuspenseQuery(
-    teamQuery.byIdQuery(matchInfo.data.awayTeamId),
+    teamQuery.byId(matchInfo.data.awayTeamId),
   );
 
   usePageTitle(matchInfo.data.title);

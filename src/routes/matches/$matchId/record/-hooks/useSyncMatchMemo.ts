@@ -3,13 +3,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { useCreateOrUpdateMatchMemoMutation } from '@/apis/mutations';
-import { matchRecordQuery } from '@/apis/queries';
+import { matchQuery } from '@/apis/queries';
 import { debounce } from '@/utils/debounce';
 
 export const useSyncMatchMemo = (matchId: number) => {
-  const { data: matchMemo } = useSuspenseQuery(
-    matchRecordQuery.memoQuery(matchId),
-  );
+  const { data: matchMemo } = useSuspenseQuery(matchQuery.memo(matchId));
 
   const { mutateAsync: updateMatchMemo } =
     useCreateOrUpdateMatchMemoMutation(matchId);

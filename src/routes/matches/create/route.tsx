@@ -10,7 +10,7 @@ import * as styles from './-components/MatchCreatePage.css';
 export const Route = createFileRoute('/matches/create')({
   component: MatchCreatePage,
   loader: async () => {
-    await queryClient.ensureQueryData(teamQuery.listAllQuery);
+    await queryClient.ensureQueryData(teamQuery.listAll);
   },
 });
 

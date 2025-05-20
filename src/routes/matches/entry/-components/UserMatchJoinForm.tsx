@@ -10,7 +10,7 @@ import {
   TeamSearchResponse,
 } from '@/apis/models';
 import { useCreateMatchUserMutation } from '@/apis/mutations';
-import { matchRecordQuery, teamQuery } from '@/apis/queries';
+import { matchQuery, teamQuery } from '@/apis/queries';
 import { queryClient } from '@/react-query-provider';
 
 import * as styles from './UserMatchJoinForm.css';
@@ -51,7 +51,7 @@ export const UserMatchJoinForm = ({
     role: 'START_PLAYER',
   });
   const { data: teamMemberList } = useQuery({
-    ...teamQuery.listTeamMemberQuery(selectedTeamId),
+    ...teamQuery.memberList(selectedTeamId),
     enabled: selectedTeamId !== -1,
   });
 
@@ -75,7 +75,7 @@ export const UserMatchJoinForm = ({
       role,
     });
     queryClient.invalidateQueries({
-      queryKey: matchRecordQuery.playersQuery(matchId).queryKey,
+      queryKey: matchQuery.players(matchId).queryKey,
     });
   };
 

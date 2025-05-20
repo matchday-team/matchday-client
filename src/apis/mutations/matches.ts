@@ -8,7 +8,7 @@ import {
   MatchHalfTimeRequest,
   MatchUserCreateRequest,
 } from '@/apis/models';
-import { matchRecordQuery } from '@/apis/queries';
+import { matchQuery } from '@/apis/queries';
 
 export const useCreateMatchMutation = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -68,18 +68,18 @@ export const useCreateOrUpdateMatchMemoMutation = (matchId: number) => {
     },
     onMutate: async (newMemo: string) => {
       await queryClient.cancelQueries({
-        queryKey: matchRecordQuery.memoQuery(matchId).queryKey,
+        queryKey: matchQuery.memo(matchId).queryKey,
       });
 
       const previousMemo = queryClient.getQueryData(
-        matchRecordQuery.memoQuery(matchId).queryKey,
+        matchQuery.memo(matchId).queryKey,
       );
 
       if (!previousMemo) {
         return;
       }
 
-      queryClient.setQueryData(matchRecordQuery.memoQuery(matchId).queryKey, {
+      queryClient.setQueryData(matchQuery.memo(matchId).queryKey, {
         ...previousMemo,
         data: {
           memo: newMemo,
@@ -104,7 +104,7 @@ export const useCreateOrUpdateMatchMemoMutation = (matchId: number) => {
       }
 
       queryClient.setQueryData(
-        matchRecordQuery.memoQuery(matchId).queryKey,
+        matchQuery.memo(matchId).queryKey,
         context.previousMemo,
       );
 
@@ -136,7 +136,7 @@ export const usePatchMatchTimerMutation = (matchId: number) => {
       });
 
       queryClient.invalidateQueries({
-        queryKey: matchRecordQuery.infoQuery(matchId).queryKey,
+        queryKey: matchQuery.info(matchId).queryKey,
       });
     },
     onError: async error => {
@@ -167,7 +167,7 @@ export const useCancelMatchStartMutation = (matchId: number) => {
       });
 
       queryClient.invalidateQueries({
-        queryKey: matchRecordQuery.queryKeys.matchById(matchId),
+        queryKey: matchQuery.info(matchId).queryKey,
       });
     },
     onError: async error => {

@@ -4,7 +4,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useParams } from '@tanstack/react-router';
 import { useSnackbar } from 'notistack';
 
-import { matchRecordQuery } from '@/apis/queries';
+import { matchQuery } from '@/apis/queries';
 import { getWebSocketApi } from '@/apis/websockets';
 import { MatchEventType } from '@/constants';
 
@@ -30,18 +30,15 @@ export const useMatchRecordWebSocket = () => {
           variant: 'info',
         });
         const prevData = queryClient.getQueryData(
-          matchRecordQuery.memoQuery(matchId).queryKey,
+          matchQuery.memo(matchId).queryKey,
         );
         if (prevData) {
-          queryClient.setQueryData(
-            matchRecordQuery.memoQuery(matchId).queryKey,
-            {
-              ...prevData,
-              data: {
-                memo: newMemo,
-              },
+          queryClient.setQueryData(matchQuery.memo(matchId).queryKey, {
+            ...prevData,
+            data: {
+              memo: newMemo,
             },
-          );
+          });
         }
       },
     });
@@ -64,7 +61,7 @@ export const useMatchRecordWebSocket = () => {
           },
         );
         queryClient.invalidateQueries({
-          queryKey: matchRecordQuery.infoQuery(matchId).queryKey, // 일단은 전체 갱신하고 추후 최적화
+          queryKey: matchQuery.info(matchId).queryKey, // 일단은 전체 갱신하고 추후 최적화
         });
       },
     });

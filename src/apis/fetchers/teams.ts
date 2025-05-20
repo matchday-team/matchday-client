@@ -2,10 +2,10 @@ import { http } from '@/apis/http';
 import {
   ApiResponse,
   TeamMemberListResponse,
+  TeamResponse,
   TeamSearchResponse,
   UserJoinTeamRequest,
 } from '@/apis/models';
-import { TeamResponse } from '@/apis/models';
 
 export const getTeamById = async (teamId: number) => {
   const response = await http.get(`v1/teams/${teamId}`);

@@ -10,7 +10,7 @@ const queryKeys = {
   me: () => [queryKeyNamespaces.users, 'me'],
 };
 
-export const meQuery = queryOptions({
+export const me = queryOptions({
   queryKey: queryKeys.me(),
   queryFn: () =>
     delay(500).then(() => {
