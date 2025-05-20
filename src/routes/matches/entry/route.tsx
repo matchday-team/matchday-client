@@ -10,7 +10,7 @@ import { MatchModifyView } from './-components/MatchModifyView';
 export const Route = createFileRoute('/matches/entry')({
   component: MatchEntryPage,
   loader: async () => {
-    await queryClient.ensureQueryData(teamQuery.listAllQuery);
+    await queryClient.ensureQueryData(teamQuery.listAll);
   },
 });
 

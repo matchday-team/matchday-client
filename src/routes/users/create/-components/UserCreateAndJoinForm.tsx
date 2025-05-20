@@ -16,7 +16,7 @@ const log = (type: string) => console.log.bind(console, type);
 
 // NOTE: 임시 유저를 생성하고, 팀에 추가
 export const UserCreateAndJoinForm = () => {
-  const { data: teamList } = useSuspenseQuery(teamQuery.listAllQuery);
+  const { data: teamList } = useSuspenseQuery(teamQuery.listAll);
   const { mutateAsync: createUser } = useCreateUserMutation();
   const { mutateAsync: userJoinTeam } = useUserJoinTeamMutation();
 
@@ -35,7 +35,7 @@ export const UserCreateAndJoinForm = () => {
     const userId = (await createUser(name)).data;
     await userJoinTeam({ userId, teamId, number, defaultPosition });
     queryClient.invalidateQueries({
-      queryKey: teamQuery.queryKeys.teamMemberListById(teamId),
+      queryKey: teamQuery.memberList(teamId).queryKey,
     });
   };
 

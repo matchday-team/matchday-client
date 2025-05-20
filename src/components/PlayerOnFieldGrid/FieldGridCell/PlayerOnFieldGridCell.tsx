@@ -1,5 +1,9 @@
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
-import { SoccerballIcon } from '@/assets/icons';
+import {
+  ChevronDownIcon,
+  FootballShoeIcon,
+  SoccerballIcon,
+} from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import { useIsDragOver } from '@/hooks';
 import { useSubstitutionStore } from '@/stores';
@@ -76,13 +80,17 @@ export const PlayerOnFieldGridCell = ({
           alt=''
           onError={fallbackImageHandler}
         />
+        <div className={styles.subInContainer({ visible: player.subIn })}>
+          <ChevronDownIcon className={styles.subInIcon} />
+        </div>
         <div className={styles.playerCautionContainer}>
           {player.yellowCards > 0 && <PlayerCaution variant='yellow' />}
           {player.redCards > 0 && <PlayerCaution variant='red' />}
         </div>
         <div className={styles.attackPointContainer}>
-          <AttackPointMark count={player.goals} />
-          <AttackPointMark count={player.assists} />
+          <AttackPointMark type='goal' count={player.goals} />
+          <AttackPointMark type='ownGoal' count={player.ownGoals} />
+          <AttackPointMark type='assist' count={player.assists} />
         </div>
       </div>
       <div className={styles.playerInfoContainer}>
@@ -93,10 +101,24 @@ export const PlayerOnFieldGridCell = ({
   );
 };
 
-const AttackPointMark = ({ count }: { count: number }) => {
+const AttackPointMark = ({
+  type,
+  count,
+}: {
+  type: 'goal' | 'assist' | 'ownGoal';
+  count: number;
+}) => {
+  if (type === 'ownGoal') {
+    return (
+      <div className={styles.ownGoalContainer({ visible: count > 0 })}>
+        <SoccerballIcon />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.attackPointMarkContainer({ isEmpty: count === 0 })}>
-      <SoccerballIcon />
+      {type === 'goal' ? <SoccerballIcon /> : <FootballShoeIcon />}
       <span className={styles.attackPointCount}>{count}</span>
     </div>
   );

@@ -1,1 +1,1 @@
-export type Caution = 'none' | 'yellow' | 'red';
+export type Caution = 'yellow' | 'red';

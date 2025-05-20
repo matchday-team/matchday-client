@@ -7,7 +7,7 @@ import {
   MatchUserResponse,
   TeamResponse,
 } from '@/apis/models';
-import { matchRecordQuery, queryKeyNamespaces } from '@/apis/queries';
+import { matchQuery, queryKeyNamespaces } from '@/apis/queries';
 import { queryClient } from '@/react-query-provider';
 
 // NOTE: useEffect에서 처리하려면 state를 컴포넌트에서 받아야 하는데,
@@ -28,7 +28,7 @@ const syncWithQueryCache = (query: QueryCacheNotifyEvent) => {
 
   const matchPlayers = queryClient.getQueryData<
     ApiResponse<MatchUserGroupResponse>
-  >(matchRecordQuery.queryKeys.matchPlayers(matchId));
+  >(matchQuery.players(matchId).queryKey);
   if (!matchPlayers?.data) {
     return;
   }

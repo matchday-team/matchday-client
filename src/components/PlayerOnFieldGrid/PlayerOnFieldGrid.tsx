@@ -1,5 +1,4 @@
-import { TeamResponse } from '@/apis/models';
-import { MatchUserResponse } from '@/apis/models';
+import { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { useSelectedPlayerStore } from '@/stores';
 
 import { FieldBackground } from './FieldBackground';

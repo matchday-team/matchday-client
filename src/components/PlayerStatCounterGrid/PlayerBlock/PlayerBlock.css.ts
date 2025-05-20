@@ -8,7 +8,7 @@ export const rootContainer = style({
   justifyContent: 'space-between',
   borderBottom: `1px solid ${lightThemeVars.color.primary['100']}`,
   padding: '0 20px',
-  height: 71,
+  height: 69,
 });
 
 export const profileImage = style({

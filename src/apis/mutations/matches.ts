@@ -8,7 +8,7 @@ import {
   MatchHalfTimeRequest,
   MatchUserCreateRequest,
 } from '@/apis/models';
-import { matchRecordQuery } from '@/apis/queries';
+import { matchQuery } from '@/apis/queries';
 
 export const useCreateMatchMutation = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -68,15 +68,19 @@ export const useCreateOrUpdateMatchMemoMutation = (matchId: number) => {
     },
     onMutate: async (newMemo: string) => {
       await queryClient.cancelQueries({
-        queryKey: matchRecordQuery.queryKeys.matchMemo(matchId),
+        queryKey: matchQuery.memo(matchId).queryKey,
       });
 
       const previousMemo = queryClient.getQueryData(
-        matchRecordQuery.queryKeys.matchMemo(matchId),
+        matchQuery.memo(matchId).queryKey,
       );
 
-      // NOTE: optimistic update
-      queryClient.setQueryData(matchRecordQuery.queryKeys.matchMemo(matchId), {
+      if (!previousMemo) {
+        return;
+      }
+
+      queryClient.setQueryData(matchQuery.memo(matchId).queryKey, {
+        ...previousMemo,
         data: {
           memo: newMemo,
         },
@@ -99,11 +103,10 @@ export const useCreateOrUpdateMatchMemoMutation = (matchId: number) => {
         );
       }
 
-      queryClient.setQueryData(matchRecordQuery.queryKeys.matchMemo(matchId), {
-        data: {
-          memo: context.previousMemo,
-        },
-      });
+      queryClient.setQueryData(
+        matchQuery.memo(matchId).queryKey,
+        context.previousMemo,
+      );
 
       if (error instanceof HTTPError) {
         const response = await error.response.json();
@@ -133,7 +136,7 @@ export const usePatchMatchTimerMutation = (matchId: number) => {
       });
 
       queryClient.invalidateQueries({
-        queryKey: matchRecordQuery.queryKeys.matchInfo(matchId),
+        queryKey: matchQuery.info(matchId).queryKey,
       });
     },
     onError: async error => {
@@ -164,7 +167,7 @@ export const useCancelMatchStartMutation = (matchId: number) => {
       });
 
       queryClient.invalidateQueries({
-        queryKey: matchRecordQuery.queryKeys.matchInfo(matchId),
+        queryKey: matchQuery.info(matchId).queryKey,
       });
     },
     onError: async error => {

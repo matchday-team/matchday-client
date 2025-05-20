@@ -12,7 +12,7 @@ interface TeamListItemProps {
 }
 
 export const TeamListItem = ({ match }: TeamListItemProps) => {
-  const { data: user } = useSuspenseQuery(userQuery.meQuery);
+  const { data: user } = useSuspenseQuery(userQuery.me);
   const isHomeTeam = user?.teamId === match.homeTeamId;
   const result = isHomeTeam
     ? match.homeScore > match.awayScore

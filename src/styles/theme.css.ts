@@ -31,7 +31,7 @@ const lightTheme = {
       line: 'rgba(255, 255, 255, 0.5)',
     },
     soccer: {
-      yellow: 'rgba(255, 234, 0, 1)',
+      yellow: '#FFEA00',
       red: '#D91920',
     },
     warning: '#D91920',

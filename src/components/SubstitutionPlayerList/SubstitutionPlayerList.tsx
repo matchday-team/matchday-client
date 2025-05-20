@@ -1,8 +1,8 @@
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
 
 import { EmptyList } from './EmptyList';
-import { PlayerListItem } from './PlayerListItem';
 import * as styles from './SubstitutionPlayerList.css';
+import { SubstitutionPlayerListItem } from './SubstitutionPlayerListItem';
 
 interface SubstitutionPlayerListProps {
   team: TeamResponse;
@@ -25,7 +25,7 @@ export const SubstitutionPlayerList = ({
           <EmptyList />
         ) : (
           players.map(player => (
-            <PlayerListItem
+            <SubstitutionPlayerListItem
               key={`${player.number}-${player.name}`}
               team={team}
               player={player}

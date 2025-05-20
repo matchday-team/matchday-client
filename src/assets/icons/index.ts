@@ -15,3 +15,4 @@ export { default as SeoulLogo } from './seoul-team.png';
 export { default as SuwonLogo } from './suwon-team.png';
 export { default as ExclamationIcon } from './exclamation.svg?react';
 export { default as ChevronDownIcon } from './chevron-down.svg?react';
+export { default as FootballShoeIcon } from './football-shoe.svg?react';

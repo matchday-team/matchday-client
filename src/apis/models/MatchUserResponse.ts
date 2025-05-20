@@ -30,6 +30,7 @@ export interface MatchUserResponse {
   matchGrid: number | null;
   /** 득점 수 */
   goals: number;
+  ownGoals: number;
   /** 어시스트 수 */
   assists: number;
   /** 옐로카드 수 */

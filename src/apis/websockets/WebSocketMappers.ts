@@ -23,6 +23,10 @@ export interface MatchRecordTeamStatRequest {
   description: string;
 }
 
+export interface MatchMemoSyncResponse {
+  memo: string;
+}
+
 export const requestMapperDefinition = {
   recordPlayerStat: {
     channelMapper: (matchId: number) => `/app/match/${matchId}`,
@@ -94,6 +98,14 @@ export const responseMapperDefinition = {
         const event = JSON.parse(payload) as MatchEventResponse;
         console.log('match websocket event', event);
         handlers.event?.(event);
+      },
+  },
+  matchmemo: {
+    channelMapper: (matchId: number) => `/topic/match/${matchId}/memo`,
+    responseMapper:
+      (handlers: { memo?: (memo: string) => void }) => payload => {
+        const { memo } = JSON.parse(payload) as MatchMemoSyncResponse;
+        handlers.memo?.(memo);
       },
   },
 } satisfies ResponseMapperDefinition;

@@ -2,31 +2,31 @@ import { useState } from 'react';
 
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
-import { matchRecordQuery, teamQuery } from '@/apis/queries';
+import { matchQuery, teamQuery } from '@/apis/queries';
 import { ToggleableStartingPlayers } from '@/components';
 
 import * as styles from './MatchModifyView.css';
 import { UserMatchJoinForm } from './UserMatchJoinForm';
 
 export const MatchModifyView = () => {
-  const { data: teamList } = useSuspenseQuery(teamQuery.listAllQuery);
+  const { data: teamList } = useSuspenseQuery(teamQuery.listAll);
   const [selectedTeamId, setSelectedTeamId] = useState<number>(
     teamList.data[0].id,
   );
   const [selectedMatchId, setSelectedMatchId] = useState<number>(-1); // 필요?
   const { data: matchPlayerList } = useQuery({
-    ...matchRecordQuery.playersQuery(selectedMatchId),
+    ...matchQuery.players(selectedMatchId),
     enabled: selectedMatchId !== -1,
   });
 
   const { data: matchList } = useQuery({
-    ...matchRecordQuery.listQuery(selectedTeamId),
+    ...matchQuery.list(selectedTeamId),
     enabled: selectedTeamId !== -1,
   });
 
-  const { data: homeTeam } = useQuery(teamQuery.byIdQuery(selectedTeamId));
+  const { data: homeTeam } = useQuery(teamQuery.byId(selectedTeamId));
   const { data: awayTeam } = useQuery({
-    ...teamQuery.byIdQuery(
+    ...teamQuery.byId(
       // NOTE: 임시로 처리
       matchList?.data.find(match => match.matchId === selectedMatchId)
         ?.awayTeamId ?? -1,

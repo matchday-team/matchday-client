@@ -30,14 +30,19 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const player = {
+  ...matchRecordMocks.mockPlayersByTeamType('home')[0],
+  yellowCards: 0,
+  redCards: 0,
+  goals: 0,
+  assists: 0,
+  subIn: false,
+};
+
 export const Default: Story = {
   args: {
     team: matchRecordMocks.mockHomeTeam,
-    player: {
-      ...matchRecordMocks.mockPlayersByTeamType('home')[0],
-      goals: 1,
-      assists: 1,
-    },
+    player,
     onClick: () => {},
     onSwap: () => {},
   },
@@ -46,36 +51,42 @@ export const Default: Story = {
 export const Selected: Story = {
   args: {
     team: matchRecordMocks.mockHomeTeam,
-    player: {
-      ...matchRecordMocks.mockPlayersByTeamType('home')[0],
-      goals: 1,
-      assists: 1,
-    },
+    player,
     isSelected: true,
     onClick: () => {},
     onSwap: () => {},
   },
 };
 
-export const NoAssists: Story = {
+export const SubIn: Story = {
   args: {
     team: matchRecordMocks.mockHomeTeam,
     player: {
-      ...matchRecordMocks.mockPlayersByTeamType('home')[0],
-      goals: 1,
-      assists: 0,
+      ...player,
+      subIn: true,
     },
     onClick: () => {},
     onSwap: () => {},
   },
 };
 
-export const NoGoals: Story = {
+export const Goals: Story = {
   args: {
     team: matchRecordMocks.mockHomeTeam,
     player: {
-      ...matchRecordMocks.mockPlayersByTeamType('home')[0],
-      goals: 0,
+      ...player,
+      goals: 1,
+    },
+    onClick: () => {},
+    onSwap: () => {},
+  },
+};
+
+export const Assists: Story = {
+  args: {
+    team: matchRecordMocks.mockHomeTeam,
+    player: {
+      ...player,
       assists: 1,
     },
     onClick: () => {},
@@ -83,26 +94,13 @@ export const NoGoals: Story = {
   },
 };
 
-export const NoAttackPoints: Story = {
+export const GoalsAndAssists: Story = {
   args: {
     team: matchRecordMocks.mockHomeTeam,
     player: {
-      ...matchRecordMocks.mockPlayersByTeamType('home')[0],
-      goals: 0,
-      assists: 0,
-    },
-    onClick: () => {},
-    onSwap: () => {},
-  },
-};
-
-export const NoCards: Story = {
-  args: {
-    team: matchRecordMocks.mockHomeTeam,
-    player: {
-      ...matchRecordMocks.mockPlayersByTeamType('home')[0],
-      yellowCards: 0,
-      redCards: 0,
+      ...player,
+      goals: 1,
+      assists: 1,
     },
     onClick: () => {},
     onSwap: () => {},
@@ -113,7 +111,7 @@ export const YellowCard: Story = {
   args: {
     team: matchRecordMocks.mockHomeTeam,
     player: {
-      ...matchRecordMocks.mockPlayersByTeamType('home')[0],
+      ...player,
       yellowCards: 1,
       redCards: 0,
     },
@@ -126,7 +124,7 @@ export const YellowAndRedCard: Story = {
   args: {
     team: matchRecordMocks.mockHomeTeam,
     player: {
-      ...matchRecordMocks.mockPlayersByTeamType('home')[0],
+      ...player,
       yellowCards: 1,
       redCards: 1,
     },
@@ -139,7 +137,7 @@ export const DirectRedCard: Story = {
   args: {
     team: matchRecordMocks.mockHomeTeam,
     player: {
-      ...matchRecordMocks.mockPlayersByTeamType('home')[0],
+      ...player,
       yellowCards: 0,
       redCards: 1,
     },

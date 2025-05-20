@@ -11,33 +11,32 @@ export const rootContainer = style([
     display: 'flex',
     flexDirection: 'column',
     border: `2px solid ${teamColor}`,
-    height: 304,
   },
 ]);
 
 export const mainContainer = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: 6,
-  paddingTop: 34, // NOTE: 전체 높이를 디자인과 맞추기 위해 임시로 -2px
-  paddingRight: 15,
-  paddingBottom: 24,
-  paddingLeft: 15,
+  alignItems: 'center',
+  justifyContent: 'center',
+  paddingTop: 22,
+  paddingBottom: 18, // NOTE: 현재 디자인이 border 미포함 높이라서 border만큼 빼줘야 함
 });
 
-export const statContainer = style({
-  display: 'flex',
-  gap: 6,
+export const grid2x2Container = style({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(2, 1fr)',
+  rowGap: 16,
+  columnGap: 8,
 });
 
 export const cautionContainer = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  gap: 9,
-  border: `1px solid ${lightThemeVars.color.primary['100']}`,
-  borderRadius: 6,
-  padding: 7,
+  justifyContent: 'center',
+  gap: 4,
+  width: 127,
 });
 
 export const title = style({
@@ -50,7 +49,6 @@ export const title = style({
 
 export const cardBlockContainer = style({
   display: 'flex',
-  alignSelf: 'stretch', // 부모가 alignItems: center 이면 자식이 자동으로 100% 할당x
   justifyContent: 'center',
-  gap: 8,
+  gap: 10,
 });

@@ -6,6 +6,7 @@ export interface StatCounterItemProps {
   disabled?: boolean;
   buttonDisabled?: boolean;
   title: string;
+  type: 'grid' | 'standalone';
   value: number;
   onIncrement?: () => void;
   onDecrement?: () => void;
@@ -16,17 +17,18 @@ export const StatCounterItem = ({
   disabled,
   buttonDisabled,
   title,
+  type,
   value,
   onIncrement,
   onDecrement,
   colorIntegration = true,
 }: StatCounterItemProps) => {
   return (
-    <div className={styles.rootContainer({ disabled })}>
+    <div className={styles.rootContainer({ disabled, type })}>
       <span className={styles.title({ disabled })}>{title}</span>
-      <div className={styles.groupContainer}>
+      <div className={styles.groupContainer({ type })}>
         <button
-          className={styles.button}
+          className={styles.button({ type })}
           onClick={onDecrement}
           aria-label='감소'
           disabled={true} // 현재 기능 미구현
@@ -37,12 +39,13 @@ export const StatCounterItem = ({
         <span
           className={styles.value({
             colorIntegration: !disabled && colorIntegration,
+            type,
           })}
         >
           {disabled ? '-' : value}
         </span>
         <button
-          className={styles.button}
+          className={styles.button({ type })}
           onClick={onIncrement}
           aria-label='증가'
           disabled={disabled || buttonDisabled}

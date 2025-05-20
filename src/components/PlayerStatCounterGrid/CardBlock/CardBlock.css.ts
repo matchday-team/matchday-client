@@ -1,39 +1,71 @@
 import { recipe } from '@vanilla-extract/recipes';
 
 import { lightThemeVars } from '@/styles/theme.css';
+import { colorUtils } from '@/utils';
 
 // FIXME: dashed 간격 늘려야 함
 export const rootContainer = recipe({
   base: {
+    boxSizing: 'border-box',
     display: 'flex',
     flexDirection: 'column',
-    flexGrow: 1,
     alignItems: 'center',
     gap: 10,
     transition: 'background-color 0.3s ease, border 0.3s ease',
     borderRadius: 6,
-    width: '100%',
-
-    height: 38,
+    cursor: 'pointer',
+    width: 30,
+    height: 39,
   },
   variants: {
     caution: {
-      none: {
-        border: `1px dashed ${lightThemeVars.color.primary['100']}`,
-        backgroundColor: lightThemeVars.color.white.background,
-
+      yellow: {
+        border: `2px solid ${lightThemeVars.color.soccer.yellow}`,
+        backgroundColor: colorUtils.hexColorAlpha(
+          lightThemeVars.color.soccer.yellow,
+          10,
+        ),
         ':hover': {
           backgroundColor: lightThemeVars.color.soccer.yellow,
         },
       },
-      yellow: {
-        border: `1px solid ${lightThemeVars.color.soccer.yellow}`,
+      red: {
+        border: `2px solid ${lightThemeVars.color.soccer.red}`,
+        backgroundColor: colorUtils.hexColorAlpha(
+          lightThemeVars.color.soccer.red,
+          10,
+        ),
+        ':hover': {
+          backgroundColor: lightThemeVars.color.soccer.red,
+        },
+      },
+    },
+    active: {
+      true: {},
+      false: {},
+    },
+  },
+  compoundVariants: [
+    {
+      variants: {
+        caution: 'yellow',
+        active: true,
+      },
+      style: {
         backgroundColor: lightThemeVars.color.soccer.yellow,
       },
-      red: {
-        border: `1px solid ${lightThemeVars.color.soccer.red}`,
+    },
+    {
+      variants: {
+        caution: 'red',
+        active: true,
+      },
+      style: {
         backgroundColor: lightThemeVars.color.soccer.red,
       },
     },
+  ],
+  defaultVariants: {
+    active: false,
   },
 });

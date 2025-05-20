@@ -31,6 +31,36 @@ export const playerCautionContainer = style({
   width: 17, // NOTE: 카드 하나만 있을 때에도 좌측 정렬 되도록
 });
 
+export const subInContainer = recipe({
+  base: {
+    position: 'absolute',
+    top: 0,
+    left: 4,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: '50%',
+    backgroundColor: lightThemeVars.color.white.main,
+    width: 14,
+    height: 14,
+  },
+  variants: {
+    visible: {
+      true: {
+        visibility: 'visible',
+      },
+      false: {
+        visibility: 'hidden',
+      },
+    },
+  },
+});
+
+export const subInIcon = style({
+  transform: 'rotate(180deg)',
+  color: lightThemeVars.color.soccer.red,
+});
+
 export const playerCautionCard = recipe({
   base: {
     borderRadius: 2,
@@ -52,10 +82,9 @@ export const playerCautionCard = recipe({
 export const attackPointContainer = style({
   position: 'absolute',
   bottom: 0,
-  left: 4, // NOTE: 중앙 정렬로 두면 하나만 표시될 때 중앙에 배치되므로, left offset으로 배치
+  left: -2, // NOTE: 중앙 정렬로 두면 하나만 표시될 때 중앙에 배치되므로, left offset으로 배치
   display: 'flex',
   justifyContent: 'center',
-  gap: 4,
 });
 
 export const playerInfoContainer = style({
@@ -68,6 +97,30 @@ export const playerInfoContainer = style({
   letterSpacing: -0.35,
   fontSize: 14,
   fontWeight: 600,
+});
+
+export const ownGoalContainer = recipe({
+  base: {
+    boxSizing: 'border-box',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    border: `1px solid ${lightThemeVars.color.soccer.red}`,
+    borderRadius: '50%',
+    backgroundColor: lightThemeVars.color.white.main,
+    padding: 1,
+    color: lightThemeVars.color.soccer.red,
+  },
+  variants: {
+    visible: {
+      true: {
+        visibility: 'visible',
+      },
+      false: {
+        visibility: 'hidden',
+      },
+    },
+  },
 });
 
 export const attackPointMarkContainer = recipe({

@@ -10,7 +10,7 @@ import * as styles from './-components/UserCreatePage.css';
 export const Route = createFileRoute('/users/create')({
   component: UserCreatePage,
   loader: async () => {
-    await queryClient.ensureQueryData(teamQuery.listAllQuery);
+    await queryClient.ensureQueryData(teamQuery.listAll);
   },
 });
 
