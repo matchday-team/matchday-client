@@ -82,6 +82,7 @@ export const useCreateOrUpdateMatchMemoMutation = (matchId: number) => {
       queryClient.setQueryData(matchQuery.memo(matchId).queryKey, {
         ...previousMemo,
         data: {
+          ...previousMemo.data,
           memo: newMemo,
         },
       });
