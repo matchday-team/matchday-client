@@ -1,4 +1,4 @@
-import { StrictMode } from 'react';
+import { StrictMode, Suspense } from 'react';
 
 import Hotjar from '@hotjar/browser';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -6,7 +6,7 @@ import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { SnackbarProvider } from 'notistack';
 import { createRoot } from 'react-dom/client';
 
-import { SnackbarViewForDebug } from './components';
+import { SnackbarViewForDebug, UserSettingsDialog } from './components';
 import { HOTJAR_SITE_ID, HOTJAR_VERSION } from './constants';
 import { ReactQueryClientProvider } from './react-query-provider';
 import { routeTree } from './routeTree.gen';
@@ -49,6 +49,9 @@ createRoot(document.getElementById('root')!).render(
     >
       <ReactQueryClientProvider>
         <RouterProvider router={router} />
+        <Suspense>
+          <UserSettingsDialog />
+        </Suspense>
         <ReactQueryDevtools position='right' initialIsOpen={false} />
       </ReactQueryClientProvider>
     </SnackbarProvider>

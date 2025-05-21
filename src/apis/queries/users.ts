@@ -15,7 +15,14 @@ export const me = queryOptions({
   queryFn: () =>
     delay(500).then(() => {
       if (useLoggedInUserStore.getState().isLoggedIn) {
-        return tempUser;
+        try {
+          // 직접 수정한 경우 localstorage에 임시 백업함
+          return JSON.parse(
+            localStorage.getItem('user') ?? '',
+          ) as typeof tempUser;
+        } catch {
+          return tempUser;
+        }
       }
       return null;
     }),
