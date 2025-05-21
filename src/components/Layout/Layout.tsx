@@ -7,12 +7,14 @@ import { debounce } from '@/utils/debounce';
 
 import * as styles from './Layout.css';
 
+const checkIsLargeScreen = (width: number) => width >= SIDEBAR_BREAKPOINT;
+
 interface LayoutProps {
   children: ReactNode;
 }
 
 export function Layout({ children }: LayoutProps) {
-  const [isOpen, setIsOpen] = useState(window.innerWidth >= SIDEBAR_BREAKPOINT);
+  const [isOpen, setIsOpen] = useState(checkIsLargeScreen(window.innerWidth));
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -20,8 +22,7 @@ export function Layout({ children }: LayoutProps) {
 
     const handleResize = debounce(() => {
       const width = containerRef.current?.offsetWidth || window.innerWidth;
-      const isSmallScreen = width <= SIDEBAR_BREAKPOINT;
-      setIsOpen(!isSmallScreen);
+      setIsOpen(checkIsLargeScreen(width));
     }, 100);
 
     handleResize();
