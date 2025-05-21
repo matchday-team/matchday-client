@@ -12,6 +12,8 @@ interface FooterItemProps {
   label?: string;
   showArrow?: boolean;
   isOpen: boolean;
+  disabled?: boolean;
+  onClick?: () => void;
 }
 
 export function FooterItem({
@@ -20,9 +22,11 @@ export function FooterItem({
   label,
   showArrow,
   isOpen,
+  disabled,
+  onClick,
 }: FooterItemProps) {
   return (
-    <Link to={to} className={styles.footerItem}>
+    <Link to={to} className={styles.footerItem({ disabled })} onClick={onClick}>
       <div className={styles.footerItemIcon({ isOpen })}>
         {icon}
         {label && <span className={styles.label}>{label}</span>}
@@ -37,6 +41,8 @@ interface FooterItemListProps {
     to: string;
     icon: ReactNode;
     label?: string;
+    disabled?: boolean;
+    onClick?: () => void;
   }>;
   isOpen: boolean;
 }
@@ -52,6 +58,8 @@ export function FooterItemList({ items, isOpen }: FooterItemListProps) {
           label={isOpen ? item.label : undefined}
           showArrow={isOpen}
           isOpen={isOpen}
+          disabled={item.disabled}
+          onClick={item.onClick}
         />
       ))}
     </>

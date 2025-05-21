@@ -12,6 +12,8 @@ import {
   SettingsIcon,
   UserIcon,
 } from '@/assets/icons';
+import { UserSettingsDialog } from '@/components/UserSettingsDialog';
+import { useUserSettingsModalStore } from '@/stores';
 
 import { FooterItemList } from './FooterItem';
 import { NavItemList } from './NavItem';
@@ -23,6 +25,8 @@ interface SidebarProps {
 }
 
 export function Sidebar({ isOpen, toggle }: SidebarProps) {
+  const { open } = useUserSettingsModalStore();
+
   const navItems = [
     {
       to: '/',
@@ -57,11 +61,14 @@ export function Sidebar({ isOpen, toggle }: SidebarProps) {
         to: '.',
         icon: <HelpCircleIcon className={styles.icon} />,
         label: '도움말',
+        disabled: true,
       },
       {
         to: '.',
         icon: <SettingsIcon className={styles.icon} />,
         label: '설정',
+        disabled: false,
+        onClick: open,
       },
     ],
     [],
@@ -104,6 +111,8 @@ export function Sidebar({ isOpen, toggle }: SidebarProps) {
         </div>
         {isOpen && <LogoTextIcon className={styles.logoTextImage} />}
       </div>
+
+      <UserSettingsDialog />
     </aside>
   );
 }
