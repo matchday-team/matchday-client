@@ -19,11 +19,8 @@ if (import.meta.env.DEV && import.meta.env.VITE_USE_MSW === 'true') {
   await initializeMSW();
 }
 
-if (import.meta.env.VITE_USE_HOTJAR === 'true') {
-  console.log('hotjar runs');
-  Hotjar.init(HOTJAR_SITE_ID, HOTJAR_VERSION, {
-    debug: true,
-  });
+if (!import.meta.env.DEV) {
+  Hotjar.init(HOTJAR_SITE_ID, HOTJAR_VERSION);
 }
 
 const router = createRouter({
