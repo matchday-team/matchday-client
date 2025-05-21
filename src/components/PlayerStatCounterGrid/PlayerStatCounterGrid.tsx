@@ -19,15 +19,12 @@ export const PlayerStatCounterGrid = ({
 }: PlayerStatCounterGridProps) => {
   const { selectedPlayer } = useSelectedPlayerStore();
 
-  const handleCardClick = () => {
+  const handleCardClick = (type: 'yellow' | 'red') => {
     if (!selectedPlayer) {
       return;
     }
 
-    if (
-      selectedPlayer.player.redCards === 0 &&
-      selectedPlayer.player.yellowCards === 0
-    ) {
+    if (type === 'yellow') {
       onStatChange(selectedPlayer.player.id, MatchEventType.YELLOW_CARD);
     } else {
       onStatChange(selectedPlayer.player.id, MatchEventType.RED_CARD);
@@ -84,12 +81,12 @@ export const PlayerStatCounterGrid = ({
               <CardBlock
                 caution='yellow'
                 active={selectedPlayer.player.yellowCards > 0}
-                onClick={handleCardClick}
+                onClick={() => handleCardClick('yellow')}
               />
               <CardBlock
                 caution='red'
                 active={selectedPlayer.player.redCards > 0}
-                onClick={handleCardClick}
+                onClick={() => handleCardClick('red')}
               />
             </div>
           </div>
