@@ -12,7 +12,6 @@ import {
   SettingsIcon,
   UserIcon,
 } from '@/assets/icons';
-import { UserSettingsDialog } from '@/components/UserSettingsDialog';
 import { useUserSettingsModalStore } from '@/stores';
 
 import { FooterItemList } from './FooterItem';
@@ -111,8 +110,6 @@ export function Sidebar({ isOpen, toggle }: SidebarProps) {
         </div>
         {isOpen && <LogoTextIcon className={styles.logoTextImage} />}
       </div>
-
-      <UserSettingsDialog />
     </aside>
   );
 }
