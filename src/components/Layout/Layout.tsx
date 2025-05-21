@@ -12,7 +12,7 @@ interface LayoutProps {
 }
 
 export function Layout({ children }: LayoutProps) {
-  const [isOpen, setIsOpen] = useState(window.innerWidth > SIDEBAR_BREAKPOINT);
+  const [isOpen, setIsOpen] = useState(window.innerWidth >= SIDEBAR_BREAKPOINT);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
