@@ -31,7 +31,7 @@ export const container = recipe({
     height: '100%',
 
     '@media': {
-      [`(max-width: ${SIDEBAR_BREAKPOINT}px)`]: {
+      [`(max-width: ${SIDEBAR_BREAKPOINT - 1}px)`]: {
         position: 'fixed',
       },
     },
