@@ -50,13 +50,13 @@ export const useLoginMutation = () => {
         return Promise.reject(new Error('로그인 실패'));
       });
     },
-    onSuccess: () => {
+    onSuccess: async () => {
       enqueueSnackbar('로그인 성공', {
         variant: 'success',
       });
 
       setIsLoggedIn(true);
-      queryClient.invalidateQueries({ queryKey: userQuery.me.queryKey });
+      await queryClient.invalidateQueries({ queryKey: userQuery.me.queryKey });
       navigate({ to: '/' });
     },
     onError: () => {

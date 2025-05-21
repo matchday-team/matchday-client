@@ -23,22 +23,25 @@ export const Route = createFileRoute('/')({
 function MyTeamMatchListPage() {
   usePageTitle('매치 리스트');
 
+  // 애초에 유저가 없으면 렌더링이 되면 안 됨
   const { data: user } = useSuspenseQuery(userQuery.me);
+  if (!user) {
+    throw new Error('로그인 없이 인증된 페이지에 접근했습니다');
+  }
+
   const { data: team } = useQuery({
-    ...teamQuery.byId(user!.teamId!),
-    enabled: Boolean(user?.teamId),
+    ...teamQuery.byId(user.teamId),
+    enabled: Boolean(user.teamId),
   });
   const { data: matchList, isLoading } = useQuery({
-    ...matchQuery.list(user!.teamId!),
-    enabled: Boolean(user?.teamId),
+    ...matchQuery.list(user.teamId),
+    enabled: Boolean(user.teamId),
   });
 
   // NOTE: enabled 때문에 타입 가드가 안 됨
   if (isLoading || !matchList || !team) {
     return <CommonLoader />;
   }
-
-  console.log('matches:', matchList);
 
   return (
     <div className={styles.rootContainer}>
