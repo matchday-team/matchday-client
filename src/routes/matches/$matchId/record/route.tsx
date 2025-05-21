@@ -146,6 +146,10 @@ function MatchRecordPage() {
             home: homeTeam.data,
             away: awayTeam.data,
           }}
+          matchLength={{
+            first: matchInfo.data.firstHalfPeriod,
+            second: matchInfo.data.secondHalfPeriod,
+          }}
           logs={matchEvents.data}
         />
       }

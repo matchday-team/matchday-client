@@ -97,6 +97,7 @@ export const mockLogs: MatchEventResponse[] = Array.from(
       userId: mockHomePlayer.id,
       userName: mockHomePlayer.name,
       elapsedMinutes: 10,
+      halfType: 'first',
     },
     {
       id: index * 3 + 2,
@@ -106,6 +107,7 @@ export const mockLogs: MatchEventResponse[] = Array.from(
       userId: mockAwayPlayer.id,
       userName: mockAwayPlayer.name,
       elapsedMinutes: 10,
+      halfType: 'first',
     },
     {
       id: index * 3 + 3,
@@ -115,6 +117,7 @@ export const mockLogs: MatchEventResponse[] = Array.from(
       userId: mockHomePlayer.id,
       userName: mockHomePlayer.name,
       elapsedMinutes: 9999,
+      halfType: 'first',
     },
   ],
 ).flat();

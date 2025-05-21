@@ -6,6 +6,7 @@ import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { SnackbarProvider } from 'notistack';
 import { createRoot } from 'react-dom/client';
 
+import { SnackbarViewForDebug } from './components';
 import { HOTJAR_SITE_ID, HOTJAR_VERSION } from './constants';
 import { ReactQueryClientProvider } from './react-query-provider';
 import { routeTree } from './routeTree.gen';
@@ -18,11 +19,8 @@ if (import.meta.env.DEV && import.meta.env.VITE_USE_MSW === 'true') {
   await initializeMSW();
 }
 
-if (import.meta.env.VITE_USE_HOTJAR === 'true') {
-  console.log('hotjar runs');
-  Hotjar.init(HOTJAR_SITE_ID, HOTJAR_VERSION, {
-    debug: true,
-  });
+if (!import.meta.env.DEV) {
+  Hotjar.init(HOTJAR_SITE_ID, HOTJAR_VERSION);
 }
 
 const router = createRouter({
@@ -40,7 +38,14 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <SnackbarProvider
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      maxSnack={10}
+      maxSnack={4}
+      Components={{
+        default: SnackbarViewForDebug,
+        info: SnackbarViewForDebug,
+        success: SnackbarViewForDebug,
+        warning: SnackbarViewForDebug,
+        error: SnackbarViewForDebug,
+      }}
     >
       <ReactQueryClientProvider>
         <RouterProvider router={router} />

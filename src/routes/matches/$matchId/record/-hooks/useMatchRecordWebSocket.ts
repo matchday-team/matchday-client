@@ -36,6 +36,7 @@ export const useMatchRecordWebSocket = () => {
           queryClient.setQueryData(matchQuery.memo(matchId).queryKey, {
             ...prevData,
             data: {
+              ...prevData.data,
               memo: newMemo,
             },
           });

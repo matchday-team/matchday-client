@@ -30,6 +30,10 @@ export const Default: Story = {
       home: matchRecordMocks.mockHomeTeam,
       away: matchRecordMocks.mockAwayTeam,
     },
+    matchLength: {
+      first: 45,
+      second: 45,
+    },
     logs: matchRecordMocks.mockLogs,
   },
 };
@@ -40,6 +44,10 @@ export const EmptyPlayers: Story = {
     teams: {
       home: matchRecordMocks.mockHomeTeam,
       away: matchRecordMocks.mockAwayTeam,
+    },
+    matchLength: {
+      first: 45,
+      second: 45,
     },
     logs: [],
   },

@@ -14,9 +14,6 @@ import { MatchTimeController } from '@/components';
 import { useIntervalRerender } from '@/hooks';
 import { timeUtils } from '@/utils';
 
-const MIN_45_IN_SECONDS = 45 * 60;
-const MIN_90_IN_SECONDS = 90 * 60;
-
 // 전/후반 종료 시점은 각각 45분, 90분으로 설정한다.
 const calcMatchStatus = (matchInfo: MatchInfoResponse) => {
   if (!matchInfo.firstHalfStartTime) {
@@ -36,7 +33,7 @@ const calcMatchStatus = (matchInfo: MatchInfoResponse) => {
   if (!matchInfo.secondHalfStartTime) {
     return {
       period: 'half-time',
-      startedAt: timeUtils.getTodaySeconds() - MIN_45_IN_SECONDS,
+      startedAt: timeUtils.getTodaySeconds() - matchInfo.firstHalfPeriod * 60,
     } as const;
   }
 
@@ -45,13 +42,15 @@ const calcMatchStatus = (matchInfo: MatchInfoResponse) => {
       period: 'second',
       startedAt:
         timeUtils.getTodaySeconds(matchInfo.secondHalfStartTime) -
-        MIN_45_IN_SECONDS,
+        matchInfo.secondHalfPeriod * 60,
     } as const;
   }
 
   return {
     period: 'end',
-    startedAt: timeUtils.getTodaySeconds() - MIN_90_IN_SECONDS,
+    startedAt:
+      timeUtils.getTodaySeconds() -
+      (matchInfo.firstHalfPeriod + matchInfo.secondHalfPeriod) * 60,
   } as const;
 };
 
