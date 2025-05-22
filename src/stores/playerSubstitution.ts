@@ -2,16 +2,16 @@ import { create } from 'zustand';
 
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
 
-type SelectionType = 'starter' | 'bench';
+export type SubstitutionSourceType = 'starter' | 'bench';
 
 type BeginSubstitution = (
-  source: SelectionType,
+  source: SubstitutionSourceType,
   team: TeamResponse,
   player: MatchUserResponse,
 ) => void;
 
 type GetIsSubstitutionTarget = (
-  targetType: SelectionType,
+  targetType: SubstitutionSourceType,
   team: TeamResponse,
 ) => boolean;
 
@@ -31,7 +31,7 @@ export type SubstitutionStore = {
   | {
       isActive: true;
       selection: {
-        type: SelectionType;
+        type: SubstitutionSourceType;
         team: TeamResponse;
         player: MatchUserResponse;
       };
@@ -46,7 +46,7 @@ export const useSubstitutionStore = create<SubstitutionStore>((set, get) => ({
     player: null,
   },
   beginSubstitution: (
-    source: SelectionType,
+    source: SubstitutionSourceType,
     team: TeamResponse,
     player: MatchUserResponse,
   ) => {
@@ -58,7 +58,10 @@ export const useSubstitutionStore = create<SubstitutionStore>((set, get) => ({
       selection: { type: null, team: null, player: null },
     });
   },
-  getIsSubstitutionTarget: (targetType: SelectionType, team: TeamResponse) => {
+  getIsSubstitutionTarget: (
+    targetType: SubstitutionSourceType,
+    team: TeamResponse,
+  ) => {
     const { isActive: isDragging, selection: dragSource } = get();
 
     return (
