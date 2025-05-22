@@ -1,6 +1,7 @@
 import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import react from '@vitejs/plugin-react-swc';
+import { codeInspectorPlugin } from 'code-inspector-plugin';
 import { defineConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -11,6 +12,9 @@ export default defineConfig({
     global: 'window',
   },
   plugins: [
+    codeInspectorPlugin({
+      bundler: 'vite',
+    }),
     TanStackRouterVite({ target: 'react', autoCodeSplitting: true }),
     vanillaExtractPlugin(),
     tsconfigPaths(),
