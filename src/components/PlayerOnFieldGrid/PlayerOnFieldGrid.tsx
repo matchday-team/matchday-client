@@ -1,5 +1,6 @@
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
-import { useSelectedPlayerStore } from '@/stores';
+import { PlayerSubstitutionAdapter } from '@/features';
+import { type SubstitutionSourceType, useSelectedPlayerStore } from '@/stores';
 
 import { FieldBackground } from './FieldBackground';
 import { EmptyOnFieldGridCell, PlayerOnFieldGridCell } from './FieldGridCell';
@@ -8,12 +9,14 @@ import * as styles from './PlayerOnFieldGrid.css';
 const TOTAL_CELLS = 30;
 
 interface PlayerOnFieldGridProps {
+  mode: SubstitutionSourceType;
   team: TeamResponse;
   players: MatchUserResponse[];
   onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }
 
 export const PlayerOnFieldGrid = ({
+  mode,
   team,
   players,
   onSwap,
@@ -35,19 +38,31 @@ export const PlayerOnFieldGrid = ({
           }
 
           return (
-            <PlayerOnFieldGridCell
+            <PlayerSubstitutionAdapter<HTMLDivElement>
               key={idx}
+              mode={mode}
               team={team}
               player={player}
-              isSelected={isSelected && selectedPlayer.player.id === player.id}
-              onClick={() => {
-                // NOTE: 빈 상태임
-                if (!team) {
-                  return;
-                }
-                selectPlayer({ team, player });
-              }}
               onSwap={onSwap}
+              render={({ isDragOver, disabled, ...props }) => (
+                <PlayerOnFieldGridCell
+                  key={idx}
+                  player={player}
+                  isSelected={
+                    isSelected && selectedPlayer.player.id === player.id
+                  }
+                  onClick={() => {
+                    // NOTE: 빈 상태임
+                    if (!team) {
+                      return;
+                    }
+                    selectPlayer({ team, player });
+                  }}
+                  isDragOver={isDragOver}
+                  disabled={disabled}
+                  {...props}
+                />
+              )}
             />
           );
         })}

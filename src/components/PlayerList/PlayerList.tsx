@@ -4,19 +4,26 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
-import { useSelectedPlayerStore } from '@/stores';
+import { PlayerSubstitutionAdapter } from '@/features/playerSubstitution';
+import { type SubstitutionSourceType, useSelectedPlayerStore } from '@/stores';
 
 import * as styles from './PlayerList.css';
-import { PlayerItem } from './PlayerListItem';
+import { PlayerListItem } from './PlayerListItem';
 import { teamColor } from './TeamColor.css';
 
 interface PlayerListProps {
+  mode: SubstitutionSourceType;
   team: TeamResponse;
   players: MatchUserResponse[];
   onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }
 
-export const PlayerList = ({ team, players, onSwap }: PlayerListProps) => {
+export const PlayerList = ({
+  mode,
+  team,
+  players,
+  onSwap,
+}: PlayerListProps) => {
   const setFallbackImageIfLoadFail = (
     e: SyntheticEvent<HTMLImageElement, Event>,
   ) => {
@@ -47,7 +54,12 @@ export const PlayerList = ({ team, players, onSwap }: PlayerListProps) => {
         </div>
       </div>
       {players.length > 0 ? (
-        <PlayerListContent team={team} players={players} onSwap={onSwap} />
+        <PlayerListContent
+          mode={mode}
+          team={team}
+          players={players}
+          onSwap={onSwap}
+        />
       ) : (
         <EmptyContent />
       )}
@@ -56,10 +68,12 @@ export const PlayerList = ({ team, players, onSwap }: PlayerListProps) => {
 };
 
 const PlayerListContent = ({
+  mode,
   team,
   players,
   onSwap,
 }: {
+  mode: SubstitutionSourceType;
   team: TeamResponse;
   players: MatchUserResponse[];
   onSwap: (inPlayerId: number, outPlayerId: number) => void;
@@ -69,13 +83,22 @@ const PlayerListContent = ({
   return (
     <ul className={styles.playerListContainer}>
       {players.map(player => (
-        <PlayerItem
+        <PlayerSubstitutionAdapter<HTMLLIElement>
           key={player.id}
+          mode={mode}
           team={team}
           player={player}
-          isSelected={isSelected && selectedPlayer.player.id === player.id}
-          onClick={() => selectPlayer({ team, player })}
           onSwap={onSwap}
+          render={({ isDragOver, disabled, ...props }) => (
+            <PlayerListItem
+              player={player}
+              isSelected={isSelected && selectedPlayer.player.id === player.id}
+              onClick={() => selectPlayer({ team, player })}
+              isDragOver={isDragOver}
+              disabled={disabled}
+              {...props}
+            />
+          )}
         />
       ))}
     </ul>
