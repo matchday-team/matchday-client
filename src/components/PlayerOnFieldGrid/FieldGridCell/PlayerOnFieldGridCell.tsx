@@ -1,63 +1,36 @@
-import { MatchUserResponse, TeamResponse } from '@/apis/models';
+import { type ComponentPropsWithRef } from 'react';
+
+import { MatchUserResponse } from '@/apis/models';
 import {
   ChevronDownIcon,
   FootballShoeIcon,
   SoccerballIcon,
 } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
-import { useIsDragOver } from '@/hooks';
-import { useSubstitutionStore } from '@/stores';
 import { createFallbackImageHandler } from '@/utils/createFallbackImageHandler';
 
 import * as styles from './PlayerOnFieldGridCell.css';
 import { commonCellContainer } from './commonStyle.css';
 
-interface PlayerOnFieldGridCellProps {
-  team: TeamResponse;
+interface PlayerOnFieldGridCellProps extends ComponentPropsWithRef<'div'> {
+  isDragOver: boolean;
+  disabled: boolean;
   player: MatchUserResponse;
   isSelected?: boolean;
   onClick: () => void;
-  onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }
 
 const fallbackImageHandler = createFallbackImageHandler();
 
 export const PlayerOnFieldGridCell = ({
-  team,
+  isDragOver,
+  disabled,
   player,
   isSelected,
   onClick,
-  onSwap,
+  ...props
 }: PlayerOnFieldGridCellProps) => {
-  const { isDragOver, hoverTargetRef } = useIsDragOver<HTMLDivElement>();
-
-  const { getIsSubstitutionTarget, beginSubstitution, finishSubstitution } =
-    useSubstitutionStore();
-  const disabled = player.subIn || !getIsSubstitutionTarget('starter', team);
-
-  const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
-    e.dataTransfer.setData('text/plain', player.id.toString());
-    beginSubstitution('starter', team, player);
-  };
-
-  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-    if (disabled) {
-      return;
-    }
-
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'move';
-  };
-
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    if (disabled) {
-      return;
-    }
-
-    const playerComingInId = Number(e.dataTransfer.getData('text/plain'));
-    onSwap(playerComingInId, player.id);
-  };
-
+  console.log('isDragOver:', isDragOver);
   return (
     <div
       className={commonCellContainer({
@@ -66,12 +39,8 @@ export const PlayerOnFieldGridCell = ({
         disabled,
       })}
       onClick={onClick}
-      ref={hoverTargetRef}
-      onDragStart={handleDragStart}
-      onDragOver={handleDragOver}
-      onDrop={handleDrop}
-      onDragEnd={finishSubstitution}
       draggable={!disabled}
+      {...props}
     >
       <div className={styles.playerImageContainer}>
         <img

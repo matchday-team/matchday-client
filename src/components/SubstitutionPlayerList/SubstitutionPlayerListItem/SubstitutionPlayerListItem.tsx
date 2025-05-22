@@ -1,17 +1,16 @@
-import { SyntheticEvent } from 'react';
+import type { ComponentPropsWithRef, SyntheticEvent } from 'react';
 
-import { MatchUserResponse, TeamResponse } from '@/apis/models';
+import type { MatchUserResponse } from '@/apis/models';
 import { ChevronDownIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
-import { useIsDragOver } from '@/hooks';
-import { useSubstitutionStore } from '@/stores';
 
 import * as styles from './SubstitutionPlayerListItem.css';
 
-export interface SubstitutionPlayerListItemProps {
-  team: TeamResponse;
+export interface SubstitutionPlayerListItemProps
+  extends ComponentPropsWithRef<'li'> {
   player: MatchUserResponse;
-  onSwap: (inPlayerId: number, outPlayerId: number) => void;
+  isDragOver: boolean;
+  disabled: boolean;
 }
 
 const displayDashIfZero = (value: number) => {
@@ -25,48 +24,16 @@ const setFallbackImageIfLoadFail = (
 };
 
 export const SubstitutionPlayerListItem = ({
-  team,
   player,
-  onSwap,
+  isDragOver,
+  disabled,
+  ...props
 }: SubstitutionPlayerListItemProps) => {
-  const { isDragOver, hoverTargetRef } = useIsDragOver<HTMLLIElement>();
-  const { getIsSubstitutionTarget, beginSubstitution, finishSubstitution } =
-    useSubstitutionStore();
-  const disabled =
-    player.subOut || player.sentOff || !getIsSubstitutionTarget('bench', team);
-
-  const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
-    e.dataTransfer.setData('text/plain', player.id.toString());
-    beginSubstitution('bench', team, player);
-  };
-
-  const handleDragOver = (e: React.DragEvent<HTMLLIElement>) => {
-    if (disabled) {
-      return;
-    }
-
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'move';
-  };
-
-  const handleDrop = (e: React.DragEvent<HTMLLIElement>) => {
-    if (disabled) {
-      return;
-    }
-
-    const playerGoingOutId = Number(e.dataTransfer.getData('text/plain'));
-    onSwap(player.id, playerGoingOutId);
-  };
-
   return (
     <li
       className={styles.rootContainer({ disabled, isDragOver })}
       draggable={!disabled}
-      onDragStart={handleDragStart}
-      onDragOver={handleDragOver}
-      onDrop={handleDrop}
-      onDragEnd={finishSubstitution}
-      ref={hoverTargetRef}
+      {...props}
     >
       <img
         className={styles.profileImage}
