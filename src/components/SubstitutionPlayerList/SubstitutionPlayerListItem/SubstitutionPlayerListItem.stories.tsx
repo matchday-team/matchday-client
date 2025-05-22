@@ -25,32 +25,32 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    team: matchRecordMocks.mockHomeTeam,
     player: matchRecordMocks.mockHomePlayer,
-    onSwap: () => {},
+    isDragOver: false,
+    disabled: false,
   },
 };
 
 export const SubOut: Story = {
   args: {
-    team: matchRecordMocks.mockHomeTeam,
     player: { ...matchRecordMocks.mockHomePlayer, subOut: true },
-    onSwap: () => {},
+    isDragOver: false,
+    disabled: false,
   },
 };
 
 export const SentOff: Story = {
   args: {
-    team: matchRecordMocks.mockHomeTeam,
     player: { ...matchRecordMocks.mockHomePlayer, sentOff: true, redCards: 1 },
-    onSwap: () => {},
+    isDragOver: false,
+    disabled: false,
   },
 };
 
 export const WithCautions: Story = {
   args: {
-    team: matchRecordMocks.mockHomeTeam,
     player: { ...matchRecordMocks.mockHomePlayer, yellowCards: 1, redCards: 0 },
-    onSwap: () => {},
+    isDragOver: false,
+    disabled: false,
   },
 };

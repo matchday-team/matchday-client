@@ -54,6 +54,7 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
         <span className={styles.listTopDescription}>* 전체 선수 명단</span>
         <div className={styles.allPlayersContainer}>
           <PlayerList
+            mode='starter'
             team={homeTeamWithoutTeamColor}
             players={allPlayers}
             onSwap={() => {}}
@@ -65,6 +66,7 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
       </div>
       <div className={styles.fieldContainer}>
         <PlayerOnFieldGrid
+          mode='starter'
           team={homeTeamWithoutTeamColor}
           players={matchPlayers.data.homeTeam.starters}
           onSwap={() => {}}
@@ -73,6 +75,7 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
       <div className={styles.matchPlayerListRootContainer}>
         <div className={styles.starterListContainer}>
           <PlayerList
+            mode='starter'
             team={homeTeamWithoutTeamColor}
             players={matchPlayers.data.homeTeam.starters}
             onSwap={() => {}}
@@ -80,6 +83,7 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
         </div>
         <div className={styles.subListContainer}>
           <PlayerList
+            mode='starter'
             team={homeTeamWithoutTeamColor}
             players={matchPlayers.data.homeTeam.substitutes}
             onSwap={() => {}}

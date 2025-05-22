@@ -25,6 +25,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    mode: 'starter',
     team: matchRecordMocks.mockHomeTeam,
     players: matchRecordMocks.mockPlayersByTeamType('home'),
     onSwap: () => {},
@@ -33,6 +34,7 @@ export const Default: Story = {
 
 export const FullPlayers: Story = {
   args: {
+    mode: 'starter',
     team: matchRecordMocks.mockHomeTeam,
     players: matchRecordMocks.mockPlayersByTeamType('home'),
     onSwap: () => {},
@@ -42,6 +44,7 @@ export const FullPlayers: Story = {
 // FIXME: 추후 msw 모킹으로 재현 필요
 export const EmptyPlayers: Story = {
   args: {
+    mode: 'starter',
     team: matchRecordMocks.mockAwayTeam,
     players: [],
     onSwap: () => {},

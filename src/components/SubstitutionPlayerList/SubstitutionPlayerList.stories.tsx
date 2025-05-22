@@ -26,6 +26,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    mode: 'bench',
     team: matchRecordMocks.mockHomeTeam,
     players: matchRecordMocks.mockSubPlayersByTeamType('home'),
     onSwap: () => {},
@@ -35,6 +36,7 @@ export const Default: Story = {
 // FIXME: Query 연동 후 msw 활용한 mock 필요
 export const Empty: Story = {
   args: {
+    mode: 'bench',
     team: matchRecordMocks.mockHomeTeam,
     players: [],
     onSwap: () => {},
@@ -43,6 +45,7 @@ export const Empty: Story = {
 
 export const DisabledPlayers: Story = {
   args: {
+    mode: 'bench',
     team: matchRecordMocks.mockHomeTeam,
     players: matchRecordMocks.mockSubPlayersByTeamType('home').map(player => ({
       ...player,

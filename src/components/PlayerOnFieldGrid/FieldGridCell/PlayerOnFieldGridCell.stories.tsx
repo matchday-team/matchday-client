@@ -41,107 +41,115 @@ const player = {
 
 export const Default: Story = {
   args: {
-    team: matchRecordMocks.mockHomeTeam,
     player,
+    isDragOver: false,
+    disabled: false,
+    isSelected: false,
     onClick: () => {},
-    onSwap: () => {},
   },
 };
 
 export const Selected: Story = {
   args: {
-    team: matchRecordMocks.mockHomeTeam,
     player,
     isSelected: true,
+    isDragOver: false,
+    disabled: false,
     onClick: () => {},
-    onSwap: () => {},
   },
 };
 
 export const SubIn: Story = {
   args: {
-    team: matchRecordMocks.mockHomeTeam,
     player: {
       ...player,
       subIn: true,
     },
+    isDragOver: false,
+    disabled: false,
+    isSelected: false,
     onClick: () => {},
-    onSwap: () => {},
   },
 };
 
 export const Goals: Story = {
   args: {
-    team: matchRecordMocks.mockHomeTeam,
     player: {
       ...player,
       goals: 1,
     },
+    isDragOver: false,
+    disabled: false,
+    isSelected: false,
     onClick: () => {},
-    onSwap: () => {},
   },
 };
 
 export const Assists: Story = {
   args: {
-    team: matchRecordMocks.mockHomeTeam,
     player: {
       ...player,
       assists: 1,
     },
+    isDragOver: false,
+    disabled: false,
+    isSelected: false,
     onClick: () => {},
-    onSwap: () => {},
   },
 };
 
 export const GoalsAndAssists: Story = {
   args: {
-    team: matchRecordMocks.mockHomeTeam,
     player: {
       ...player,
       goals: 1,
       assists: 1,
     },
+    isDragOver: false,
+    disabled: false,
+    isSelected: false,
     onClick: () => {},
-    onSwap: () => {},
   },
 };
 
 export const YellowCard: Story = {
   args: {
-    team: matchRecordMocks.mockHomeTeam,
     player: {
       ...player,
       yellowCards: 1,
       redCards: 0,
     },
+    isDragOver: false,
+    disabled: false,
+    isSelected: false,
     onClick: () => {},
-    onSwap: () => {},
   },
 };
 
 export const YellowAndRedCard: Story = {
   args: {
-    team: matchRecordMocks.mockHomeTeam,
     player: {
       ...player,
       yellowCards: 1,
       redCards: 1,
     },
+    isDragOver: false,
+    disabled: false,
+    isSelected: false,
     onClick: () => {},
-    onSwap: () => {},
   },
 };
 
 export const DirectRedCard: Story = {
   args: {
-    team: matchRecordMocks.mockHomeTeam,
     player: {
       ...player,
       yellowCards: 0,
       redCards: 1,
     },
+    isDragOver: false,
+    disabled: false,
+    isSelected: false,
     onClick: () => {},
-    onSwap: () => {},
   },
 };

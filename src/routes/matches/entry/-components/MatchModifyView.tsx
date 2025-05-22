@@ -47,6 +47,7 @@ export const MatchModifyView = () => {
         <h2>home</h2>
         {homeTeam && (
           <ToggleableStartingPlayers
+            mode='starter'
             team={homeTeam.data}
             players={matchPlayerList?.data.homeTeam.starters ?? []}
             onSwap={() => {}}
@@ -58,6 +59,7 @@ export const MatchModifyView = () => {
         <h2>away</h2>
         {awayTeam && (
           <ToggleableStartingPlayers
+            mode='starter'
             team={awayTeam.data}
             players={matchPlayerList?.data.awayTeam.starters ?? []}
             onSwap={() => {}}

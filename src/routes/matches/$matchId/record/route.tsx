@@ -82,12 +82,14 @@ function MatchRecordPage() {
       team1={
         <>
           <ToggleableStartingPlayers
+            mode='starter'
             team={homeTeam.data}
             players={homeTeamStarters}
             onSwap={requestPlayerSwap}
           />
           <div className={atomicStyles.flexContainer}>
             <SubstitutionPlayerList
+              mode='bench'
               team={homeTeam.data}
               players={homeTeamSubstitutes}
               onSwap={requestPlayerSwap}
@@ -103,12 +105,14 @@ function MatchRecordPage() {
       team2={
         <>
           <ToggleableStartingPlayers
+            mode='starter'
             team={awayTeam.data}
             players={awayTeamStarters}
             onSwap={requestPlayerSwap}
           />
           <div className={atomicStyles.flexContainer}>
             <SubstitutionPlayerList
+              mode='bench'
               team={awayTeam.data}
               players={awayTeamSubstitutes}
               onSwap={requestPlayerSwap}
