@@ -1,4 +1,4 @@
-import { Client } from '@stomp/stompjs';
+import { Client, ReconnectionTimeMode } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 
 import { WEBSOCKET_CONFIG } from './constants';
@@ -8,6 +8,7 @@ export const createStompClient = (): Client => {
     webSocketFactory: () => new SockJS(import.meta.env.VITE_SOCKJS_BASE_URL),
     debug: console.log.bind(console),
     reconnectDelay: WEBSOCKET_CONFIG.RECONNECT_DELAY,
+    reconnectTimeMode: ReconnectionTimeMode.EXPONENTIAL,
     logRawCommunication: true,
     heartbeatIncoming: WEBSOCKET_CONFIG.HEARTBEAT_INCOMING,
     heartbeatOutgoing: WEBSOCKET_CONFIG.HEARTBEAT_OUTGOING,
