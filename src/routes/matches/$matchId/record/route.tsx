@@ -15,6 +15,10 @@ import {
   TeamStatCounterGrid,
   ToggleableStartingPlayers,
 } from '@/components';
+import {
+  useMatchRecordWebSocket,
+  useSyncMatchMemo,
+} from '@/features/matchRecord';
 import { usePageTitle } from '@/hooks';
 import { queryClient } from '@/react-query-provider';
 import { useSelectedPlayerStore } from '@/stores';
@@ -22,8 +26,6 @@ import * as atomicStyles from '@/styles/atomic.css';
 
 import { MatchRecordLayout } from './-components';
 import { MatchTimeControllerAdapter } from './-components/MatchRecordLayout/MatchTimeControllerAdapter';
-import { useMatchRecordWebSocket } from './-hooks';
-import { useSyncMatchMemo } from './-hooks/useSyncMatchMemo';
 import { dividePlayers } from './-utils';
 
 export const Route = createFileRoute('/matches/$matchId/record')({
