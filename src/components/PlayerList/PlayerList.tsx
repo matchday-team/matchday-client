@@ -1,15 +1,9 @@
-import { SyntheticEvent } from 'react';
-
-import { assignInlineVars } from '@vanilla-extract/dynamic';
-
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
-import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import { PlayerSubstitutionAdapter } from '@/features/playerSubstitution';
 import { type SubstitutionSourceType, useSelectedPlayerStore } from '@/stores';
 
-import * as styles from './PlayerList.css';
+import { PlayerListContainer } from './PlayerListContainer';
 import { PlayerListItem } from './PlayerListItem';
-import { teamColor } from './TeamColor.css';
 
 interface PlayerListProps {
   mode: SubstitutionSourceType;
@@ -18,58 +12,10 @@ interface PlayerListProps {
 }
 
 export const PlayerList = ({ mode, team, players }: PlayerListProps) => {
-  const setFallbackImageIfLoadFail = (
-    e: SyntheticEvent<HTMLImageElement, Event>,
-  ) => {
-    e.currentTarget.src = noProfilePlayerImage;
-  };
-
-  // List 자체에도 adapter 필요함
-  return (
-    <div
-      className={styles.rootContainer}
-      style={assignInlineVars({
-        [teamColor]: team.teamColor,
-      })}
-    >
-      <div className={styles.header}>
-        <div className={styles.teamInfo}>
-          <img
-            className={styles.teamLogo}
-            src={team.teamImg ?? noProfilePlayerImage}
-            alt=''
-            onError={setFallbackImageIfLoadFail}
-          />
-          <div className={styles.teamName}>{team.name}</div>
-        </div>
-        <div className={styles.statContainer}>
-          <span className={styles.stat}>득점</span>
-          <span className={styles.stat}>어시스트</span>
-          <span className={styles.stat}>경고</span>
-        </div>
-      </div>
-      {players.length > 0 ? (
-        <PlayerListContent mode={mode} team={team} players={players} />
-      ) : (
-        <EmptyContent />
-      )}
-    </div>
-  );
-};
-
-const PlayerListContent = ({
-  mode,
-  team,
-  players,
-}: {
-  mode: SubstitutionSourceType;
-  team: TeamResponse;
-  players: MatchUserResponse[];
-}) => {
   const { isSelected, selectedPlayer, selectPlayer } = useSelectedPlayerStore();
 
   return (
-    <ul className={styles.playerListContainer}>
+    <PlayerListContainer team={team} isEmpty={players.length === 0}>
       {players.map(player => (
         <PlayerSubstitutionAdapter<HTMLLIElement>
           key={player.id}
@@ -88,12 +34,6 @@ const PlayerListContent = ({
           )}
         />
       ))}
-    </ul>
+    </PlayerListContainer>
   );
 };
-
-const EmptyContent = () => (
-  <div className={styles.emptyContainer}>
-    <span className={styles.emptyText}>선수 정보가 없습니다</span>
-  </div>
-);
