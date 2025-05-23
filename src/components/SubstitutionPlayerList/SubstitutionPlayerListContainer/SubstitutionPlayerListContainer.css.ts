@@ -1,5 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
+import { lightThemeVars } from '@/styles/theme.css';
+
 export const rootContainer = style({
   boxSizing: 'border-box',
   display: 'flex',
@@ -35,4 +37,19 @@ export const list = style({
     rgba(255,255,255,0.70) 75%,
     rgba(255,255,255,0.3) 100%
   )`,
+});
+
+export const emptyListContainer = style({
+  display: 'flex',
+  justifyContent: 'center',
+  height: '100%',
+});
+
+export const emptyListDescription = style({
+  marginTop: 51,
+  lineHeight: 1.4,
+  letterSpacing: -0.35,
+  color: lightThemeVars.color.gray['500'],
+  fontSize: 14,
+  fontWeight: 500,
 });
