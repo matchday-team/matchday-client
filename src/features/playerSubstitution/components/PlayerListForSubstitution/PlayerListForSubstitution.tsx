@@ -3,19 +3,19 @@ import { PlayerListContainer, PlayerListItem } from '@/components';
 import { PlayerSubstitutionAdapter } from '@/features/playerSubstitution';
 import { type SubstitutionSourceType, useSelectedPlayerStore } from '@/stores';
 
-interface PlayerListProps {
+interface PlayerListForSubstitutionProps {
   mode: SubstitutionSourceType;
   matchId: number;
   team: TeamResponse;
   players: MatchUserResponse[];
 }
 
-export const PlayerList = ({
+export const PlayerListForSubstitution = ({
   mode,
   matchId,
   team,
   players,
-}: PlayerListProps) => {
+}: PlayerListForSubstitutionProps) => {
   const { isSelected, selectedPlayer, selectPlayer } = useSelectedPlayerStore();
 
   return (

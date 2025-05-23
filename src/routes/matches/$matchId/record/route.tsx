@@ -19,9 +19,9 @@ import {
   useSyncMatchMemo,
 } from '@/features/matchRecord';
 import {
-  PlayerGrid,
-  PlayerList,
-  SimplePlayerList,
+  PlayerGridForSubstitution,
+  PlayerListForSubstitution,
+  SimplePlayerListForSubstitution,
 } from '@/features/playerSubstitution';
 import { usePageTitle } from '@/hooks';
 import { queryClient } from '@/react-query-provider';
@@ -89,7 +89,9 @@ function MatchRecordPage() {
         <>
           <GridListToggleView
             render={isGridView => {
-              const Component = isGridView ? PlayerGrid : PlayerList;
+              const Component = isGridView
+                ? PlayerGridForSubstitution
+                : PlayerListForSubstitution;
 
               return (
                 <Component
@@ -102,7 +104,7 @@ function MatchRecordPage() {
             }}
           />
           <div className={atomicStyles.flexContainer}>
-            <SimplePlayerList
+            <SimplePlayerListForSubstitution
               mode='bench'
               matchId={matchId}
               team={homeTeam.data}
@@ -120,7 +122,9 @@ function MatchRecordPage() {
         <>
           <GridListToggleView
             render={isGridView => {
-              const Component = isGridView ? PlayerGrid : PlayerList;
+              const Component = isGridView
+                ? PlayerGridForSubstitution
+                : PlayerListForSubstitution;
 
               return (
                 <Component
@@ -133,7 +137,7 @@ function MatchRecordPage() {
             }}
           />
           <div className={atomicStyles.flexContainer}>
-            <SimplePlayerList
+            <SimplePlayerListForSubstitution
               mode='bench'
               matchId={matchId}
               team={awayTeam.data}

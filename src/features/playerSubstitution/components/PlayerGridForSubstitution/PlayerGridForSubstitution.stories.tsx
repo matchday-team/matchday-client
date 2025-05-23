@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { matchRecordMocks } from '@/mocks';
 
-import { PlayerGrid } from './PlayerGrid';
+import { PlayerGridForSubstitution } from './PlayerGridForSubstitution';
 
 const meta = {
-  title: 'Components/PlayerGrid',
-  component: PlayerGrid,
+  title: 'Components/PlayerGridForSubstitution',
+  component: PlayerGridForSubstitution,
   parameters: {
     layout: 'centered',
   },
@@ -18,7 +18,7 @@ const meta = {
     ),
   ],
   tags: ['autodocs'],
-} satisfies Meta<typeof PlayerGrid>;
+} satisfies Meta<typeof PlayerGridForSubstitution>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

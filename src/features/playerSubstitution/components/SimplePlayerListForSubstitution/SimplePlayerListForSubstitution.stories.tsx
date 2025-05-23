@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { matchRecordMocks } from '@/mocks';
 
-import { SimplePlayerList } from './SimplePlayerList';
-import * as styles from './SimplePlayerList.stories.css';
+import { SimplePlayerListForSubstitution } from './SimplePlayerListForSubstitution';
+import * as styles from './SimplePlayerListForSubstitution.stories.css';
 
 const meta = {
-  title: 'Components/SimplePlayerList',
-  component: SimplePlayerList,
+  title: 'Components/SimplePlayerListForSubstitution',
+  component: SimplePlayerListForSubstitution,
   parameters: {
     layout: 'centered',
   },
@@ -19,7 +19,7 @@ const meta = {
     ),
   ],
   tags: ['autodocs'],
-} satisfies Meta<typeof SimplePlayerList>;
+} satisfies Meta<typeof SimplePlayerListForSubstitution>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

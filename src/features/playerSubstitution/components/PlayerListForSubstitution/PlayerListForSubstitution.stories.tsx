@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { matchRecordMocks } from '@/mocks';
 
-import { PlayerList } from './PlayerList';
+import { PlayerListForSubstitution } from './PlayerListForSubstitution';
 
 const meta = {
   title: 'Components/PlayerList',
-  component: PlayerList,
+  component: PlayerListForSubstitution,
   parameters: {
     layout: 'centered',
   },
@@ -18,7 +18,7 @@ const meta = {
       </div>
     ),
   ],
-} satisfies Meta<typeof PlayerList>;
+} satisfies Meta<typeof PlayerListForSubstitution>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -2,7 +2,10 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { MatchUserResponse, TeamMemberResponse } from '@/apis/models';
 import { matchQuery, teamQuery } from '@/apis/queries';
-import { PlayerGrid, PlayerList } from '@/features/playerSubstitution';
+import {
+  PlayerGridForSubstitution,
+  PlayerListForSubstitution,
+} from '@/features/playerSubstitution';
 import { lightThemeVars } from '@/styles/theme.css';
 
 import * as styles from './PlayersEditView.css';
@@ -53,7 +56,7 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
       <div className={styles.allPlayersRootContainer}>
         <span className={styles.listTopDescription}>* 전체 선수 명단</span>
         <div className={styles.allPlayersContainer}>
-          <PlayerList
+          <PlayerListForSubstitution
             mode='starter'
             matchId={matchId}
             team={homeTeamWithoutTeamColor}
@@ -66,7 +69,7 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
       </div>
       <div className={styles.fieldContainer}>
         {/* (득점, 어시스트, 경고) 부분 수정 필요 */}
-        <PlayerGrid
+        <PlayerGridForSubstitution
           mode='starter'
           matchId={matchId}
           team={homeTeamWithoutTeamColor}
@@ -76,7 +79,7 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
       <div className={styles.matchPlayerListRootContainer}>
         <div className={styles.starterListContainer}>
           {/* 팀 프로필 사진 + 팀 이름 부분 수정 필요 (-> 선발 선수 명단, 대기 선수 명단) */}
-          <PlayerList
+          <PlayerListForSubstitution
             mode='starter'
             matchId={matchId}
             team={homeTeamWithoutTeamColor}
@@ -84,7 +87,7 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
           />
         </div>
         <div className={styles.subListContainer}>
-          <PlayerList
+          <PlayerListForSubstitution
             mode='starter'
             matchId={matchId}
             team={homeTeamWithoutTeamColor}

@@ -3,19 +3,19 @@ import { SimplePlayerListContainer, SimplePlayerListItem } from '@/components';
 import { PlayerSubstitutionAdapter } from '@/features/playerSubstitution';
 import { type SubstitutionSourceType } from '@/stores';
 
-interface SimplePlayerListProps {
+interface SimplePlayerListForSubstitutionProps {
   mode: SubstitutionSourceType;
   matchId: number;
   team: TeamResponse;
   players: MatchUserResponse[];
 }
 
-export const SimplePlayerList = ({
+export const SimplePlayerListForSubstitution = ({
   mode,
   matchId,
   team,
   players,
-}: SimplePlayerListProps) => {
+}: SimplePlayerListForSubstitutionProps) => {
   return (
     <SimplePlayerListContainer isEmpty={players.length === 0}>
       {players.map(player => (
