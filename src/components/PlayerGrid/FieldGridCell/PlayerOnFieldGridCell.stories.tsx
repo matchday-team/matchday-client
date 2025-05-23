@@ -6,7 +6,7 @@ import { lightThemeVars } from '@/styles/theme.css';
 import { PlayerOnFieldGridCell } from './PlayerOnFieldGridCell';
 
 const meta = {
-  title: 'Components/PlayerOnFieldGridCell',
+  title: 'Components/PlayerGrid/PlayerOnFieldGridCell',
   component: PlayerOnFieldGridCell,
   parameters: {
     layout: 'centered',

@@ -5,7 +5,7 @@ import { lightThemeVars } from '@/styles/theme.css';
 import { EmptyOnFieldGridCell } from './EmptyOnFieldGridCell';
 
 const meta = {
-  title: 'Components/EmptyOnFieldGridCell',
+  title: 'Components/PlayerGrid/EmptyOnFieldGridCell',
   component: EmptyOnFieldGridCell,
   parameters: {
     layout: 'centered',
