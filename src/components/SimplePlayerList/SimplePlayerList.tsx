@@ -7,12 +7,14 @@ import { SimplePlayerListItem } from './SimplePlayerListItem';
 
 interface SimplePlayerListProps {
   mode: SubstitutionSourceType;
+  matchId: number;
   team: TeamResponse;
   players: MatchUserResponse[];
 }
 
 export const SimplePlayerList = ({
   mode,
+  matchId,
   team,
   players,
 }: SimplePlayerListProps) => {
@@ -22,6 +24,7 @@ export const SimplePlayerList = ({
         <PlayerSubstitutionAdapter<HTMLLIElement>
           key={player.id}
           mode={mode}
+          matchId={matchId}
           team={team}
           player={player}
           render={({ isDragOver, disabled, ...props }) => (

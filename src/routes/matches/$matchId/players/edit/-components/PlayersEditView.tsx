@@ -55,6 +55,7 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
         <div className={styles.allPlayersContainer}>
           <PlayerList
             mode='starter'
+            matchId={matchId}
             team={homeTeamWithoutTeamColor}
             players={allPlayers}
           />
@@ -67,6 +68,7 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
         {/* (득점, 어시스트, 경고) 부분 수정 필요 */}
         <PlayerGrid
           mode='starter'
+          matchId={matchId}
           team={homeTeamWithoutTeamColor}
           players={matchPlayers.data.homeTeam.starters}
         />
@@ -76,6 +78,7 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
           {/* 팀 프로필 사진 + 팀 이름 부분 수정 필요 (-> 선발 선수 명단, 대기 선수 명단) */}
           <PlayerList
             mode='starter'
+            matchId={matchId}
             team={homeTeamWithoutTeamColor}
             players={matchPlayers.data.homeTeam.starters}
           />
@@ -83,6 +86,7 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
         <div className={styles.subListContainer}>
           <PlayerList
             mode='starter'
+            matchId={matchId}
             team={homeTeamWithoutTeamColor}
             players={matchPlayers.data.homeTeam.substitutes}
           />

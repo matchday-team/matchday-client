@@ -48,6 +48,7 @@ export const MatchModifyView = () => {
         {homeTeam && (
           <PlayerGrid
             mode='starter'
+            matchId={selectedMatchId}
             team={homeTeam.data}
             players={matchPlayerList?.data.homeTeam.starters ?? []}
           />
@@ -59,6 +60,7 @@ export const MatchModifyView = () => {
         {awayTeam && (
           <PlayerGrid
             mode='starter'
+            matchId={selectedMatchId}
             team={awayTeam.data}
             players={matchPlayerList?.data.awayTeam.starters ?? []}
           />

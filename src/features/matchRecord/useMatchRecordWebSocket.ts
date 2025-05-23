@@ -1,18 +1,15 @@
 import { useEffect } from 'react';
 
 import { useQueryClient } from '@tanstack/react-query';
-import { useParams } from '@tanstack/react-router';
 import { useSnackbar } from 'notistack';
 
 import { matchQuery } from '@/apis/queries';
 import { getWebSocketApi } from '@/apis/websockets';
 import { MatchEventType } from '@/constants';
 
-export const useMatchRecordWebSocket = () => {
+export const useMatchRecordWebSocket = (matchId: number) => {
   const queryClient = useQueryClient();
   const { enqueueSnackbar } = useSnackbar();
-  const { matchId: _matchId } = useParams({ from: '/matches/$matchId/record' });
-  const matchId = Number(_matchId);
   const wsApi = getWebSocketApi();
 
   useEffect(() => {

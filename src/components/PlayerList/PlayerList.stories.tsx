@@ -26,6 +26,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     mode: 'starter',
+    matchId: 1,
     team: matchRecordMocks.mockHomeTeam,
     players: matchRecordMocks.mockPlayersByTeamType('home'),
   },
@@ -34,6 +35,7 @@ export const Default: Story = {
 export const FullPlayers: Story = {
   args: {
     mode: 'starter',
+    matchId: 1,
     team: matchRecordMocks.mockHomeTeam,
     players: matchRecordMocks.mockPlayersByTeamType('home'),
   },
@@ -43,6 +45,7 @@ export const FullPlayers: Story = {
 export const EmptyPlayers: Story = {
   args: {
     mode: 'starter',
+    matchId: 1,
     team: matchRecordMocks.mockAwayTeam,
     players: [],
   },

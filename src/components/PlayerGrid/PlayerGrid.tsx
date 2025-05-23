@@ -7,12 +7,18 @@ import { EmptyOnFieldGridCell, PlayerOnFieldGridCell } from './FieldGridCell';
 
 interface PlayerGridProps {
   mode: SubstitutionSourceType;
+  matchId: number;
   team: TeamResponse;
   players: MatchUserResponse[];
 }
 
 // TODO: FieldBackground만 재사용 - 현재는 그냥 선수 교체용 컴포넌트로 사용함
-export const PlayerGrid = ({ mode, team, players }: PlayerGridProps) => {
+export const PlayerGrid = ({
+  mode,
+  matchId,
+  team,
+  players,
+}: PlayerGridProps) => {
   const { isSelected, selectedPlayer, selectPlayer } = useSelectedPlayerStore();
 
   const playerGridMap = new Map(
@@ -32,6 +38,7 @@ export const PlayerGrid = ({ mode, team, players }: PlayerGridProps) => {
           <PlayerSubstitutionAdapter<HTMLDivElement>
             key={matchGrid}
             mode={mode}
+            matchId={matchId}
             team={team}
             player={player}
             render={({ isDragOver, disabled, ...props }) => (

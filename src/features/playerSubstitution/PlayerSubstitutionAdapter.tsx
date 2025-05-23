@@ -19,6 +19,7 @@ type RenderViewProps<Element extends HTMLElement> = (props: {
 
 type PlayerSubstitutionAdapterProps<Element extends HTMLElement> = {
   mode: SubstitutionSourceType;
+  matchId: number;
   team: TeamResponse;
   player: MatchUserResponse;
   render: RenderViewProps<Element>;
@@ -26,6 +27,7 @@ type PlayerSubstitutionAdapterProps<Element extends HTMLElement> = {
 
 export const PlayerSubstitutionAdapter = <Target extends HTMLElement>({
   mode,
+  matchId,
   team,
   player,
   render,
@@ -33,7 +35,7 @@ export const PlayerSubstitutionAdapter = <Target extends HTMLElement>({
   const { isDragOver, hoverTargetRef } = useIsDragOver<Target>();
   const { getIsSubstitutionTarget, beginSubstitution, finishSubstitution } =
     useSubstitutionStore();
-  const { requestPlayerSwap } = useMatchRecordWebSocket();
+  const { requestPlayerSwap } = useMatchRecordWebSocket(matchId);
 
   const isAvailable =
     policies.checkPlayerAvailable[mode](player) &&

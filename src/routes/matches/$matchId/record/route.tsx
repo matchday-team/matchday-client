@@ -49,7 +49,7 @@ function MatchRecordPage() {
   const { matchId: _matchId } = useParams({ from: '/matches/$matchId/record' });
   const matchId = Number(_matchId);
   const { requestTeamStatChange, requestPlayerStatChange } =
-    useMatchRecordWebSocket();
+    useMatchRecordWebSocket(matchId);
 
   const { memo, updateMemo } = useSyncMatchMemo(matchId);
   const { data: matchInfo } = useSuspenseQuery(matchQuery.info(matchId));
@@ -92,6 +92,7 @@ function MatchRecordPage() {
               return (
                 <Component
                   mode='starter'
+                  matchId={matchId}
                   team={homeTeam.data}
                   players={homeTeamStarters}
                 />
@@ -101,6 +102,7 @@ function MatchRecordPage() {
           <div className={atomicStyles.flexContainer}>
             <SimplePlayerList
               mode='bench'
+              matchId={matchId}
               team={homeTeam.data}
               players={homeTeamSubstitutes}
             />
@@ -121,6 +123,7 @@ function MatchRecordPage() {
               return (
                 <Component
                   mode='starter'
+                  matchId={matchId}
                   team={awayTeam.data}
                   players={awayTeamStarters}
                 />
@@ -130,6 +133,7 @@ function MatchRecordPage() {
           <div className={atomicStyles.flexContainer}>
             <SimplePlayerList
               mode='bench'
+              matchId={matchId}
               team={awayTeam.data}
               players={awayTeamSubstitutes}
             />
