@@ -6,14 +6,16 @@ import { createFileRoute, useParams } from '@tanstack/react-router';
 import { matchQuery, teamQuery } from '@/apis/queries';
 import {
   GameScoreArea,
+  GridListToggleView,
   MatchLogList,
   MatchRecordSimpleMemo,
   MatchSchedule,
+  PlayerList,
+  PlayerOnFieldGrid,
   PlayerStatCounterGrid,
   SubstitutionPlayerList,
   TeamStatCompareCounterList,
   TeamStatCounterGrid,
-  ToggleableStartingPlayers,
 } from '@/components';
 import {
   useMatchRecordWebSocket,
@@ -83,10 +85,18 @@ function MatchRecordPage() {
       team2Color={awayTeam.data.teamColor}
       team1={
         <>
-          <ToggleableStartingPlayers
-            mode='starter'
-            team={homeTeam.data}
-            players={homeTeamStarters}
+          <GridListToggleView
+            render={isGridView => {
+              const Component = isGridView ? PlayerOnFieldGrid : PlayerList;
+
+              return (
+                <Component
+                  mode='starter'
+                  team={homeTeam.data}
+                  players={homeTeamStarters}
+                />
+              );
+            }}
           />
           <div className={atomicStyles.flexContainer}>
             <SubstitutionPlayerList
@@ -104,10 +114,18 @@ function MatchRecordPage() {
       }
       team2={
         <>
-          <ToggleableStartingPlayers
-            mode='starter'
-            team={awayTeam.data}
-            players={awayTeamStarters}
+          <GridListToggleView
+            render={isGridView => {
+              const Component = isGridView ? PlayerOnFieldGrid : PlayerList;
+
+              return (
+                <Component
+                  mode='starter'
+                  team={awayTeam.data}
+                  players={awayTeamStarters}
+                />
+              );
+            }}
           />
           <div className={atomicStyles.flexContainer}>
             <SubstitutionPlayerList
