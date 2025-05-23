@@ -10,8 +10,8 @@ import {
   MatchLogList,
   MatchRecordSimpleMemo,
   MatchSchedule,
+  PlayerGrid,
   PlayerList,
-  PlayerOnFieldGrid,
   PlayerStatCounterGrid,
   SimplePlayerList,
   TeamStatCompareCounterList,
@@ -87,7 +87,7 @@ function MatchRecordPage() {
         <>
           <GridListToggleView
             render={isGridView => {
-              const Component = isGridView ? PlayerOnFieldGrid : PlayerList;
+              const Component = isGridView ? PlayerGrid : PlayerList;
 
               return (
                 <Component
@@ -116,7 +116,7 @@ function MatchRecordPage() {
         <>
           <GridListToggleView
             render={isGridView => {
-              const Component = isGridView ? PlayerOnFieldGrid : PlayerList;
+              const Component = isGridView ? PlayerGrid : PlayerList;
 
               return (
                 <Component

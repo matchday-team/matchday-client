@@ -16,7 +16,7 @@ export * from './MatchSchedule';
 export * from './Sidebar';
 export * from './Layout';
 export * from './Navbar';
-export * from './PlayerOnFieldGrid';
+export * from './PlayerGrid';
 export * from './GridListToggleView';
 export * from './SnackbarViewForDebug';
 export * from './UserSettingsDialog';

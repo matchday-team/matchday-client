@@ -2,7 +2,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { MatchUserResponse, TeamMemberResponse } from '@/apis/models';
 import { matchQuery, teamQuery } from '@/apis/queries';
-import { PlayerList, PlayerOnFieldGrid } from '@/components';
+import { PlayerGrid, PlayerList } from '@/components';
 import { lightThemeVars } from '@/styles/theme.css';
 
 import * as styles from './PlayersEditView.css';
@@ -65,7 +65,7 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
       </div>
       <div className={styles.fieldContainer}>
         {/* (득점, 어시스트, 경고) 부분 수정 필요 */}
-        <PlayerOnFieldGrid
+        <PlayerGrid
           mode='starter'
           team={homeTeamWithoutTeamColor}
           players={matchPlayers.data.homeTeam.starters}

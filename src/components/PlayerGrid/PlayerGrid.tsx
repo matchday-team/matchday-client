@@ -5,18 +5,14 @@ import { SubstitutionSourceType, useSelectedPlayerStore } from '@/stores';
 import { FieldBackground } from './FieldBackground';
 import { EmptyOnFieldGridCell, PlayerOnFieldGridCell } from './FieldGridCell';
 
-interface PlayerOnFieldGridProps {
+interface PlayerGridProps {
   mode: SubstitutionSourceType;
   team: TeamResponse;
   players: MatchUserResponse[];
 }
 
 // TODO: FieldBackground만 재사용 - 현재는 그냥 선수 교체용 컴포넌트로 사용함
-export const PlayerOnFieldGrid = ({
-  mode,
-  team,
-  players,
-}: PlayerOnFieldGridProps) => {
+export const PlayerGrid = ({ mode, team, players }: PlayerGridProps) => {
   const { isSelected, selectedPlayer, selectPlayer } = useSelectedPlayerStore();
 
   const playerGridMap = new Map(

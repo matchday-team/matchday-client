@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { matchRecordMocks } from '@/mocks';
 
-import { PlayerOnFieldGrid } from './PlayerOnFieldGrid';
+import { PlayerGrid } from './PlayerGrid';
 
 const meta = {
-  title: 'Components/PlayerOnFieldGrid',
-  component: PlayerOnFieldGrid,
+  title: 'Components/PlayerGrid',
+  component: PlayerGrid,
   parameters: {
     layout: 'centered',
   },
@@ -18,7 +18,7 @@ const meta = {
     ),
   ],
   tags: ['autodocs'],
-} satisfies Meta<typeof PlayerOnFieldGrid>;
+} satisfies Meta<typeof PlayerGrid>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
