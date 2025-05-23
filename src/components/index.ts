@@ -3,7 +3,7 @@ export * from './Button';
 export * from './PlayerList';
 export * from './StatCounterItem';
 export * from './TeamStatCounterGrid';
-export * from './SubstitutionPlayerList';
+export * from './SimplePlayerList';
 export * from './PlayerStatCounterGrid';
 export * from './MatchRecordSimpleMemo';
 export * from './MatchTimeController';

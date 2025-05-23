@@ -4,10 +4,9 @@ import type { MatchUserResponse } from '@/apis/models';
 import { ChevronDownIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 
-import * as styles from './SubstitutionPlayerListItem.css';
+import * as styles from './SimplePlayerListItem.css';
 
-export interface SubstitutionPlayerListItemProps
-  extends ComponentPropsWithRef<'li'> {
+export interface SimplePlayerListItemProps extends ComponentPropsWithRef<'li'> {
   player: MatchUserResponse;
   isDragOver: boolean;
   disabled: boolean;
@@ -23,12 +22,12 @@ const setFallbackImageIfLoadFail = (
   e.currentTarget.src = noProfilePlayerImage;
 };
 
-export const SubstitutionPlayerListItem = ({
+export const SimplePlayerListItem = ({
   player,
   isDragOver,
   disabled,
   ...props
-}: SubstitutionPlayerListItemProps) => {
+}: SimplePlayerListItemProps) => {
   return (
     <li
       className={styles.rootContainer({ disabled, isDragOver })}

@@ -2,22 +2,22 @@ import { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { PlayerSubstitutionAdapter } from '@/features/playerSubstitution';
 import { type SubstitutionSourceType } from '@/stores';
 
-import { SubstitutionPlayerListContainer } from './SubstitutionPlayerListContainer';
-import { SubstitutionPlayerListItem } from './SubstitutionPlayerListItem';
+import { SimplePlayerListContainer } from './SimplePlayerListContainer';
+import { SimplePlayerListItem } from './SimplePlayerListItem';
 
-interface SubstitutionPlayerListProps {
+interface SimplePlayerListProps {
   mode: SubstitutionSourceType;
   team: TeamResponse;
   players: MatchUserResponse[];
 }
 
-export const SubstitutionPlayerList = ({
+export const SimplePlayerList = ({
   mode,
   team,
   players,
-}: SubstitutionPlayerListProps) => {
+}: SimplePlayerListProps) => {
   return (
-    <SubstitutionPlayerListContainer isEmpty={players.length === 0}>
+    <SimplePlayerListContainer isEmpty={players.length === 0}>
       {players.map(player => (
         <PlayerSubstitutionAdapter<HTMLLIElement>
           key={player.id}
@@ -25,7 +25,7 @@ export const SubstitutionPlayerList = ({
           team={team}
           player={player}
           render={({ isDragOver, disabled, ...props }) => (
-            <SubstitutionPlayerListItem
+            <SimplePlayerListItem
               player={player}
               isDragOver={isDragOver}
               disabled={disabled}
@@ -34,6 +34,6 @@ export const SubstitutionPlayerList = ({
           )}
         />
       ))}
-    </SubstitutionPlayerListContainer>
+    </SimplePlayerListContainer>
   );
 };

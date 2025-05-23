@@ -13,7 +13,7 @@ import {
   PlayerList,
   PlayerOnFieldGrid,
   PlayerStatCounterGrid,
-  SubstitutionPlayerList,
+  SimplePlayerList,
   TeamStatCompareCounterList,
   TeamStatCounterGrid,
 } from '@/components';
@@ -99,7 +99,7 @@ function MatchRecordPage() {
             }}
           />
           <div className={atomicStyles.flexContainer}>
-            <SubstitutionPlayerList
+            <SimplePlayerList
               mode='bench'
               team={homeTeam.data}
               players={homeTeamSubstitutes}
@@ -128,7 +128,7 @@ function MatchRecordPage() {
             }}
           />
           <div className={atomicStyles.flexContainer}>
-            <SubstitutionPlayerList
+            <SimplePlayerList
               mode='bench'
               team={awayTeam.data}
               players={awayTeamSubstitutes}

@@ -1,15 +1,15 @@
 import { type PropsWithChildren } from 'react';
 
-import * as styles from './SubstitutionPlayerListContainer.css';
+import * as styles from './SimplePlayerListContainer.css';
 
-interface SubstitutionPlayerListContainerProps extends PropsWithChildren {
+interface SimplePlayerListContainerProps extends PropsWithChildren {
   isEmpty: boolean;
 }
 
-export const SubstitutionPlayerListContainer = ({
+export const SimplePlayerListContainer = ({
   isEmpty,
   children,
-}: SubstitutionPlayerListContainerProps) => {
+}: SimplePlayerListContainerProps) => {
   return (
     <div className={styles.rootContainer}>
       <div className={styles.header}>
