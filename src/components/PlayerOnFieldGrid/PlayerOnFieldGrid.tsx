@@ -1,12 +1,9 @@
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { PlayerSubstitutionAdapter } from '@/features';
-import { type SubstitutionSourceType, useSelectedPlayerStore } from '@/stores';
+import { SubstitutionSourceType, useSelectedPlayerStore } from '@/stores';
 
 import { FieldBackground } from './FieldBackground';
 import { EmptyOnFieldGridCell, PlayerOnFieldGridCell } from './FieldGridCell';
-import * as styles from './PlayerOnFieldGrid.css';
-
-const TOTAL_CELLS = 30;
 
 interface PlayerOnFieldGridProps {
   mode: SubstitutionSourceType;
@@ -15,6 +12,7 @@ interface PlayerOnFieldGridProps {
   onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }
 
+// TODO: FieldBackground만 재사용 - 현재는 그냥 선수 교체용 컴포넌트로 사용함
 export const PlayerOnFieldGrid = ({
   mode,
   team,
@@ -28,45 +26,43 @@ export const PlayerOnFieldGrid = ({
   );
 
   return (
-    <FieldBackground>
-      <div className={styles.grid}>
-        {Array.from({ length: TOTAL_CELLS }, (_, idx) => {
-          const player = playerGridMap.get(idx);
+    <FieldBackground
+      render={matchGrid => {
+        const player = playerGridMap.get(matchGrid);
 
-          if (!player) {
-            return <EmptyOnFieldGridCell key={idx} />;
-          }
+        if (!player) {
+          return <EmptyOnFieldGridCell key={matchGrid} />;
+        }
 
-          return (
-            <PlayerSubstitutionAdapter<HTMLDivElement>
-              key={idx}
-              mode={mode}
-              team={team}
-              player={player}
-              onSwap={onSwap}
-              render={({ isDragOver, disabled, ...props }) => (
-                <PlayerOnFieldGridCell
-                  key={idx}
-                  player={player}
-                  isSelected={
-                    isSelected && selectedPlayer.player.id === player.id
+        return (
+          <PlayerSubstitutionAdapter<HTMLDivElement>
+            key={matchGrid}
+            mode={mode}
+            team={team}
+            player={player}
+            onSwap={onSwap}
+            render={({ isDragOver, disabled, ...props }) => (
+              <PlayerOnFieldGridCell
+                key={matchGrid}
+                player={player}
+                isSelected={
+                  isSelected && selectedPlayer.player.id === player.id
+                }
+                onClick={() => {
+                  // NOTE: 빈 상태임
+                  if (!team) {
+                    return;
                   }
-                  onClick={() => {
-                    // NOTE: 빈 상태임
-                    if (!team) {
-                      return;
-                    }
-                    selectPlayer({ team, player });
-                  }}
-                  isDragOver={isDragOver}
-                  disabled={disabled}
-                  {...props}
-                />
-              )}
-            />
-          );
-        })}
-      </div>
-    </FieldBackground>
+                  selectPlayer({ team, player });
+                }}
+                isDragOver={isDragOver}
+                disabled={disabled}
+                {...props}
+              />
+            )}
+          />
+        );
+      }}
+    />
   );
 };

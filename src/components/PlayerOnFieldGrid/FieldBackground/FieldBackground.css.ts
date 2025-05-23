@@ -40,3 +40,12 @@ export const centerCircleHalf = style([
     left: '50%',
   },
 ]);
+
+export const gridContainer = style({
+  boxSizing: 'border-box',
+  display: 'grid',
+  gridTemplateRows: 'repeat(6, 1fr)',
+  gridTemplateColumns: 'repeat(5, 1fr)',
+  width: '100%',
+  height: '100%',
+});

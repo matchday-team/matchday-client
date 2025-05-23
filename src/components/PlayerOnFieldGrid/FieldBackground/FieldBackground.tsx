@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import {
   CenterCircleHalf,
   InnerPenaltyBox,
@@ -6,17 +8,23 @@ import {
 
 import * as styles from './FieldBackground.css';
 
-export const FieldBackground = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+const TOTAL_CELLS = 30;
+
+interface PlayerOnFieldGridProps {
+  render: (matchGrid: number) => ReactNode;
+}
+
+export const FieldBackground = ({ render }: PlayerOnFieldGridProps) => {
   return (
     <div className={styles.rootContainer}>
       <CenterCircleHalf className={styles.centerCircleHalf} />
       <InnerPenaltyBox className={styles.innerPenaltyBox} />
       <OuterPenaltyBox className={styles.outerPenaltyBox} />
-      {children}
+      <div className={styles.gridContainer}>
+        {Array.from({ length: TOTAL_CELLS }, (_, matchGrid) =>
+          render(matchGrid),
+        )}
+      </div>
     </div>
   );
 };
