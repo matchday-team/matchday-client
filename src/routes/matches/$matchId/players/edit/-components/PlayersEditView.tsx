@@ -3,8 +3,8 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { MatchUserResponse, TeamMemberResponse } from '@/apis/models';
 import { matchQuery, teamQuery } from '@/apis/queries';
 import {
-  PlayerGridForSubstitution,
-  PlayerListForSubstitution,
+  StarterPlayerGridForSubstitution,
+  StarterPlayerListForSubstitution,
 } from '@/features/playerSubstitution';
 import { lightThemeVars } from '@/styles/theme.css';
 
@@ -56,8 +56,7 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
       <div className={styles.allPlayersRootContainer}>
         <span className={styles.listTopDescription}>* 전체 선수 명단</span>
         <div className={styles.allPlayersContainer}>
-          <PlayerListForSubstitution
-            mode='starter'
+          <StarterPlayerListForSubstitution
             matchId={matchId}
             team={homeTeamWithoutTeamColor}
             players={allPlayers}
@@ -69,8 +68,7 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
       </div>
       <div className={styles.fieldContainer}>
         {/* (득점, 어시스트, 경고) 부분 수정 필요 */}
-        <PlayerGridForSubstitution
-          mode='starter'
+        <StarterPlayerGridForSubstitution
           matchId={matchId}
           team={homeTeamWithoutTeamColor}
           players={matchPlayers.data.homeTeam.starters}
@@ -79,16 +77,14 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
       <div className={styles.matchPlayerListRootContainer}>
         <div className={styles.starterListContainer}>
           {/* 팀 프로필 사진 + 팀 이름 부분 수정 필요 (-> 선발 선수 명단, 대기 선수 명단) */}
-          <PlayerListForSubstitution
-            mode='starter'
+          <StarterPlayerListForSubstitution
             matchId={matchId}
             team={homeTeamWithoutTeamColor}
             players={matchPlayers.data.homeTeam.starters}
           />
         </div>
         <div className={styles.subListContainer}>
-          <PlayerListForSubstitution
-            mode='starter'
+          <StarterPlayerListForSubstitution
             matchId={matchId}
             team={homeTeamWithoutTeamColor}
             players={matchPlayers.data.homeTeam.substitutes}

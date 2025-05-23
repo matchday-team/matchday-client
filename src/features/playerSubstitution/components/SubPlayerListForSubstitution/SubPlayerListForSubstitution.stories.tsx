@@ -2,31 +2,35 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { matchRecordMocks } from '@/mocks';
 
-import { SimplePlayerListForSubstitution } from './SimplePlayerListForSubstitution';
-import * as styles from './SimplePlayerListForSubstitution.stories.css';
+import { SubPlayerListForSubstitution } from './SubPlayerListForSubstitution';
 
 const meta = {
-  title: 'Components/SimplePlayerListForSubstitution',
-  component: SimplePlayerListForSubstitution,
+  title: 'Components/SubPlayerListForSubstitution',
+  component: SubPlayerListForSubstitution,
   parameters: {
     layout: 'centered',
   },
   decorators: [
     Story => (
-      <div className={styles.container}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: 338,
+        }}
+      >
         <Story />
       </div>
     ),
   ],
   tags: ['autodocs'],
-} satisfies Meta<typeof SimplePlayerListForSubstitution>;
+} satisfies Meta<typeof SubPlayerListForSubstitution>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    mode: 'bench',
     matchId: 1,
     team: matchRecordMocks.mockHomeTeam,
     players: matchRecordMocks.mockSubPlayersByTeamType('home'),
@@ -36,7 +40,6 @@ export const Default: Story = {
 // FIXME: Query 연동 후 msw 활용한 mock 필요
 export const Empty: Story = {
   args: {
-    mode: 'bench',
     matchId: 1,
     team: matchRecordMocks.mockHomeTeam,
     players: [],
@@ -45,7 +48,6 @@ export const Empty: Story = {
 
 export const DisabledPlayers: Story = {
   args: {
-    mode: 'bench',
     matchId: 1,
     team: matchRecordMocks.mockHomeTeam,
     players: matchRecordMocks.mockSubPlayersByTeamType('home').map(player => ({

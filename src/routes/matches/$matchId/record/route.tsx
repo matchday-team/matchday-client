@@ -19,9 +19,9 @@ import {
   useSyncMatchMemo,
 } from '@/features/matchRecord';
 import {
-  PlayerGridForSubstitution,
-  PlayerListForSubstitution,
-  SimplePlayerListForSubstitution,
+  StarterPlayerGridForSubstitution,
+  StarterPlayerListForSubstitution,
+  SubPlayerListForSubstitution,
 } from '@/features/playerSubstitution';
 import { usePageTitle } from '@/hooks';
 import { queryClient } from '@/react-query-provider';
@@ -90,12 +90,11 @@ function MatchRecordPage() {
           <GridListToggleView
             render={isGridView => {
               const Component = isGridView
-                ? PlayerGridForSubstitution
-                : PlayerListForSubstitution;
+                ? StarterPlayerGridForSubstitution
+                : StarterPlayerListForSubstitution;
 
               return (
                 <Component
-                  mode='starter'
                   matchId={matchId}
                   team={homeTeam.data}
                   players={homeTeamStarters}
@@ -104,8 +103,7 @@ function MatchRecordPage() {
             }}
           />
           <div className={atomicStyles.flexContainer}>
-            <SimplePlayerListForSubstitution
-              mode='bench'
+            <SubPlayerListForSubstitution
               matchId={matchId}
               team={homeTeam.data}
               players={homeTeamSubstitutes}
@@ -123,12 +121,11 @@ function MatchRecordPage() {
           <GridListToggleView
             render={isGridView => {
               const Component = isGridView
-                ? PlayerGridForSubstitution
-                : PlayerListForSubstitution;
+                ? StarterPlayerGridForSubstitution
+                : StarterPlayerListForSubstitution;
 
               return (
                 <Component
-                  mode='starter'
                   matchId={matchId}
                   team={awayTeam.data}
                   players={awayTeamStarters}
@@ -137,8 +134,7 @@ function MatchRecordPage() {
             }}
           />
           <div className={atomicStyles.flexContainer}>
-            <SimplePlayerListForSubstitution
-              mode='bench'
+            <SubPlayerListForSubstitution
               matchId={matchId}
               team={awayTeam.data}
               players={awayTeamSubstitutes}

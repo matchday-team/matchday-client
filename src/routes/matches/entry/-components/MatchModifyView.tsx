@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { matchQuery, teamQuery } from '@/apis/queries';
-import { PlayerGridForSubstitution } from '@/features/playerSubstitution';
+import { StarterPlayerGridForSubstitution } from '@/features/playerSubstitution';
 
 import * as styles from './MatchModifyView.css';
 import { UserMatchJoinForm } from './UserMatchJoinForm';
@@ -46,8 +46,7 @@ export const MatchModifyView = () => {
       <div className={styles.fieldContainer}>
         <h2>home</h2>
         {homeTeam && (
-          <PlayerGridForSubstitution
-            mode='starter'
+          <StarterPlayerGridForSubstitution
             matchId={selectedMatchId}
             team={homeTeam.data}
             players={matchPlayerList?.data.homeTeam.starters ?? []}
@@ -58,8 +57,7 @@ export const MatchModifyView = () => {
       <div className={styles.fieldContainer}>
         <h2>away</h2>
         {awayTeam && (
-          <PlayerGridForSubstitution
-            mode='starter'
+          <StarterPlayerGridForSubstitution
             matchId={selectedMatchId}
             team={awayTeam.data}
             players={matchPlayerList?.data.awayTeam.starters ?? []}

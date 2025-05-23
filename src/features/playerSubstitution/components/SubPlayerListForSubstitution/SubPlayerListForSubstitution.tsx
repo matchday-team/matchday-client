@@ -1,27 +1,24 @@
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { SimplePlayerListContainer, SimplePlayerListItem } from '@/components';
 import { PlayerSubstitutionAdapter } from '@/features/playerSubstitution';
-import { type SubstitutionSourceType } from '@/stores';
 
-interface SimplePlayerListForSubstitutionProps {
-  mode: SubstitutionSourceType;
+interface SubPlayerListForSubstitutionProps {
   matchId: number;
   team: TeamResponse;
   players: MatchUserResponse[];
 }
 
-export const SimplePlayerListForSubstitution = ({
-  mode,
+export const SubPlayerListForSubstitution = ({
   matchId,
   team,
   players,
-}: SimplePlayerListForSubstitutionProps) => {
+}: SubPlayerListForSubstitutionProps) => {
   return (
     <SimplePlayerListContainer isEmpty={players.length === 0}>
       {players.map(player => (
         <PlayerSubstitutionAdapter<HTMLLIElement>
           key={player.id}
-          mode={mode}
+          mode='bench'
           matchId={matchId}
           team={team}
           player={player}

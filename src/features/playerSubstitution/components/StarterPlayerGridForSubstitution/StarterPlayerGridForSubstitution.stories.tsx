@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { matchRecordMocks } from '@/mocks';
 
-import { PlayerGridForSubstitution } from './PlayerGridForSubstitution';
+import { StarterPlayerGridForSubstitution } from './StarterPlayerGridForSubstitution';
 
 const meta = {
   title: 'Components/PlayerGridForSubstitution',
-  component: PlayerGridForSubstitution,
+  component: StarterPlayerGridForSubstitution,
   parameters: {
     layout: 'centered',
   },
@@ -18,14 +18,13 @@ const meta = {
     ),
   ],
   tags: ['autodocs'],
-} satisfies Meta<typeof PlayerGridForSubstitution>;
+} satisfies Meta<typeof StarterPlayerGridForSubstitution>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    mode: 'starter',
     matchId: 1,
     team: matchRecordMocks.mockHomeTeam,
     players: matchRecordMocks.mockPlayersByTeamType('home'),

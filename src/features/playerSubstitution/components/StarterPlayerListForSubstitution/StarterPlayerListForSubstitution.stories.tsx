@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { matchRecordMocks } from '@/mocks';
 
-import { PlayerListForSubstitution } from './PlayerListForSubstitution';
+import { StarterPlayerListForSubstitution } from './StarterPlayerListForSubstitution';
 
 const meta = {
   title: 'Components/PlayerList',
-  component: PlayerListForSubstitution,
+  component: StarterPlayerListForSubstitution,
   parameters: {
     layout: 'centered',
   },
@@ -18,14 +18,13 @@ const meta = {
       </div>
     ),
   ],
-} satisfies Meta<typeof PlayerListForSubstitution>;
+} satisfies Meta<typeof StarterPlayerListForSubstitution>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    mode: 'starter',
     matchId: 1,
     team: matchRecordMocks.mockHomeTeam,
     players: matchRecordMocks.mockPlayersByTeamType('home'),
@@ -34,7 +33,6 @@ export const Default: Story = {
 
 export const FullPlayers: Story = {
   args: {
-    mode: 'starter',
     matchId: 1,
     team: matchRecordMocks.mockHomeTeam,
     players: matchRecordMocks.mockPlayersByTeamType('home'),
@@ -44,7 +42,6 @@ export const FullPlayers: Story = {
 // FIXME: 추후 msw 모킹으로 재현 필요
 export const EmptyPlayers: Story = {
   args: {
-    mode: 'starter',
     matchId: 1,
     team: matchRecordMocks.mockAwayTeam,
     players: [],

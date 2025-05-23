@@ -5,22 +5,20 @@ import {
   PlayerOnFieldGridCell,
 } from '@/components';
 import { PlayerSubstitutionAdapter } from '@/features/playerSubstitution';
-import { SubstitutionSourceType, useSelectedPlayerStore } from '@/stores';
+import { useSelectedPlayerStore } from '@/stores';
 
-interface PlayerGridForSubstitutionProps {
-  mode: SubstitutionSourceType;
+interface StarterPlayerGridForSubstitutionProps {
   matchId: number;
   team: TeamResponse;
   players: MatchUserResponse[];
 }
 
 // TODO: FieldBackground만 재사용 - 현재는 그냥 선수 교체용 컴포넌트로 사용함
-export const PlayerGridForSubstitution = ({
-  mode,
+export const StarterPlayerGridForSubstitution = ({
   matchId,
   team,
   players,
-}: PlayerGridForSubstitutionProps) => {
+}: StarterPlayerGridForSubstitutionProps) => {
   const { isSelected, selectedPlayer, selectPlayer } = useSelectedPlayerStore();
 
   const playerGridMap = new Map(
@@ -39,7 +37,7 @@ export const PlayerGridForSubstitution = ({
         return (
           <PlayerSubstitutionAdapter<HTMLDivElement>
             key={matchGrid}
-            mode={mode}
+            mode='starter'
             matchId={matchId}
             team={team}
             player={player}

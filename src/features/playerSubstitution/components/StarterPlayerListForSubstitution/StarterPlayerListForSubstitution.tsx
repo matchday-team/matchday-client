@@ -1,21 +1,19 @@
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { PlayerListContainer, PlayerListItem } from '@/components';
 import { PlayerSubstitutionAdapter } from '@/features/playerSubstitution';
-import { type SubstitutionSourceType, useSelectedPlayerStore } from '@/stores';
+import { useSelectedPlayerStore } from '@/stores';
 
-interface PlayerListForSubstitutionProps {
-  mode: SubstitutionSourceType;
+interface StarterPlayerListForSubstitutionProps {
   matchId: number;
   team: TeamResponse;
   players: MatchUserResponse[];
 }
 
-export const PlayerListForSubstitution = ({
-  mode,
+export const StarterPlayerListForSubstitution = ({
   matchId,
   team,
   players,
-}: PlayerListForSubstitutionProps) => {
+}: StarterPlayerListForSubstitutionProps) => {
   const { isSelected, selectedPlayer, selectPlayer } = useSelectedPlayerStore();
 
   return (
@@ -23,7 +21,7 @@ export const PlayerListForSubstitution = ({
       {players.map(player => (
         <PlayerSubstitutionAdapter<HTMLLIElement>
           key={player.id}
-          mode={mode}
+          mode='starter'
           matchId={matchId}
           team={team}
           player={player}

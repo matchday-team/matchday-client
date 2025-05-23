@@ -1,3 +1,3 @@
-export * from './PlayerGridForSubstitution';
-export * from './PlayerListForSubstitution';
-export * from './SimplePlayerListForSubstitution';
+export * from './StarterPlayerGridForSubstitution';
+export * from './StarterPlayerListForSubstitution';
+export * from './SubPlayerListForSubstitution';
