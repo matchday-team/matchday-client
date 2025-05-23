@@ -1,5 +1,5 @@
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
-import { PlayerSubstitutionAdapter } from '@/features';
+import { PlayerSubstitutionAdapter } from '@/features/playerSubstitution';
 import { type SubstitutionSourceType } from '@/stores';
 
 import { EmptyList } from './EmptyList';
@@ -10,14 +10,12 @@ interface SubstitutionPlayerListProps {
   mode: SubstitutionSourceType;
   team: TeamResponse;
   players: MatchUserResponse[];
-  onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }
 
 export const SubstitutionPlayerList = ({
   mode,
   team,
   players,
-  onSwap,
 }: SubstitutionPlayerListProps) => {
   return (
     <div className={styles.rootContainer}>
@@ -34,7 +32,6 @@ export const SubstitutionPlayerList = ({
               mode={mode}
               team={team}
               player={player}
-              onSwap={onSwap}
               render={({ isDragOver, disabled, ...props }) => (
                 <SubstitutionPlayerListItem
                   player={player}

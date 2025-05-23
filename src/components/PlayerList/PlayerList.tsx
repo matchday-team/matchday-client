@@ -15,21 +15,16 @@ interface PlayerListProps {
   mode: SubstitutionSourceType;
   team: TeamResponse;
   players: MatchUserResponse[];
-  onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }
 
-export const PlayerList = ({
-  mode,
-  team,
-  players,
-  onSwap,
-}: PlayerListProps) => {
+export const PlayerList = ({ mode, team, players }: PlayerListProps) => {
   const setFallbackImageIfLoadFail = (
     e: SyntheticEvent<HTMLImageElement, Event>,
   ) => {
     e.currentTarget.src = noProfilePlayerImage;
   };
 
+  // List 자체에도 adapter 필요함
   return (
     <div
       className={styles.rootContainer}
@@ -54,12 +49,7 @@ export const PlayerList = ({
         </div>
       </div>
       {players.length > 0 ? (
-        <PlayerListContent
-          mode={mode}
-          team={team}
-          players={players}
-          onSwap={onSwap}
-        />
+        <PlayerListContent mode={mode} team={team} players={players} />
       ) : (
         <EmptyContent />
       )}
@@ -71,12 +61,10 @@ const PlayerListContent = ({
   mode,
   team,
   players,
-  onSwap,
 }: {
   mode: SubstitutionSourceType;
   team: TeamResponse;
   players: MatchUserResponse[];
-  onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }) => {
   const { isSelected, selectedPlayer, selectPlayer } = useSelectedPlayerStore();
 
@@ -88,7 +76,6 @@ const PlayerListContent = ({
           mode={mode}
           team={team}
           player={player}
-          onSwap={onSwap}
           render={({ isDragOver, disabled, ...props }) => (
             <PlayerListItem
               player={player}

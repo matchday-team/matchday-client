@@ -46,7 +46,7 @@ export const Route = createFileRoute('/matches/$matchId/record')({
 function MatchRecordPage() {
   const { matchId: _matchId } = useParams({ from: '/matches/$matchId/record' });
   const matchId = Number(_matchId);
-  const { requestPlayerSwap, requestTeamStatChange, requestPlayerStatChange } =
+  const { requestTeamStatChange, requestPlayerStatChange } =
     useMatchRecordWebSocket();
 
   const { memo, updateMemo } = useSyncMatchMemo(matchId);
@@ -87,14 +87,12 @@ function MatchRecordPage() {
             mode='starter'
             team={homeTeam.data}
             players={homeTeamStarters}
-            onSwap={requestPlayerSwap}
           />
           <div className={atomicStyles.flexContainer}>
             <SubstitutionPlayerList
               mode='bench'
               team={homeTeam.data}
               players={homeTeamSubstitutes}
-              onSwap={requestPlayerSwap}
             />
             <TeamStatCounterGrid
               team={homeTeam.data}
@@ -110,14 +108,12 @@ function MatchRecordPage() {
             mode='starter'
             team={awayTeam.data}
             players={awayTeamStarters}
-            onSwap={requestPlayerSwap}
           />
           <div className={atomicStyles.flexContainer}>
             <SubstitutionPlayerList
               mode='bench'
               team={awayTeam.data}
               players={awayTeamSubstitutes}
-              onSwap={requestPlayerSwap}
             />
             <TeamStatCounterGrid
               team={awayTeam.data}

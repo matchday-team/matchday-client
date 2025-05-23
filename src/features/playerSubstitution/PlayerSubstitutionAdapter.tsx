@@ -1,6 +1,7 @@
 import { DragEvent, ReactElement } from 'react';
 
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
+import { useMatchRecordWebSocket } from '@/features/matchRecord';
 import { useIsDragOver } from '@/hooks';
 import { type SubstitutionSourceType, useSubstitutionStore } from '@/stores';
 
@@ -20,7 +21,6 @@ type PlayerSubstitutionAdapterProps<Element extends HTMLElement> = {
   mode: SubstitutionSourceType;
   team: TeamResponse;
   player: MatchUserResponse;
-  onSwap: (inPlayerId: number, outPlayerId: number) => void;
   render: RenderViewProps<Element>;
 };
 
@@ -28,12 +28,12 @@ export const PlayerSubstitutionAdapter = <Target extends HTMLElement>({
   mode,
   team,
   player,
-  onSwap,
   render,
 }: PlayerSubstitutionAdapterProps<Target>) => {
   const { isDragOver, hoverTargetRef } = useIsDragOver<Target>();
   const { getIsSubstitutionTarget, beginSubstitution, finishSubstitution } =
     useSubstitutionStore();
+  const { requestPlayerSwap } = useMatchRecordWebSocket();
 
   const isAvailable =
     policies.checkPlayerAvailable[mode](player) &&
@@ -60,9 +60,9 @@ export const PlayerSubstitutionAdapter = <Target extends HTMLElement>({
 
     const counterpartPlayerId = Number(e.dataTransfer.getData('text/plain'));
     if (mode === 'starter') {
-      onSwap(counterpartPlayerId, player.id);
+      requestPlayerSwap(counterpartPlayerId, player.id);
     } else {
-      onSwap(player.id, counterpartPlayerId);
+      requestPlayerSwap(player.id, counterpartPlayerId);
     }
   };
 

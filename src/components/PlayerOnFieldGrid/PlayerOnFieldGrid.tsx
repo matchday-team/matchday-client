@@ -1,5 +1,5 @@
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
-import { PlayerSubstitutionAdapter } from '@/features';
+import { PlayerSubstitutionAdapter } from '@/features/playerSubstitution';
 import { SubstitutionSourceType, useSelectedPlayerStore } from '@/stores';
 
 import { FieldBackground } from './FieldBackground';
@@ -9,7 +9,6 @@ interface PlayerOnFieldGridProps {
   mode: SubstitutionSourceType;
   team: TeamResponse;
   players: MatchUserResponse[];
-  onSwap: (inPlayerId: number, outPlayerId: number) => void;
 }
 
 // TODO: FieldBackground만 재사용 - 현재는 그냥 선수 교체용 컴포넌트로 사용함
@@ -17,7 +16,6 @@ export const PlayerOnFieldGrid = ({
   mode,
   team,
   players,
-  onSwap,
 }: PlayerOnFieldGridProps) => {
   const { isSelected, selectedPlayer, selectPlayer } = useSelectedPlayerStore();
 
@@ -40,7 +38,6 @@ export const PlayerOnFieldGrid = ({
             mode={mode}
             team={team}
             player={player}
-            onSwap={onSwap}
             render={({ isDragOver, disabled, ...props }) => (
               <PlayerOnFieldGridCell
                 key={matchGrid}
@@ -49,10 +46,6 @@ export const PlayerOnFieldGrid = ({
                   isSelected && selectedPlayer.player.id === player.id
                 }
                 onClick={() => {
-                  // NOTE: 빈 상태임
-                  if (!team) {
-                    return;
-                  }
                   selectPlayer({ team, player });
                 }}
                 isDragOver={isDragOver}

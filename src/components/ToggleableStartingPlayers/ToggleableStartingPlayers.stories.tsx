@@ -29,6 +29,5 @@ export const Default: Story = {
     mode: 'starter',
     team: mockHomeTeam,
     players: matchRecordMocks.mockPlayersByTeamType('home'),
-    onSwap: () => {},
   },
 };

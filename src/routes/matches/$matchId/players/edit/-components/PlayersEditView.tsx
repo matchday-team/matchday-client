@@ -57,7 +57,6 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
             mode='starter'
             team={homeTeamWithoutTeamColor}
             players={allPlayers}
-            onSwap={() => {}}
           />
         </div>
         <span className={styles.listBottomDescription}>
@@ -65,20 +64,20 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
         </span>
       </div>
       <div className={styles.fieldContainer}>
+        {/* (득점, 어시스트, 경고) 부분 수정 필요 */}
         <PlayerOnFieldGrid
           mode='starter'
           team={homeTeamWithoutTeamColor}
           players={matchPlayers.data.homeTeam.starters}
-          onSwap={() => {}}
         />
       </div>
       <div className={styles.matchPlayerListRootContainer}>
         <div className={styles.starterListContainer}>
+          {/* 팀 프로필 사진 + 팀 이름 부분 수정 필요 (-> 선발 선수 명단, 대기 선수 명단) */}
           <PlayerList
             mode='starter'
             team={homeTeamWithoutTeamColor}
             players={matchPlayers.data.homeTeam.starters}
-            onSwap={() => {}}
           />
         </div>
         <div className={styles.subListContainer}>
@@ -86,7 +85,6 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
             mode='starter'
             team={homeTeamWithoutTeamColor}
             players={matchPlayers.data.homeTeam.substitutes}
-            onSwap={() => {}}
           />
         </div>
         <button className={styles.nextButton}>다음으로</button>
