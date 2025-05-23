@@ -1,9 +1,7 @@
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
+import { PlayerListContainer, PlayerListItem } from '@/components';
 import { PlayerSubstitutionAdapter } from '@/features/playerSubstitution';
 import { type SubstitutionSourceType, useSelectedPlayerStore } from '@/stores';
-
-import { PlayerListContainer } from './PlayerListContainer';
-import { PlayerListItem } from './PlayerListItem';
 
 interface PlayerListProps {
   mode: SubstitutionSourceType;

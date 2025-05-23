@@ -1,2 +1,2 @@
-export * from './PlayerGrid';
+export * from './FieldBackground';
 export * from './FieldGridCell';

@@ -10,10 +10,7 @@ import {
   MatchLogList,
   MatchRecordSimpleMemo,
   MatchSchedule,
-  PlayerGrid,
-  PlayerList,
   PlayerStatCounterGrid,
-  SimplePlayerList,
   TeamStatCompareCounterList,
   TeamStatCounterGrid,
 } from '@/components';
@@ -21,6 +18,11 @@ import {
   useMatchRecordWebSocket,
   useSyncMatchMemo,
 } from '@/features/matchRecord';
+import {
+  PlayerGrid,
+  PlayerList,
+  SimplePlayerList,
+} from '@/features/playerSubstitution';
 import { usePageTitle } from '@/hooks';
 import { queryClient } from '@/react-query-provider';
 import { useSelectedPlayerStore } from '@/stores';

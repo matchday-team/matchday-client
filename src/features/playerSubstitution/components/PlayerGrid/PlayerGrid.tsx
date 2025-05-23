@@ -1,9 +1,11 @@
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
+import {
+  EmptyOnFieldGridCell,
+  FieldBackground,
+  PlayerOnFieldGridCell,
+} from '@/components';
 import { PlayerSubstitutionAdapter } from '@/features/playerSubstitution';
 import { SubstitutionSourceType, useSelectedPlayerStore } from '@/stores';
-
-import { FieldBackground } from './FieldBackground';
-import { EmptyOnFieldGridCell, PlayerOnFieldGridCell } from './FieldGridCell';
 
 interface PlayerGridProps {
   mode: SubstitutionSourceType;

@@ -2,10 +2,9 @@ import { DragEvent, ReactElement } from 'react';
 
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { useMatchRecordWebSocket } from '@/features/matchRecord';
+import * as policies from '@/features/playerSubstitution';
 import { useIsDragOver } from '@/hooks';
 import { type SubstitutionSourceType, useSubstitutionStore } from '@/stores';
-
-import * as policies from './PlayerSubstitutionPolicies';
 
 type RenderViewProps<Element extends HTMLElement> = (props: {
   isDragOver: boolean;

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { matchQuery, teamQuery } from '@/apis/queries';
-import { PlayerGrid } from '@/components';
+import { PlayerGrid } from '@/features/playerSubstitution';
 
 import * as styles from './MatchModifyView.css';
 import { UserMatchJoinForm } from './UserMatchJoinForm';

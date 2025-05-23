@@ -2,7 +2,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { MatchUserResponse, TeamMemberResponse } from '@/apis/models';
 import { matchQuery, teamQuery } from '@/apis/queries';
-import { PlayerGrid, PlayerList } from '@/components';
+import { PlayerGrid, PlayerList } from '@/features/playerSubstitution';
 import { lightThemeVars } from '@/styles/theme.css';
 
 import * as styles from './PlayersEditView.css';

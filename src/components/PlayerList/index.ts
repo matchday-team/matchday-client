@@ -1,1 +1,2 @@
-export * from './PlayerList';
+export * from './PlayerListContainer';
+export * from './PlayerListItem';
