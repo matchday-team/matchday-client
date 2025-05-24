@@ -143,7 +143,8 @@ export class SharedTypeSafeWebSocket<
 
     // 모든 listeners가 없으면 구독도 종료
     return () => {
-      console.log('unsubscribing', channelName);
+      // NOTE: 다른 코드에서 먼저 덮어쓸 수 있으므로 항상 최신 값을 가져와야 함
+      const oberversForChannel = this.observersByChannel.get(channelName);
       if (!oberversForChannel) {
         throw new Error(
           'oberversForChannel not found - it should never happen',
