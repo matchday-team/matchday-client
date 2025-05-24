@@ -1,5 +1,6 @@
 import { MatchUserResponse } from '@/apis/models';
-import { SubstitutionSourceType } from '@/stores';
+
+import { SubstitutionSourceType } from './playerSubstitutionStore';
 
 export const checkPlayerAvailable: Record<
   SubstitutionSourceType,
