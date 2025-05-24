@@ -47,7 +47,11 @@ export const PlayerListContainer = ({
           <span className={styles.stat}>경고</span>
         </div>
       </div>
-      {isEmpty ? <EmptyContent /> : children}
+      {isEmpty ? (
+        <EmptyContent />
+      ) : (
+        <ul className={styles.playerListContainer}>{children}</ul>
+      )}
     </div>
   );
 };
