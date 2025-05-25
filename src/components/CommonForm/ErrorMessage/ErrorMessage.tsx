@@ -4,10 +4,6 @@ interface ErrorMessageProps {
   message?: string;
 }
 
-export const ErrorMessage = ({ message }: ErrorMessageProps) => {
-  if (!message) return null;
-
-  return <span className={styles.textFieldError}>{message}</span>;
-};
-
-ErrorMessage.displayName = 'ErrorMessage';
+export const ErrorMessage = ({ message }: ErrorMessageProps) => (
+  <span className={styles.textFieldError}>{message || '\u00A0'}</span>
+);
