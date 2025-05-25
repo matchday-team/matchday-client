@@ -126,7 +126,7 @@ export const PlayerAssignmentAdapterForStarterGrid = <
         break;
       case 'bench': // 교체 명단
         await deleteMatchUser(player.id);
-        await deleteMatchUser(sourcePlayer.id);
+        await deleteMatchUser(sourcePlayer.matchUserId);
         await createMatchUser({
           matchId,
           userId: sourcePlayer.id,

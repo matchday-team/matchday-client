@@ -79,7 +79,7 @@ export const PlayerAssignmentAdapterForEmptyGrid = <
         });
         break;
       case 'bench':
-        await deleteMatchUser(sourcePlayer.id);
+        await deleteMatchUser(sourcePlayer.matchUserId);
         await createMatchUser({
           matchId,
           userId: sourcePlayer.id,
