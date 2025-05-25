@@ -90,9 +90,9 @@ export const PlayerAssignmentAdapterForSubItem = <Target extends HTMLElement>({
     if (!isAvailable) {
       return;
     }
-    const { type, player: sourcePlayer } = selection;
+    const { type: sourceType, player: sourcePlayer } = selection;
 
-    switch (type) {
+    switch (sourceType) {
       case 'all':
         await deleteMatchUser(player.id);
         await createMatchUser({
@@ -131,7 +131,7 @@ export const PlayerAssignmentAdapterForSubItem = <Target extends HTMLElement>({
         break;
 
       default:
-        throw new Error(`잘못된 target: ${type}입니다`);
+        throw new Error(`잘못된 target: ${sourceType}입니다`);
     }
     await queryClient.invalidateQueries(matchQuery.players(matchId));
     finishAssignment();

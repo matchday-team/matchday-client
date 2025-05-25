@@ -84,9 +84,9 @@ export const PlayerAssignmentAdapterForStarterGrid = <
     if (!isAvailable) {
       return;
     }
-    const { type, player: sourcePlayer } = selection;
+    const { type: sourceType, player: sourcePlayer } = selection;
 
-    switch (type) {
+    switch (sourceType) {
       case 'all':
         await deleteMatchUser(player.id);
         await createMatchUser({
@@ -99,6 +99,7 @@ export const PlayerAssignmentAdapterForStarterGrid = <
         });
         break;
       case 'starter-grid':
+      case 'starter-list':
         if (typeof player.matchGrid !== 'number') {
           throw new Error('선발 그리드 선수의 matchGrid가 number가 아님');
         }
@@ -126,29 +127,33 @@ export const PlayerAssignmentAdapterForStarterGrid = <
           }),
         ]);
         break;
-      case 'bench': // 교체 명단
-        await deleteMatchUser(player.id);
-        await deleteMatchUser(sourcePlayer.matchUserId);
-        await createMatchUser({
-          matchId,
-          userId: sourcePlayer.id,
-          teamId: sourcePlayer.teamId,
-          role: MatchUserCreateRequestRole.START_PLAYER,
-          matchPosition: sourcePlayer.matchPosition,
-          matchGrid: player.matchGrid,
-        });
-        await createMatchUser({
-          matchId,
-          userId: player.id,
-          teamId: team.id,
-          role: MatchUserCreateRequestRole.SUB_PLAYER,
-          matchPosition: player.matchPosition,
-          matchGrid: null,
-        });
+      case 'bench':
+        await Promise.all([
+          deleteMatchUser(player.id),
+          deleteMatchUser(sourcePlayer.matchUserId),
+        ]);
+        await Promise.all([
+          createMatchUser({
+            matchId,
+            userId: sourcePlayer.id,
+            teamId: sourcePlayer.teamId,
+            role: MatchUserCreateRequestRole.START_PLAYER,
+            matchPosition: sourcePlayer.matchPosition,
+            matchGrid: player.matchGrid,
+          }),
+          createMatchUser({
+            matchId,
+            userId: player.userId,
+            teamId: team.id,
+            role: MatchUserCreateRequestRole.SUB_PLAYER,
+            matchPosition: player.matchPosition,
+            matchGrid: null,
+          }),
+        ]);
         break;
 
       default:
-        throw new Error(`잘못된 target: ${type}입니다`);
+        throw new Error(`잘못된 target: ${sourceType}입니다`);
     }
     await queryClient.invalidateQueries(matchQuery.players(matchId));
     finishAssignment();

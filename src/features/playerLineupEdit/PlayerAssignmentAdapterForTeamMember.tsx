@@ -84,36 +84,36 @@ export const PlayerAssignmentAdapterForTeamMember = <
     if (!isAvailable) {
       return;
     }
-    const { type, player } = selection;
+    const { type: sourceType, player: sourcePlayer } = selection;
 
-    switch (type) {
+    switch (sourceType) {
       case 'starter-list':
       case 'starter-grid':
-        await deleteMatchUser(player.matchUserId);
+        await deleteMatchUser(sourcePlayer.matchUserId);
         await createMatchUser({
           matchId,
-          userId: player.id,
-          teamId: player.teamId,
+          userId: sourcePlayer.id,
+          teamId: sourcePlayer.teamId,
           role: MatchUserCreateRequestRole.START_PLAYER,
-          matchPosition: player.matchPosition,
-          matchGrid: player.matchGrid,
+          matchPosition: sourcePlayer.matchPosition,
+          matchGrid: sourcePlayer.matchGrid,
         });
         break;
 
       case 'bench':
-        await deleteMatchUser(player.matchUserId);
+        await deleteMatchUser(sourcePlayer.matchUserId);
         await createMatchUser({
           matchId,
-          userId: player.id,
-          teamId: player.teamId,
+          userId: sourcePlayer.id,
+          teamId: sourcePlayer.teamId,
           role: MatchUserCreateRequestRole.SUB_PLAYER,
-          matchPosition: player.matchPosition,
+          matchPosition: sourcePlayer.matchPosition,
           matchGrid: null,
         });
         break;
 
       default:
-        throw new Error(`잘못된 target: ${type}입니다`);
+        throw new Error(`잘못된 target: ${sourceType}입니다`);
     }
     await queryClient.invalidateQueries(matchQuery.players(matchId));
     finishAssignment();
