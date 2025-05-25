@@ -9,7 +9,6 @@ import * as styles from './PlayerListItem.css';
 export interface PlayerListItemProps extends ComponentPropsWithRef<'li'> {
   isSelected: boolean;
   player: MatchUserResponse;
-  onClick: () => void;
   isDragOver: boolean;
   disabled: boolean;
 }
@@ -35,7 +34,6 @@ export const PlayerListItem = ({
   return (
     <li
       className={styles.rootContainer({ isSelected, isDragOver, disabled })}
-      onClick={onClick}
       draggable={!disabled}
       {...props}
     >
