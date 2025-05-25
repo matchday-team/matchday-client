@@ -1,6 +1,11 @@
 import { create } from 'zustand';
 
-export type PlayerLineupEditSourceType = 'all' | 'starter' | 'bench';
+export type PlayerLineupEditSourceType =
+  | 'all'
+  | 'starter-grid'
+  | 'empty-grid'
+  | 'starter-list'
+  | 'bench';
 
 interface Player {
   id: number;
@@ -8,16 +13,18 @@ interface Player {
   matchPosition: string;
 }
 
+// NOTE: null로 두면 무조건 null이어야 해서 number|null로 둠.
+// 값을 할당할 때 정확히 null을 넣어줘야 해서 불편해짐
 type PlayerToAssign =
   | {
       type: 'all';
       player: Player & {
-        matchGrid: null;
-        matchUserId: null;
+        matchGrid: number | null;
+        matchUserId: number | null;
       };
     }
   | {
-      type: 'starter';
+      type: 'starter-grid' | 'starter-list';
       player: Player & {
         matchGrid: number;
         matchUserId: number;
@@ -26,7 +33,7 @@ type PlayerToAssign =
   | {
       type: 'bench';
       player: Player & {
-        matchGrid: null;
+        matchGrid: number | null;
         matchUserId: number;
       };
     };

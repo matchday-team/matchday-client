@@ -1,21 +1,24 @@
-import { useIsDragOver } from '@/hooks';
+import { ComponentProps } from 'react';
 
 import { commonCellContainer } from './commonStyle.css';
 
-interface EmptyOnFieldGridCellProps {
+interface EmptyOnFieldGridCellProps extends ComponentProps<'div'> {
   onClick?: () => void;
+  isDragOver?: boolean;
+  disabled?: boolean;
 }
 
 export const EmptyOnFieldGridCell = ({
   onClick,
+  isDragOver,
+  disabled,
+  ...props
 }: EmptyOnFieldGridCellProps) => {
-  const { isDragOver, hoverTargetRef } = useIsDragOver<HTMLDivElement>();
-
   return (
     <div
-      className={commonCellContainer({ isDragOver, disabled: isDragOver })}
+      className={commonCellContainer({ isDragOver, disabled })}
       onClick={onClick}
-      ref={hoverTargetRef}
+      {...props}
     ></div>
   );
 };

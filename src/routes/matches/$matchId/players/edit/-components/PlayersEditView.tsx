@@ -4,12 +4,10 @@ import { MatchUserResponse, TeamMemberResponse } from '@/apis/models';
 import { matchQuery, teamQuery } from '@/apis/queries';
 import {
   AllPlayerListForEdit,
+  StarterPlayerGridForEdit,
   SubPlayerListForEdit,
 } from '@/features/playerLineupEdit';
-import {
-  StarterPlayerGridForSubstitution,
-  StarterPlayerListForSubstitution,
-} from '@/features/playerSubstitution';
+import { StarterPlayerListForSubstitution } from '@/features/playerSubstitution';
 import { lightThemeVars } from '@/styles/theme.css';
 
 import * as styles from './PlayersEditView.css';
@@ -46,9 +44,8 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
   const { data: teamMembers } = useSuspenseQuery(
     teamQuery.memberList(homeTeamId),
   );
-  const allPlayers = teamMembers.data.teamMemberResponses.map(
-    convertToMatchUserResponse,
-  );
+  const allPlayers = teamMembers.data.teamMemberResponses;
+
   // FIXME: 빠르게 짤 순 있는데 최선인진 모르겠음
   const homeTeamWithoutTeamColor = {
     ...homeTeam.data,
@@ -72,7 +69,7 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
       </div>
       <div className={styles.fieldContainer}>
         {/* (득점, 어시스트, 경고) 부분 수정 필요 */}
-        <StarterPlayerGridForSubstitution
+        <StarterPlayerGridForEdit
           matchId={matchId}
           team={homeTeamWithoutTeamColor}
           players={matchPlayers.data.homeTeam.starters}

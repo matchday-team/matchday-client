@@ -17,7 +17,6 @@ interface PlayerOnFieldGridCellProps extends ComponentPropsWithRef<'div'> {
   disabled: boolean;
   player: MatchUserResponse;
   isSelected?: boolean;
-  onClick: () => void;
 }
 
 const fallbackImageHandler = createFallbackImageHandler();
@@ -27,10 +26,8 @@ export const PlayerOnFieldGridCell = ({
   disabled,
   player,
   isSelected,
-  onClick,
   ...props
 }: PlayerOnFieldGridCellProps) => {
-  console.log('isDragOver:', isDragOver);
   return (
     <div
       className={commonCellContainer({
@@ -38,7 +35,6 @@ export const PlayerOnFieldGridCell = ({
         isDragOver,
         disabled,
       })}
-      onClick={onClick}
       draggable={!disabled}
       {...props}
     >
