@@ -55,7 +55,9 @@ export const PlayerAssignmentAdapterForEmptyGrid = <
     e.dataTransfer.dropEffect = 'move';
   };
 
-  const handleDrop = async () => {
+  const handleDrop = async (e: DragEvent<Target>) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!isAvailable) {
       return;
     }

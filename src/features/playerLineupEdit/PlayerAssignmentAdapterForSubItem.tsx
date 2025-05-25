@@ -87,7 +87,6 @@ export const PlayerAssignmentAdapterForSubItem = <Target extends HTMLElement>({
   const handleDrop = async (e: DragEvent<Target>) => {
     e.preventDefault();
     e.stopPropagation();
-
     if (!isAvailable) {
       return;
     }

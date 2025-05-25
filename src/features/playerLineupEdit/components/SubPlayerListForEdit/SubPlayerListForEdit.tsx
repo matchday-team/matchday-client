@@ -18,7 +18,6 @@ export const SubPlayerListForEdit = ({
 }: SubPlayerListForEditProps) => {
   return (
     <PlayerAssignmentAdapterForSubList<HTMLDivElement>
-      targetType='bench'
       matchId={matchId}
       render={({ isDragOver, disabled, ...props }) => (
         <SimplePlayerListContainer
