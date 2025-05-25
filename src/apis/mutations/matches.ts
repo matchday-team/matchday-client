@@ -185,3 +185,31 @@ export const useCancelMatchStartMutation = (matchId: number) => {
     },
   });
 };
+
+export const useDeleteMatchUserMutation = () => {
+  const { enqueueSnackbar } = useSnackbar();
+
+  return useMutation({
+    mutationFn: (matchUserId: number) => matchApi.deleteMatchUser(matchUserId),
+    onSuccess: data => {
+      enqueueSnackbar(
+        `[임시] 매치 사용자 삭제 성공 - ${JSON.stringify(data)}`,
+        {
+          variant: 'success',
+        },
+      );
+    },
+    onError: async error => {
+      if (error instanceof HTTPError) {
+        const response = await error.response.json();
+
+        enqueueSnackbar(
+          `[임시] 매치 사용자 삭제 실패 - ${JSON.stringify(response)}`,
+          {
+            variant: 'error',
+          },
+        );
+      }
+    },
+  });
+};

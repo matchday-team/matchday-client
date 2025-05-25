@@ -104,3 +104,10 @@ export const deleteMatchEvents = async (matchId: number) => {
 
   return response.json() as Promise<ApiResponse<string>>;
 };
+
+export const deleteMatchUser = async (matchUserId: number) => {
+  // NOTE: endpoint가 다소 이상하긴 함
+  const response = await http.delete(`v1/matches/${matchUserId}`);
+
+  return response.json() as Promise<ApiResponse<string>>;
+};
