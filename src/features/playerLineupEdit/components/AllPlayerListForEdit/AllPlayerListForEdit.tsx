@@ -1,6 +1,6 @@
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { PlayerListContainer, PlayerListItem } from '@/components';
-import { PlayerLineupEditAdapter } from '@/features/playerLineupEdit';
+import { PlayerAssignmentAdapterForList } from '@/features/playerLineupEdit';
 import { useSelectedPlayerStore } from '@/stores';
 
 interface AllPlayerListForEditProps {
@@ -17,27 +17,29 @@ export const AllPlayerListForEdit = ({
   const { isSelected, selectedPlayer, selectPlayer } = useSelectedPlayerStore();
 
   return (
-    <PlayerListContainer team={team} isEmpty={players.length === 0}>
-      {/* idx 사용은 임시 */}
-      {players.map((player, idx) => (
-        <PlayerLineupEditAdapter<HTMLLIElement>
-          key={player.id}
-          mode='starter'
-          matchId={matchId}
-          matchGrid={idx}
-          player={player}
-          render={({ isDragOver, disabled, ...props }) => (
+    <PlayerAssignmentAdapterForList<HTMLDivElement>
+      targetType='all'
+      matchId={matchId}
+      render={({ isDragOver, disabled, ...props }) => (
+        <PlayerListContainer
+          team={team}
+          isEmpty={players.length === 0}
+          isDragOver={isDragOver}
+          disabled={disabled}
+          {...props}
+        >
+          {players.map(player => (
             <PlayerListItem
+              key={player.id}
               player={player}
               isSelected={isSelected && selectedPlayer.player.id === player.id}
               onClick={() => selectPlayer({ team, player })}
-              isDragOver={isDragOver}
-              disabled={disabled}
-              {...props}
+              isDragOver={false}
+              disabled={false}
             />
-          )}
-        />
-      ))}
-    </PlayerListContainer>
+          ))}
+        </PlayerListContainer>
+      )}
+    />
   );
 };

@@ -1,4 +1,4 @@
-import { PropsWithChildren, SyntheticEvent } from 'react';
+import { ComponentProps, SyntheticEvent } from 'react';
 
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
@@ -8,15 +8,20 @@ import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import * as styles from './PlayerListContainer.css';
 import { teamColor } from './TeamColor.css';
 
-interface PlayerListContainerProps extends PropsWithChildren {
+interface PlayerListContainerProps extends ComponentProps<'div'> {
   team: TeamResponse;
   isEmpty: boolean;
+  isDragOver?: boolean;
+  disabled?: boolean;
 }
 
 export const PlayerListContainer = ({
   team,
   isEmpty,
+  isDragOver,
+  disabled,
   children,
+  ...props
 }: PlayerListContainerProps) => {
   const setFallbackImageIfLoadFail = (
     e: SyntheticEvent<HTMLImageElement, Event>,
@@ -26,10 +31,11 @@ export const PlayerListContainer = ({
 
   return (
     <div
-      className={styles.rootContainer}
+      className={styles.rootContainer({ isDragOver, disabled })}
       style={assignInlineVars({
         [teamColor]: team.teamColor,
       })}
+      {...props}
     >
       <div className={styles.header}>
         <div className={styles.teamInfo}>
