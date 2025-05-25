@@ -49,23 +49,9 @@ export const PlayerAssignmentAdapterForStarterGrid = <
   const { mutateAsync: createMatchUser } = useCreateMatchUserMutation();
   const { mutateAsync: deleteMatchUser } = useDeleteMatchUserMutation();
 
-  /*
-  - 드롭이 불가능한 경우
-    - 선발 리스트 -> 선발 리스트에 드롭
-    - 팀 리스트 -> 선발 리스트에 드롭
-    - 팀 리스트 -> 선발 그리드에 드롭
-      - 골키퍼가 골키퍼 자리에 있지 않은 경우 (이거는 메시지 띄워줄만 한데? 뭐가 문젠지 알기 어려울 듯? / 뭔가 모달이 뜨면 좋을 듯)
-      - 인원수를 초과한 경우 (메시지 알려줄만 함 / 뭔가 모달이 뜨면 좋을 듯)
-    - 선발 그리드 -> 선발 그리드에 드롭
-      - 드래그/드롭한 선수 중 하나만 GK인 경우
-  */
-  // 어디서 오든 선발 그리드에 놓을 수 있다.
-  // 일단 그리드 기준으로 만듭시다
-  const isAvailable = true; // starterGrid, emptyGrid, starterList로 구분해야 함. 셋이 로직이 다름.
+  const isAvailable = selection && selection.player.id !== player.userId;
 
   const handleDragStart = () => {
-    console.log('starter drag start:', player);
-
     if (!player.matchPosition || typeof player.matchGrid !== 'number') {
       throw new Error('matchPosition 혹은 matchGrid가 없는 선수입니다.');
     }
@@ -83,24 +69,17 @@ export const PlayerAssignmentAdapterForStarterGrid = <
   };
 
   const handleDragOver = (e: DragEvent<Target>) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!isAvailable) {
       return;
     }
 
-    e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
   };
 
-  /*
-  [도착 기준]
-  - 선발 그리드 선수
-    - 팀 리스트 선수: 선발 선수 제거, 드래그한 선수를 선발에 추가(matchGrid 유지)
-    - 선발 그리드 선수: 매치유저 그리드 좌표 변경 API 호출
-    - 선발 리스트 선수: 매치유저 그리드 좌표 변경 API 호출
-    - 교체 리스트 선수: 선발 선수를 제거, 교체 선수를 제거, 선발 선수를 교체에 추가, 교체 선수를 선발에 추가(matchGrid 유지)
-  */
   const handleDrop = async () => {
-    if (!selection || !isAvailable) {
+    if (!isAvailable) {
       return;
     }
     const { type, player: sourcePlayer } = selection;
@@ -117,7 +96,7 @@ export const PlayerAssignmentAdapterForStarterGrid = <
           matchGrid: player.matchGrid,
         });
         break;
-      case 'starter-grid': // 선발 명단 - 서로 위치만 변경
+      case 'starter-grid':
         if (typeof player.matchGrid !== 'number') {
           throw new Error('선발 그리드 선수의 matchGrid가 number가 아님');
         }
@@ -167,7 +146,7 @@ export const PlayerAssignmentAdapterForStarterGrid = <
         break;
 
       default:
-        console.warn('Unknown target mode:', type);
+        throw new Error(`잘못된 target: ${type}입니다`);
     }
     await queryClient.invalidateQueries(matchQuery.players(matchId));
     finishAssignment();
@@ -175,7 +154,7 @@ export const PlayerAssignmentAdapterForStarterGrid = <
 
   return render({
     isDragOver,
-    disabled: !isAvailable,
+    disabled: isDragOver && !isAvailable,
     ref: hoverTargetRef,
     onDragStart: handleDragStart,
     onDragOver: handleDragOver,

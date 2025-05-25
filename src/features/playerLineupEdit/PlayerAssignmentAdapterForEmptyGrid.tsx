@@ -43,28 +43,20 @@ export const PlayerAssignmentAdapterForEmptyGrid = <
   const { mutateAsync: deleteMatchUser } = useDeleteMatchUserMutation();
   const { mutateAsync: patchMatchUserGrid } = usePatchMatchUserGridMutation();
 
-  const isAvailable = true;
+  const isAvailable = !!selection;
 
   const handleDragOver = (e: DragEvent<Target>) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!isAvailable) {
       return;
     }
 
-    e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
   };
 
-  /*
-  [도착 기준]
-  - 선발 그리드 빈칸
-    - 팀 리스트 선수: 해당 matchGrid에 팀 리스트 선수를 선발에 추가
-    - 선발 그리드 선수: 매치유저 그리드 좌표 변경 API 호출
-    - 선발 리스트 선수: 매치유저 그리드 좌표 변경 API 호출
-    - 교체 리스트 선수: 교체 선수를 제거, 교체 선수를 선발에 추가(matchGrid 유지)
-
-  */
   const handleDrop = async () => {
-    if (!selection || !isAvailable) {
+    if (!isAvailable) {
       return;
     }
     const { type, player: sourcePlayer } = selection;
@@ -80,13 +72,13 @@ export const PlayerAssignmentAdapterForEmptyGrid = <
           matchGrid,
         });
         break;
-      case 'starter-grid': // 선발 명단
+      case 'starter-grid':
         patchMatchUserGrid({
           matchUserId: sourcePlayer.matchUserId,
           matchGrid,
         });
         break;
-      case 'bench': // 교체 명단
+      case 'bench':
         await deleteMatchUser(sourcePlayer.id);
         await createMatchUser({
           matchId,
@@ -99,7 +91,7 @@ export const PlayerAssignmentAdapterForEmptyGrid = <
         break;
 
       default:
-        console.warn('Unknown target mode:', type);
+        throw new Error(`잘못된 target: ${type}입니다`);
     }
     await queryClient.invalidateQueries(matchQuery.players(matchId));
     finishAssignment();
@@ -107,7 +99,7 @@ export const PlayerAssignmentAdapterForEmptyGrid = <
 
   return render({
     isDragOver,
-    disabled: !isAvailable,
+    disabled: isDragOver && !isAvailable,
     ref: hoverTargetRef,
     onDragOver: handleDragOver,
     onDrop: handleDrop,

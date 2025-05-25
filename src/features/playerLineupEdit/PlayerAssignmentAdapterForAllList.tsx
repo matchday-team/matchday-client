@@ -34,11 +34,12 @@ export const PlayerAssignmentAdapterForAllList = <Target extends HTMLElement>({
   const isAvailable = selection && selection.type !== 'all';
 
   const handleDragOver = (e: DragEvent<Target>) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!isAvailable) {
       return;
     }
 
-    e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
   };
 
@@ -61,7 +62,7 @@ export const PlayerAssignmentAdapterForAllList = <Target extends HTMLElement>({
 
   return render({
     isDragOver,
-    disabled: !!selection && !isAvailable,
+    disabled: isDragOver && !isAvailable,
     ref: hoverTargetRef,
     onDragOver: handleDragOver,
     onDrop: handleDrop,

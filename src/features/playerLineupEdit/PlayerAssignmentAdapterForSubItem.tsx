@@ -47,21 +47,9 @@ export const PlayerAssignmentAdapterForSubItem = <Target extends HTMLElement>({
   const { mutateAsync: createMatchUser } = useCreateMatchUserMutation();
   const { mutateAsync: deleteMatchUser } = useDeleteMatchUserMutation();
 
-  /*
-  - 드롭이 불가능한 경우
-    - 선발 리스트 -> 선발 리스트에 드롭
-    - 팀 리스트 -> 선발 리스트에 드롭
-    - 팀 리스트 -> 선발 그리드에 드롭
-      - 골키퍼가 골키퍼 자리에 있지 않은 경우 (이거는 메시지 띄워줄만 한데? 뭐가 문젠지 알기 어려울 듯? / 뭔가 모달이 뜨면 좋을 듯)
-      - 인원수를 초과한 경우 (메시지 알려줄만 함 / 뭔가 모달이 뜨면 좋을 듯)
-    - 선발 그리드 -> 선발 그리드에 드롭
-      - 드래그/드롭한 선수 중 하나만 GK인 경우
-  */
-  const isAvailable = !selection || selection.type !== 'bench'; // starterGrid, emptyGrid, starterList로 구분해야 함. 셋이 로직이 다름.
+  const isAvailable = selection && selection.type !== 'bench';
 
   const handleDragStart = () => {
-    console.log('starter drag start:', player);
-
     if (!player.matchPosition) {
       throw new Error('matchPosition이 없는 선수입니다.');
     }
@@ -79,11 +67,12 @@ export const PlayerAssignmentAdapterForSubItem = <Target extends HTMLElement>({
   };
 
   const handleDragOver = (e: DragEvent<Target>) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!isAvailable) {
       return;
     }
 
-    e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
   };
 
@@ -99,12 +88,10 @@ export const PlayerAssignmentAdapterForSubItem = <Target extends HTMLElement>({
     e.preventDefault();
     e.stopPropagation();
 
-    if (!selection || !isAvailable) {
+    if (!isAvailable) {
       return;
     }
     const { type, player: sourcePlayer } = selection;
-
-    console.log('subItem drop', selection, player);
 
     switch (type) {
       case 'all':
@@ -145,7 +132,7 @@ export const PlayerAssignmentAdapterForSubItem = <Target extends HTMLElement>({
         break;
 
       default:
-        console.warn('Unknown target mode:', type);
+        throw new Error(`잘못된 target: ${type}입니다`);
     }
     await queryClient.invalidateQueries(matchQuery.players(matchId));
     finishAssignment();
@@ -153,7 +140,7 @@ export const PlayerAssignmentAdapterForSubItem = <Target extends HTMLElement>({
 
   return render({
     isDragOver,
-    disabled: !isAvailable,
+    disabled: isDragOver && !isAvailable,
     ref: hoverTargetRef,
     onDragStart: handleDragStart,
     onDragOver: handleDragOver,

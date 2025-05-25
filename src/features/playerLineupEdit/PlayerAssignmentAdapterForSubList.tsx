@@ -10,10 +10,7 @@ import {
 import { matchQuery } from '@/apis/queries';
 import { useIsDragOver } from '@/hooks';
 
-import {
-  PlayerLineupEditSourceType,
-  usePlayerLineupEditStore,
-} from './playerLineupEditStore';
+import { usePlayerLineupEditStore } from './playerLineupEditStore';
 
 type RenderViewProps<Element extends HTMLElement> = (props: {
   isDragOver: boolean;
@@ -24,13 +21,11 @@ type RenderViewProps<Element extends HTMLElement> = (props: {
 }) => ReactElement;
 
 type PlayerAssignmentAdapterForListProps<Element extends HTMLElement> = {
-  targetType: PlayerLineupEditSourceType;
   matchId: number;
   render: RenderViewProps<Element>;
 };
 
 export const PlayerAssignmentAdapterForSubList = <Target extends HTMLElement>({
-  targetType,
   matchId,
   render,
 }: PlayerAssignmentAdapterForListProps<Target>) => {
@@ -41,15 +36,15 @@ export const PlayerAssignmentAdapterForSubList = <Target extends HTMLElement>({
   const { mutateAsync: createMatchUser } = useCreateMatchUserMutation();
   const { mutateAsync: deleteMatchUser } = useDeleteMatchUserMutation();
 
-  const isAvailable = !selection || targetType !== selection.type;
+  const isAvailable = selection && selection.type !== 'bench';
 
-  // [도착 기준] 교체 리스트 선수: 비허용
   const handleDragOver = (e: DragEvent<Target>) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!isAvailable) {
       return;
     }
 
-    e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
   };
 
@@ -60,16 +55,10 @@ export const PlayerAssignmentAdapterForSubList = <Target extends HTMLElement>({
       return;
     }
 
-    const { selection } = usePlayerLineupEditStore.getState();
-    if (!selection) {
-      return;
-    }
     const { type: sourceType, player: sourcePlayer } = selection;
 
-    // 도착지 기준으로
     switch (sourceType) {
       case 'all':
-        // 팀 명단에서 온 경우
         await createMatchUser({
           matchId,
           userId: sourcePlayer.id,
@@ -81,7 +70,6 @@ export const PlayerAssignmentAdapterForSubList = <Target extends HTMLElement>({
         break;
       case 'starter-grid':
       case 'starter-list':
-        // 선발 명단에서 온 경우
         await deleteMatchUser(sourcePlayer.matchUserId);
         await createMatchUser({
           matchId,
@@ -100,7 +88,7 @@ export const PlayerAssignmentAdapterForSubList = <Target extends HTMLElement>({
 
   return render({
     isDragOver,
-    disabled: !isAvailable,
+    disabled: isDragOver && !isAvailable,
     ref: hoverTargetRef,
     onDragOver: handleDragOver,
     onDrop: handleDrop,
