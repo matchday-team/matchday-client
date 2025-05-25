@@ -19,13 +19,23 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
   const { data: teamMembers } = useSuspenseQuery(
     teamQuery.memberList(homeTeamId),
   );
-  const allPlayers = teamMembers.data.teamMemberResponses;
 
   // FIXME: 빠르게 짤 순 있는데 최선인진 모르겠음
   const homeTeamWithoutTeamColor = {
     ...homeTeam.data,
     teamColor: lightThemeVars.color.primary[100],
   };
+
+  const allPlayers = teamMembers.data.teamMemberResponses;
+  const allIdlePlayers = allPlayers.filter(
+    player =>
+      !matchPlayers.data.homeTeam.starters.some(
+        starter => starter.userId === player.id,
+      ) &&
+      !matchPlayers.data.homeTeam.substitutes.some(
+        sub => sub.userId === player.id,
+      ),
+  );
 
   return (
     <div className={styles.rootContainer}>
@@ -35,7 +45,7 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
           <AllPlayerListForEdit
             matchId={matchId}
             team={homeTeamWithoutTeamColor}
-            players={allPlayers}
+            players={allIdlePlayers}
           />
         </div>
         <span className={styles.listBottomDescription}>
