@@ -2,7 +2,10 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { MatchUserResponse, TeamMemberResponse } from '@/apis/models';
 import { matchQuery, teamQuery } from '@/apis/queries';
-import { AllPlayerListForEdit } from '@/features/playerLineupEdit';
+import {
+  AllPlayerListForEdit,
+  SubPlayerListForEdit,
+} from '@/features/playerLineupEdit';
 import {
   StarterPlayerGridForSubstitution,
   StarterPlayerListForSubstitution,
@@ -85,9 +88,8 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
           />
         </div>
         <div className={styles.subListContainer}>
-          <StarterPlayerListForSubstitution
+          <SubPlayerListForEdit
             matchId={matchId}
-            team={homeTeamWithoutTeamColor}
             players={matchPlayers.data.homeTeam.substitutes}
           />
         </div>

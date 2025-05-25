@@ -1,12 +1,27 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 import { lightThemeVars } from '@/styles/theme.css';
 
-export const rootContainer = style({
-  boxSizing: 'border-box',
-  display: 'flex',
-  flexDirection: 'column',
-  height: 264,
+export const rootContainer = recipe({
+  base: {
+    boxSizing: 'border-box',
+    display: 'flex',
+    flexDirection: 'column',
+    height: 264,
+  },
+  variants: {
+    isDragOver: {
+      true: {
+        outline: `2px solid ${lightThemeVars.color.field.background}`,
+      },
+    },
+    disabled: {
+      true: {
+        outline: `2px solid ${lightThemeVars.color.soccer.red}`,
+      },
+    },
+  },
 });
 
 export const header = style({

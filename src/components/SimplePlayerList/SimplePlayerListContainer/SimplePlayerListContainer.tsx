@@ -1,17 +1,22 @@
-import { type PropsWithChildren } from 'react';
+import { ComponentProps } from 'react';
 
 import * as styles from './SimplePlayerListContainer.css';
 
-interface SimplePlayerListContainerProps extends PropsWithChildren {
+interface SimplePlayerListContainerProps extends ComponentProps<'div'> {
   isEmpty: boolean;
+  isDragOver?: boolean;
+  disabled?: boolean;
 }
 
 export const SimplePlayerListContainer = ({
   isEmpty,
+  isDragOver,
+  disabled,
   children,
+  ...props
 }: SimplePlayerListContainerProps) => {
   return (
-    <div className={styles.rootContainer}>
+    <div className={styles.rootContainer({ isDragOver, disabled })} {...props}>
       <div className={styles.header}>
         <span className={styles.title}>교체 선수</span>
       </div>

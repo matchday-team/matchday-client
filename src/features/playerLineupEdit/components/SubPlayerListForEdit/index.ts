@@ -1,2 +1,1 @@
-export * from './AllPlayerListForEdit';
 export * from './SubPlayerListForEdit';
