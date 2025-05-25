@@ -8,16 +8,15 @@ export const textFieldLabel = style({
   alignSelf: 'stretch',
   gap: 2,
   padding: '0 4px',
-  lineHeight: '140%',
+  lineHeight: 1.4,
   letterSpacing: -0.35,
   color: lightThemeVars.color.black,
-  fontFamily: 'Pretendard Variable',
   fontSize: 14,
   fontWeight: 500,
 });
 
 export const textFieldRequired = style({
-  lineHeight: '140%',
+  lineHeight: 1.4,
   letterSpacing: -0.35,
   color: lightThemeVars.color.primary[700],
   fontSize: 14,
