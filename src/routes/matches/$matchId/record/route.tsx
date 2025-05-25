@@ -6,15 +6,23 @@ import { createFileRoute, useParams } from '@tanstack/react-router';
 import { matchQuery, teamQuery } from '@/apis/queries';
 import {
   GameScoreArea,
+  GridListToggleView,
   MatchLogList,
   MatchRecordSimpleMemo,
   MatchSchedule,
   PlayerStatCounterGrid,
-  SubstitutionPlayerList,
   TeamStatCompareCounterList,
   TeamStatCounterGrid,
-  ToggleableStartingPlayers,
 } from '@/components';
+import {
+  useMatchRecordWebSocket,
+  useSyncMatchMemo,
+} from '@/features/matchRecord';
+import {
+  StarterPlayerGridForSubstitution,
+  StarterPlayerListForSubstitution,
+  SubPlayerListForSubstitution,
+} from '@/features/playerSubstitution';
 import { usePageTitle } from '@/hooks';
 import { queryClient } from '@/react-query-provider';
 import { useSelectedPlayerStore } from '@/stores';
@@ -22,8 +30,6 @@ import * as atomicStyles from '@/styles/atomic.css';
 
 import { MatchRecordLayout } from './-components';
 import { MatchTimeControllerAdapter } from './-components/MatchRecordLayout/MatchTimeControllerAdapter';
-import { useMatchRecordWebSocket } from './-hooks';
-import { useSyncMatchMemo } from './-hooks/useSyncMatchMemo';
 import { dividePlayers } from './-utils';
 
 export const Route = createFileRoute('/matches/$matchId/record')({
@@ -44,8 +50,8 @@ export const Route = createFileRoute('/matches/$matchId/record')({
 function MatchRecordPage() {
   const { matchId: _matchId } = useParams({ from: '/matches/$matchId/record' });
   const matchId = Number(_matchId);
-  const { requestPlayerSwap, requestTeamStatChange, requestPlayerStatChange } =
-    useMatchRecordWebSocket();
+  const { requestTeamStatChange, requestPlayerStatChange } =
+    useMatchRecordWebSocket(matchId);
 
   const { memo, updateMemo } = useSyncMatchMemo(matchId);
   const { data: matchInfo } = useSuspenseQuery(matchQuery.info(matchId));
@@ -81,16 +87,26 @@ function MatchRecordPage() {
       team2Color={awayTeam.data.teamColor}
       team1={
         <>
-          <ToggleableStartingPlayers
-            team={homeTeam.data}
-            players={homeTeamStarters}
-            onSwap={requestPlayerSwap}
+          <GridListToggleView
+            render={isGridView => {
+              const Component = isGridView
+                ? StarterPlayerGridForSubstitution
+                : StarterPlayerListForSubstitution;
+
+              return (
+                <Component
+                  matchId={matchId}
+                  team={homeTeam.data}
+                  players={homeTeamStarters}
+                />
+              );
+            }}
           />
           <div className={atomicStyles.flexContainer}>
-            <SubstitutionPlayerList
+            <SubPlayerListForSubstitution
+              matchId={matchId}
               team={homeTeam.data}
               players={homeTeamSubstitutes}
-              onSwap={requestPlayerSwap}
             />
             <TeamStatCounterGrid
               team={homeTeam.data}
@@ -102,16 +118,26 @@ function MatchRecordPage() {
       }
       team2={
         <>
-          <ToggleableStartingPlayers
-            team={awayTeam.data}
-            players={awayTeamStarters}
-            onSwap={requestPlayerSwap}
+          <GridListToggleView
+            render={isGridView => {
+              const Component = isGridView
+                ? StarterPlayerGridForSubstitution
+                : StarterPlayerListForSubstitution;
+
+              return (
+                <Component
+                  matchId={matchId}
+                  team={awayTeam.data}
+                  players={awayTeamStarters}
+                />
+              );
+            }}
           />
           <div className={atomicStyles.flexContainer}>
-            <SubstitutionPlayerList
+            <SubPlayerListForSubstitution
+              matchId={matchId}
               team={awayTeam.data}
               players={awayTeamSubstitutes}
-              onSwap={requestPlayerSwap}
             />
             <TeamStatCounterGrid
               team={awayTeam.data}

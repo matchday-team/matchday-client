@@ -6,9 +6,14 @@ globalStyle('ul', {
 });
 
 globalStyle('button', {
+  border: 'none',
   backgroundColor: 'transparent',
 });
 
 globalStyle('button:disabled', {
   cursor: 'not-allowed',
+});
+
+globalStyle('h2', {
+  margin: 0,
 });
