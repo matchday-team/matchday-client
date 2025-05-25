@@ -28,3 +28,19 @@ export const item = style({
   fontSize: 16,
   fontWeight: 500,
 });
+
+export const button = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: 2,
+  border: 'none',
+  borderRadius: '4px',
+  backgroundColor: lightThemeVars.color.primary['700'],
+  cursor: 'pointer',
+  ':hover': {
+    backgroundColor: lightThemeVars.color.primary['700Darken'],
+  },
+  padding: 16,
+  color: 'white',
+  fontSize: 16,
+});

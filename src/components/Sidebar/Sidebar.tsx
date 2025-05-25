@@ -33,19 +33,9 @@ export function Sidebar({ isOpen, toggle }: SidebarProps) {
       label: '홈 (매치 리스트)',
     },
     {
-      to: '.',
-      icon: <RecordIcon className={styles.icon} />,
-      label: '매치 기록/조회',
-    },
-    {
       to: '/matches/create',
       icon: <RecordIcon className={styles.icon} />,
       label: '매치 생성',
-    },
-    {
-      to: '/matches/entry',
-      icon: <PlayerIcon className={styles.icon} />,
-      label: '명단 등록',
     },
     {
       to: '/users/create',

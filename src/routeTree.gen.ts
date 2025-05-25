@@ -11,7 +11,6 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as AboutImport } from './routes/about'
 import { Route as LoginRouteImport } from './routes/login/route'
 import { Route as IndexRouteImport } from './routes/index/route'
 import { Route as UsersCreateRouteImport } from './routes/users/create/route'
@@ -21,12 +20,6 @@ import { Route as MatchesMatchIdRecordRouteImport } from './routes/matches/$matc
 import { Route as MatchesMatchIdPlayersEditRouteImport } from './routes/matches/$matchId/players/edit/route'
 
 // Create/Update Routes
-
-const AboutRoute = AboutImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const LoginRouteRoute = LoginRouteImport.update({
   id: '/login',
@@ -89,13 +82,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRoute
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutImport
-      parentRoute: typeof rootRoute
-    }
     '/matches/create': {
       id: '/matches/create'
       path: '/matches/create'
@@ -139,7 +125,6 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRouteRoute
   '/login': typeof LoginRouteRoute
-  '/about': typeof AboutRoute
   '/matches/create': typeof MatchesCreateRouteRoute
   '/matches/entry': typeof MatchesEntryRouteRoute
   '/users/create': typeof UsersCreateRouteRoute
@@ -150,7 +135,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRouteRoute
   '/login': typeof LoginRouteRoute
-  '/about': typeof AboutRoute
   '/matches/create': typeof MatchesCreateRouteRoute
   '/matches/entry': typeof MatchesEntryRouteRoute
   '/users/create': typeof UsersCreateRouteRoute
@@ -162,7 +146,6 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRouteRoute
   '/login': typeof LoginRouteRoute
-  '/about': typeof AboutRoute
   '/matches/create': typeof MatchesCreateRouteRoute
   '/matches/entry': typeof MatchesEntryRouteRoute
   '/users/create': typeof UsersCreateRouteRoute
@@ -175,7 +158,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/login'
-    | '/about'
     | '/matches/create'
     | '/matches/entry'
     | '/users/create'
@@ -185,7 +167,6 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/login'
-    | '/about'
     | '/matches/create'
     | '/matches/entry'
     | '/users/create'
@@ -195,7 +176,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/login'
-    | '/about'
     | '/matches/create'
     | '/matches/entry'
     | '/users/create'
@@ -207,7 +187,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRouteRoute: typeof IndexRouteRoute
   LoginRouteRoute: typeof LoginRouteRoute
-  AboutRoute: typeof AboutRoute
   MatchesCreateRouteRoute: typeof MatchesCreateRouteRoute
   MatchesEntryRouteRoute: typeof MatchesEntryRouteRoute
   UsersCreateRouteRoute: typeof UsersCreateRouteRoute
@@ -218,7 +197,6 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRouteRoute: IndexRouteRoute,
   LoginRouteRoute: LoginRouteRoute,
-  AboutRoute: AboutRoute,
   MatchesCreateRouteRoute: MatchesCreateRouteRoute,
   MatchesEntryRouteRoute: MatchesEntryRouteRoute,
   UsersCreateRouteRoute: UsersCreateRouteRoute,
@@ -238,7 +216,6 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/login",
-        "/about",
         "/matches/create",
         "/matches/entry",
         "/users/create",
@@ -251,9 +228,6 @@ export const routeTree = rootRoute
     },
     "/login": {
       "filePath": "login/route.tsx"
-    },
-    "/about": {
-      "filePath": "about.tsx"
     },
     "/matches/create": {
       "filePath": "matches/create/route.tsx"

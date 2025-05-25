@@ -3,7 +3,7 @@ import { Link } from '@tanstack/react-router';
 
 import { MatchListResponse } from '@/apis/models';
 import { userQuery } from '@/apis/queries';
-import { Button } from '@/components';
+import { PlayerIcon, RecordIcon } from '@/assets/icons';
 
 import * as styles from './TeamListItem.css';
 
@@ -37,9 +37,18 @@ export const TeamListItem = ({ match }: TeamListItemProps) => {
       <Link
         to='/matches/$matchId/record'
         params={{ matchId: match.matchId.toString() }}
-        className={styles.item}
       >
-        <Button>이동 (id: {match.matchId})</Button>
+        <button className={styles.button}>
+          <RecordIcon />
+        </button>
+      </Link>
+      <Link
+        to='/matches/$matchId/players/edit'
+        params={{ matchId: match.matchId.toString() }}
+      >
+        <button className={styles.button}>
+          <PlayerIcon />
+        </button>
       </Link>
     </div>
   );
