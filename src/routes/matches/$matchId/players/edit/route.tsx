@@ -15,14 +15,14 @@ export const Route = createFileRoute('/matches/$matchId/players/edit')({
 });
 
 function MatchPlayerEditPage() {
-  usePageTitle('매치 명단 등록');
+  usePageTitle('매치 생성');
 
   const { matchId: _matchId } = Route.useParams();
   const matchId = Number(_matchId);
 
   return (
     <div className={styles.rootContainer}>
-      <h2 className={styles.title}>상대팀 명단 설정</h2>
+      <h2 className={styles.title}>팀 명단 설정</h2>
       <div className={styles.editViewRootContainer}>
         <PlayersEditView matchId={matchId} />
       </div>
