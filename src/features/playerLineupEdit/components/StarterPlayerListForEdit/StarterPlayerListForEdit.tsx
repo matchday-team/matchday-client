@@ -1,8 +1,8 @@
 import type { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { PlayerListContainer, PlayerListItem } from '@/components';
 import {
-  PlayerAssignmentAdapterForList,
   PlayerAssignmentAdapterForStarterGrid,
+  PlayerAssignmentAdapterForStarterList,
 } from '@/features/playerLineupEdit';
 
 interface StarterPlayerListForEditProps {
@@ -17,9 +17,7 @@ export const StarterPlayerListForEdit = ({
   players,
 }: StarterPlayerListForEditProps) => {
   return (
-    <PlayerAssignmentAdapterForList<HTMLDivElement>
-      targetType='starter-list'
-      matchId={matchId}
+    <PlayerAssignmentAdapterForStarterList<HTMLDivElement>
       render={({ isDragOver, disabled, ...props }) => (
         <PlayerListContainer
           team={team}
