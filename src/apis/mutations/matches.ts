@@ -213,3 +213,37 @@ export const useDeleteMatchUserMutation = () => {
     },
   });
 };
+
+export const usePatchMatchUserGridMutation = () => {
+  const { enqueueSnackbar } = useSnackbar();
+
+  return useMutation({
+    mutationFn: ({
+      matchUserId,
+      matchGrid,
+    }: {
+      matchUserId: number;
+      matchGrid: number;
+    }) => matchApi.patchMatchUserGrid(matchUserId, matchGrid),
+    onSuccess: data => {
+      enqueueSnackbar(
+        `[임시] 매치 사용자 그리드 변경 성공 - ${JSON.stringify(data)}`,
+        {
+          variant: 'success',
+        },
+      );
+    },
+    onError: async error => {
+      if (error instanceof HTTPError) {
+        const response = await error.response.json();
+
+        enqueueSnackbar(
+          `[임시] 매치 사용자 그리드 변경 실패 - ${JSON.stringify(response)}`,
+          {
+            variant: 'error',
+          },
+        );
+      }
+    },
+  });
+};

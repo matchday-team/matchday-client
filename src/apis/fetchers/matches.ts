@@ -111,3 +111,17 @@ export const deleteMatchUser = async (matchUserId: number) => {
 
   return response.json() as Promise<ApiResponse<string>>;
 };
+
+export const patchMatchUserGrid = async (
+  matchUserId: number,
+  matchGrid: number,
+) => {
+  const response = await http.patch(`v1/matches/${matchUserId}/grid`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ matchGrid }),
+  });
+
+  return response.json() as Promise<ApiResponse<string>>;
+};
