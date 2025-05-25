@@ -1,18 +1,23 @@
-import { MatchUserResponse } from '@/apis/models';
+import type { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { SimplePlayerListContainer, SimplePlayerListItem } from '@/components';
-import { PlayerAssignmentAdapterForList } from '@/features/playerLineupEdit';
+import {
+  PlayerAssignmentAdapterForSubItem,
+  PlayerAssignmentAdapterForSubList,
+} from '@/features/playerLineupEdit';
 
 interface SubPlayerListForEditProps {
   matchId: number;
+  team: TeamResponse;
   players: MatchUserResponse[];
 }
 
 export const SubPlayerListForEdit = ({
   matchId,
+  team,
   players,
 }: SubPlayerListForEditProps) => {
   return (
-    <PlayerAssignmentAdapterForList<HTMLDivElement>
+    <PlayerAssignmentAdapterForSubList<HTMLDivElement>
       targetType='bench'
       matchId={matchId}
       render={({ isDragOver, disabled, ...props }) => (
@@ -23,11 +28,19 @@ export const SubPlayerListForEdit = ({
           {...props}
         >
           {players.map(player => (
-            <SimplePlayerListItem
+            <PlayerAssignmentAdapterForSubItem<HTMLLIElement>
               key={player.id}
+              matchId={matchId}
+              team={team}
               player={player}
-              isDragOver={false}
-              disabled={false}
+              render={({ isDragOver, disabled, ...props }) => (
+                <SimplePlayerListItem
+                  player={player}
+                  isDragOver={isDragOver}
+                  disabled={disabled}
+                  {...props}
+                />
+              )}
             />
           ))}
         </SimplePlayerListContainer>

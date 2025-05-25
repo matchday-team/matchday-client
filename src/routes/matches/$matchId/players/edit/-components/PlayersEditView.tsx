@@ -62,6 +62,7 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
         <div className={styles.subListContainer}>
           <SubPlayerListForEdit
             matchId={matchId}
+            team={homeTeamWithoutTeamColor}
             players={matchPlayers.data.homeTeam.substitutes}
           />
         </div>

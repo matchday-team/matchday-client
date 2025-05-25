@@ -8,8 +8,8 @@ import * as styles from './SimplePlayerListItem.css';
 
 export interface SimplePlayerListItemProps extends ComponentPropsWithRef<'li'> {
   player: MatchUserResponse;
-  isDragOver: boolean;
-  disabled: boolean;
+  isDragOver?: boolean;
+  disabled?: boolean;
 }
 
 const displayDashIfZero = (value: number) => {
