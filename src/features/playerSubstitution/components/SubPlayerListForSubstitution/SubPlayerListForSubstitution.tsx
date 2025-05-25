@@ -14,7 +14,7 @@ export const SubPlayerListForSubstitution = ({
   players,
 }: SubPlayerListForSubstitutionProps) => {
   return (
-    <SimplePlayerListContainer isEmpty={players.length === 0}>
+    <SimplePlayerListContainer height={264} isEmpty={players.length === 0}>
       {players.map(player => (
         <PlayerSubstitutionAdapter<HTMLLIElement>
           key={player.id}

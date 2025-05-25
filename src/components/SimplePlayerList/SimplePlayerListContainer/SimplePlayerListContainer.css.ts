@@ -8,7 +8,6 @@ export const rootContainer = recipe({
     boxSizing: 'border-box',
     display: 'flex',
     flexDirection: 'column',
-    height: 264,
   },
   variants: {
     isDragOver: {
