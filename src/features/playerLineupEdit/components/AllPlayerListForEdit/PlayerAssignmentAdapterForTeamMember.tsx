@@ -91,10 +91,10 @@ export const PlayerAssignmentAdapterForTeamMember = <
         await deleteMatchUser(sourcePlayer.matchUserId);
         await createMatchUser({
           matchId,
-          userId: sourcePlayer.id,
-          teamId: sourcePlayer.teamId,
+          userId: player.id,
+          teamId: team.id,
           role: MatchUserCreateRequestRole.START_PLAYER,
-          matchPosition: sourcePlayer.matchPosition,
+          matchPosition: player.defaultPosition,
           matchGrid: sourcePlayer.matchGrid,
         });
         break;
@@ -103,10 +103,10 @@ export const PlayerAssignmentAdapterForTeamMember = <
         await deleteMatchUser(sourcePlayer.matchUserId);
         await createMatchUser({
           matchId,
-          userId: sourcePlayer.id,
-          teamId: sourcePlayer.teamId,
+          userId: player.id,
+          teamId: team.id,
           role: MatchUserCreateRequestRole.SUB_PLAYER,
-          matchPosition: sourcePlayer.matchPosition,
+          matchPosition: player.defaultPosition,
           matchGrid: null,
         });
         break;
