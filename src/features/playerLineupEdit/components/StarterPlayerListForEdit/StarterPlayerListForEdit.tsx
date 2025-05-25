@@ -1,9 +1,8 @@
 import type { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { PlayerListContainer, PlayerListItem } from '@/components';
-import {
-  PlayerAssignmentAdapterForStarterGrid,
-  PlayerAssignmentAdapterForStarterList,
-} from '@/features/playerLineupEdit';
+import { PlayerAssignmentAdapterForStarterGrid } from '@/features/playerLineupEdit';
+
+import { PlayerAssignmentAdapterForStarterList } from './PlayerAssignmentAdapterForStarterList';
 
 interface StarterPlayerListForEditProps {
   matchId: number;

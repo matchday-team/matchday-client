@@ -2,15 +2,10 @@ import { DragEvent, ReactElement } from 'react';
 
 import { useQueryClient } from '@tanstack/react-query';
 
-import { MatchUserCreateRequestRole } from '@/apis/models';
-import {
-  useCreateMatchUserMutation,
-  useDeleteMatchUserMutation,
-} from '@/apis/mutations';
+import { useDeleteMatchUserMutation } from '@/apis/mutations';
 import { matchQuery } from '@/apis/queries';
+import { usePlayerLineupEditStore } from '@/features/playerLineupEdit';
 import { useIsDragOver } from '@/hooks';
-
-import { usePlayerLineupEditStore } from './playerLineupEditStore';
 
 type RenderViewProps<Element extends HTMLElement> = (props: {
   isDragOver: boolean;
@@ -20,23 +15,22 @@ type RenderViewProps<Element extends HTMLElement> = (props: {
   onDrop: React.DragEventHandler<Element>;
 }) => ReactElement;
 
-type PlayerAssignmentAdapterForListProps<Element extends HTMLElement> = {
+type PlayerAssignmentAdapterForAllListProps<Element extends HTMLElement> = {
   matchId: number;
   render: RenderViewProps<Element>;
 };
 
-export const PlayerAssignmentAdapterForSubList = <Target extends HTMLElement>({
+export const PlayerAssignmentAdapterForAllList = <Target extends HTMLElement>({
   matchId,
   render,
-}: PlayerAssignmentAdapterForListProps<Target>) => {
+}: PlayerAssignmentAdapterForAllListProps<Target>) => {
   const { isDragOver, hoverTargetRef } = useIsDragOver<Target>();
   const { selection, finishAssignment } = usePlayerLineupEditStore();
 
   const queryClient = useQueryClient();
-  const { mutateAsync: createMatchUser } = useCreateMatchUserMutation();
   const { mutateAsync: deleteMatchUser } = useDeleteMatchUserMutation();
 
-  const isAvailable = selection && selection.type !== 'bench';
+  const isAvailable = selection && selection.type !== 'all';
 
   const handleDragOver = (e: DragEvent<Target>) => {
     e.preventDefault();
@@ -55,33 +49,12 @@ export const PlayerAssignmentAdapterForSubList = <Target extends HTMLElement>({
       return;
     }
 
-    const { type: sourceType, player: sourcePlayer } = selection;
-
-    switch (sourceType) {
-      case 'all':
-        await createMatchUser({
-          matchId,
-          userId: sourcePlayer.id,
-          teamId: sourcePlayer.teamId,
-          role: MatchUserCreateRequestRole.SUB_PLAYER,
-          matchPosition: sourcePlayer.matchPosition,
-          matchGrid: null,
-        });
-        break;
-      case 'starter-grid':
-      case 'starter-list':
-        await deleteMatchUser(sourcePlayer.matchUserId);
-        await createMatchUser({
-          matchId,
-          userId: sourcePlayer.id,
-          teamId: sourcePlayer.teamId,
-          role: MatchUserCreateRequestRole.SUB_PLAYER,
-          matchPosition: sourcePlayer.matchPosition,
-          matchGrid: null,
-        });
-        break;
+    const { player: sourcePlayer } = selection;
+    if (typeof sourcePlayer.matchUserId !== 'number') {
+      throw new Error('matchUserId가 없는 선수입니다.');
     }
 
+    await deleteMatchUser(sourcePlayer.matchUserId);
     await queryClient.invalidateQueries(matchQuery.players(matchId));
     finishAssignment();
   };

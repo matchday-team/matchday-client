@@ -6,12 +6,10 @@ import { MatchUserCreateRequestRole } from '@/apis/models';
 import {
   useCreateMatchUserMutation,
   useDeleteMatchUserMutation,
-  usePatchMatchUserGridMutation,
 } from '@/apis/mutations';
 import { matchQuery } from '@/apis/queries';
+import { usePlayerLineupEditStore } from '@/features/playerLineupEdit';
 import { useIsDragOver } from '@/hooks';
-
-import { usePlayerLineupEditStore } from './playerLineupEditStore';
 
 type RenderViewProps<Element extends HTMLElement> = (props: {
   isDragOver: boolean;
@@ -19,31 +17,25 @@ type RenderViewProps<Element extends HTMLElement> = (props: {
   ref: React.Ref<Element>;
   onDragOver: React.DragEventHandler<Element>;
   onDrop: React.DragEventHandler<Element>;
-  onDragEnd: React.DragEventHandler<Element>;
 }) => ReactElement;
 
-type PlayerAssignmentAdapterForEmptyGridProps<Element extends HTMLElement> = {
+type PlayerAssignmentAdapterForListProps<Element extends HTMLElement> = {
   matchId: number;
-  matchGrid: number;
   render: RenderViewProps<Element>;
 };
 
-export const PlayerAssignmentAdapterForEmptyGrid = <
-  Target extends HTMLElement,
->({
+export const PlayerAssignmentAdapterForSubList = <Target extends HTMLElement>({
   matchId,
-  matchGrid,
   render,
-}: PlayerAssignmentAdapterForEmptyGridProps<Target>) => {
+}: PlayerAssignmentAdapterForListProps<Target>) => {
   const { isDragOver, hoverTargetRef } = useIsDragOver<Target>();
   const { selection, finishAssignment } = usePlayerLineupEditStore();
 
   const queryClient = useQueryClient();
   const { mutateAsync: createMatchUser } = useCreateMatchUserMutation();
   const { mutateAsync: deleteMatchUser } = useDeleteMatchUserMutation();
-  const { mutateAsync: patchMatchUserGrid } = usePatchMatchUserGridMutation();
 
-  const isAvailable = !!selection;
+  const isAvailable = selection && selection.type !== 'bench';
 
   const handleDragOver = (e: DragEvent<Target>) => {
     e.preventDefault();
@@ -61,6 +53,7 @@ export const PlayerAssignmentAdapterForEmptyGrid = <
     if (!isAvailable) {
       return;
     }
+
     const { type: sourceType, player: sourcePlayer } = selection;
 
     switch (sourceType) {
@@ -69,32 +62,25 @@ export const PlayerAssignmentAdapterForEmptyGrid = <
           matchId,
           userId: sourcePlayer.id,
           teamId: sourcePlayer.teamId,
-          role: MatchUserCreateRequestRole.START_PLAYER,
+          role: MatchUserCreateRequestRole.SUB_PLAYER,
           matchPosition: sourcePlayer.matchPosition,
-          matchGrid,
+          matchGrid: null,
         });
         break;
       case 'starter-grid':
-        await patchMatchUserGrid({
-          matchUserId: sourcePlayer.matchUserId,
-          matchGrid,
-        });
-        break;
-      case 'bench':
+      case 'starter-list':
         await deleteMatchUser(sourcePlayer.matchUserId);
         await createMatchUser({
           matchId,
           userId: sourcePlayer.id,
           teamId: sourcePlayer.teamId,
-          role: MatchUserCreateRequestRole.START_PLAYER,
+          role: MatchUserCreateRequestRole.SUB_PLAYER,
           matchPosition: sourcePlayer.matchPosition,
-          matchGrid,
+          matchGrid: null,
         });
         break;
-
-      default:
-        throw new Error(`잘못된 target: ${sourceType}입니다`);
     }
+
     await queryClient.invalidateQueries(matchQuery.players(matchId));
     finishAssignment();
   };
@@ -105,6 +91,5 @@ export const PlayerAssignmentAdapterForEmptyGrid = <
     ref: hoverTargetRef,
     onDragOver: handleDragOver,
     onDrop: handleDrop,
-    onDragEnd: finishAssignment,
   });
 };

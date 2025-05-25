@@ -1,9 +1,8 @@
 import type { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { SimplePlayerListContainer, SimplePlayerListItem } from '@/components';
-import {
-  PlayerAssignmentAdapterForSubItem,
-  PlayerAssignmentAdapterForSubList,
-} from '@/features/playerLineupEdit';
+
+import { PlayerAssignmentAdapterForSubItem } from './PlayerAssignmentAdapterForSubItem';
+import { PlayerAssignmentAdapterForSubList } from './PlayerAssignmentAdapterForSubList';
 
 interface SubPlayerListForEditProps {
   matchId: number;

@@ -4,11 +4,10 @@ import {
   TeamResponse,
 } from '@/apis/models';
 import { PlayerListContainer, PlayerListItem } from '@/components';
-import {
-  PlayerAssignmentAdapterForAllList,
-  PlayerAssignmentAdapterForTeamMember,
-} from '@/features/playerLineupEdit';
 import { useSelectedPlayerStore } from '@/stores';
+
+import { PlayerAssignmentAdapterForAllList } from './PlayerAssignmentAdapterForAllList';
+import { PlayerAssignmentAdapterForTeamMember } from './PlayerAssignmentAdapterForTeamMember';
 
 // NOTE: 컴포넌트를 새로 만들려다가- 빈 값으로 다 채워넣는 것도 방법이란 걸 알게 됨
 const convertToMatchUserResponse = (

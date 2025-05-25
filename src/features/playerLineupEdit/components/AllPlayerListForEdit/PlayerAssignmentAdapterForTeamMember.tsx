@@ -12,9 +12,8 @@ import {
   useDeleteMatchUserMutation,
 } from '@/apis/mutations';
 import { matchQuery } from '@/apis/queries';
+import { usePlayerLineupEditStore } from '@/features/playerLineupEdit';
 import { useIsDragOver } from '@/hooks';
-
-import { usePlayerLineupEditStore } from './playerLineupEditStore';
 
 type RenderViewProps<Element extends HTMLElement> = (props: {
   isDragOver: boolean;

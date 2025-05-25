@@ -4,10 +4,9 @@ import {
   FieldBackground,
   PlayerOnFieldGridCell,
 } from '@/components';
-import {
-  PlayerAssignmentAdapterForEmptyGrid,
-  PlayerAssignmentAdapterForStarterGrid,
-} from '@/features/playerLineupEdit';
+import { PlayerAssignmentAdapterForStarterGrid } from '@/features/playerLineupEdit';
+
+import { PlayerAssignmentAdapterForEmptyGrid } from './PlayerAssignmentAdapterForEmptyGrid';
 
 interface StarterPlayerGridForEditProps {
   matchId: number;
