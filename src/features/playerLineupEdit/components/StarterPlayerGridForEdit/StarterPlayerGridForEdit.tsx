@@ -32,6 +32,7 @@ export const StarterPlayerGridForEdit = ({
         if (!player) {
           return (
             <PlayerAssignmentAdapterForEmptyGrid<HTMLDivElement>
+              key={matchGrid}
               matchId={matchId}
               matchGrid={matchGrid}
               render={({ isDragOver, disabled, ...props }) => (

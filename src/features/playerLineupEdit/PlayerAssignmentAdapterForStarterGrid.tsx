@@ -66,7 +66,7 @@ export const PlayerAssignmentAdapterForStarterGrid = <
   const handleDragStart = () => {
     console.log('starter drag start:', player);
 
-    if (!player.matchPosition || !player.matchGrid) {
+    if (!player.matchPosition || typeof player.matchGrid !== 'number') {
       throw new Error('matchPosition 혹은 matchGrid가 없는 선수입니다.');
     }
 
