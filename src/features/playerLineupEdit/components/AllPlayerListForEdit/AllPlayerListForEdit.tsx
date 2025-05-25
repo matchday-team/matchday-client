@@ -5,7 +5,7 @@ import {
 } from '@/apis/models';
 import { PlayerListContainer, PlayerListItem } from '@/components';
 import {
-  PlayerAssignmentAdapterForList,
+  PlayerAssignmentAdapterForAllList,
   PlayerAssignmentAdapterForTeamMember,
 } from '@/features/playerLineupEdit';
 import { useSelectedPlayerStore } from '@/stores';
@@ -48,8 +48,7 @@ export const AllPlayerListForEdit = ({
   const { isSelected, selectedPlayer, selectPlayer } = useSelectedPlayerStore();
 
   return (
-    <PlayerAssignmentAdapterForList<HTMLDivElement>
-      targetType='all'
+    <PlayerAssignmentAdapterForAllList<HTMLDivElement>
       matchId={matchId}
       render={({ isDragOver, disabled, ...props }) => (
         <PlayerListContainer
