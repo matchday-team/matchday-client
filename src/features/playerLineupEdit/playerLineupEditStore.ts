@@ -2,10 +2,34 @@ import { create } from 'zustand';
 
 export type PlayerLineupEditSourceType = 'all' | 'starter' | 'bench';
 
-type BeginSubstitution = (
-  source: PlayerLineupEditSourceType,
-  playerId: number,
-) => void;
+interface Player {
+  id: number;
+  teamId: number;
+  matchPosition: string;
+}
+
+type PlayerToAssign =
+  | {
+      type: 'all';
+      player: Player & {
+        matchGrid: null;
+        matchUserId: null;
+      };
+    }
+  | {
+      type: 'starter';
+      player: Player & {
+        matchGrid: number;
+        matchUserId: number;
+      };
+    }
+  | {
+      type: 'bench';
+      player: Player & {
+        matchGrid: null;
+        matchUserId: number;
+      };
+    };
 
 /*
   교체 API가 없음
@@ -18,38 +42,29 @@ type BeginSubstitution = (
   나머지 로직은 Adapter에서 구현 예정
 */
 export type PlayerLineupEditStore = {
-  beginAllocation: BeginSubstitution;
-  finishAllocation: () => void;
+  beginAssignment: (selection: PlayerToAssign) => void;
+  finishAssignment: () => void;
 } & (
   | {
       isActive: false;
-      selection: {
-        type: null;
-        playerId: null;
-      };
+      selection: null;
     }
   | {
       isActive: true;
-      selection: {
-        type: PlayerLineupEditSourceType;
-        playerId: number;
-      };
+      selection: PlayerToAssign;
     }
 );
 
 export const usePlayerLineupEditStore = create<PlayerLineupEditStore>(set => ({
   isActive: false,
-  selection: {
-    type: null,
-    playerId: null,
+  selection: null,
+  beginAssignment: (selection: PlayerToAssign) => {
+    set({ isActive: true, selection });
   },
-  beginAllocation: (source: PlayerLineupEditSourceType, playerId: number) => {
-    set({ isActive: true, selection: { type: source, playerId } });
-  },
-  finishAllocation: () => {
+  finishAssignment: () => {
     set({
       isActive: false,
-      selection: { type: null, playerId: null },
+      selection: null,
     });
   },
 }));
