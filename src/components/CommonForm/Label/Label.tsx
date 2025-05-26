@@ -1,22 +1,16 @@
-import { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 
 import * as styles from './Label.css';
 
 interface LabelProps extends ComponentPropsWithoutRef<'label'> {
   label: string;
-  children?: ReactNode;
   required?: boolean;
 }
 
-export const Label = ({
-  label,
-  children,
-  required = false,
-  ...rest
-}: LabelProps) => (
-  <label className={styles.textFieldLabel} {...rest}>
+export const Label = ({ label, required = false, ...props }: LabelProps) => (
+  <label className={styles.textFieldLabel} {...props}>
     {label}
     {required && <span className={styles.textFieldRequired}>*</span>}
-    {children}
+    {props.children}
   </label>
 );
