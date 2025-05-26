@@ -1,20 +1,12 @@
-import { ComponentPropsWithoutRef, forwardRef } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 
 import * as styles from './Input.css';
 
 interface InputProps extends ComponentPropsWithoutRef<'input'> {
   error?: boolean;
+  ref?: React.Ref<HTMLInputElement>;
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ error = false, ...props }, ref) => (
-    <input
-      ref={ref}
-      aria-invalid={error}
-      className={styles.TextInput}
-      {...props}
-    />
-  ),
-);
-
-Input.displayName = 'Input';
+export function Input({ error = false, ...props }: InputProps) {
+  return <input aria-invalid={error} className={styles.TextInput} {...props} />;
+}
