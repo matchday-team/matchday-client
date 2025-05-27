@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { lightThemeVars } from '@/styles/theme.css';
-
 import { Input } from './Input';
 
 const meta: Meta<typeof Input> = {
@@ -15,9 +13,7 @@ const meta: Meta<typeof Input> = {
     Story => (
       <div
         style={{
-          width: 320,
-          padding: 24,
-          background: lightThemeVars.color.white.background,
+          width: 300,
         }}
       >
         <Story />
