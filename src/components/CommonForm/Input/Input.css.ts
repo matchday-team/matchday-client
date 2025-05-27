@@ -3,18 +3,21 @@ import { style } from '@vanilla-extract/css';
 import { lightThemeVars } from '@/styles/theme.css';
 
 export const TextInput = style({
+  boxSizing: 'border-box',
   flexShrink: 0,
+  outline: '1.5px solid transparent',
   border: `1px solid ${lightThemeVars.color.primary[100]}`,
   borderRadius: 6,
   background: lightThemeVars.color.white.hover,
   padding: '9px 16px',
   width: '100%',
-  height: 38,
+  height: 35,
+  lineHeight: 1.4,
+  letterSpacing: -0.35,
   fontSize: 14,
   fontWeight: 400,
+
   '::placeholder': {
-    lineHeight: 1.4,
-    letterSpacing: -0.35,
     color: lightThemeVars.color.gray[300],
   },
   ':focus': {

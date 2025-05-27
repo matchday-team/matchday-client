@@ -13,7 +13,7 @@ const meta: Meta<typeof Input> = {
     Story => (
       <div
         style={{
-          width: 300,
+          width: '100%',
         }}
       >
         <Story />
