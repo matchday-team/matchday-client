@@ -1,5 +1,7 @@
 import { Client, IMessage, StompSubscription } from '@stomp/stompjs';
 
+import { assert } from '@/utils';
+
 import { createStompClient } from './stompjs';
 
 type RequestMapper<Payload> = (payload: Payload) => string;
@@ -145,11 +147,7 @@ export class SharedTypeSafeWebSocket<
     return () => {
       // NOTE: 다른 코드에서 먼저 덮어쓸 수 있으므로 항상 최신 값을 가져와야 함
       const oberversForChannel = this.observersByChannel.get(channelName);
-      if (!oberversForChannel) {
-        throw new Error(
-          'oberversForChannel not found - it should never happen',
-        );
-      }
+      assert(oberversForChannel, 'oberversForChannel not found');
 
       const nextOberversForChannel = oberversForChannel.filter(
         listener => listener !== newChannelObserver,
