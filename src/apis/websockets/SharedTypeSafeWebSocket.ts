@@ -43,6 +43,7 @@ export class SharedTypeSafeWebSocket<
   private responseDefinition: UserResponseMapperDefinition;
   private observersByChannel: Map<string, ResponseHandler<string>[]>;
   private isConnected = false;
+  private isConnecting = false;
 
   // NOTE: 연결 상태가 아닐 때 클라이언트 요청이 발생하는 경우 해당 큐에서 대기.
   // 연결 시 모든 큐에서 대기하던 작업을 실행하고 큐를 비움
@@ -83,14 +84,15 @@ export class SharedTypeSafeWebSocket<
 
       this.subscribeWaitingSubscriptions();
     };
-    this.stompClient.onDisconnect = iframe => {
-      console.log('onDisconnect', iframe); //호출되지 않음
+    this.stompClient.onDisconnect = () => {
       this.isConnected = false;
+      console.log('onDisconnect');
     };
     this.stompClient.onWebSocketClose = event => {
       console.log('onWebSocketClose', event);
     };
-    this.stompClient.activate();
+
+    this.checkAndConnect();
   }
 
   // NOTE: activate 이전에 호출됨
@@ -104,6 +106,8 @@ export class SharedTypeSafeWebSocket<
       UserResponseMapperDefinition[Channel]['responseMapper']
     >[0],
   ) {
+    this.checkAndConnect();
+
     const channelName = this.responseDefinition[channel].channelMapper(
       ...channelMapperParams,
     );
@@ -160,6 +164,10 @@ export class SharedTypeSafeWebSocket<
         this.observersByChannel.delete(channelName);
         this.stompSubscriptions.get(channelName)?.unsubscribe();
         this.stompSubscriptions.delete(channelName);
+      }
+
+      if (this.observersByChannel.size === 0) {
+        this.disconnect();
       }
     };
   }
@@ -224,7 +232,7 @@ export class SharedTypeSafeWebSocket<
 
     if (this.isConnected) {
       const subscription = this.stompClient.subscribe(
-        channelName as string,
+        channelName,
         callListeners,
       );
       this.stompSubscriptions.set(channelName, subscription);
@@ -237,6 +245,17 @@ export class SharedTypeSafeWebSocket<
       this.connectWaitQueue.push(job);
     } else {
       job();
+    }
+  }
+
+  private disconnect() {
+    this.stompClient.deactivate();
+    this.isConnected = false;
+  }
+
+  private checkAndConnect() {
+    if (!this.isConnected && !this.isConnecting) {
+      this.stompClient.activate();
     }
   }
 }
