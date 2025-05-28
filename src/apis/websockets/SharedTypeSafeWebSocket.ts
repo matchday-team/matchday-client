@@ -1,16 +1,18 @@
 import { Client, IMessage, StompSubscription } from '@stomp/stompjs';
 
+import { assert } from '@/utils';
+
 import { createStompClient } from './stompjs';
 
-type RequestMapper<Payload> = (_payload: Payload) => string;
+type RequestMapper<Payload> = (payload: Payload) => string;
 
-type ResponseHandler<Payload> = (_payload: Payload) => void;
+type ResponseHandler<Payload> = (payload: Payload) => void;
 
 type ResponseHandlers = Record<string, ResponseHandler<string>>;
 
 type ChannelConfig<Handlers extends ResponseHandlers> = (
-  _handlers: Handlers,
-) => (_payload: string) => void;
+  handlers: Handlers,
+) => (payload: string) => void;
 
 // 전체 Definition 타입
 // 되게 단순함 이거는 channelMapper랑 payloadMapper만 있으면 됨
@@ -18,7 +20,7 @@ export type RequestMapperDefinition = Record<
   string,
   {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    channelMapper: (..._args: any[]) => string;
+    channelMapper: (...args: any[]) => string;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     requestMapper?: RequestMapper<any>;
   }
@@ -28,7 +30,7 @@ export type ResponseMapperDefinition = Record<
   string,
   {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    channelMapper: (..._args: any[]) => string;
+    channelMapper: (...args: any[]) => string;
     responseMapper: ChannelConfig<ResponseHandlers>;
   }
 >;
@@ -41,6 +43,7 @@ export class SharedTypeSafeWebSocket<
   private responseDefinition: UserResponseMapperDefinition;
   private observersByChannel: Map<string, ResponseHandler<string>[]>;
   private isConnected = false;
+  private isConnecting = false; // NOTE: 중복 activate 호출 방지
 
   // NOTE: 연결 상태가 아닐 때 클라이언트 요청이 발생하는 경우 해당 큐에서 대기.
   // 연결 시 모든 큐에서 대기하던 작업을 실행하고 큐를 비움
@@ -54,7 +57,7 @@ export class SharedTypeSafeWebSocket<
   >;
   private stompSubscribers: Map<
     keyof UserResponseMapperDefinition,
-    (_message: IMessage) => void
+    (message: IMessage) => void
   >;
 
   constructor(
@@ -78,17 +81,20 @@ export class SharedTypeSafeWebSocket<
       this.connectWaitQueue.forEach(job => job());
       this.connectWaitQueue = [];
       this.isConnected = true;
+      this.isConnecting = false;
 
       this.subscribeWaitingSubscriptions();
     };
-    this.stompClient.onDisconnect = iframe => {
-      console.log('onDisconnect', iframe); //호출되지 않음
+    this.stompClient.onDisconnect = () => {
       this.isConnected = false;
+      this.isConnecting = false;
+      console.log('onDisconnect');
     };
     this.stompClient.onWebSocketClose = event => {
       console.log('onWebSocketClose', event);
     };
-    this.stompClient.activate();
+
+    this.checkAndConnect();
   }
 
   // NOTE: activate 이전에 호출됨
@@ -102,6 +108,8 @@ export class SharedTypeSafeWebSocket<
       UserResponseMapperDefinition[Channel]['responseMapper']
     >[0],
   ) {
+    this.checkAndConnect();
+
     const channelName = this.responseDefinition[channel].channelMapper(
       ...channelMapperParams,
     );
@@ -145,11 +153,7 @@ export class SharedTypeSafeWebSocket<
     return () => {
       // NOTE: 다른 코드에서 먼저 덮어쓸 수 있으므로 항상 최신 값을 가져와야 함
       const oberversForChannel = this.observersByChannel.get(channelName);
-      if (!oberversForChannel) {
-        throw new Error(
-          'oberversForChannel not found - it should never happen',
-        );
-      }
+      assert(oberversForChannel, 'oberversForChannel not found');
 
       const nextOberversForChannel = oberversForChannel.filter(
         listener => listener !== newChannelObserver,
@@ -162,6 +166,10 @@ export class SharedTypeSafeWebSocket<
         this.observersByChannel.delete(channelName);
         this.stompSubscriptions.get(channelName)?.unsubscribe();
         this.stompSubscriptions.delete(channelName);
+      }
+
+      if (this.observersByChannel.size === 0) {
+        this.disconnect();
       }
     };
   }
@@ -226,7 +234,7 @@ export class SharedTypeSafeWebSocket<
 
     if (this.isConnected) {
       const subscription = this.stompClient.subscribe(
-        channelName as string,
+        channelName,
         callListeners,
       );
       this.stompSubscriptions.set(channelName, subscription);
@@ -239,6 +247,19 @@ export class SharedTypeSafeWebSocket<
       this.connectWaitQueue.push(job);
     } else {
       job();
+    }
+  }
+
+  private disconnect() {
+    this.stompClient.deactivate();
+    this.isConnected = false;
+    this.isConnecting = false;
+  }
+
+  private checkAndConnect() {
+    if (!this.isConnected && !this.isConnecting) {
+      this.isConnecting = true;
+      this.stompClient.activate();
     }
   }
 }
