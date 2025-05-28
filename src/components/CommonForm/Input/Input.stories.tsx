@@ -28,7 +28,7 @@ type Story = StoryObj<typeof Input>;
 export const Default: Story = {
   args: {
     placeholder: '팀 이름을 입력해주세요',
-    error: false,
+    isError: false,
   },
   render: args => <Input {...args} />,
 };
@@ -36,7 +36,7 @@ export const Default: Story = {
 export const Error: Story = {
   args: {
     placeholder: '팀 이름을 입력해주세요',
-    error: true,
+    isError: true,
   },
   render: args => <Input {...args} />,
 };
@@ -44,7 +44,7 @@ export const Error: Story = {
 export const WithValue: Story = {
   args: {
     value: 'FC 바르셀로나',
-    error: false,
+    isError: false,
   },
   render: args => <Input {...args} />,
 };
