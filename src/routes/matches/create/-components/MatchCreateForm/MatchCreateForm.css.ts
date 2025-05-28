@@ -25,6 +25,9 @@ export const gridContainer = recipe({
       3: {
         gridTemplateColumns: 'repeat(3, 1fr)',
       },
+      4: {
+        gridTemplateColumns: 'repeat(4, 1fr)',
+      },
     },
   },
 });

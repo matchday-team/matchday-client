@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 
 import { usePageTitle } from '@/hooks';
 
-import { MatchCreateForm } from './-components';
+import { MatchCreateForm, MatchCreateFormData } from './-components';
 import * as styles from './-components/MatchCreatePage.css';
 
 export const Route = createFileRoute('/matches/create')({
@@ -27,9 +27,13 @@ export const Route = createFileRoute('/matches/create')({
 function MatchCreatePage() {
   usePageTitle('매치 생성');
 
+  const handleSubmit = (data: MatchCreateFormData) => {
+    console.log('폼 데이터:', data);
+  };
+
   return (
     <div className={styles.rootContainer}>
-      <MatchCreateForm />
+      <MatchCreateForm onSubmit={handleSubmit} />
     </div>
   );
 }
