@@ -37,7 +37,7 @@ function MatchCreatePage() {
         matchId: result.toString(),
       },
       search: {
-        team: 'home',
+        matchSide: 'home',
       },
     });
   };
