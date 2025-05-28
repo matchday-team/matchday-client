@@ -17,3 +17,9 @@ globalStyle('button:disabled', {
 globalStyle('h2', {
   margin: 0,
 });
+
+globalStyle('fieldset', {
+  margin: 0,
+  border: 'none',
+  padding: 0,
+});
