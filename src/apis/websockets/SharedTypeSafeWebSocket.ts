@@ -43,7 +43,7 @@ export class SharedTypeSafeWebSocket<
   private responseDefinition: UserResponseMapperDefinition;
   private observersByChannel: Map<string, ResponseHandler<string>[]>;
   private isConnected = false;
-  private isConnecting = false;
+  private isConnecting = false; // NOTE: 중복 activate 호출 방지
 
   // NOTE: 연결 상태가 아닐 때 클라이언트 요청이 발생하는 경우 해당 큐에서 대기.
   // 연결 시 모든 큐에서 대기하던 작업을 실행하고 큐를 비움
@@ -81,11 +81,13 @@ export class SharedTypeSafeWebSocket<
       this.connectWaitQueue.forEach(job => job());
       this.connectWaitQueue = [];
       this.isConnected = true;
+      this.isConnecting = false;
 
       this.subscribeWaitingSubscriptions();
     };
     this.stompClient.onDisconnect = () => {
       this.isConnected = false;
+      this.isConnecting = false;
       console.log('onDisconnect');
     };
     this.stompClient.onWebSocketClose = event => {
@@ -251,10 +253,12 @@ export class SharedTypeSafeWebSocket<
   private disconnect() {
     this.stompClient.deactivate();
     this.isConnected = false;
+    this.isConnecting = false;
   }
 
   private checkAndConnect() {
     if (!this.isConnected && !this.isConnecting) {
+      this.isConnecting = true;
       this.stompClient.activate();
     }
   }
