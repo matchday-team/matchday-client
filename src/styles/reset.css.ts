@@ -8,6 +8,7 @@ globalStyle('ul', {
 globalStyle('button', {
   border: 'none',
   backgroundColor: 'transparent',
+  cursor: 'pointer',
 });
 
 globalStyle('button:disabled', {
