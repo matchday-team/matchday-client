@@ -15,7 +15,8 @@ import {
   TeamStatCounterGrid,
 } from '@/components';
 import {
-  useMatchRecordWebSocket,
+  useMatchRecordWsMutation,
+  useMatchRecordWsSubscribe,
   useSyncMatchMemo,
 } from '@/features/matchRecord';
 import {
@@ -50,8 +51,9 @@ export const Route = createFileRoute('/matches/$matchId/record')({
 function MatchRecordPage() {
   const { matchId: _matchId } = useParams({ from: '/matches/$matchId/record' });
   const matchId = Number(_matchId);
+  useMatchRecordWsSubscribe(matchId);
   const { requestTeamStatChange, requestPlayerStatChange } =
-    useMatchRecordWebSocket(matchId);
+    useMatchRecordWsMutation(matchId);
 
   const { memo, updateMemo } = useSyncMatchMemo(matchId);
   const { data: matchInfo } = useSuspenseQuery(matchQuery.info(matchId));

@@ -1,7 +1,7 @@
 import { DragEvent, ReactElement } from 'react';
 
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
-import { useMatchRecordWebSocket } from '@/features/matchRecord';
+import { useMatchRecordWsMutation } from '@/features/matchRecord';
 import { useIsDragOver } from '@/hooks';
 
 import * as policies from './playerSubstitutionPolicy';
@@ -38,7 +38,7 @@ export const PlayerSubstitutionAdapter = <Target extends HTMLElement>({
   const { isDragOver, hoverTargetRef } = useIsDragOver<Target>();
   const { getIsSubstitutionTarget, beginSubstitution, finishSubstitution } =
     useSubstitutionStore();
-  const { requestPlayerSwap } = useMatchRecordWebSocket(matchId);
+  const { requestPlayerSwap } = useMatchRecordWsMutation(matchId);
 
   const isAvailable =
     policies.checkPlayerAvailable[mode](player) &&
