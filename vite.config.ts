@@ -16,7 +16,9 @@ export default defineConfig({
       bundler: 'vite',
     }),
     TanStackRouterVite({ target: 'react', autoCodeSplitting: true }),
-    vanillaExtractPlugin(),
+    vanillaExtractPlugin({
+      unstable_mode: 'emitCss', // NOTE: 해당 옵션 사용 시 새로 고침 시 30초 -> 1초로 단축되는데 원리는 알 수 모르겠음.
+    }),
     tsconfigPaths(),
     svgr(),
     react(),

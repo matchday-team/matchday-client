@@ -8,9 +8,11 @@ interface LabelProps extends ComponentPropsWithoutRef<'label'> {
 }
 
 export const Label = ({ label, required = false, ...props }: LabelProps) => (
-  <label className={styles.textFieldLabel} {...props}>
-    {label}
-    {required && <span className={styles.textFieldRequired}>*</span>}
+  <label className={styles.rootContainer} {...props}>
+    <div className={styles.labelContainer}>
+      {label}
+      {required && <span className={styles.requiredMark}>*</span>}
+    </div>
     {props.children}
   </label>
 );

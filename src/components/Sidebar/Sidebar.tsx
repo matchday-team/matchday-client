@@ -30,7 +30,7 @@ export function Sidebar({ isOpen, toggle }: SidebarProps) {
     {
       to: '/',
       icon: <HomeIcon className={styles.icon} />,
-      label: '홈 (매치 리스트)',
+      label: '팀 매치 리스트',
     },
     {
       to: '/matches/create',

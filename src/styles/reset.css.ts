@@ -8,6 +8,7 @@ globalStyle('ul', {
 globalStyle('button', {
   border: 'none',
   backgroundColor: 'transparent',
+  cursor: 'pointer',
 });
 
 globalStyle('button:disabled', {
@@ -16,4 +17,15 @@ globalStyle('button:disabled', {
 
 globalStyle('h2', {
   margin: 0,
+});
+
+globalStyle('fieldset', {
+  margin: 0,
+  border: 'none',
+  padding: 0,
+});
+
+globalStyle('select', {
+  appearance: 'none',
+  cursor: 'pointer', // NOTE: 브라우저의 기본 아이콘 제거
 });

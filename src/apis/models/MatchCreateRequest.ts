@@ -5,7 +5,6 @@
  * 개발용 Swagger API 문서
  * OpenAPI spec version: 0.0.1
  */
-import type { MatchCreateRequestMatchState } from './MatchCreateRequestMatchState';
 import type { MatchCreateRequestMatchType } from './MatchCreateRequestMatchType';
 
 export interface MatchCreateRequest {
@@ -47,6 +46,4 @@ export interface MatchCreateRequest {
    * @nullable
    */
   fourthReferee: string | null;
-  /** 경기 상태 (SCHEDULED, ONGOING, FINISHED) */
-  matchState: MatchCreateRequestMatchState;
 }

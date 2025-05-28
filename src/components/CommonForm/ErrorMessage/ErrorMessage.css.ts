@@ -5,6 +5,7 @@ import { lightThemeVars } from '@/styles/theme.css';
 export const textFieldError = style({
   display: 'flex',
   alignItems: 'center',
+  marginBottom: 8,
   padding: '0 4px',
   height: 17,
   lineHeight: 1.4,

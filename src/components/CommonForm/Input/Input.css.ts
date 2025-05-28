@@ -1,11 +1,13 @@
 import { style } from '@vanilla-extract/css';
 
-import { lightThemeVars } from '@/styles/theme.css';
+import { lightThemeRawValues, lightThemeVars } from '@/styles/theme.css';
+import { hexColorAlpha } from '@/utils/colorUtils';
 
 export const TextInput = style({
   boxSizing: 'border-box',
   flexShrink: 0,
-  outline: '1.5px solid transparent',
+  transition: 'border-color, outline 0.2s ease-in-out',
+  outline: '1px solid transparent',
   border: `1px solid ${lightThemeVars.color.primary[100]}`,
   borderRadius: 6,
   background: lightThemeVars.color.white.hover,
@@ -21,14 +23,14 @@ export const TextInput = style({
     color: lightThemeVars.color.gray[300],
   },
   ':focus': {
-    outline: `1.5px solid ${lightThemeVars.color.primary[700]}`,
+    outlineColor: lightThemeVars.color.primary[700],
   },
   selectors: {
     '&[aria-invalid="true"]': {
-      border: `1.5px solid ${lightThemeVars.color.warning}`,
+      borderColor: lightThemeRawValues.color.warning,
     },
     '&[aria-invalid="true"]:focus': {
-      outline: `1.5px solid ${lightThemeVars.color.warning}`,
+      outlineColor: hexColorAlpha(lightThemeRawValues.color.warning, 80),
     },
   },
 });

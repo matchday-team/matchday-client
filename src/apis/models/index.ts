@@ -24,6 +24,8 @@ export * from './MatchListResponse';
 export * from './MatchListResponseMatchState';
 export * from './MatchMemoRequest';
 export * from './MatchMemoResponse';
+export * from './MatchResultInfoResponse';
+export * from './MatchResultInfoResponseMatchResult';
 export * from './MatchScoreResponse';
 export * from './MatchUserCreateRequest';
 export * from './MatchUserCreateRequestRole';
