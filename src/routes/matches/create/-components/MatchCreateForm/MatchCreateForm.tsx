@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 
+import { TeamSearchResponse } from '@/apis/models';
 import { CalendarIcon, MagnifyingGlassIcon } from '@/assets/icons';
 import {
   Button,
@@ -37,28 +38,20 @@ const matchTypeOptions: {
   value: MatchCreateFormData['matchType'];
   label: string;
 }[] = [
-  { value: 'league', label: '리그' },
-  { value: 'tournament', label: '대회' },
-  { value: 'friendly', label: '친선 경기' },
-];
-
-// TODO: API 연동 시 실제 팀 데이터로 교체
-const teamOptions: {
-  value: string;
-  label: string;
-}[] = [
-  { value: '1', label: 'FC 서울' },
-  { value: '2', label: 'FC 수원' },
-  { value: '3', label: '인천 유나이티드' },
-  { value: '4', label: '대구 FC' },
-  { value: '5', label: '울산 현대' },
+  { value: '리그', label: '리그' },
+  { value: '대회', label: '대회' },
+  { value: '친선경기', label: '친선 경기' },
 ];
 
 interface MatchCreateFormProps {
+  teamList: TeamSearchResponse[];
   onSubmit?: (data: MatchCreateFormData) => void;
 }
 
-export const MatchCreateForm = ({ onSubmit }: MatchCreateFormProps) => {
+export const MatchCreateForm = ({
+  teamList,
+  onSubmit,
+}: MatchCreateFormProps) => {
   const {
     register,
     handleSubmit,
@@ -85,7 +78,10 @@ export const MatchCreateForm = ({ onSubmit }: MatchCreateFormProps) => {
 
   const timeOptions = generateTimeOptions();
 
-  console.log(errors, getValues());
+  const teamOptions = teamList.map(team => ({
+    value: team.id.toString(),
+    label: team.name,
+  }));
 
   return (
     <div className={styles.container}>

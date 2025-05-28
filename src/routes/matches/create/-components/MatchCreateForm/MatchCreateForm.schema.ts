@@ -13,7 +13,7 @@ export const matchCreateFormSchema = z.object({
       required_error: '상대팀을 선택해주세요.',
     })
     .min(1, '상대팀을 선택해주세요.'),
-  matchType: z.enum(['league', 'tournament', 'friendly'], {
+  matchType: z.enum(['리그', '대회', '친선경기'] as const, {
     errorMap: () => ({ message: '경기 유형을 선택해주세요.' }),
   }),
   stadium: z.string().min(1, '경기장 주소를 입력해주세요.'),
@@ -31,8 +31,8 @@ export const matchCreateFormSchema = z.object({
     .min(1, '종료 시간을 선택해주세요.'),
   mainRefereeName: z.string().min(1, '주심 이름을 입력해주세요.'),
   assistantReferee1: z.string().min(1, '부심 이름을 입력해주세요.'),
-  assistantReferee2: z.string().optional(),
-  fourthReferee: z.string().optional(),
+  assistantReferee2: z.string().nullable().optional().default(null),
+  fourthReferee: z.string().nullable().optional().default(null),
   firstHalfPeriod: z
     .number({
       invalid_type_error: '전반 시간을 입력해주세요.',

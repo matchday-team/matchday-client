@@ -1,5 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 
+import { useCreateMatchMutation } from '@/apis/mutations';
+import { matchQuery, teamQuery } from '@/apis/queries';
 import { usePageTitle } from '@/hooks';
 
 import { MatchCreateForm, MatchCreateFormData } from './-components';
@@ -9,31 +12,36 @@ export const Route = createFileRoute('/matches/create')({
   component: MatchCreatePage,
 });
 
-/*
-  const { data: teamList } = useSuspenseQuery(teamQuery.listAll);
-  const { mutateAsync: createMatch } = useCreateMatchMutation();
-
-  const onSubmit = async (data: MatchCreateRequest) => {
-    await createMatch(data);
-    // NOTE: 모든 팀의 모든 매치 목록을 갱신할 필요는 없음 -> 한 번에 하는 방법 = ?
-    queryClient.invalidateQueries({
-      queryKey: matchQuery.list(data.homeTeamId).queryKey,
-    });
-    queryClient.invalidateQueries({
-      queryKey: matchQuery.list(data.awayTeamId).queryKey,
-    });
-  };
-*/
 function MatchCreatePage() {
   usePageTitle('매치 생성');
 
-  const handleSubmit = (data: MatchCreateFormData) => {
-    console.log('폼 데이터:', data);
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const { data: teamList } = useSuspenseQuery(teamQuery.listAll);
+  const { mutateAsync: createMatch } = useCreateMatchMutation();
+
+  const handleSubmit = async (data: MatchCreateFormData) => {
+    const { data: result } = await createMatch(data);
+    await Promise.all([
+      queryClient.invalidateQueries({
+        queryKey: matchQuery.list(data.homeTeamId).queryKey,
+      }),
+      queryClient.invalidateQueries({
+        queryKey: matchQuery.list(data.awayTeamId).queryKey,
+      }),
+    ]);
+
+    navigate({
+      to: '/matches/$matchId/players/edit',
+      params: {
+        matchId: result.toString(),
+      },
+    });
   };
 
   return (
     <div className={styles.rootContainer}>
-      <MatchCreateForm onSubmit={handleSubmit} />
+      <MatchCreateForm teamList={teamList.data} onSubmit={handleSubmit} />
     </div>
   );
 }
