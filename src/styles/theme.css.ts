@@ -1,7 +1,7 @@
 import { createGlobalTheme } from '@vanilla-extract/css';
 
 // TODO: 디자인 토큰이 나오면 작업 예정
-const lightTheme = {
+export const lightThemeRawValues = {
   color: {
     primary: {
       100: '#E5E5EC',
@@ -38,4 +38,4 @@ const lightTheme = {
   },
 } as const;
 
-export const lightThemeVars = createGlobalTheme(':root', lightTheme);
+export const lightThemeVars = createGlobalTheme(':root', lightThemeRawValues);

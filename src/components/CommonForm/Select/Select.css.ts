@@ -1,5 +1,7 @@
 import { style } from '@vanilla-extract/css';
-import { lightThemeVars } from 'src/styles/theme.css';
+import { lightThemeRawValues, lightThemeVars } from 'src/styles/theme.css';
+
+import { hexColorAlpha } from '@/utils/colorUtils';
 
 export const selectContainer = style({
   position: 'relative',
@@ -8,6 +10,7 @@ export const selectContainer = style({
 
 export const select = style({
   boxSizing: 'border-box',
+  outline: '1px solid transparent',
   border: `1px solid ${lightThemeVars.color.primary[100]}`,
   borderRadius: 6,
   backgroundColor: lightThemeVars.color.white.hover,
@@ -22,7 +25,15 @@ export const select = style({
   fontWeight: 400,
 
   ':focus': {
-    outline: `1.5px solid ${lightThemeVars.color.primary[700]}`,
+    outlineColor: lightThemeVars.color.primary[700],
+  },
+  selectors: {
+    '&[aria-invalid="true"]': {
+      borderColor: lightThemeVars.color.warning,
+    },
+    '&[aria-invalid="true"]:focus': {
+      outlineColor: hexColorAlpha(lightThemeRawValues.color.warning, 80),
+    },
   },
 });
 

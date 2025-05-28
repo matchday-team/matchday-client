@@ -1,6 +1,6 @@
 import { recipe } from '@vanilla-extract/recipes';
 
-import { lightThemeVars } from '@/styles/theme.css';
+import { lightThemeRawValues, lightThemeVars } from '@/styles/theme.css';
 import { colorUtils } from '@/utils';
 
 // FIXME: dashed 간격 늘려야 함
@@ -22,7 +22,7 @@ export const rootContainer = recipe({
       yellow: {
         border: `2px solid ${lightThemeVars.color.soccer.yellow}`,
         backgroundColor: colorUtils.hexColorAlpha(
-          lightThemeVars.color.soccer.yellow,
+          lightThemeRawValues.color.soccer.yellow,
           10,
         ),
         ':hover': {
@@ -32,7 +32,7 @@ export const rootContainer = recipe({
       red: {
         border: `2px solid ${lightThemeVars.color.soccer.red}`,
         backgroundColor: colorUtils.hexColorAlpha(
-          lightThemeVars.color.soccer.red,
+          lightThemeRawValues.color.soccer.red,
           10,
         ),
         ':hover': {

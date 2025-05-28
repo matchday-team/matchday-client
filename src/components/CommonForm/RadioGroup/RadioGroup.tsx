@@ -10,6 +10,7 @@ interface RadioGroupProps {
   value: string;
   onChange: (value: string) => void;
   name: string;
+  isError?: boolean; // NOTE: 디자인에는 없는데 임의로 추가
 }
 
 export const RadioGroup = ({
@@ -17,6 +18,7 @@ export const RadioGroup = ({
   value,
   onChange,
   name,
+  isError = false,
 }: RadioGroupProps) => {
   return (
     // NOTE: fieldset 태그는 폼 필드의 그룹을 표현
@@ -34,6 +36,7 @@ export const RadioGroup = ({
           <div
             className={styles.radioButton({
               selected: value === option.value,
+              isError,
             })}
           />
           <span className={styles.radioLabel}>{option.label}</span>

@@ -12,18 +12,18 @@ interface Option {
 interface SelectProps extends ComponentPropsWithoutRef<'select'> {
   options: Option[];
   placeholder: string;
-  error?: boolean;
+  isError?: boolean;
 }
 
 export const Select = ({
   options,
   placeholder,
-  error = false,
+  isError = false,
   ...props
 }: SelectProps) => {
   return (
     <div className={styles.selectContainer}>
-      <select aria-invalid={error} className={styles.select} {...props}>
+      <select aria-invalid={isError} className={styles.select} {...props}>
         {/* NOTE: select 태그에는 placeholder 기능이 없음 */}
         <option value='' disabled>
           {placeholder}

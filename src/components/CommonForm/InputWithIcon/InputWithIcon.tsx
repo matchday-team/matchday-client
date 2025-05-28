@@ -1,22 +1,21 @@
-import { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { ComponentProps, ReactNode } from 'react';
 
 import * as styles from './InputWithIcon.css';
 
-interface InputWithIconProps extends ComponentPropsWithoutRef<'input'> {
-  error?: boolean;
-  ref?: React.Ref<HTMLInputElement>;
+interface InputWithIconProps extends ComponentProps<'input'> {
+  isError?: boolean;
   icon?: ReactNode;
 }
 
 export function InputWithIcon({
-  error = false,
+  isError = false,
   icon,
   ...props
 }: InputWithIconProps) {
   return (
     <div className={styles.inputWrapper}>
       <input
-        aria-invalid={error}
+        aria-invalid={isError}
         className={styles.textInputWithIcon}
         {...props}
       />

@@ -1,7 +1,8 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { lightThemeVars } from '@/styles/theme.css';
+import { lightThemeRawValues, lightThemeVars } from '@/styles/theme.css';
+import { hexColorAlpha } from '@/utils/colorUtils';
 
 export const radioGroup = style({
   display: 'flex',
@@ -39,7 +40,7 @@ export const radioButton = recipe({
     selectors: {
       // NOTE: input의 focus 이벤트에 의존
       [`${hiddenInput}:focus + &`]: {
-        outline: `2px solid ${lightThemeVars.color.primary[700]}`,
+        outline: `1px solid ${lightThemeVars.color.primary[700]}`,
         outlineOffset: 2,
       },
     },
@@ -56,6 +57,12 @@ export const radioButton = recipe({
           height: 8,
           content: '""',
         },
+      },
+    },
+    isError: {
+      true: {
+        outline: `1px solid ${hexColorAlpha(lightThemeRawValues.color.warning, 80)}`,
+        borderColor: lightThemeRawValues.color.warning,
       },
     },
   },

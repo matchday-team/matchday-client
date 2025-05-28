@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
-import { lightThemeVars } from '@/styles/theme.css';
+import { lightThemeRawValues, lightThemeVars } from '@/styles/theme.css';
+import { hexColorAlpha } from '@/utils/colorUtils';
 
 export const inputWrapper = style({
   position: 'relative',
@@ -10,7 +11,9 @@ export const inputWrapper = style({
 export const textInputWithIcon = style({
   boxSizing: 'border-box',
   flexShrink: 0,
-  outline: '1.5px solid transparent',
+  transition: 'border-color, outline 0.2s ease-in-out',
+  outline: '1px solid transparent',
+
   border: `1px solid ${lightThemeVars.color.primary[100]}`,
   borderRadius: 6,
   background: lightThemeVars.color.white.hover,
@@ -25,15 +28,26 @@ export const textInputWithIcon = style({
   '::placeholder': {
     color: lightThemeVars.color.gray[300],
   },
-  ':focus': {
-    outline: `1.5px solid ${lightThemeVars.color.primary[700]}`,
+  '::-webkit-calendar-picker-indicator': {
+    // NOTE: typ=date 사용 시 기본 아이콘 숨김
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    opacity: 0,
+    cursor: 'pointer',
+    width: '100%',
+    height: '100%',
   },
+  ':focus': {
+    outlineColor: lightThemeVars.color.primary[700],
+  },
+
   selectors: {
     '&[aria-invalid="true"]': {
-      border: `1.5px solid ${lightThemeVars.color.warning}`,
+      borderColor: lightThemeRawValues.color.warning,
     },
     '&[aria-invalid="true"]:focus': {
-      outline: `1.5px solid ${lightThemeVars.color.warning}`,
+      outlineColor: hexColorAlpha(lightThemeRawValues.color.warning, 80),
     },
   },
 });
@@ -46,6 +60,6 @@ export const iconContainer = style({
   alignItems: 'center',
   justifyContent: 'center',
   transform: 'translateY(-50%)',
-  pointerEvents: 'none',
+  cursor: 'pointer',
   color: lightThemeVars.color.gray[300],
 });
