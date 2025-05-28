@@ -108,10 +108,10 @@ export const MatchTimeControllerAdapter = ({
       onStop={() => {
         stopMatchTimer();
       }}
-      onReset={() => {
-        cancelMatchStart();
-        queryClient.invalidateQueries({
-          queryKey: matchQuery.info(matchId).queryKey,
+      onReset={async () => {
+        await cancelMatchStart();
+        await queryClient.invalidateQueries({
+          queryKey: matchQuery.rangeQueryKeys.byId(matchId),
         });
       }}
     />
