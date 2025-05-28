@@ -16,14 +16,22 @@ interface SelectProps extends ComponentPropsWithoutRef<'select'> {
 }
 
 export const Select = ({
+  value,
   options,
   placeholder,
   isError = false,
   ...props
 }: SelectProps) => {
+  const isPlaceholder = !value || value === '';
+
   return (
     <div className={styles.selectContainer}>
-      <select aria-invalid={isError} className={styles.select} {...props}>
+      <select
+        aria-invalid={isError}
+        className={styles.select({ isPlaceholder })}
+        value={value}
+        {...props}
+      >
         {/* NOTE: select 태그에는 placeholder 기능이 없음 */}
         <option value='' disabled>
           {placeholder}

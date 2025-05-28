@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 import { lightThemeRawValues, lightThemeVars } from 'src/styles/theme.css';
 
 import { hexColorAlpha } from '@/utils/colorUtils';
@@ -8,31 +9,40 @@ export const selectContainer = style({
   width: '100%',
 });
 
-export const select = style({
-  boxSizing: 'border-box',
-  outline: '1px solid transparent',
-  border: `1px solid ${lightThemeVars.color.primary[100]}`,
-  borderRadius: 6,
-  backgroundColor: lightThemeVars.color.white.hover,
-  padding: '7px 14px',
-  paddingRight: 38,
-  width: '100%',
-  height: 38,
-  lineHeight: 1.4,
-  letterSpacing: -0.35,
-  color: lightThemeVars.color.black,
-  fontSize: 14,
-  fontWeight: 400,
+export const select = recipe({
+  base: {
+    boxSizing: 'border-box',
+    outline: '1px solid transparent',
+    border: `1px solid ${lightThemeVars.color.primary[100]}`,
+    borderRadius: 6,
+    backgroundColor: lightThemeVars.color.white.hover,
+    padding: '7px 14px',
+    paddingRight: 38,
+    width: '100%',
+    height: 38,
+    lineHeight: 1.4,
+    letterSpacing: -0.35,
+    color: lightThemeVars.color.black,
+    fontSize: 14,
+    fontWeight: 400,
 
-  ':focus': {
-    outlineColor: lightThemeVars.color.primary[700],
-  },
-  selectors: {
-    '&[aria-invalid="true"]': {
-      borderColor: lightThemeVars.color.warning,
+    ':focus': {
+      outlineColor: lightThemeVars.color.primary[700],
     },
-    '&[aria-invalid="true"]:focus': {
-      outlineColor: hexColorAlpha(lightThemeRawValues.color.warning, 80),
+    selectors: {
+      '&[aria-invalid="true"]': {
+        borderColor: lightThemeVars.color.warning,
+      },
+      '&[aria-invalid="true"]:focus': {
+        outlineColor: hexColorAlpha(lightThemeRawValues.color.warning, 80),
+      },
+    },
+  },
+  variants: {
+    isPlaceholder: {
+      true: {
+        color: lightThemeVars.color.gray[500],
+      },
     },
   },
 });

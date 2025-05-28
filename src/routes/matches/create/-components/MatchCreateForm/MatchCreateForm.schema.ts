@@ -3,8 +3,16 @@ import { z } from 'zod';
 // FIXME: 추후 오류 메시지 정의되면 반영 예정
 export const matchCreateFormSchema = z.object({
   title: z.string().min(1, '경기명을 입력해주세요.'),
-  homeTeamId: z.number().min(1, '홈팀을 선택해주세요.'),
-  awayTeamId: z.number().min(1, '상대팀을 선택해주세요.'),
+  homeTeamId: z
+    .number({
+      required_error: '홈팀을 선택해주세요.',
+    })
+    .min(1, '홈팀을 선택해주세요.'),
+  awayTeamId: z
+    .number({
+      required_error: '상대팀을 선택해주세요.',
+    })
+    .min(1, '상대팀을 선택해주세요.'),
   matchType: z.enum(['league', 'tournament', 'friendly'], {
     errorMap: () => ({ message: '경기 유형을 선택해주세요.' }),
   }),

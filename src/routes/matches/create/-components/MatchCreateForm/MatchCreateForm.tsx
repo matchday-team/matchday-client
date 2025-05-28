@@ -42,6 +42,18 @@ const matchTypeOptions: {
   { value: 'friendly', label: '친선 경기' },
 ];
 
+// TODO: API 연동 시 실제 팀 데이터로 교체
+const teamOptions: {
+  value: string;
+  label: string;
+}[] = [
+  { value: '1', label: 'FC 서울' },
+  { value: '2', label: 'FC 수원' },
+  { value: '3', label: '인천 유나이티드' },
+  { value: '4', label: '대구 FC' },
+  { value: '5', label: '울산 현대' },
+];
+
 interface MatchCreateFormProps {
   onSubmit?: (data: MatchCreateFormData) => void;
 }
@@ -110,20 +122,42 @@ export const MatchCreateForm = ({ onSubmit }: MatchCreateFormProps) => {
 
         <div className={styles.gridContainer({ columns: 2 })}>
           <Label label='소속팀' required>
-            <Input
-              placeholder='FC 서울'
-              defaultValue='FC 서울'
-              isError={!!errors.homeTeamId}
-              {...register('homeTeamId', { valueAsNumber: true })}
+            <Controller
+              name='homeTeamId'
+              control={control}
+              render={({ field }) => (
+                <Select
+                  options={teamOptions}
+                  placeholder='소속팀을 선택해주세요.'
+                  value={field.value ? field.value.toString() : ''}
+                  onChange={e =>
+                    field.onChange(
+                      e.target.value ? Number(e.target.value) : undefined,
+                    )
+                  }
+                  isError={!!errors.homeTeamId}
+                />
+              )}
             />
             <ErrorMessage message={errors.homeTeamId?.message} />
           </Label>
           <Label label='상대팀' required>
-            <Input
-              placeholder='상대팀명을 입력해주세요.'
-              defaultValue='FC 수원'
-              isError={!!errors.awayTeamId}
-              {...register('awayTeamId', { valueAsNumber: true })}
+            <Controller
+              name='awayTeamId'
+              control={control}
+              render={({ field }) => (
+                <Select
+                  options={teamOptions}
+                  placeholder='상대팀을 선택해주세요.'
+                  value={field.value ? field.value.toString() : ''}
+                  onChange={e =>
+                    field.onChange(
+                      e.target.value ? Number(e.target.value) : undefined,
+                    )
+                  }
+                  isError={!!errors.awayTeamId}
+                />
+              )}
             />
             <ErrorMessage message={errors.awayTeamId?.message} />
           </Label>
