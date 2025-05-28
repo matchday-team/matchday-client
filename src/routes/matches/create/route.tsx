@@ -36,6 +36,9 @@ function MatchCreatePage() {
       params: {
         matchId: result.toString(),
       },
+      search: {
+        team: 'home',
+      },
     });
   };
 

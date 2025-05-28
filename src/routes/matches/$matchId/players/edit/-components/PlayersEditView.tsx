@@ -1,4 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { useNavigate } from '@tanstack/react-router';
 
 import { matchQuery, teamQuery } from '@/apis/queries';
 import {
@@ -11,31 +12,65 @@ import { lightThemeVars } from '@/styles/theme.css';
 
 import * as styles from './PlayersEditView.css';
 
-export const PlayersEditView = ({ matchId }: { matchId: number }) => {
+interface PlayersEditViewProps {
+  matchId: number;
+  matchSide: 'home' | 'away';
+}
+
+export const PlayersEditView = ({
+  matchId,
+  matchSide,
+}: PlayersEditViewProps) => {
+  const navigate = useNavigate();
   const { data: matchInfo } = useSuspenseQuery(matchQuery.info(matchId));
-  const { homeTeamId } = matchInfo.data;
-  const { data: homeTeam } = useSuspenseQuery(teamQuery.byId(homeTeamId));
+  const { homeTeamId, awayTeamId } = matchInfo.data;
+  const currentTeamId = matchSide === 'home' ? homeTeamId : awayTeamId;
+
+  const { data: currentTeamData } = useSuspenseQuery(
+    teamQuery.byId(currentTeamId),
+  );
   const { data: matchPlayers } = useSuspenseQuery(matchQuery.players(matchId));
   const { data: teamMembers } = useSuspenseQuery(
-    teamQuery.memberList(homeTeamId),
+    teamQuery.memberList(currentTeamId),
   );
 
-  // FIXME: 빠르게 짤 순 있는데 최선인진 모르겠음
-  const homeTeamWithoutTeamColor = {
-    ...homeTeam.data,
+  const currentTeamPlayers =
+    matchSide === 'home'
+      ? matchPlayers.data.homeTeam
+      : matchPlayers.data.awayTeam;
+
+  const teamWithoutTeamColor = {
+    ...currentTeamData.data,
     teamColor: lightThemeVars.color.primary[100],
   };
 
   const allPlayers = teamMembers.data.teamMemberResponses;
+
   const allIdlePlayers = allPlayers.filter(
     player =>
-      !matchPlayers.data.homeTeam.starters.some(
+      !currentTeamPlayers.starters.some(
         starter => starter.userId === player.id,
       ) &&
-      !matchPlayers.data.homeTeam.substitutes.some(
-        sub => sub.userId === player.id,
-      ),
+      !currentTeamPlayers.substitutes.some(sub => sub.userId === player.id),
   );
+
+  const handleNext = () => {
+    if (matchSide === 'home') {
+      navigate({
+        to: '/matches/$matchId/players/edit',
+        params: {
+          matchId: matchId.toString(),
+        },
+        search: {
+          matchSide: 'away',
+        },
+      });
+    } else {
+      navigate({
+        to: '/',
+      });
+    }
+  };
 
   return (
     <div className={styles.rootContainer}>
@@ -44,7 +79,7 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
         <div className={styles.allPlayersContainer}>
           <AllPlayerListForEdit
             matchId={matchId}
-            team={homeTeamWithoutTeamColor}
+            team={teamWithoutTeamColor}
             players={allIdlePlayers}
           />
         </div>
@@ -53,30 +88,30 @@ export const PlayersEditView = ({ matchId }: { matchId: number }) => {
         </span>
       </div>
       <div className={styles.fieldContainer}>
-        {/* (득점, 어시스트, 경고) 부분 수정 필요 */}
         <StarterPlayerGridForEdit
           matchId={matchId}
-          team={homeTeamWithoutTeamColor}
-          players={matchPlayers.data.homeTeam.starters}
+          team={teamWithoutTeamColor}
+          players={currentTeamPlayers.starters}
         />
       </div>
       <div className={styles.matchPlayerListRootContainer}>
         <div className={styles.starterListContainer}>
-          {/* 팀 프로필 사진 + 팀 이름 부분 수정 필요 (-> 선발 선수 명단, 대기 선수 명단) */}
           <StarterPlayerListForEdit
             matchId={matchId}
-            team={homeTeamWithoutTeamColor}
-            players={matchPlayers.data.homeTeam.starters}
+            team={teamWithoutTeamColor}
+            players={currentTeamPlayers.starters}
           />
         </div>
         <div className={styles.subListContainer}>
           <SubPlayerListForEdit
             matchId={matchId}
-            team={homeTeamWithoutTeamColor}
-            players={matchPlayers.data.homeTeam.substitutes}
+            team={teamWithoutTeamColor}
+            players={currentTeamPlayers.substitutes}
           />
         </div>
-        <button className={styles.nextButton}>다음으로</button>
+        <button className={styles.nextButton} onClick={handleNext}>
+          다음으로
+        </button>
       </div>
     </div>
   );
