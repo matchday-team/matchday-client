@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
+import useFormPersist from 'react-hook-form-persist';
 
 import { TeamSearchResponse } from '@/apis/models';
 import { CalendarIcon, MagnifyingGlassIcon } from '@/assets/icons';
@@ -57,8 +58,9 @@ export const MatchCreateForm = ({
     handleSubmit,
     control,
     reset,
-    getValues,
     formState: { errors },
+    watch,
+    setValue,
   } = useForm<MatchCreateFormData>({
     mode: 'all',
     resolver: zodResolver(matchCreateFormSchema),
@@ -66,6 +68,12 @@ export const MatchCreateForm = ({
       plannedStartTime: '',
       plannedEndTime: '',
     },
+  });
+
+  useFormPersist('match-create-form', {
+    watch,
+    setValue,
+    storage: window.localStorage,
   });
 
   const handleFormSubmit = (data: MatchCreateFormData) => {
