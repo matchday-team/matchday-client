@@ -23,3 +23,8 @@ globalStyle('fieldset', {
   border: 'none',
   padding: 0,
 });
+
+globalStyle('select', {
+  appearance: 'none',
+  cursor: 'pointer', // NOTE: 브라우저의 기본 아이콘 제거
+});
