@@ -2,12 +2,11 @@ import { style } from '@vanilla-extract/css';
 
 import { lightThemeVars } from '@/styles/theme.css';
 
-export const textFieldLabel = style({
+export const rootContainer = style({
   display: 'flex',
-  alignItems: 'center',
+  flexDirection: 'column',
   alignSelf: 'stretch',
-  gap: 2,
-  padding: '0 4px',
+  gap: 4,
   lineHeight: 1.4,
   letterSpacing: -0.35,
   color: lightThemeVars.color.black,
@@ -15,10 +14,14 @@ export const textFieldLabel = style({
   fontWeight: 500,
 });
 
-export const textFieldRequired = style({
-  lineHeight: 1.4,
-  letterSpacing: -0.35,
+export const labelContainer = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: 2,
+  marginBottom: 8, // NOTE: gap이 달라서 추가로 보정한 것
+});
+
+export const requiredMark = style({
   color: lightThemeVars.color.primary[700],
-  fontSize: 14,
   fontWeight: 600,
 });
