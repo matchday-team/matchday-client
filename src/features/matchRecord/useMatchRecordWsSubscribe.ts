@@ -5,9 +5,8 @@ import { useSnackbar } from 'notistack';
 
 import { matchQuery } from '@/apis/queries';
 import { getWebSocketApi } from '@/apis/websockets';
-import { MatchEventType } from '@/constants';
 
-export const useMatchRecordWebSocket = (matchId: number) => {
+export const useMatchRecordWsSubscribe = (matchId: number) => {
   const queryClient = useQueryClient();
   const { enqueueSnackbar } = useSnackbar();
   const wsApi = getWebSocketApi();
@@ -70,37 +69,4 @@ export const useMatchRecordWebSocket = (matchId: number) => {
       unsubMatchChannel();
     };
   }, [matchId, wsApi, enqueueSnackbar, queryClient]);
-
-  const requestPlayerSwap = (inPlayerId: number, outPlayerId: number) => {
-    wsApi.send('recordPlayerExchange', [matchId], {
-      fromMatchUserId: outPlayerId,
-      toMatchUserId: inPlayerId,
-    });
-  };
-
-  // FIXME: 생략된 prop: isIncrement: boolean - 현재는 항상 증가만 가능
-  const requestTeamStatChange = (
-    matchEvent: MatchEventType,
-    teamId: number,
-  ) => {
-    wsApi.send('recordTeamStat', [matchId, teamId], {
-      eventType: matchEvent,
-    });
-  };
-
-  const requestPlayerStatChange = (
-    playerId: number,
-    matchEvent: MatchEventType,
-  ) => {
-    wsApi.send('recordPlayerStat', [matchId], {
-      matchUserId: playerId,
-      eventType: matchEvent,
-    });
-  };
-
-  return {
-    requestPlayerSwap,
-    requestTeamStatChange,
-    requestPlayerStatChange,
-  };
 };
