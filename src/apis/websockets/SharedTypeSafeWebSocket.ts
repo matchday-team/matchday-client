@@ -2,15 +2,15 @@ import { Client, IMessage, StompSubscription } from '@stomp/stompjs';
 
 import { createStompClient } from './stompjs';
 
-type RequestMapper<Payload> = (_payload: Payload) => string;
+type RequestMapper<Payload> = (payload: Payload) => string;
 
-type ResponseHandler<Payload> = (_payload: Payload) => void;
+type ResponseHandler<Payload> = (payload: Payload) => void;
 
 type ResponseHandlers = Record<string, ResponseHandler<string>>;
 
 type ChannelConfig<Handlers extends ResponseHandlers> = (
-  _handlers: Handlers,
-) => (_payload: string) => void;
+  handlers: Handlers,
+) => (payload: string) => void;
 
 // 전체 Definition 타입
 // 되게 단순함 이거는 channelMapper랑 payloadMapper만 있으면 됨
@@ -18,7 +18,7 @@ export type RequestMapperDefinition = Record<
   string,
   {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    channelMapper: (..._args: any[]) => string;
+    channelMapper: (...args: any[]) => string;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     requestMapper?: RequestMapper<any>;
   }
@@ -28,7 +28,7 @@ export type ResponseMapperDefinition = Record<
   string,
   {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    channelMapper: (..._args: any[]) => string;
+    channelMapper: (...args: any[]) => string;
     responseMapper: ChannelConfig<ResponseHandlers>;
   }
 >;
@@ -54,7 +54,7 @@ export class SharedTypeSafeWebSocket<
   >;
   private stompSubscribers: Map<
     keyof UserResponseMapperDefinition,
-    (_message: IMessage) => void
+    (message: IMessage) => void
   >;
 
   constructor(
