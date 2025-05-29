@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 import { CheckboxCheckIcon } from '@/assets/icons';
 
@@ -6,15 +6,12 @@ import * as styles from './Checkbox.css';
 
 interface CheckboxProps
   extends Omit<ComponentPropsWithoutRef<'input'>, 'type'> {
-  label?: string;
-  ref?: React.Ref<HTMLInputElement>;
+  children?: ReactNode;
 }
 
 export function Checkbox({
-  label,
-  id,
-  checked,
-  disabled,
+  children,
+  disabled = false,
   ...props
 }: CheckboxProps) {
   return (
@@ -22,9 +19,7 @@ export function Checkbox({
       <div className={styles.checkboxWrapper}>
         <input
           className={styles.checkboxInput}
-          id={id}
           type='checkbox'
-          checked={checked}
           disabled={disabled}
           {...props}
         />
@@ -32,13 +27,7 @@ export function Checkbox({
           <CheckboxCheckIcon />
         </span>
       </div>
-      <label
-        className={styles.checkboxLabel}
-        htmlFor={id}
-        data-checked={checked}
-      >
-        {label}
-      </label>
+      <span className={styles.checkboxLabel({ disabled })}>{children}</span>
     </div>
   );
 }

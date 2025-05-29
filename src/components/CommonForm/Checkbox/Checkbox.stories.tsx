@@ -9,13 +9,16 @@ import { Checkbox } from './Checkbox';
 const meta: Meta<typeof Checkbox> = {
   title: 'CommonForm/Checkbox',
   component: Checkbox,
+  parameters: {
+    layout: 'centered',
+  },
   decorators: [
     Story => (
       <div
         style={{
           padding: 24,
           background: lightThemeVars.color.white.background,
-          minHeight: 100,
+          minHeight: 50,
         }}
       >
         <Story />
@@ -26,11 +29,8 @@ const meta: Meta<typeof Checkbox> = {
   argTypes: {
     checked: { control: 'boolean' },
     disabled: { control: 'boolean' },
-    label: { control: 'text' },
-    'aria-invalid': { control: 'boolean' },
   },
   args: {
-    label: '제한 없음',
     checked: false,
     disabled: false,
   },
@@ -50,29 +50,36 @@ export const Default: Story = {
         {...args}
         checked={checked}
         onChange={e => setChecked(e.target.checked)}
-      />
+      >
+        기본값
+      </Checkbox>
     );
   },
   args: {
-    label: '기본값',
     checked: false,
     disabled: false,
   },
 };
 
 export const Checked: Story = {
-  render: args => <Checkbox {...args} checked />,
+  render: args => (
+    <Checkbox {...args} checked>
+      체크됨
+    </Checkbox>
+  ),
   args: {
-    label: '체크됨',
     checked: true,
     disabled: false,
   },
 };
 
 export const Disabled: Story = {
-  render: args => <Checkbox {...args} disabled />,
+  render: args => (
+    <Checkbox {...args} disabled>
+      비활성화
+    </Checkbox>
+  ),
   args: {
-    label: '비활성화',
     checked: false,
     disabled: true,
   },
