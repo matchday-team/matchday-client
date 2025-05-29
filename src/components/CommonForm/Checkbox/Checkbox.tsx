@@ -4,7 +4,7 @@ import { CheckboxCheckIcon } from '@/assets/icons';
 
 import * as styles from './Checkbox.css';
 
-interface CheckboxProps extends ComponentProps<'input'> {
+interface CheckboxProps extends Omit<ComponentProps<'input'>, 'type'> {
   children?: ReactNode;
 }
 
@@ -18,9 +18,8 @@ export function Checkbox({
     <div className={styles.wrapper}>
       <div className={styles.checkboxWrapper}>
         <input
-          className={styles.checkboxInput}
+          className={styles.checkboxInput({ disabled })}
           type='checkbox'
-          disabled={disabled}
           {...props}
         />
         <span className={styles.checkIcon({ checked, disabled })}>

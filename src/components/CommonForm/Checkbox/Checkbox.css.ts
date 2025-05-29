@@ -20,20 +20,26 @@ export const checkboxWrapper = style({
   height: 28,
 });
 
-export const checkboxInput = style({
-  position: 'relative',
-  display: 'flex',
-  appearance: 'none',
-  border: `1px solid ${lightThemeVars.color.primary[700]}`,
-  borderRadius: 4,
-  background: lightThemeVars.color.white.main,
-  cursor: 'pointer',
-  width: 20,
-  height: 20,
-  ':disabled': {
-    borderColor: lightThemeVars.color.primary[100],
-    background: lightThemeVars.color.white.background,
-    cursor: 'not-allowed',
+export const checkboxInput = recipe({
+  base: {
+    position: 'relative',
+    display: 'flex',
+    appearance: 'none',
+    border: `1px solid ${lightThemeVars.color.primary[700]}`,
+    borderRadius: 4,
+    background: lightThemeVars.color.white.main,
+    cursor: 'pointer',
+    width: 20,
+    height: 20,
+  },
+  variants: {
+    disabled: {
+      true: {
+        borderColor: lightThemeVars.color.primary[100],
+        background: lightThemeVars.color.white.background,
+        cursor: 'not-allowed',
+      },
+    },
   },
 });
 
@@ -62,6 +68,7 @@ export const checkIcon = recipe({
     },
   },
 });
+
 export const checkboxLabel = recipe({
   base: {
     lineHeight: 1.4,
