@@ -84,3 +84,15 @@ export const Disabled: Story = {
     disabled: true,
   },
 };
+
+export const CheckedAndDisabled: Story = {
+  render: args => (
+    <Checkbox {...args} checked disabled>
+      체크+비활성화
+    </Checkbox>
+  ),
+  args: {
+    checked: true,
+    disabled: true,
+  },
+};

@@ -37,26 +37,31 @@ export const checkboxInput = style({
   },
 });
 
-export const checkIcon = style({
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  display: 'none',
-  flexShrink: 0,
-  alignItems: 'center',
-  justifyContent: 'center',
-  transform: 'translate(-50%, -50%)',
-  pointerEvents: 'none',
-  width: 10,
-  height: 6,
-  selectors: {
-    [`${checkboxWrapper} input:checked + &`]: {
-      display: 'flex',
-      color: lightThemeVars.color.primary[700],
+export const checkIcon = recipe({
+  base: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    display: 'none',
+    flexShrink: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    transform: 'translate(-50%, -50%)',
+    pointerEvents: 'none',
+    width: 10,
+    height: 6,
+    color: lightThemeVars.color.primary[700],
+  },
+  variants: {
+    disabled: {
+      true: { display: 'flex', color: lightThemeVars.color.gray[500] },
+    },
+    checked: {
+      false: { display: 'none' },
+      true: { display: 'flex' },
     },
   },
 });
-
 export const checkboxLabel = recipe({
   base: {
     lineHeight: 1.4,
