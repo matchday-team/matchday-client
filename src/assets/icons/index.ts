@@ -18,3 +18,4 @@ export { default as ExclamationIcon } from './exclamation.svg?react';
 export { default as ChevronDownIcon } from './chevron-down.svg?react';
 export { default as FootballShoeIcon } from './football-shoe.svg?react';
 export { default as MagnifyingGlassIcon } from './magnifying-glass.svg?react';
+export { default as CheckboxCheckIcon } from './checkbox-check.svg?react';
