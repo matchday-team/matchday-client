@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { lightThemeVars } from '@/styles/theme.css';
@@ -40,59 +38,33 @@ export default meta;
 type Story = StoryObj<typeof Checkbox>;
 
 export const Default: Story = {
-  render: args => {
-    const [checked, setChecked] = useState(args.checked);
-    useEffect(() => {
-      setChecked(args.checked);
-    }, [args.checked]);
-    return (
-      <Checkbox
-        {...args}
-        checked={checked}
-        onChange={e => setChecked(e.target.checked)}
-      >
-        기본값
-      </Checkbox>
-    );
-  },
   args: {
     checked: false,
     disabled: false,
+    children: '기본값',
   },
 };
 
 export const Checked: Story = {
-  render: args => (
-    <Checkbox {...args} checked>
-      체크됨
-    </Checkbox>
-  ),
   args: {
     checked: true,
     disabled: false,
+    children: '체크됨',
   },
 };
 
 export const Disabled: Story = {
-  render: args => (
-    <Checkbox {...args} disabled>
-      비활성화
-    </Checkbox>
-  ),
   args: {
     checked: false,
     disabled: true,
+    children: '비활성화',
   },
 };
 
 export const CheckedAndDisabled: Story = {
-  render: args => (
-    <Checkbox {...args} checked disabled>
-      체크+비활성화
-    </Checkbox>
-  ),
   args: {
     checked: true,
     disabled: true,
+    children: '체크+비활성화',
   },
 };
