@@ -1,0 +1,33 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 테스팅 및 코드 품질
+
+## 테스팅 도구
+- 단위 테스트: [Vitest](mdc:https:/vitest.dev)
+- 브라우저 테스트: Playwright
+- 스토리북: 컴포넌트 문서화 및 시각적 테스트
+- MSW: API 모킹
+
+## 코드 품질 도구
+- ESLint: 코드 린팅 ([eslint.config.js](mdc:eslint.config.js) 참조)
+- Prettier: 코드 포맷팅 ([.prettierrc](mdc:.prettierrc) 참조)
+- TypeScript: 타입 체킹
+- Lefthook: Git 훅을 통한 품질 검사
+
+## 커밋 컨벤션
+- [Conventional Commits](mdc:https:/www.conventionalcommits.org) 스펙 준수
+- Commitlint로 커밋 메시지 검증 ([commitlint.config.js](mdc:commitlint.config.js) 참조)
+- 커밋 전 자동으로 린트 및 테스트 실행
+
+## 패키지 관리
+- 패키지 매니저: pnpm 사용
+- Node.js 버전: 20.19.0 고정 ([.node-version](mdc:.node-version) 참조)
+- 엄격한 엔진 버전 관리 (`engineStrict: true`)
+
+## 개발 환경
+- Vite: 빌드 도구 ([vite.config.ts](mdc:vite.config.ts) 참조)
+- SWC: 트랜스파일러
+- Storybook: 컴포넌트 개발 환경
