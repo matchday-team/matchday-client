@@ -1,10 +1,6 @@
-import { ApiResponse, http } from '@/apis/http';
-import { S3PresignedResponse } from '@/apis/models';
+import { http } from '@/apis/http';
 
-export const putFileToS3 = async (
-  presignedUrl: string,
-  file: File,
-): Promise<ApiResponse<S3PresignedResponse>> => {
+export const putFileToS3 = async (presignedUrl: string, file: File) => {
   const response = await http(presignedUrl, {
     method: 'PUT',
     body: file,
@@ -16,6 +12,4 @@ export const putFileToS3 = async (
   if (!response.ok) {
     throw new Error('이미지 업로드에 실패했습니다.');
   }
-
-  return response.json() as Promise<ApiResponse<S3PresignedResponse>>;
 };
