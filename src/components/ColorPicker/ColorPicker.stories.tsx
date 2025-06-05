@@ -1,4 +1,3 @@
-import { useArgs } from '@storybook/preview-api';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { ColorPicker } from './ColorPicker';
@@ -7,9 +6,13 @@ const meta = {
   title: 'Components/ColorPicker',
   component: ColorPicker,
   parameters: { layout: 'centered' },
-  argTypes: {
-    value: { control: 'color' },
-  },
+  decorators: [
+    Story => (
+      <div style={{ padding: 32, background: '#f7f7fa', minHeight: 100 }}>
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof ColorPicker>;
 
 export default meta;
@@ -17,19 +20,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    value: '#03A9F4',
+    value: '#2196F3',
+    onChange: () => {},
   },
-  render: args => {
-    const [{ value }, updateArgs] = useArgs();
-
-    return (
-      <div>
-        <ColorPicker
-          {...args}
-          value={value}
-          onChange={color => updateArgs({ value: color })}
-        />
-      </div>
-    );
-  },
+  render: args => <ColorPicker {...args} />,
 };
