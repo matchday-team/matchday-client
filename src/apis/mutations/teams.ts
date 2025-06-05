@@ -3,7 +3,31 @@ import { HTTPError } from 'ky';
 import { useSnackbar } from 'notistack';
 
 import { teamApi } from '@/apis/fetchers';
-import { UserJoinTeamRequest } from '@/apis/models';
+import { TeamCreateRequest, UserJoinTeamRequest } from '@/apis/models';
+
+export const useCreateTeamMutation = () => {
+  const { enqueueSnackbar } = useSnackbar();
+
+  return useMutation({
+    mutationFn: (request: TeamCreateRequest) => {
+      return teamApi.postCreateTeam(request);
+    },
+    onSuccess: () => {
+      enqueueSnackbar('팀이 성공적으로 생성되었습니다.', {
+        variant: 'success',
+      });
+    },
+    onError: async error => {
+      if (error instanceof HTTPError) {
+        const response = await error.response.json();
+
+        enqueueSnackbar(`팀 생성에 실패했습니다. ${response.message || ''}`, {
+          variant: 'error',
+        });
+      }
+    },
+  });
+};
 
 export const useUserJoinTeamMutation = () => {
   const { enqueueSnackbar } = useSnackbar();

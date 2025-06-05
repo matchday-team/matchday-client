@@ -4,6 +4,7 @@ import {
   GenerateUploadUrlParams,
   GetProfileReadUrlParams,
   S3PresignedResponse,
+  TeamCreateRequest,
   TeamMemberListResponse,
   TeamResponse,
   TeamSearchResponse,
@@ -41,6 +42,18 @@ export const postUserJoinTeam = async (
   });
 
   return response.json() as Promise<ApiResponse<number>>;
+};
+
+// 팀 생성
+export const postCreateTeam = async (request: TeamCreateRequest) => {
+  const response = await http.post('v1/teams', {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(request),
+  });
+
+  return response.json() as Promise<ApiResponse<TeamResponse>>;
 };
 
 export const getTeamProfileImageUploadUrl = async (
