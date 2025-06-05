@@ -6,3 +6,4 @@ export * from './userTracking';
 export * from './teams';
 export * from './upload';
 export * from './regions';
+export * from './localStorage';

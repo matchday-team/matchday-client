@@ -13,6 +13,7 @@ import {
   RadioGroup,
   Select,
 } from '@/components';
+import { TEMP_SAVED_MATCH_CREATE_FORM_KEY } from '@/constants';
 import { TimeSelect } from '@/routes/matches/create/-components/TimeSelect';
 
 import * as styles from './MatchCreateForm.css';
@@ -70,7 +71,7 @@ export const MatchCreateForm = ({
     },
   });
 
-  useFormPersist('match-create-form', {
+  useFormPersist(TEMP_SAVED_MATCH_CREATE_FORM_KEY, {
     watch,
     setValue,
     storage: window.localStorage,
