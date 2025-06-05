@@ -225,7 +225,7 @@ export function TeamCreateForm({ onSubmit, onSuccess }: TeamCreateFormProps) {
               </Label>
             </div>
 
-            {/* 팀 유형과 창단 년도 */}
+            {/* 팀 유형과 창단 연도 */}
             <div className={styles.twoColumnGroup}>
               <div className={styles.fieldGroup}>
                 <Label label='팀 유형' required>
@@ -252,7 +252,7 @@ export function TeamCreateForm({ onSubmit, onSuccess }: TeamCreateFormProps) {
                 </Label>
               </div>
               <div className={styles.fieldGroup}>
-                <Label label='창단 년도' required>
+                <Label label='창단 연도' required>
                   <Controller
                     name='foundedYear'
                     control={control}
@@ -260,7 +260,7 @@ export function TeamCreateForm({ onSubmit, onSuccess }: TeamCreateFormProps) {
                       <Select
                         options={yearOptions}
                         tabIndex={0}
-                        placeholder='창단 년도를 선택해주세요.'
+                        placeholder='창단 연도를 선택해주세요.'
                         value={field.value}
                         onChange={field.onChange}
                         isError={!!errors.foundedYear}
