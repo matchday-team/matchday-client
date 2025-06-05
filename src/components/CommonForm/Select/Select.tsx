@@ -11,7 +11,7 @@ interface Option {
 
 interface SelectProps extends ComponentPropsWithoutRef<'select'> {
   options: Option[];
-  placeholder: string;
+  placeholder?: string;
   isError?: boolean;
 }
 
