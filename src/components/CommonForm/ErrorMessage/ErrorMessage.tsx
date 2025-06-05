@@ -1,9 +1,7 @@
+import { PropsWithChildren } from 'react';
+
 import * as styles from './ErrorMessage.css';
 
-interface ErrorMessageProps {
-  message?: string;
-}
-
-export const ErrorMessage = ({ message }: ErrorMessageProps) => (
-  <span className={styles.textFieldError}>{message}</span>
+export const ErrorMessage = ({ children }: PropsWithChildren) => (
+  <span className={styles.textFieldError}>{children}</span>
 );
