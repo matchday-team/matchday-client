@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import clsx from 'clsx';
+import { useSnackbar } from 'notistack';
 import { useForm } from 'react-hook-form';
 
 import DefaultTeamLogo from '@/assets/images/teams/default-team-logo.svg?react';
@@ -13,7 +14,11 @@ import {
   Label,
   Select,
 } from '@/components';
-import { TEAM_TYPE_OPTIONS } from '@/constants';
+import {
+  MAX_IMAGE_FILE_SIZE,
+  REGION_OPTIONS,
+  TEAM_TYPE_OPTIONS,
+} from '@/constants';
 
 import * as styles from './TeamCreateForm.css';
 import {
@@ -24,14 +29,14 @@ import { UniformColorPicker } from './UniformColorPicker';
 
 interface TeamCreateFormProps {
   onSubmit?: (data: TeamCreateFormData) => void;
-  isLoading?: boolean;
 }
 
-export function TeamCreateForm({
-  onSubmit,
-  isLoading = false,
-}: TeamCreateFormProps) {
-  const [profileImage, setProfileImage] = useState<string | null>(null);
+export function TeamCreateForm({ onSubmit }: TeamCreateFormProps) {
+  const [profileImagePreview, setProfileImagePreview] = useState<string | null>(
+    null,
+  );
+
+  const { enqueueSnackbar } = useSnackbar();
 
   const {
     register,
@@ -49,52 +54,62 @@ export function TeamCreateForm({
         bottom: '',
         socks: '',
       },
+      teamImg: null,
     },
   });
 
   const hasNoMemberLimit = watch('hasNoMemberLimit');
   const uniformColors = watch('uniformColors');
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = e => {
-        setProfileImage(e.target?.result as string);
-      };
-      reader.readAsDataURL(file);
+    if (!file) {
+      return;
     }
+
+    if (!file.type.startsWith('image/')) {
+      enqueueSnackbar('이미지 파일만 업로드 가능합니다.', { variant: 'error' });
+      return;
+    }
+
+    if (file.size > MAX_IMAGE_FILE_SIZE) {
+      enqueueSnackbar('파일 크기는 10MB 이하여야 합니다.', {
+        variant: 'error',
+      });
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = e => {
+      setProfileImagePreview(e.target?.result as string);
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleImageDelete = () => {
-    setProfileImage(null);
+    setProfileImagePreview(null);
+    setValue('teamImg', null);
   };
 
   const handleColorChange = (
     type: 'top' | 'bottom' | 'socks',
     color: string,
   ) => {
-    console.log(type, color);
     setValue(`uniformColors.${type}`, color, { shouldValidate: true });
   };
 
   const handleFormSubmit = (data: TeamCreateFormData) => {
-    const formData = {
-      ...data,
-      profileImage,
-    };
-    onSubmit?.(formData);
+    onSubmit?.(data);
   };
 
   const handleNoLimitChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked;
     setValue('hasNoMemberLimit', checked);
-    setValue('memberLimit', 0);
   };
 
   const handleReset = () => {
     reset();
-    setProfileImage(null);
+    setProfileImagePreview(null);
   };
 
   return (
@@ -113,9 +128,9 @@ export function TeamCreateForm({
             <div className={styles.profileSection}>
               <div className={styles.profileImageContainer}>
                 <div className={styles.profileImageWrapper}>
-                  {profileImage ? (
+                  {profileImagePreview ? (
                     <img
-                      src={profileImage}
+                      src={profileImagePreview}
                       alt='팀 프로필 이미지'
                       className={styles.profileImage}
                     />
@@ -131,7 +146,7 @@ export function TeamCreateForm({
                       <input
                         type='file'
                         accept='image/*'
-                        onChange={handleImageUpload}
+                        onChange={handleImageSelect}
                         className={styles.hiddenInput}
                       />
                     </label>
@@ -205,9 +220,10 @@ export function TeamCreateForm({
             {/* 활동지역 */}
             <div className={styles.fieldGroup}>
               <Label label='활동지역' required>
-                <Input
+                <Select
+                  options={REGION_OPTIONS}
+                  placeholder='활동지역을 선택해주세요.'
                   {...register('activityArea')}
-                  placeholder='활동지역을 입력해주세요.'
                   isError={!!errors.activityArea}
                 />
                 <ErrorMessage>{errors.activityArea?.message}</ErrorMessage>
@@ -290,17 +306,10 @@ export function TeamCreateForm({
             </div>
 
             <div className={styles.submitSection}>
-              <Button
-                type='button'
-                variant='danger'
-                onClick={handleReset}
-                disabled={isLoading}
-              >
+              <Button type='button' variant='danger' onClick={handleReset}>
                 초기화
               </Button>
-              <Button type='submit' disabled={isLoading}>
-                팀 생성하기
-              </Button>
+              <Button type='submit'>팀 생성하기</Button>
             </div>
           </div>
         </div>
