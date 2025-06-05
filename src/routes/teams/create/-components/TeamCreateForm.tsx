@@ -64,14 +64,11 @@ export function TeamCreateForm({ onSubmit, onSuccess }: TeamCreateFormProps) {
     },
   });
 
-  const { clear: clearPersistedData } = useFormPersist(
-    TEMP_SAVED_TEAM_CREATE_FORM_KEY,
-    {
-      watch,
-      setValue,
-      storage: window.localStorage,
-    },
-  );
+  useFormPersist(TEMP_SAVED_TEAM_CREATE_FORM_KEY, {
+    watch,
+    setValue,
+    storage: window.localStorage,
+  });
 
   const hasNoMemberLimit = watch('hasNoMemberLimit');
   const uniformColors = watch('uniformColors');
@@ -116,8 +113,6 @@ export function TeamCreateForm({ onSubmit, onSuccess }: TeamCreateFormProps) {
   const handleFormSubmit = async (data: TeamCreateFormData) => {
     try {
       await onSubmit(data);
-      setProfileImagePreview(null);
-      clearPersistedData();
       reset();
       onSuccess();
     } catch (error) {

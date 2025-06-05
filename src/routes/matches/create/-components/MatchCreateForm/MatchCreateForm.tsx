@@ -47,7 +47,7 @@ const matchTypeOptions: {
 
 interface MatchCreateFormProps {
   teamList: TeamSearchResponse[];
-  onSubmit?: (data: MatchCreateFormData) => void;
+  onSubmit: (data: MatchCreateFormData) => Promise<void>;
 }
 
 export const MatchCreateForm = ({
@@ -77,8 +77,9 @@ export const MatchCreateForm = ({
     storage: window.localStorage,
   });
 
-  const handleFormSubmit = (data: MatchCreateFormData) => {
-    onSubmit?.(data);
+  const handleFormSubmit = async (data: MatchCreateFormData) => {
+    await onSubmit(data);
+    reset();
   };
 
   const handleReset = () => {
