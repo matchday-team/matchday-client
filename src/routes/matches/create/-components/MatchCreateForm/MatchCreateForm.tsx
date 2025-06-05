@@ -13,6 +13,7 @@ import {
   RadioGroup,
   Select,
 } from '@/components';
+import { TEMP_SAVED_MATCH_CREATE_FORM_KEY } from '@/constants';
 import { TimeSelect } from '@/routes/matches/create/-components/TimeSelect';
 
 import * as styles from './MatchCreateForm.css';
@@ -46,7 +47,7 @@ const matchTypeOptions: {
 
 interface MatchCreateFormProps {
   teamList: TeamSearchResponse[];
-  onSubmit?: (data: MatchCreateFormData) => void;
+  onSubmit: (data: MatchCreateFormData) => Promise<void>;
 }
 
 export const MatchCreateForm = ({
@@ -70,14 +71,15 @@ export const MatchCreateForm = ({
     },
   });
 
-  useFormPersist('match-create-form', {
+  useFormPersist(TEMP_SAVED_MATCH_CREATE_FORM_KEY, {
     watch,
     setValue,
     storage: window.localStorage,
   });
 
-  const handleFormSubmit = (data: MatchCreateFormData) => {
-    onSubmit?.(data);
+  const handleFormSubmit = async (data: MatchCreateFormData) => {
+    await onSubmit(data);
+    reset();
   };
 
   const handleReset = () => {
@@ -109,7 +111,7 @@ export const MatchCreateForm = ({
                 />
               )}
             />
-            <ErrorMessage message={errors.matchType?.message} />
+            <ErrorMessage>{errors.matchType?.message}</ErrorMessage>
           </Label>
         </div>
 
@@ -120,7 +122,7 @@ export const MatchCreateForm = ({
               isError={!!errors.title}
               {...register('title')}
             />
-            <ErrorMessage message={errors.title?.message} />
+            <ErrorMessage>{errors.title?.message}</ErrorMessage>
           </Label>
         </div>
 
@@ -143,7 +145,7 @@ export const MatchCreateForm = ({
                 />
               )}
             />
-            <ErrorMessage message={errors.homeTeamId?.message} />
+            <ErrorMessage>{errors.homeTeamId?.message}</ErrorMessage>
           </Label>
           <Label label='상대팀' required>
             <Controller
@@ -163,7 +165,7 @@ export const MatchCreateForm = ({
                 />
               )}
             />
-            <ErrorMessage message={errors.awayTeamId?.message} />
+            <ErrorMessage>{errors.awayTeamId?.message}</ErrorMessage>
           </Label>
         </div>
 
@@ -176,7 +178,7 @@ export const MatchCreateForm = ({
               {...register('stadium')}
               icon={<MagnifyingGlassIcon />}
             />
-            <ErrorMessage message={errors.stadium?.message} />
+            <ErrorMessage>{errors.stadium?.message}</ErrorMessage>
           </Label>
           <Label label='상세 주소'>
             <Input
@@ -184,7 +186,7 @@ export const MatchCreateForm = ({
               isError={!!errors.detailAddress}
               {...register('detailAddress')}
             />
-            <ErrorMessage message={errors.detailAddress?.message} />
+            <ErrorMessage>{errors.detailAddress?.message}</ErrorMessage>
           </Label>
         </div>
 
@@ -197,7 +199,7 @@ export const MatchCreateForm = ({
               type='date'
               icon={<CalendarIcon />}
             />
-            <ErrorMessage message={errors.matchDate?.message} />
+            <ErrorMessage>{errors.matchDate?.message}</ErrorMessage>
           </Label>
           <Label label='시간' required>
             <TimeSelect
@@ -234,12 +236,10 @@ export const MatchCreateForm = ({
                 />
               }
             />
-            <ErrorMessage
-              message={
-                errors.plannedStartTime?.message ||
-                errors.plannedEndTime?.message
-              }
-            />
+            <ErrorMessage>
+              {errors.plannedStartTime?.message ||
+                errors.plannedEndTime?.message}
+            </ErrorMessage>
           </Label>
         </div>
 
@@ -250,7 +250,7 @@ export const MatchCreateForm = ({
               isError={!!errors.mainRefereeName}
               {...register('mainRefereeName')}
             />
-            <ErrorMessage message={errors.mainRefereeName?.message} />
+            <ErrorMessage>{errors.mainRefereeName?.message}</ErrorMessage>
           </Label>
           <Label label='부심1' required>
             <Input
@@ -258,7 +258,7 @@ export const MatchCreateForm = ({
               isError={!!errors.assistantReferee1}
               {...register('assistantReferee1')}
             />
-            <ErrorMessage message={errors.assistantReferee1?.message} />
+            <ErrorMessage>{errors.assistantReferee1?.message}</ErrorMessage>
           </Label>
           {/* 디자인에 없어서 임의로 추가 */}
           <Label label='부심2'>
@@ -267,7 +267,7 @@ export const MatchCreateForm = ({
               isError={!!errors.assistantReferee2}
               {...register('assistantReferee2')}
             />
-            <ErrorMessage message={errors.assistantReferee2?.message} />
+            <ErrorMessage>{errors.assistantReferee2?.message}</ErrorMessage>
           </Label>
           <Label label='대기심'>
             <Input
@@ -275,7 +275,7 @@ export const MatchCreateForm = ({
               isError={!!errors.fourthReferee}
               {...register('fourthReferee')}
             />
-            <ErrorMessage message={errors.fourthReferee?.message} />
+            <ErrorMessage>{errors.fourthReferee?.message}</ErrorMessage>
           </Label>
         </div>
 
@@ -288,7 +288,7 @@ export const MatchCreateForm = ({
               isError={!!errors.firstHalfPeriod}
               {...register('firstHalfPeriod', { valueAsNumber: true })}
             />
-            <ErrorMessage message={errors.firstHalfPeriod?.message} />
+            <ErrorMessage>{errors.firstHalfPeriod?.message}</ErrorMessage>
           </Label>
           <Label label='후반 시간 (분)' required>
             <Input
@@ -297,7 +297,7 @@ export const MatchCreateForm = ({
               isError={!!errors.secondHalfPeriod}
               {...register('secondHalfPeriod', { valueAsNumber: true })}
             />
-            <ErrorMessage message={errors.secondHalfPeriod?.message} />
+            <ErrorMessage>{errors.secondHalfPeriod?.message}</ErrorMessage>
           </Label>
         </div>
 

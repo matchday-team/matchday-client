@@ -3,6 +3,7 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 
 import { useCreateMatchMutation } from '@/apis/mutations';
 import { matchQuery, teamQuery } from '@/apis/queries';
+import { TEMP_SAVED_MATCH_CREATE_FORM_KEY } from '@/constants';
 import { usePageTitle } from '@/hooks';
 
 import { MatchCreateForm, MatchCreateFormData } from './-components';
@@ -30,6 +31,8 @@ function MatchCreatePage() {
         queryKey: matchQuery.list(data.awayTeamId).queryKey,
       }),
     ]);
+
+    localStorage.removeItem(TEMP_SAVED_MATCH_CREATE_FORM_KEY);
 
     navigate({
       to: '/matches/$matchId/players/edit',

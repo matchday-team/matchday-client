@@ -1,14 +1,18 @@
 import { style } from '@vanilla-extract/css';
 
+import { commonPageRoot } from '@/styles/page.css';
 import { lightThemeVars } from '@/styles/theme.css';
 
-export const rootContainer = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 20,
-  marginTop: 60,
-  minWidth: 1100,
-});
+export const rootContainer = style([
+  commonPageRoot,
+  {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 20,
+    marginTop: 60,
+    minWidth: 1100,
+  },
+]);
 
 export const header = style({
   display: 'flex',

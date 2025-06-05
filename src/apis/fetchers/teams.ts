@@ -1,6 +1,10 @@
 import { http } from '@/apis/http';
 import {
   ApiResponse,
+  GenerateUploadUrlParams,
+  GetProfileReadUrlParams,
+  S3PresignedResponse,
+  TeamCreateRequest,
   TeamMemberListResponse,
   TeamResponse,
   TeamSearchResponse,
@@ -38,4 +42,45 @@ export const postUserJoinTeam = async (
   });
 
   return response.json() as Promise<ApiResponse<number>>;
+};
+
+// 팀 생성
+export const postCreateTeam = async (request: TeamCreateRequest) => {
+  const response = await http.post('v1/teams', {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(request),
+  });
+
+  return response.json() as Promise<ApiResponse<TeamResponse>>;
+};
+
+export const getTeamProfileImageUploadUrl = async (
+  id: number,
+  params: GenerateUploadUrlParams,
+) => {
+  const searchParams = new URLSearchParams();
+  searchParams.append('extension', params.extension);
+
+  const response = await http.get(
+    `v1/teams/${id}/profile/upload-url?${searchParams}`,
+  );
+
+  return response.json() as Promise<ApiResponse<S3PresignedResponse>>;
+};
+
+// NOTE: 불필요한 권한으로 제거 예정
+export const getTeamProfileImageUrl = async (
+  id: number,
+  params: GetProfileReadUrlParams,
+) => {
+  const searchParams = new URLSearchParams();
+  searchParams.append('key', params.key);
+
+  const response = await http.get(
+    `v1/teams/${id}/profile/read-url?${searchParams}`,
+  );
+
+  return response.json() as Promise<ApiResponse<S3PresignedResponse>>;
 };

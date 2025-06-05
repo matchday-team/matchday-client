@@ -10,6 +10,7 @@ import {
   RecordIcon,
   SeoulLogo,
   SettingsIcon,
+  SoccerBallBoxyIcon,
   UserIcon,
 } from '@/assets/icons';
 import { useUserSettingsModalStore } from '@/stores';
@@ -35,12 +36,17 @@ export function Sidebar({ isOpen, toggle }: SidebarProps) {
     {
       to: '/matches/create',
       icon: <RecordIcon className={styles.icon} />,
-      label: '매치 생성',
+      label: '매치 등록',
+    },
+    {
+      to: '/teams/create',
+      icon: <SoccerBallBoxyIcon className={styles.icon} />,
+      label: '팀 등록',
     },
     {
       to: '/users/create',
       icon: <PlayerIcon className={styles.icon} />,
-      label: '유저 생성',
+      label: '[임시] 임시 유저 등록',
     },
   ];
 

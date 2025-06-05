@@ -1,0 +1,23 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# React & TypeScript 규칙
+
+## React 컴포넌트 작성 규칙
+- React.FC는 절대 사용하지 않는다.
+- 컴포넌트는 함수 선언문으로 작성한다.
+- Props 타입은 최대한 interface를 사용하되, type도 사용 가능하다.
+
+## 타입 정의
+- 컴포넌트 Props 타입명은 `컴포넌트명Props` 형식으로 작성한다.
+- API 응답 타입은 [src/apis](mdc:src/apis) 디렉토리의 자동 생성된 타입을 사용한다.
+
+## 상태 관리
+- 전역 상태는 [zustand](mdc:https:/github.com/pmndrs/zustand)를 사용한다.
+- 서버 상태는 [@tanstack/react-query](mdc:https:/tanstack.com/query)를 사용한다.
+
+## 폼 처리
+- 폼은 [react-hook-form](mdc:https:/react-hook-form.com)과 [zod](mdc:https:/zod.dev)를 사용한다.
+- 폼 검증 스키마는 컴포넌트 파일 내부에 정의한다.

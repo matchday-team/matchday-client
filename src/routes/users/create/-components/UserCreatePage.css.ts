@@ -1,12 +1,17 @@
 import { style } from '@vanilla-extract/css';
 
-export const rootContainer = style({
-  boxSizing: 'border-box',
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 8,
-  padding: 16,
-});
+import { commonPageRoot } from '@/styles/page.css';
+
+export const rootContainer = style([
+  commonPageRoot,
+  {
+    boxSizing: 'border-box',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 8,
+    paddingTop: 16,
+  },
+]);
 
 export const formsContainer = style({
   boxSizing: 'border-box',

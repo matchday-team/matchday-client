@@ -26,13 +26,11 @@ export const contentArea = style({
   display: 'flex',
   flex: 1,
   backgroundColor: lightThemeVars.color.white.background,
-  paddingTop: NAVBAR_HEIGHT + 16,
-  paddingRight: 16,
-  paddingLeft: 16,
+  paddingTop: NAVBAR_HEIGHT,
   overflow: 'auto',
   '@media': {
     [`(max-width: ${SIDEBAR_BREAKPOINT}px)`]: {
-      paddingLeft: SIDEBAR_WIDTH_SMALL + 16,
+      paddingLeft: SIDEBAR_WIDTH_SMALL,
     },
   },
 });

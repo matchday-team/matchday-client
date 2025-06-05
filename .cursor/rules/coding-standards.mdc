@@ -1,0 +1,29 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# 코딩 표준 및 컨벤션
+
+## 언어 및 주석
+- 모든 응답은 한국어로 작성한다.
+- 주석은 "합니다" 등을 붙이지 않고 간결한 개조식으로 작성한다.
+- 변수명, 함수명은 영어로 작성하되 의미가 명확해야 한다.
+
+## 네이밍 컨벤션
+- 컴포넌트명: PascalCase (예: `TeamCreatePage`)
+- 함수명: camelCase (예: `handleSubmit`)
+- 상수명: UPPER_SNAKE_CASE (예: `API_BASE_URL`)
+- 파일명: 컴포넌트는 PascalCase, 그 외는 kebab-case
+
+## 코드 구성
+- import 순서: 외부 라이브러리 → 내부 모듈 → 타입 import
+- 컴포넌트 내부 순서: 타입 정의 → 훅 사용 → 상태 기반 파생 상태 상수 → 이벤트 핸들러 → 렌더링
+
+## 성능 최적화
+- 컴포넌트 분리를 통한 렌더링 최적화
+
+## 에러 처리
+- API 에러는 React Query의 에러 바운더리 활용
+- 폼 검증 에러는 react-hook-form의 에러 객체 사용
+- 전역 에러는 notistack을 사용해 스낵바로 표시

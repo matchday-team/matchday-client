@@ -60,6 +60,7 @@ export const navItem = recipe({
   variants: {
     active: {
       true: {
+        backgroundColor: lightThemeVars.color.white.hover,
         color: lightThemeVars.color.black,
       },
     },

@@ -3,7 +3,7 @@ import { style } from '@vanilla-extract/css';
 import { lightThemeRawValues, lightThemeVars } from '@/styles/theme.css';
 import { hexColorAlpha } from '@/utils/colorUtils';
 
-export const TextInput = style({
+export const rootContainer = style({
   boxSizing: 'border-box',
   flexShrink: 0,
   transition: 'border-color, outline 0.2s ease-in-out',
@@ -13,7 +13,7 @@ export const TextInput = style({
   background: lightThemeVars.color.white.hover,
   padding: '9px 16px',
   width: '100%',
-  height: 35,
+  height: 38,
   lineHeight: 1.4,
   letterSpacing: -0.35,
   fontSize: 14,

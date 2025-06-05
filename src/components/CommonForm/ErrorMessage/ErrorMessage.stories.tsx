@@ -16,12 +16,12 @@ type Story = StoryObj<typeof ErrorMessage>;
 
 export const Default: Story = {
   args: {
-    message: '필수 입력 항목입니다.',
+    children: '필수 입력 항목입니다.',
   },
 };
 
 export const Empty: Story = {
   args: {
-    message: '',
+    children: '',
   },
 };
