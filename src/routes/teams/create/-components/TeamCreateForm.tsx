@@ -13,6 +13,7 @@ import {
   Label,
   Select,
 } from '@/components';
+import { TEAM_TYPE_OPTIONS } from '@/constants';
 
 import * as styles from './TeamCreateForm.css';
 import {
@@ -175,12 +176,12 @@ export function TeamCreateForm({
               <div className={styles.fieldGroup}>
                 <Label label='팀 유형' required>
                   <Select
-                    options={[
-                      { value: '동아리/동호회', label: '동아리/동호회' },
-                      { value: '학원(아카데미)', label: '학원(아카데미)' },
-                      { value: '직장', label: '직장' },
-                      { value: '기타', label: '기타' },
-                    ]}
+                    options={Object.entries(TEAM_TYPE_OPTIONS).map(
+                      ([value, label]) => ({
+                        value,
+                        label,
+                      }),
+                    )}
                     placeholder='팀 유형을 선택해주세요.'
                     {...register('teamType')}
                     isError={!!errors.teamType}

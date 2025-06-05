@@ -3,3 +3,4 @@ export * from './stats';
 export * from './matchEvents';
 export * from './layout';
 export * from './userTracking';
+export * from './teams';
