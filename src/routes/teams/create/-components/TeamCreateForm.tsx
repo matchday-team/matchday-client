@@ -30,10 +30,11 @@ import {
 import { UniformColorPicker } from './UniformColorPicker';
 
 interface TeamCreateFormProps {
-  onSubmit?: (data: TeamCreateFormData) => void;
+  onSubmit: (data: TeamCreateFormData) => Promise<void>;
+  onSuccess: () => void;
 }
 
-export function TeamCreateForm({ onSubmit }: TeamCreateFormProps) {
+export function TeamCreateForm({ onSubmit, onSuccess }: TeamCreateFormProps) {
   const [profileImagePreview, setProfileImagePreview] = useState<string | null>(
     null,
   );
@@ -63,11 +64,14 @@ export function TeamCreateForm({ onSubmit }: TeamCreateFormProps) {
     },
   });
 
-  useFormPersist(TEMP_SAVED_TEAM_CREATE_FORM_KEY, {
-    watch,
-    setValue,
-    storage: window.localStorage,
-  });
+  const { clear: clearPersistedData } = useFormPersist(
+    TEMP_SAVED_TEAM_CREATE_FORM_KEY,
+    {
+      watch,
+      setValue,
+      storage: window.localStorage,
+    },
+  );
 
   const hasNoMemberLimit = watch('hasNoMemberLimit');
   const uniformColors = watch('uniformColors');
@@ -109,8 +113,16 @@ export function TeamCreateForm({ onSubmit }: TeamCreateFormProps) {
     setValue(`uniformColors.${type}`, color, { shouldValidate: true });
   };
 
-  const handleFormSubmit = (data: TeamCreateFormData) => {
-    onSubmit?.(data);
+  const handleFormSubmit = async (data: TeamCreateFormData) => {
+    try {
+      await onSubmit(data);
+      setProfileImagePreview(null);
+      clearPersistedData();
+      reset();
+      onSuccess();
+    } catch (error) {
+      console.error('팀 생성 실패:', error);
+    }
   };
 
   const handleNoLimitChange = (event: React.ChangeEvent<HTMLInputElement>) => {

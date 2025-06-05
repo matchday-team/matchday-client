@@ -1,7 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 
 import { useCreateTeamMutation } from '@/apis/mutations/teams';
-import { TEMP_SAVED_TEAM_CREATE_FORM_KEY } from '@/constants';
 
 import { TeamCreateForm, type TeamCreateFormData } from './-components';
 import * as styles from './-components/TeamCreatePage.css';
@@ -24,15 +23,15 @@ function TeamCreatePage() {
     };
 
     await createTeamMutation.mutateAsync(teamCreateRequest);
+  };
 
-    localStorage.removeItem(TEMP_SAVED_TEAM_CREATE_FORM_KEY);
-
+  const handleSuccess = () => {
     navigate({ to: '/' });
   };
 
   return (
     <div className={styles.rootContainer}>
-      <TeamCreateForm onSubmit={handleSubmit} />
+      <TeamCreateForm onSubmit={handleSubmit} onSuccess={handleSuccess} />
     </div>
   );
 }
