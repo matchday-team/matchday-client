@@ -29,6 +29,18 @@ import {
 } from './TeamCreateForm.schema';
 import { UniformColorPicker } from './UniformColorPicker';
 
+const yearOptions = Array.from(
+  { length: new Date().getFullYear() - 1800 + 1 },
+  (_, i) => {
+    const year = new Date().getFullYear() - i;
+
+    return {
+      value: year.toString(),
+      label: year.toString(),
+    };
+  },
+);
+
 interface TeamCreateFormProps {
   onSubmit: (data: TeamCreateFormData) => Promise<void>;
   onSuccess: () => void;
@@ -55,6 +67,7 @@ export function TeamCreateForm({ onSubmit, onSuccess }: TeamCreateFormProps) {
     defaultValues: {
       activityArea: '',
       teamType: '',
+      foundedYear: '',
       uniformColors: {
         top: '',
         bottom: '',
@@ -240,11 +253,19 @@ export function TeamCreateForm({ onSubmit, onSuccess }: TeamCreateFormProps) {
               </div>
               <div className={styles.fieldGroup}>
                 <Label label='창단 년도' required>
-                  <Input
-                    {...register('foundedYear', { valueAsNumber: true })}
-                    type='number'
-                    placeholder='2025'
-                    isError={!!errors.foundedYear}
+                  <Controller
+                    name='foundedYear'
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        options={yearOptions}
+                        tabIndex={0}
+                        placeholder='창단 년도를 선택해주세요.'
+                        value={field.value}
+                        onChange={field.onChange}
+                        isError={!!errors.foundedYear}
+                      />
+                    )}
                   />
                   <ErrorMessage>{errors.foundedYear?.message}</ErrorMessage>
                 </Label>

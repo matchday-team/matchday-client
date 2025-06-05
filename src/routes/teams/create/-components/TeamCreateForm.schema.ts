@@ -15,12 +15,18 @@ export const teamCreateFormSchema = z
       },
     ),
     foundedYear: z
-      .number({
-        invalid_type_error: '올바른 년도를 입력해주세요.',
-      })
-      .min(1800, '올바른 년도를 입력해주세요.')
-      .max(new Date().getFullYear(), '올바른 년도를 입력해주세요.')
-      .optional(),
+      .string()
+      .min(1, '필수입력 항목입니다.')
+      .refine(
+        val => {
+          const year = parseInt(val);
+
+          return year >= 1800 && year <= new Date().getFullYear();
+        },
+        {
+          message: '올바른 년도를 선택해주세요.',
+        },
+      ),
     activityArea: z.string().min(1, '필수입력 항목입니다.'),
     representativeName: z.string().min(1, '필수입력 항목입니다.'),
     representativePhone: z
