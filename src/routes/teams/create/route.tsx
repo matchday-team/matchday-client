@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 
 import { useCreateTeamMutation } from '@/apis/mutations/teams';
+import { usePageTitle } from '@/hooks';
 
 import { TeamCreateForm, type TeamCreateFormData } from './-components';
 import * as styles from './-components/TeamCreatePage.css';
@@ -10,6 +11,8 @@ export const Route = createFileRoute('/teams/create')({
 });
 
 function TeamCreatePage() {
+  usePageTitle('팀 등록');
+
   const navigate = useNavigate();
   const createTeamMutation = useCreateTeamMutation();
 
