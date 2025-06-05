@@ -25,12 +25,16 @@ export const checkboxInput = recipe({
     position: 'relative',
     display: 'flex',
     appearance: 'none',
-    border: `1px solid ${lightThemeVars.color.primary[700]}`,
+    border: `1px solid ${lightThemeVars.color.gray[500]}`,
     borderRadius: 4,
     background: lightThemeVars.color.white.main,
     cursor: 'pointer',
     width: 20,
     height: 20,
+
+    ':focus': {
+      outline: `1px solid ${lightThemeVars.color.primary[700]}`,
+    },
   },
   variants: {
     disabled: {
