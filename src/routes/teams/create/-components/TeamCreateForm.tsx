@@ -45,9 +45,11 @@ export function TeamCreateForm({ onSubmit }: TeamCreateFormProps) {
     watch,
     setValue,
     reset,
+    resetField,
   } = useForm<TeamCreateFormData>({
     resolver: zodResolver(teamCreateFormSchema),
     defaultValues: {
+      activityArea: '',
       teamType: '',
       uniformColors: {
         top: '',
@@ -105,6 +107,12 @@ export function TeamCreateForm({ onSubmit }: TeamCreateFormProps) {
   const handleNoLimitChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked;
     setValue('hasNoMemberLimit', checked);
+
+    if (checked) {
+      setValue('memberLimit', 0);
+    } else {
+      resetField('memberLimit');
+    }
   };
 
   const handleReset = () => {

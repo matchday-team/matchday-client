@@ -14,22 +14,17 @@ function TeamCreatePage() {
   const createTeamMutation = useCreateTeamMutation();
 
   const handleSubmit = async (data: TeamCreateFormData) => {
-    try {
-      // 1. 팀 생성 (이미지 없이)
-      const teamCreateRequest = {
-        name: data.teamName,
-        teamColor: data.uniformColors.top,
-        bottomColor: data.uniformColors.bottom,
-        stockingColor: data.uniformColors.socks,
-        teamImg: null, // 일단 null로 생성
-      };
+    const teamCreateRequest = {
+      name: data.teamName,
+      teamColor: data.uniformColors.top,
+      bottomColor: data.uniformColors.bottom,
+      stockingColor: data.uniformColors.socks,
+      teamImg: null, // NOTE: 현재 프로필 이미지 업로드가 불가능
+    };
 
-      await createTeamMutation.mutateAsync(teamCreateRequest);
+    await createTeamMutation.mutateAsync(teamCreateRequest);
 
-      navigate({ to: '/' });
-    } catch (error) {
-      console.error('팀 생성 실패:', error);
-    }
+    navigate({ to: '/' });
   };
 
   return (
