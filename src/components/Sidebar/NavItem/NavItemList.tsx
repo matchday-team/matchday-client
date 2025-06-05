@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { Link } from '@tanstack/react-router';
+import { Link, useLocation } from '@tanstack/react-router';
 
 import * as styles from './NavItemList.css';
 
@@ -12,9 +12,11 @@ interface NavItemProps {
 }
 
 export function NavItem({ to, icon, label, isOpen }: NavItemProps) {
+  const location = useLocation();
+  const isActive = location.pathname === to;
+
   return (
-    // TODO: match 기반으로 설계 다시해서 active 처리
-    <Link to={to} className={styles.navItem({ active: false })}>
+    <Link to={to} className={styles.navItem({ active: isActive })}>
       <div className={styles.navItemIcon({ isOpen })}>{icon}</div>
       {label && <span className={styles.label}>{label}</span>}
     </Link>

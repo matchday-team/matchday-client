@@ -46,7 +46,7 @@ export function Sidebar({ isOpen, toggle }: SidebarProps) {
     {
       to: '/users/create',
       icon: <PlayerIcon className={styles.icon} />,
-      label: '유저 등록',
+      label: '[임시] 임시 유저 등록',
     },
   ];
 
