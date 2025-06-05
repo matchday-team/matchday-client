@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import clsx from 'clsx';
 import { useSnackbar } from 'notistack';
 import { useForm } from 'react-hook-form';
+import useFormPersist from 'react-hook-form-persist';
 
 import DefaultTeamLogo from '@/assets/images/teams/default-team-logo.svg?react';
 import {
@@ -18,6 +19,7 @@ import {
   MAX_IMAGE_FILE_SIZE,
   REGION_OPTIONS,
   TEAM_TYPE_OPTIONS,
+  TEMP_SAVED_TEAM_CREATE_FORM_KEY,
 } from '@/constants';
 
 import * as styles from './TeamCreateForm.css';
@@ -58,6 +60,12 @@ export function TeamCreateForm({ onSubmit }: TeamCreateFormProps) {
       },
       teamImg: null,
     },
+  });
+
+  useFormPersist(TEMP_SAVED_TEAM_CREATE_FORM_KEY, {
+    watch,
+    setValue,
+    storage: window.localStorage,
   });
 
   const hasNoMemberLimit = watch('hasNoMemberLimit');
