@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import clsx from 'clsx';
 import { useSnackbar } from 'notistack';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import useFormPersist from 'react-hook-form-persist';
 
 import DefaultTeamLogo from '@/assets/images/teams/default-team-logo.svg?react';
@@ -48,6 +48,7 @@ export function TeamCreateForm({ onSubmit }: TeamCreateFormProps) {
     setValue,
     reset,
     resetField,
+    control,
   } = useForm<TeamCreateFormData>({
     resolver: zodResolver(teamCreateFormSchema),
     defaultValues: {
@@ -114,12 +115,14 @@ export function TeamCreateForm({ onSubmit }: TeamCreateFormProps) {
 
   const handleNoLimitChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked;
-    setValue('hasNoMemberLimit', checked);
+    // NOTE: shouldValidate 옵션이 없으면 오류 상태에서 체크 박스를 토글해도 즉시 반영되지 않아서 추가
+    setValue('hasNoMemberLimit', checked, { shouldValidate: true });
 
     if (checked) {
-      setValue('memberLimit', 0);
+      setValue('memberLimit', 0, { shouldValidate: true });
     } else {
       resetField('memberLimit');
+      setValue('memberLimit', watch('memberLimit'), { shouldValidate: true });
     }
   };
 
@@ -206,16 +209,24 @@ export function TeamCreateForm({ onSubmit }: TeamCreateFormProps) {
             <div className={styles.twoColumnGroup}>
               <div className={styles.fieldGroup}>
                 <Label label='팀 유형' required>
-                  <Select
-                    options={Object.entries(TEAM_TYPE_OPTIONS).map(
-                      ([value, label]) => ({
-                        value,
-                        label,
-                      }),
+                  <Controller
+                    name='teamType'
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        options={Object.entries(TEAM_TYPE_OPTIONS).map(
+                          ([value, label]) => ({
+                            value,
+                            label,
+                          }),
+                        )}
+                        tabIndex={0}
+                        placeholder='팀 유형을 선택해주세요.'
+                        value={field.value}
+                        onChange={field.onChange}
+                        isError={!!errors.teamType}
+                      />
                     )}
-                    placeholder='팀 유형을 선택해주세요.'
-                    {...register('teamType')}
-                    isError={!!errors.teamType}
                   />
                   <ErrorMessage>{errors.teamType?.message}</ErrorMessage>
                 </Label>
@@ -236,11 +247,19 @@ export function TeamCreateForm({ onSubmit }: TeamCreateFormProps) {
             {/* 활동지역 */}
             <div className={styles.fieldGroup}>
               <Label label='활동지역' required>
-                <Select
-                  options={REGION_OPTIONS}
-                  placeholder='활동지역을 선택해주세요.'
-                  {...register('activityArea')}
-                  isError={!!errors.activityArea}
+                <Controller
+                  name='activityArea'
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      options={REGION_OPTIONS}
+                      tabIndex={0}
+                      placeholder='활동지역을 선택해주세요.'
+                      value={field.value}
+                      onChange={field.onChange}
+                      isError={!!errors.activityArea}
+                    />
+                  )}
                 />
                 <ErrorMessage>{errors.activityArea?.message}</ErrorMessage>
               </Label>
