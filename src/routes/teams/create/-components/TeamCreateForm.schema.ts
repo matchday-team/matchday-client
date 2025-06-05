@@ -25,7 +25,10 @@ export const teamCreateFormSchema = z.object({
     .optional(),
   activityArea: z.string().min(1, '필수입력 항목입니다.'),
   representativeName: z.string().min(1, '필수입력 항목입니다.'),
-  representativePhone: z.string().min(1, '필수입력 항목입니다.'),
+  representativePhone: z
+    .string()
+    .min(1, '필수입력 항목입니다.')
+    .regex(/^01[0-9]-\d{4}-\d{4}$/, '010-0000-0000 형태로 입력해주세요.'),
   memberLimit: z
     .number({
       invalid_type_error: '필수입력 항목입니다.',
