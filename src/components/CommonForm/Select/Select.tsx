@@ -135,6 +135,10 @@ export const Select = ({
         event.preventDefault();
         setIsOpen(false);
         break;
+      case 'Tab':
+        // NOTE: Tab 키로 다른 요소로 이동할 때 드롭다운 닫기
+        setIsOpen(false);
+        break;
       case 'ArrowUp':
         event.preventDefault();
         setIsKeyboardNavigation(true);
