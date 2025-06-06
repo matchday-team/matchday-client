@@ -29,12 +29,70 @@ export const Select = ({
   ...props
 }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [focusedIndex, setFocusedIndex] = useState(-1);
+  const [isKeyboardNavigation, setIsKeyboardNavigation] = useState(false);
+  const [dropdownPosition, setDropdownPosition] = useState<'top' | 'bottom'>(
+    'bottom',
+  );
+  const [isPositionCalculated, setIsPositionCalculated] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
   const optionsRef = useRef<HTMLDivElement>(null);
+  const optionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const selectedOption = options.find(option => option.value === value);
   const displayText = selectedOption?.label || placeholder;
   const isPlaceholder = !selectedOption;
+
+  useEffect(() => {
+    optionRefs.current = optionRefs.current.slice(0, options.length);
+  }, [options.length]);
+
+  // NOTE: 드롭다운 위/아래 표시를 위한 위치 계산
+  useEffect(() => {
+    if (isOpen && selectRef.current) {
+      const selectRect = selectRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const estimatedDropdownHeight = Math.min(
+        options.length * styles.OPTION_ITEM_HEIGHT,
+        styles.DROPDOWN_LIST_HEIGHT,
+      );
+
+      const spaceBelow = viewportHeight - selectRect.bottom;
+      const spaceAbove = selectRect.top;
+
+      if (spaceBelow >= estimatedDropdownHeight || spaceBelow >= spaceAbove) {
+        setDropdownPosition('bottom');
+      } else {
+        setDropdownPosition('top');
+      }
+
+      setIsPositionCalculated(true);
+    } else {
+      setIsPositionCalculated(false);
+    }
+  }, [isOpen, options.length]);
+
+  // NOTE: 드롭다운이 열릴 때 선택된 옵션에 포커스 설정
+  useEffect(() => {
+    if (isOpen) {
+      const selectedIndex = options.findIndex(option => option.value === value);
+      setFocusedIndex(Math.max(selectedIndex, 0));
+      setIsKeyboardNavigation(false);
+    } else {
+      setFocusedIndex(-1);
+      setIsKeyboardNavigation(false);
+    }
+  }, [isOpen, options, value]);
+
+  // NOTE: 포커스된 옵션을 스크롤 영역에 표시
+  useEffect(() => {
+    if (isOpen && focusedIndex >= 0 && optionRefs.current[focusedIndex]) {
+      optionRefs.current[focusedIndex]?.scrollIntoView({
+        behavior: 'instant',
+        block: 'nearest',
+      });
+    }
+  }, [focusedIndex, isOpen]);
 
   // NOTE: 외부 클릭 시 드롭다운 닫기
   useEffect(() => {
@@ -56,12 +114,17 @@ export const Select = ({
     };
   }, [isOpen]);
 
-  // NOTE:키보드 네비게이션
+  // NOTE: 키보드 네비게이션
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (!isOpen) {
         switch (event.key) {
           case 'Enter':
+          case ' ':
+            event.preventDefault();
+            setIsOpen(true);
+            break;
+          case 'ArrowDown':
             event.preventDefault();
             setIsOpen(true);
             break;
@@ -71,28 +134,39 @@ export const Select = ({
 
       switch (event.key) {
         case 'Escape':
+          event.preventDefault();
           setIsOpen(false);
+          selectRef.current?.focus();
           break;
         case 'ArrowUp':
+          event.preventDefault();
+          setIsKeyboardNavigation(true);
+          setFocusedIndex(prev => (prev <= 0 ? options.length - 1 : prev - 1));
+          break;
         case 'ArrowDown':
           event.preventDefault();
-          // NOTE: 키보드 네비게이션 로직 추가 가능
+          setIsKeyboardNavigation(true);
+          setFocusedIndex(prev => (prev >= options.length - 1 ? 0 : prev + 1));
           break;
         case 'Enter':
         case ' ':
           event.preventDefault();
+          if (focusedIndex >= 0 && focusedIndex < options.length) {
+            handleOptionClick(options[focusedIndex]);
+          }
+          break;
+        case 'Tab':
+          setIsOpen(false);
           break;
       }
     };
 
-    if (isOpen) {
-      document.addEventListener('keydown', handleKeyDown);
-    }
+    selectRef.current?.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      selectRef.current?.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen]);
+  }, [isOpen, focusedIndex, options]);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -101,6 +175,19 @@ export const Select = ({
   const handleOptionClick = (option: Option) => {
     onChange?.(option.value);
     setIsOpen(false);
+    selectRef.current?.focus();
+  };
+
+  const handleOptionHover = (index: number) => {
+    // NOTE: 키보드 네비게이션 중에는 마우스 hover 무시
+    if (!isKeyboardNavigation) {
+      setFocusedIndex(index);
+    }
+  };
+
+  const handleMouseMove = () => {
+    // NOTE: 실제 마우스 이동 시 키보드 모드 해제
+    setIsKeyboardNavigation(false);
   };
 
   return (
@@ -120,19 +207,25 @@ export const Select = ({
         <ChevronDownIcon className={styles.chevronIcon({ isOpen })} />
       </div>
 
-      {isOpen && (
+      {isOpen && isPositionCalculated && (
         <div
-          className={styles.optionsContainer}
+          className={styles.optionsContainer({ position: dropdownPosition })}
           role='listbox'
           ref={optionsRef}
+          onMouseMove={handleMouseMove}
         >
-          {options.map(option => (
+          {options.map((option, index) => (
             <div
               key={option.value}
+              ref={el => {
+                optionRefs.current[index] = el;
+              }}
               className={styles.option({
                 isSelected: option.value === value,
+                isFocused: index === focusedIndex,
               })}
               onClick={() => handleOptionClick(option)}
+              onMouseEnter={() => handleOptionHover(index)}
               role='option'
               aria-selected={option.value === value}
             >

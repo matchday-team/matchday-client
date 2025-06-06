@@ -136,11 +136,7 @@ export const MatchCreateForm = ({
                   options={teamOptions}
                   placeholder='소속팀을 선택해주세요.'
                   value={field.value ? field.value.toString() : ''}
-                  onChange={e =>
-                    field.onChange(
-                      e.target.value ? Number(e.target.value) : undefined,
-                    )
-                  }
+                  onChange={value => field.onChange(Number(value))}
                   isError={!!errors.homeTeamId}
                 />
               )}
@@ -156,11 +152,7 @@ export const MatchCreateForm = ({
                   options={teamOptions}
                   placeholder='상대팀을 선택해주세요.'
                   value={field.value ? field.value.toString() : ''}
-                  onChange={e =>
-                    field.onChange(
-                      e.target.value ? Number(e.target.value) : undefined,
-                    )
-                  }
+                  onChange={value => field.onChange(Number(value))}
                   isError={!!errors.awayTeamId}
                 />
               )}

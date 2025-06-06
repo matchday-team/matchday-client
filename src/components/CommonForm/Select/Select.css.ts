@@ -4,6 +4,9 @@ import { lightThemeRawValues, lightThemeVars } from 'src/styles/theme.css';
 
 import { hexColorAlpha } from '@/utils/colorUtils';
 
+export const OPTION_ITEM_HEIGHT = 38;
+export const DROPDOWN_LIST_HEIGHT = 208;
+
 export const selectContainer = style({
   position: 'relative',
   width: '100%',
@@ -22,7 +25,7 @@ export const selectButton = recipe({
     cursor: 'pointer',
     padding: '7px 14px',
     width: '100%',
-    height: 38,
+    height: OPTION_ITEM_HEIGHT,
     lineHeight: 1.4,
     letterSpacing: -0.35,
     fontSize: 14,
@@ -90,18 +93,33 @@ export const chevronIcon = recipe({
   },
 });
 
-export const optionsContainer = style({
-  position: 'absolute',
-  zIndex: 1000,
-  top: 'calc(100% + 2px)',
-  right: 0,
-  left: 0,
-  border: `1px solid ${lightThemeVars.color.primary[100]}`,
-  borderRadius: 6,
-  boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.05)',
-  backgroundColor: lightThemeVars.color.white.main,
-  maxHeight: 208,
-  overflow: 'auto',
+export const optionsContainer = recipe({
+  base: {
+    position: 'absolute',
+    zIndex: 1000,
+    right: 0,
+    left: 0,
+    border: `1px solid ${lightThemeVars.color.primary[100]}`,
+    borderRadius: 6,
+    boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.05)',
+    backgroundColor: lightThemeVars.color.white.main,
+    maxHeight: DROPDOWN_LIST_HEIGHT,
+    overflow: 'auto',
+  },
+  variants: {
+    position: {
+      bottom: {
+        top: 'calc(100% + 2px)',
+      },
+      top: {
+        bottom: 'calc(100% + 2px)',
+        boxShadow: '0px -4px 4px 0px rgba(0, 0, 0, 0.05)',
+      },
+    },
+  },
+  defaultVariants: {
+    position: 'bottom',
+  },
 });
 
 export const option = recipe({
@@ -124,6 +142,11 @@ export const option = recipe({
       true: {
         backgroundColor: lightThemeVars.color.white.hover,
         fontWeight: 500,
+      },
+    },
+    isFocused: {
+      true: {
+        backgroundColor: lightThemeVars.color.primary[100],
       },
     },
   },

@@ -131,6 +131,7 @@ export const fieldGroup = style({
   flexDirection: 'column',
   marginTop: 24,
   width: '100%',
+  minWidth: 0, // NOTE: 기본값이 min-width: auto이며 flex:1, width:100% 으로 작아지지 않음
   lineHeight: 1.4,
 });
 
