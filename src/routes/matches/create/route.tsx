@@ -3,6 +3,7 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 
 import { useCreateMatchMutation } from '@/apis/mutations';
 import { matchQuery, teamQuery } from '@/apis/queries';
+import { MatchCreateStepper } from '@/components';
 import { TEMP_SAVED_MATCH_CREATE_FORM_KEY } from '@/constants';
 import { usePageTitle } from '@/hooks';
 
@@ -47,6 +48,8 @@ function MatchCreatePage() {
 
   return (
     <div className={styles.rootContainer}>
+      <MatchCreateStepper currentStep={1} />
+      <h2 className={styles.title}>상세 정보 입력</h2>
       <MatchCreateForm teamList={teamList.data} onSubmit={handleSubmit} />
     </div>
   );

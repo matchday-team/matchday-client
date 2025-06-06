@@ -8,10 +8,11 @@ export const rootContainer = style({
   flexDirection: 'column',
   alignItems: 'center',
   backgroundColor: lightThemeVars.color.white.main,
-  paddingTop: 130,
+  paddingBottom: 70,
 });
 
 export const title = style({
+  marginTop: 44,
   marginBottom: -4, // NOTE: gap 표현 대신 padding을 사용했고, 여백이 부족해서 minus margin으로 여기서 보정
   lineHeight: 1.4,
   letterSpacing: -0.6,

@@ -135,6 +135,10 @@ export const Select = ({
         event.preventDefault();
         setIsOpen(false);
         break;
+      case 'Tab':
+        // NOTE: Tab 키로 다른 요소로 이동할 때 드롭다운 닫기
+        setIsOpen(false);
+        break;
       case 'ArrowUp':
         event.preventDefault();
         setIsKeyboardNavigation(true);
@@ -182,6 +186,11 @@ export const Select = ({
     onChange?.(option.value);
     setIsOpen(false);
     focusNextElement();
+  };
+
+  const handleOptionMouseDown = (option: Option) => {
+    // NOTE: onBlur보다 먼저 실행되어 선택이 확실히 처리됨
+    handleOptionClick(option);
   };
 
   const handleOptionHover = (index: number) => {
@@ -244,7 +253,7 @@ export const Select = ({
                 isSelected: option.value === value,
                 isFocused: index === focusedIndex,
               })}
-              onClick={() => handleOptionClick(option)}
+              onMouseDown={() => handleOptionMouseDown(option)}
               onMouseEnter={() => handleOptionHover(index)}
               role='option'
               aria-selected={option.value === value}
