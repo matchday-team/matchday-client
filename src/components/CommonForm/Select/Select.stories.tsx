@@ -16,6 +16,7 @@ const meta: Meta<typeof Select> = {
       <div
         style={{
           width: '300px',
+          height: '300px',
         }}
       >
         <Story />
@@ -80,13 +81,7 @@ export const Interactive: Story = {
   render: args => {
     const [value, setValue] = useState(args.value);
 
-    return (
-      <Select
-        {...args}
-        value={value}
-        onChange={e => setValue(e.target.value)}
-      />
-    );
+    return <Select {...args} value={value} onChange={setValue} />;
   },
   args: {
     options: positionOptions,
