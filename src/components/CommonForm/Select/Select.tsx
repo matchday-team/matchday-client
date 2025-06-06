@@ -42,7 +42,6 @@ export const Select = ({
   const selectedOption = options.find(option => option.value === value);
   const displayText = selectedOption?.label || placeholder;
   const isPlaceholder = !selectedOption;
-
   useEffect(() => {
     optionRefs.current = optionRefs.current.slice(0, options.length);
   }, [options.length]);
@@ -115,67 +114,74 @@ export const Select = ({
   }, [isOpen]);
 
   // NOTE: 키보드 네비게이션
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (!isOpen) {
-        switch (event.key) {
-          case 'Enter':
-          case ' ':
-            event.preventDefault();
-            setIsOpen(true);
-            break;
-          case 'ArrowDown':
-            event.preventDefault();
-            setIsOpen(true);
-            break;
-        }
-        return;
-      }
-
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (!isOpen) {
       switch (event.key) {
-        case 'Escape':
-          event.preventDefault();
-          setIsOpen(false);
-          selectRef.current?.focus();
-          break;
-        case 'ArrowUp':
-          event.preventDefault();
-          setIsKeyboardNavigation(true);
-          setFocusedIndex(prev => (prev <= 0 ? options.length - 1 : prev - 1));
-          break;
-        case 'ArrowDown':
-          event.preventDefault();
-          setIsKeyboardNavigation(true);
-          setFocusedIndex(prev => (prev >= options.length - 1 ? 0 : prev + 1));
-          break;
         case 'Enter':
         case ' ':
           event.preventDefault();
-          if (focusedIndex >= 0 && focusedIndex < options.length) {
-            handleOptionClick(options[focusedIndex]);
-          }
+          setIsOpen(true);
           break;
-        case 'Tab':
-          setIsOpen(false);
+        case 'ArrowDown':
+          event.preventDefault();
+          setIsOpen(true);
           break;
       }
-    };
+      return;
+    }
 
-    selectRef.current?.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      selectRef.current?.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isOpen, focusedIndex, options]);
+    switch (event.key) {
+      case 'Escape':
+        event.preventDefault();
+        setIsOpen(false);
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        setIsKeyboardNavigation(true);
+        setFocusedIndex(prev => (prev <= 0 ? options.length - 1 : prev - 1));
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        setIsKeyboardNavigation(true);
+        setFocusedIndex(prev => (prev >= options.length - 1 ? 0 : prev + 1));
+        break;
+      case 'Enter':
+      case ' ':
+        event.preventDefault();
+        if (focusedIndex >= 0 && focusedIndex < options.length) {
+          onChange?.(options[focusedIndex].value);
+          setIsOpen(false);
+          focusNextElement();
+        }
+        break;
+    }
+  };
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
 
+  // NOTE: 포커스를 다음 focusable 요소로 이동
+  const focusNextElement = () => {
+    const focusableElements = document.querySelectorAll(
+      'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], input[type="email"], input[type="password"], input[type="tel"], input[type="url"], select, [tabindex]:not([tabindex="-1"])',
+    );
+    const currentIndex = Array.from(focusableElements).indexOf(
+      selectRef.current as Element,
+    );
+    const nextElement = focusableElements[currentIndex + 1] as HTMLElement;
+
+    if (nextElement) {
+      nextElement.focus();
+    } else {
+      selectRef.current?.blur();
+    }
+  };
+
   const handleOptionClick = (option: Option) => {
     onChange?.(option.value);
     setIsOpen(false);
-    selectRef.current?.focus();
+    focusNextElement();
   };
 
   const handleOptionHover = (index: number) => {
@@ -190,6 +196,18 @@ export const Select = ({
     setIsKeyboardNavigation(false);
   };
 
+  const handleBlur = () => {
+    // NOTE: 포커스가 완전히 벗어나면 드롭다운 닫기
+    setTimeout(() => {
+      if (
+        selectRef.current &&
+        !selectRef.current.contains(document.activeElement)
+      ) {
+        setIsOpen(false);
+      }
+    }, 0);
+  };
+
   return (
     <div className={styles.selectContainer} ref={selectRef} {...props}>
       {name && <input type='hidden' name={name} value={value || ''} />}
@@ -197,6 +215,8 @@ export const Select = ({
       <div
         className={styles.selectButton({ isPlaceholder, isError })}
         onClick={handleToggle}
+        onKeyDown={handleKeyDown}
+        onBlur={handleBlur}
         role='combobox'
         aria-expanded={isOpen}
         aria-haspopup='listbox'

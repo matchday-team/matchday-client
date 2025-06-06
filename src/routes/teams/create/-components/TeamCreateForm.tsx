@@ -240,7 +240,6 @@ export function TeamCreateForm({ onSubmit, onSuccess }: TeamCreateFormProps) {
                             label,
                           }),
                         )}
-                        tabIndex={0}
                         placeholder='팀 유형을 선택해주세요.'
                         value={field.value}
                         onChange={field.onChange}
@@ -259,7 +258,6 @@ export function TeamCreateForm({ onSubmit, onSuccess }: TeamCreateFormProps) {
                     render={({ field }) => (
                       <Select
                         options={yearOptions}
-                        tabIndex={0}
                         placeholder='창단 연도를 선택해주세요.'
                         value={field.value}
                         onChange={field.onChange}
@@ -281,7 +279,6 @@ export function TeamCreateForm({ onSubmit, onSuccess }: TeamCreateFormProps) {
                   render={({ field }) => (
                     <Select
                       options={REGION_OPTIONS}
-                      tabIndex={0}
                       placeholder='활동지역을 선택해주세요.'
                       value={field.value}
                       onChange={field.onChange}

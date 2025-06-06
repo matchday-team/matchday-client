@@ -203,7 +203,6 @@ export const MatchCreateForm = ({
                     <Select
                       options={timeOptions}
                       placeholder='-- : --'
-                      tabIndex={0}
                       value={field.value}
                       onChange={field.onChange}
                       isError={!!errors.plannedStartTime}
@@ -219,7 +218,6 @@ export const MatchCreateForm = ({
                     <Select
                       options={timeOptions}
                       placeholder='-- : --'
-                      tabIndex={0}
                       value={field.value}
                       onChange={field.onChange}
                       isError={!!errors.plannedEndTime}
