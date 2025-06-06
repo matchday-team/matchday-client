@@ -184,6 +184,11 @@ export const Select = ({
     focusNextElement();
   };
 
+  const handleOptionMouseDown = (option: Option) => {
+    // NOTE: onBlur보다 먼저 실행되어 선택이 확실히 처리됨
+    handleOptionClick(option);
+  };
+
   const handleOptionHover = (index: number) => {
     // NOTE: 키보드 네비게이션 중에는 마우스 hover 무시
     if (!isKeyboardNavigation) {
@@ -244,7 +249,7 @@ export const Select = ({
                 isSelected: option.value === value,
                 isFocused: index === focusedIndex,
               })}
-              onClick={() => handleOptionClick(option)}
+              onMouseDown={() => handleOptionMouseDown(option)}
               onMouseEnter={() => handleOptionHover(index)}
               role='option'
               aria-selected={option.value === value}
