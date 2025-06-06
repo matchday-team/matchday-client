@@ -28,7 +28,7 @@ export const container = recipe({
     transition: `width 0.3s ${transitionTiming}`,
     borderRight: `1px solid ${lightThemeVars.color.gray[100]}`,
     backgroundColor: lightThemeVars.color.white.main,
-    height: '100%',
+    height: '100dvh',
 
     '@media': {
       [`(max-width: ${SIDEBAR_BREAKPOINT - 1}px)`]: {
