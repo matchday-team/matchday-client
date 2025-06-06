@@ -6,7 +6,11 @@ import { matchQuery, teamQuery } from '@/apis/queries';
 import { TEMP_SAVED_MATCH_CREATE_FORM_KEY } from '@/constants';
 import { usePageTitle } from '@/hooks';
 
-import { MatchCreateForm, MatchCreateFormData } from './-components';
+import {
+  MatchCreateForm,
+  MatchCreateFormData,
+  MatchCreateStepper,
+} from './-components';
 import * as styles from './-components/MatchCreatePage.css';
 
 export const Route = createFileRoute('/matches/create')({
@@ -47,6 +51,8 @@ function MatchCreatePage() {
 
   return (
     <div className={styles.rootContainer}>
+      <MatchCreateStepper />
+      <h2 className={styles.title}>상세 정보 입력</h2>
       <MatchCreateForm teamList={teamList.data} onSubmit={handleSubmit} />
     </div>
   );
