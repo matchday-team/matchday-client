@@ -18,13 +18,24 @@ export const stepperWrapper = style({
   height: 28,
 });
 
-export const stepLine = style({
-  position: 'absolute',
-  top: 'calc(50% - 1px)',
-  left: 20,
-  backgroundColor: lightThemeVars.color.gray[300],
-  width: 89,
-  height: 2,
+export const stepLine = recipe({
+  base: {
+    position: 'absolute',
+    top: 'calc(50% - 1px)',
+    left: 20,
+    width: 89,
+    height: 2,
+  },
+  variants: {
+    isActive: {
+      true: {
+        backgroundColor: lightThemeVars.color.primary[700],
+      },
+      false: {
+        backgroundColor: lightThemeVars.color.gray[300],
+      },
+    },
+  },
 });
 
 export const step = recipe({

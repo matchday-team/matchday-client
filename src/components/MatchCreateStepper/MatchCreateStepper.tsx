@@ -18,14 +18,18 @@ function Step({ text, isActive, step }: StepProps) {
   );
 }
 
-export function MatchCreateStepper() {
+export function MatchCreateStepper({
+  currentStep,
+}: {
+  currentStep: 1 | 2 | 3;
+}) {
   return (
     <div className={styles.container}>
       <div className={styles.stepperWrapper}>
-        <div className={styles.stepLine} />
-        <Step text='1' isActive={true} step={1} />
-        <Step text='2' isActive={false} step={2} />
-        <Step text='2-1' isActive={false} step={3} />
+        <div className={styles.stepLine({ isActive: currentStep >= 2 })} />
+        <Step text='1' isActive={currentStep >= 1} step={1} />
+        <Step text='2' isActive={currentStep >= 2} step={2} />
+        <Step text='2-1' isActive={currentStep >= 3} step={3} />
       </div>
     </div>
   );

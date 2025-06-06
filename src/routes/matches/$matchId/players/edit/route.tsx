@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { z } from 'zod';
 
 import { teamQuery } from '@/apis/queries';
+import { MatchCreateStepper } from '@/components';
 import { usePageTitle } from '@/hooks';
 import { queryClient } from '@/react-query-provider';
 
@@ -33,6 +34,7 @@ function MatchPlayerEditPage() {
 
   return (
     <div className={styles.rootContainer}>
+      <MatchCreateStepper currentStep={matchSide === 'home' ? 2 : 3} />
       <h2 className={styles.title}>
         {matchSide === 'home' ? '홈팀' : '상대팀'} 명단 설정
       </h2>
