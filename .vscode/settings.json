@@ -25,5 +25,8 @@
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": null
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   }
 }
