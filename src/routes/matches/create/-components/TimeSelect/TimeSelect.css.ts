@@ -1,5 +1,6 @@
-import { style } from '@vanilla-extract/css';
 import { lightThemeVars } from 'src/styles/theme.css';
+
+import { style } from '@vanilla-extract/css';
 
 export const timeContainer = style({
   display: 'flex',

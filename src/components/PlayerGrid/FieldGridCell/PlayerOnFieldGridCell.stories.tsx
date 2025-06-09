@@ -1,7 +1,8 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { matchRecordMocks } from '@/mocks';
-import { lightThemeVars } from '@/styles/theme.css';
 
 import { PlayerOnFieldGridCell } from './PlayerOnFieldGridCell';
 

@@ -1,3 +1,5 @@
+import * as atomicStyles from '@/styles/atomic.css';
+
 import { useEffect } from 'react';
 
 import { useSuspenseQuery } from '@tanstack/react-query';
@@ -27,7 +29,6 @@ import {
 import { usePageTitle } from '@/hooks';
 import { queryClient } from '@/react-query-provider';
 import { useSelectedPlayerStore } from '@/stores';
-import * as atomicStyles from '@/styles/atomic.css';
 
 import { MatchRecordLayout } from './-components';
 import { MatchTimeControllerAdapter } from './-components/MatchRecordLayout/MatchTimeControllerAdapter';

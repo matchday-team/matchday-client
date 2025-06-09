@@ -1,6 +1,6 @@
-import { recipe } from '@vanilla-extract/recipes';
-
 import { lightThemeVars } from '@/styles/theme.css';
+
+import { recipe } from '@vanilla-extract/recipes';
 
 export const commonCellContainer = recipe({
   base: {

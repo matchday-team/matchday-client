@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
 import { lightThemeVars } from '@/styles/theme.css';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { Label } from './Label';
 

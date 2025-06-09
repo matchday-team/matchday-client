@@ -1,9 +1,10 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import type { Meta, StoryObj } from '@storybook/react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import { selectedTeamColorVar } from '@/features/matchRecord/styles';
 import { matchRecordMocks } from '@/mocks';
-import { lightThemeVars } from '@/styles/theme.css';
 
 import { TeamStatCounterGrid } from './TeamStatCounterGrid';
 

@@ -1,3 +1,5 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
@@ -6,7 +8,6 @@ import {
   SIDEBAR_WIDTH,
   SIDEBAR_WIDTH_SMALL,
 } from '@/constants';
-import { lightThemeVars } from '@/styles/theme.css';
 
 import {
   footer,

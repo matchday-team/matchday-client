@@ -1,8 +1,9 @@
+import { commonPaper } from '@/styles/paper.css';
+import { lightThemeVars } from '@/styles/theme.css';
+
 import { style } from '@vanilla-extract/css';
 
 import { selectedTeamColorVar } from '@/features/matchRecord/styles';
-import { commonPaper } from '@/styles/paper.css';
-import { lightThemeVars } from '@/styles/theme.css';
 
 export const rootContainer = style([
   commonPaper,

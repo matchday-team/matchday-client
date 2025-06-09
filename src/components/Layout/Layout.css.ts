@@ -1,3 +1,5 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import { style } from '@vanilla-extract/css';
 
 import {
@@ -5,7 +7,6 @@ import {
   SIDEBAR_BREAKPOINT,
   SIDEBAR_WIDTH_SMALL,
 } from '@/constants';
-import { lightThemeVars } from '@/styles/theme.css';
 
 export const layoutContainer = style({
   display: 'flex',

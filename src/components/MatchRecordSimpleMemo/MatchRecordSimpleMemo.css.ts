@@ -1,7 +1,7 @@
-import { style } from '@vanilla-extract/css';
-
 import { commonPaper } from '@/styles/paper.css';
 import { lightThemeVars } from '@/styles/theme.css';
+
+import { style } from '@vanilla-extract/css';
 
 export const container = style([
   commonPaper,

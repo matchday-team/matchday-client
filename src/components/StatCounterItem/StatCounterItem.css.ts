@@ -1,7 +1,8 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import { recipe } from '@vanilla-extract/recipes';
 
 import { selectedTeamColorVar } from '@/features/matchRecord/styles';
-import { lightThemeVars } from '@/styles/theme.css';
 
 export const rootContainer = recipe({
   base: {

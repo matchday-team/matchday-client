@@ -1,3 +1,5 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import {
   MatchEventResponse,
   MatchInfoResponse,
@@ -5,7 +7,6 @@ import {
   TeamResponse,
 } from '@/apis/models';
 import { MatchEventType } from '@/constants';
-import { lightThemeVars } from '@/styles/theme.css';
 
 export const mockMatchInfo: MatchInfoResponse = {
   stadium: '한양대학교 대운동장',

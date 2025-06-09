@@ -1,7 +1,7 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
-
-import { lightThemeVars } from '@/styles/theme.css';
 
 export const container = style({
   display: 'flex',

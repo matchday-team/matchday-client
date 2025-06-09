@@ -1,8 +1,8 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import { useState } from 'react';
 
 import type { Meta, StoryFn } from '@storybook/react';
-
-import { lightThemeVars } from '@/styles/theme.css';
 
 import { MatchRecordSimpleMemo } from './MatchRecordSimpleMemo';
 

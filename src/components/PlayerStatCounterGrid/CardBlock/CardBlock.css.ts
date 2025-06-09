@@ -1,6 +1,7 @@
+import { lightThemeRawValues, lightThemeVars } from '@/styles/theme.css';
+
 import { recipe } from '@vanilla-extract/recipes';
 
-import { lightThemeRawValues, lightThemeVars } from '@/styles/theme.css';
 import { colorUtils } from '@/utils';
 
 // FIXME: dashed 간격 늘려야 함
