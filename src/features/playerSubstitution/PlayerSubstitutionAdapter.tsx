@@ -1,8 +1,11 @@
 import { DragEvent, ReactElement } from 'react';
 
+import { overlay } from 'overlay-kit';
+
 import { MatchUserResponse, TeamResponse } from '@/apis/models';
 import { useMatchRecordWsMutation } from '@/features/matchRecord';
 import { useIsDragOver } from '@/hooks';
+import { PlayerSubstitutionConfirmModal } from '@/routes/matches/$matchId/record/-components';
 
 import * as policies from './playerSubstitutionPolicy';
 import {
@@ -45,7 +48,7 @@ export const PlayerSubstitutionAdapter = <Target extends HTMLElement>({
     getIsSubstitutionTarget(mode, team);
 
   const handleDragStart = (e: DragEvent<Target>) => {
-    e.dataTransfer.setData('text/plain', player.id.toString());
+    e.dataTransfer.setData('application/json', JSON.stringify(player));
     beginSubstitution(mode, team, player);
   };
 
@@ -63,12 +66,24 @@ export const PlayerSubstitutionAdapter = <Target extends HTMLElement>({
       return;
     }
 
-    const counterpartPlayerId = Number(e.dataTransfer.getData('text/plain'));
-    if (mode === 'starter') {
-      requestPlayerSwap(counterpartPlayerId, player.id);
-    } else {
-      requestPlayerSwap(player.id, counterpartPlayerId);
-    }
+    const counterpartPlayer: MatchUserResponse = JSON.parse(
+      e.dataTransfer.getData('application/json'),
+    );
+    const inPlayer = mode === 'starter' ? counterpartPlayer : player;
+    const outPlayer = mode === 'starter' ? player : counterpartPlayer;
+
+    overlay.open(({ isOpen, close }) => (
+      <PlayerSubstitutionConfirmModal
+        outPlayer={outPlayer}
+        inPlayer={inPlayer}
+        onConfirm={() => {
+          requestPlayerSwap(inPlayer.id, outPlayer.id);
+          close();
+        }}
+        onClose={close}
+        isOpen={isOpen}
+      />
+    ));
   };
 
   return render({
