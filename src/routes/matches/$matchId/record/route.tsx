@@ -17,6 +17,7 @@ import {
   TeamStatCounterGrid,
 } from '@/components';
 import {
+  MatchTimeControllerAdapter,
   useMatchRecordWsMutation,
   useMatchRecordWsSubscribe,
   useSyncMatchMemo,
@@ -30,7 +31,7 @@ import { usePageTitle } from '@/hooks';
 import { queryClient } from '@/react-query-provider';
 import { useSelectedPlayerStore } from '@/stores';
 
-import { MatchRecordLayout, MatchTimeControllerAdapter } from './-components';
+import { MatchRecordLayout } from './-components';
 import { dividePlayers } from './-utils';
 
 export const Route = createFileRoute('/matches/$matchId/record')({

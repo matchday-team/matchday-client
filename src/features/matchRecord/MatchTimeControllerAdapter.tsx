@@ -14,7 +14,6 @@ import { MatchTimeController } from '@/components';
 import { useIntervalRerender } from '@/hooks';
 import { timeUtils } from '@/utils';
 
-// 전/후반 종료 시점은 각각 45분, 90분으로 설정한다.
 const calcMatchStatus = (matchInfo: MatchInfoResponse) => {
   if (!matchInfo.firstHalfStartTime) {
     return {
@@ -55,6 +54,7 @@ const calcMatchStatus = (matchInfo: MatchInfoResponse) => {
 };
 
 // API 연동 컴포넌트 - Storybook에서는 미사용
+// NOTE: 현재 View에 변화가 없어서 View와 결합된 상태. 추후 필요 시 render prop으로 의존성 분리
 export const MatchTimeControllerAdapter = ({
   matchId,
 }: {
