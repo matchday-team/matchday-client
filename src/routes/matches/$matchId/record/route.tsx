@@ -22,6 +22,7 @@ import {
   useMatchRecordWsSubscribe,
   useSyncMatchMemo,
 } from '@/features/matchRecord';
+import { HOME_TEAM_DISABLED_TEAM_STATS } from '@/features/matchRecord/matchRecordPolicy';
 import {
   StarterPlayerGridForSubstitution,
   StarterPlayerListForSubstitution,
@@ -125,6 +126,9 @@ function MatchRecordPage() {
               stats={matchScore.data.homeScore}
               onStatIncrement={requestTeamStatChange}
               onStatCancel={requestStatCancel}
+              disabledCriteria={stat =>
+                HOME_TEAM_DISABLED_TEAM_STATS.includes(stat)
+              }
             />
           </div>
         </>

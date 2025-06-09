@@ -16,6 +16,7 @@ export interface TeamStatCounterGridProps {
   stats: ScoreResponse;
   onStatIncrement?: (matchEvent: MatchEventType, teamId: number) => void;
   onStatCancel?: (params: RequestStatCancelParams) => void;
+  disabledCriteria?: (stat: Stat) => boolean;
 }
 
 export const TeamStatCounterGrid = ({
@@ -23,6 +24,7 @@ export const TeamStatCounterGrid = ({
   stats,
   onStatIncrement,
   onStatCancel,
+  disabledCriteria,
 }: TeamStatCounterGridProps) => {
   const handleIncrement = (stat: Stat) => {
     onStatIncrement?.(mapStatRequestField[stat], team.id);
@@ -50,6 +52,7 @@ export const TeamStatCounterGrid = ({
             value={stats[mapStatResponseField[stat]]}
             onIncrement={() => handleIncrement(stat)}
             onDecrement={() => handleDecrement(stat)}
+            disabled={disabledCriteria?.(stat)}
           />
         ))}
       </div>
@@ -62,6 +65,7 @@ export const TeamStatCounterGrid = ({
             value={stats[mapStatResponseField[stat]]}
             onIncrement={() => handleIncrement(stat)}
             onDecrement={() => handleDecrement(stat)}
+            disabled={disabledCriteria?.(stat)}
           />
         ))}
       </div>
