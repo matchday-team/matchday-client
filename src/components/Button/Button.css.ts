@@ -17,6 +17,7 @@ export const button = recipe({
     letterSpacing: -0.35,
     fontSize: 14,
     ':disabled': {
+      // NOTE: 모든 variant의 disabled 상태가 동일 스타일
       border: `1px solid ${lightThemeVars.color.gray[100]}`,
       backgroundColor: lightThemeVars.color.white.hover,
       cursor: 'not-allowed',
@@ -42,7 +43,18 @@ export const button = recipe({
         fontWeight: 500,
         selectors: {
           '&:hover:not(:disabled)': {
-            backgroundColor: lightThemeVars.color.warning,
+            backgroundColor: lightThemeVars.color.white.hover,
+          },
+        },
+      },
+      default: {
+        border: `1px solid ${lightThemeVars.color.primary[100]}`,
+        backgroundColor: lightThemeVars.color.white.main,
+        color: lightThemeVars.color.gray[500],
+        fontWeight: 600,
+        selectors: {
+          '&:hover:not(:disabled)': {
+            backgroundColor: lightThemeVars.color.white.hover,
           },
         },
       },
