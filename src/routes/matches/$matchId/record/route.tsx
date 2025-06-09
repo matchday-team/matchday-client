@@ -1,6 +1,8 @@
+import * as atomicStyles from '@/styles/atomic.css';
+
 import { useEffect } from 'react';
 
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseQueries, useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useParams } from '@tanstack/react-router';
 
 import { matchQuery, teamQuery } from '@/apis/queries';
@@ -15,10 +17,12 @@ import {
   TeamStatCounterGrid,
 } from '@/components';
 import {
+  MatchTimeControllerAdapter,
   useMatchRecordWsMutation,
   useMatchRecordWsSubscribe,
   useSyncMatchMemo,
 } from '@/features/matchRecord';
+import { HOME_TEAM_DISABLED_TEAM_STATS } from '@/features/matchRecord/matchRecordPolicy';
 import {
   StarterPlayerGridForSubstitution,
   StarterPlayerListForSubstitution,
@@ -27,10 +31,8 @@ import {
 import { usePageTitle } from '@/hooks';
 import { queryClient } from '@/react-query-provider';
 import { useSelectedPlayerStore } from '@/stores';
-import * as atomicStyles from '@/styles/atomic.css';
 
 import { MatchRecordLayout } from './-components';
-import { MatchTimeControllerAdapter } from './-components/MatchRecordLayout/MatchTimeControllerAdapter';
 import { dividePlayers } from './-utils';
 
 export const Route = createFileRoute('/matches/$matchId/record')({
@@ -52,14 +54,23 @@ function MatchRecordPage() {
   const { matchId: _matchId } = useParams({ from: '/matches/$matchId/record' });
   const matchId = Number(_matchId);
   useMatchRecordWsSubscribe(matchId);
-  const { requestTeamStatChange, requestPlayerStatChange } =
+  const { requestTeamStatChange, requestPlayerStatChange, requestStatCancel } =
     useMatchRecordWsMutation(matchId);
-
   const { memo, updateMemo } = useSyncMatchMemo(matchId);
-  const { data: matchInfo } = useSuspenseQuery(matchQuery.info(matchId));
-  const { data: matchScore } = useSuspenseQuery(matchQuery.score(matchId));
-  const { data: matchEvents } = useSuspenseQuery(matchQuery.events(matchId));
-  const { data: matchPlayers } = useSuspenseQuery(matchQuery.players(matchId));
+  const [
+    { data: matchInfo },
+    { data: matchScore },
+    { data: matchEvents },
+    { data: matchPlayers },
+  ] = useSuspenseQueries({
+    queries: [
+      matchQuery.info(matchId),
+      matchQuery.score(matchId),
+      matchQuery.events(matchId),
+      matchQuery.players(matchId),
+    ],
+  });
+
   const { starters: homeTeamStarters, substitutes: homeTeamSubstitutes } =
     dividePlayers(matchPlayers.data.homeTeam);
   const { starters: awayTeamStarters, substitutes: awayTeamSubstitutes } =
@@ -113,7 +124,11 @@ function MatchRecordPage() {
             <TeamStatCounterGrid
               team={homeTeam.data}
               stats={matchScore.data.homeScore}
-              onStatChange={requestTeamStatChange}
+              onStatIncrement={requestTeamStatChange}
+              onStatCancel={requestStatCancel}
+              disabledCriteria={stat =>
+                HOME_TEAM_DISABLED_TEAM_STATS.includes(stat)
+              }
             />
           </div>
         </>
@@ -144,7 +159,8 @@ function MatchRecordPage() {
             <TeamStatCounterGrid
               team={awayTeam.data}
               stats={matchScore.data.awayScore}
-              onStatChange={requestTeamStatChange}
+              onStatIncrement={requestTeamStatChange}
+              onStatCancel={requestStatCancel}
             />
           </div>
         </>
@@ -164,7 +180,10 @@ function MatchRecordPage() {
         </>
       }
       selectedPlayer={
-        <PlayerStatCounterGrid onStatChange={requestPlayerStatChange} />
+        <PlayerStatCounterGrid
+          onStatIncrement={requestPlayerStatChange}
+          onStatCancel={requestStatCancel}
+        />
       }
       timer={<MatchTimeControllerAdapter matchId={matchId} />}
       info={<MatchSchedule matchInfo={matchInfo.data} />}

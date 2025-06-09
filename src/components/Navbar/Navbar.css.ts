@@ -1,8 +1,9 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 import { NAVBAR_HEIGHT, SIDEBAR_WIDTH, SIDEBAR_WIDTH_SMALL } from '@/constants';
-import { lightThemeVars } from '@/styles/theme.css';
 
 export const navbar = recipe({
   base: {

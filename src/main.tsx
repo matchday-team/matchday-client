@@ -1,3 +1,7 @@
+import './styles/font.css';
+import './styles/normalize.css';
+import './styles/reset.css';
+
 import { StrictMode, Suspense } from 'react';
 
 import Hotjar from '@hotjar/browser';
@@ -10,16 +14,22 @@ import { SnackbarViewForDebug, UserSettingsDialog } from './components';
 import { HOTJAR_SITE_ID, HOTJAR_VERSION } from './constants';
 import { ReactQueryClientProvider } from './react-query-provider';
 import { routeTree } from './routeTree.gen';
-import './styles/font.css';
-import './styles/normalize.css';
-import './styles/reset.css';
+import {
+  activateDefaultLog,
+  attachLoggerOnError,
+  attachLoggerOnNavigate,
+} from './utils';
 
 if (import.meta.env.DEV && import.meta.env.VITE_USE_MSW === 'true') {
   const { initializeMSW } = await import('./mocks');
   await initializeMSW();
 }
 
-if (!import.meta.env.DEV) {
+if (import.meta.env.DEV) {
+  activateDefaultLog();
+  attachLoggerOnError();
+  attachLoggerOnNavigate();
+} else {
   Hotjar.init(HOTJAR_SITE_ID, HOTJAR_VERSION);
 }
 

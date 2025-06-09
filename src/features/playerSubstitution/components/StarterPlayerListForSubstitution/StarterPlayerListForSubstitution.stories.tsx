@@ -5,7 +5,7 @@ import { matchRecordMocks } from '@/mocks';
 import { StarterPlayerListForSubstitution } from './StarterPlayerListForSubstitution';
 
 const meta = {
-  title: 'Components/PlayerList',
+  title: 'Components/StarterPlayerListForSubstitution',
   component: StarterPlayerListForSubstitution,
   parameters: {
     layout: 'centered',

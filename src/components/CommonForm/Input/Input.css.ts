@@ -1,7 +1,8 @@
+import { lightThemeRawValues, lightThemeVars } from '@/styles/theme.css';
+
 import { style } from '@vanilla-extract/css';
 
-import { lightThemeRawValues, lightThemeVars } from '@/styles/theme.css';
-import { hexColorAlpha } from '@/utils/colorUtils';
+import { hexColorAlpha } from '@/styles/colorUtils';
 
 export const rootContainer = style({
   boxSizing: 'border-box',

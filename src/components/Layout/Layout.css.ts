@@ -1,3 +1,5 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import { style } from '@vanilla-extract/css';
 
 import {
@@ -5,12 +7,11 @@ import {
   SIDEBAR_BREAKPOINT,
   SIDEBAR_WIDTH_SMALL,
 } from '@/constants';
-import { lightThemeVars } from '@/styles/theme.css';
 
 export const layoutContainer = style({
   display: 'flex',
   width: '100%',
-  minHeight: '100dvh', // NOTE: 화면은 채우되 화면에 비해 콘텐츠가 크면 얼마든지 더 늘어날 수 있게 함
+  height: '100dvh',
 });
 
 export const mainContent = style({
@@ -18,7 +19,8 @@ export const mainContent = style({
   flex: 1,
   flexDirection: 'column',
   width: '100%',
-  overflow: 'hidden',
+  height: '100dvh',
+  overflow: 'auto',
 });
 
 export const contentArea = style({
@@ -26,7 +28,7 @@ export const contentArea = style({
   flex: 1,
   backgroundColor: lightThemeVars.color.white.background,
   paddingTop: NAVBAR_HEIGHT,
-  overflow: 'auto',
+
   '@media': {
     [`(max-width: ${SIDEBAR_BREAKPOINT}px)`]: {
       paddingLeft: SIDEBAR_WIDTH_SMALL,

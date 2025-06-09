@@ -7,30 +7,34 @@ import {
   mapStatResponseField,
   teamStatList,
 } from '@/constants';
+import { RequestStatCancelParams } from '@/features/matchRecord';
 
 import * as styles from './TeamStatCounterGrid.css';
 
 export interface TeamStatCounterGridProps {
   team: TeamResponse;
   stats: ScoreResponse;
-  onStatChange?: (
-    matchEvent: MatchEventType,
-    teamId: number,
-    isIncrement: boolean,
-  ) => void;
+  onStatIncrement?: (matchEvent: MatchEventType, teamId: number) => void;
+  onStatCancel?: (params: RequestStatCancelParams) => void;
+  disabledCriteria?: (stat: Stat) => boolean;
 }
 
 export const TeamStatCounterGrid = ({
   team,
   stats,
-  onStatChange,
+  onStatIncrement,
+  onStatCancel,
+  disabledCriteria,
 }: TeamStatCounterGridProps) => {
   const handleIncrement = (stat: Stat) => {
-    onStatChange?.(mapStatRequestField[stat], team.id, true);
+    onStatIncrement?.(mapStatRequestField[stat], team.id);
   };
 
   const handleDecrement = (stat: Stat) => {
-    onStatChange?.(mapStatRequestField[stat], team.id, false);
+    onStatCancel?.({
+      matchEventType: mapStatRequestField[stat],
+      teamId: team.id,
+    });
   };
 
   const firstLine = teamStatList.slice(0, 4);
@@ -39,7 +43,7 @@ export const TeamStatCounterGrid = ({
   // NOTE: grid로 4*2 구성하고 싶었지만, 컨테이너 padding에도 border를 적용해야 하므로 flex로 렌더링
   return (
     <div className={styles.rootContainer}>
-      <div className={styles.gridLine}>
+      <div className={styles.firstLine}>
         {firstLine.map(stat => (
           <StatCounterItem
             key={stat}
@@ -48,10 +52,11 @@ export const TeamStatCounterGrid = ({
             value={stats[mapStatResponseField[stat]]}
             onIncrement={() => handleIncrement(stat)}
             onDecrement={() => handleDecrement(stat)}
+            disabled={disabledCriteria?.(stat)}
           />
         ))}
       </div>
-      <div className={styles.gridLine}>
+      <div className={styles.secondLine}>
         {secondLine.map(stat => (
           <StatCounterItem
             key={stat}
@@ -60,6 +65,7 @@ export const TeamStatCounterGrid = ({
             value={stats[mapStatResponseField[stat]]}
             onIncrement={() => handleIncrement(stat)}
             onDecrement={() => handleDecrement(stat)}
+            disabled={disabledCriteria?.(stat)}
           />
         ))}
       </div>

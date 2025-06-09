@@ -1,14 +1,15 @@
 // FIXME: 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
 /** @jsxImportSource react */
 /* eslint-disable no-restricted-imports */
+import '../src/styles/font.css';
+import '../src/styles/normalize.css';
+import '../src/styles/reset.css';
+
 import type { Preview } from '@storybook/react';
 import { initialize as initializeMSW, mswLoader } from 'msw-storybook-addon';
 
 import { ignoreDevResources } from '../src/mocks';
 import { ReactQueryClientProvider } from '../src/react-query-provider';
-import '../src/styles/font.css';
-import '../src/styles/normalize.css';
-import '../src/styles/reset.css';
 
 initializeMSW({
   onUnhandledRequest: ignoreDevResources,

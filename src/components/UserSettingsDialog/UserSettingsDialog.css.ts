@@ -1,8 +1,8 @@
-import { style } from '@vanilla-extract/css';
-import { recipe } from '@vanilla-extract/recipes';
-
 import { commonPaper } from '@/styles/paper.css';
 import { lightThemeVars } from '@/styles/theme.css';
+
+import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 export const dialog = style([
   commonPaper,

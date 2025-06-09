@@ -1,6 +1,6 @@
-import { style } from '@vanilla-extract/css';
-
 import { commonPageRoot } from '@/styles/page.css';
+
+import { style } from '@vanilla-extract/css';
 
 export const rootContainer = style([
   commonPageRoot,

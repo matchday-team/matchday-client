@@ -1,8 +1,9 @@
-import { style } from '@vanilla-extract/css';
-import { recipe } from '@vanilla-extract/recipes';
 import { lightThemeRawValues, lightThemeVars } from 'src/styles/theme.css';
 
-import { hexColorAlpha } from '@/utils/colorUtils';
+import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
+
+import { hexColorAlpha } from '@/styles/colorUtils';
 
 export const OPTION_ITEM_HEIGHT = 38;
 export const DROPDOWN_LIST_HEIGHT = 208;

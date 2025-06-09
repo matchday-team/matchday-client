@@ -1,5 +1,6 @@
-import { recipe } from '@vanilla-extract/recipes';
 import { lightThemeVars } from 'src/styles/theme.css';
+
+import { recipe } from '@vanilla-extract/recipes';
 
 export const button = recipe({
   base: {

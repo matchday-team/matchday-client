@@ -1,6 +1,12 @@
 import { getWebSocketApi } from '@/apis/websockets';
 import { MatchEventType } from '@/constants';
 
+export type RequestStatCancelParams = {
+  matchEventType: MatchEventType;
+  teamId: number;
+  matchUserId?: number;
+};
+
 export const useMatchRecordWsMutation = (matchId: number) => {
   const wsApi = getWebSocketApi();
 
@@ -31,9 +37,22 @@ export const useMatchRecordWsMutation = (matchId: number) => {
     });
   };
 
+  const requestStatCancel = ({
+    matchEventType,
+    teamId,
+    matchUserId,
+  }: RequestStatCancelParams) => {
+    wsApi.send('recordStatCancel', [matchId], {
+      matchUserId: matchUserId ?? null,
+      teamId,
+      matchEventType,
+    });
+  };
+
   return {
     requestPlayerSwap,
     requestTeamStatChange,
     requestPlayerStatChange,
+    requestStatCancel,
   };
 };

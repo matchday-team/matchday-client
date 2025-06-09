@@ -1,3 +1,5 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import type { Meta, StoryObj } from '@storybook/react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
@@ -5,7 +7,6 @@ import {
   teamAwayColor,
   teamHomeColor,
 } from '@/components/MatchLogList/colors.css';
-import { lightThemeVars } from '@/styles/theme.css';
 
 import { TeamStatCompareCounterList } from './TeamStatCompareCounterList';
 

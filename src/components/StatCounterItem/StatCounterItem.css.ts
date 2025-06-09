@@ -1,7 +1,9 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import { recipe } from '@vanilla-extract/recipes';
 
-import { teamColor } from '@/components/PlayerList/TeamColor.css';
-import { lightThemeVars } from '@/styles/theme.css';
+import { commonGridLine } from '@/components/TeamStatCounterGrid/TeamStatCounterGrid.css';
+import { selectedTeamColorVar } from '@/features/matchRecord/styles';
 
 export const rootContainer = recipe({
   base: {
@@ -30,6 +32,13 @@ export const rootContainer = recipe({
           // NOTE: 2*4 그리드 기준이므로 그리드 구성 변경 시마다 반영 필요
           '&:nth-child(4n)': {
             borderRight: 'none',
+          },
+          // NOTE: 컨테이너 쪽에서 padding을 하면 Item의 disabled 여부에 따라 대응을 해야 해서 Item에서 분기
+          [`${commonGridLine} &:first-child`]: {
+            paddingLeft: 10,
+          },
+          [`${commonGridLine} &:last-child`]: {
+            paddingRight: 10,
           },
         },
       },
@@ -72,7 +81,7 @@ export const value = recipe({
   variants: {
     colorIntegration: {
       true: {
-        color: teamColor,
+        color: selectedTeamColorVar,
       },
     },
     type: {

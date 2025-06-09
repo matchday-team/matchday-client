@@ -1,3 +1,5 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 
@@ -8,7 +10,6 @@ import {
   StarterPlayerListForEdit,
   SubPlayerListForEdit,
 } from '@/features/playerLineupEdit';
-import { lightThemeVars } from '@/styles/theme.css';
 
 import * as styles from './PlayersEditView.css';
 

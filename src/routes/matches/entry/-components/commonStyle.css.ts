@@ -1,6 +1,6 @@
-import { style } from '@vanilla-extract/css';
-
 import { lightThemeVars } from '@/styles/theme.css';
+
+import { style } from '@vanilla-extract/css';
 
 export const commonContainer = style({
   boxSizing: 'border-box',

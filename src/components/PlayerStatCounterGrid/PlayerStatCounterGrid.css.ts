@@ -1,8 +1,9 @@
-import { style } from '@vanilla-extract/css';
-
-import { teamColor } from '@/components/PlayerList/TeamColor.css';
 import { commonPaper } from '@/styles/paper.css';
 import { lightThemeVars } from '@/styles/theme.css';
+
+import { style } from '@vanilla-extract/css';
+
+import { selectedTeamColorVar } from '@/features/matchRecord/styles';
 
 export const rootContainer = style([
   commonPaper,
@@ -10,7 +11,7 @@ export const rootContainer = style([
     boxSizing: 'border-box',
     display: 'flex',
     flexDirection: 'column',
-    border: `2px solid ${teamColor}`,
+    border: `2px solid ${selectedTeamColorVar}`,
   },
 ]);
 

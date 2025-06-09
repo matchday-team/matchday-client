@@ -1,6 +1,6 @@
-import { style } from '@vanilla-extract/css';
-
 import { commonPageRoot } from '@/styles/page.css';
+
+import { style } from '@vanilla-extract/css';
 
 // NOTE: 현재 디자인은 고정 크기의 레이아웃으로 배치
 export const rootContainer = style([

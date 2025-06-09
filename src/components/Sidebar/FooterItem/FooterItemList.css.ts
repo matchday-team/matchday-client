@@ -1,3 +1,5 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
@@ -7,7 +9,6 @@ import {
   label,
   transitionTiming,
 } from '@/components/Sidebar/SidebarCommon.css';
-import { lightThemeVars } from '@/styles/theme.css';
 
 export { footer, footerItemIcon, label, transitionTiming };
 

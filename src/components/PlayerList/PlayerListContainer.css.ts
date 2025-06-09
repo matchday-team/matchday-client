@@ -1,16 +1,16 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import { lightThemeVars } from '@/styles/theme.css';
-
-import { teamColor } from './TeamColor.css';
+import { selectedTeamColorVar } from '@/features/matchRecord/styles';
 
 export const rootContainer = recipe({
   base: {
     boxSizing: 'border-box',
     display: 'flex', // NOTE: emptyContainer의 height 채우기 구현을 위해 추가
     flexDirection: 'column',
-    border: `2px solid ${teamColor}`,
+    border: `2px solid ${selectedTeamColorVar}`,
     borderRadius: 10,
     background: '#FFF',
     width: '100%',
@@ -48,7 +48,7 @@ export const header = style({
 });
 
 export const teamLogo = style({
-  border: `2px solid ${teamColor}`,
+  border: `2px solid ${selectedTeamColorVar}`,
   borderRadius: '50%',
   objectFit: 'cover',
   width: 26,

@@ -1,3 +1,5 @@
+import { commonPaper } from '@/styles/paper.css';
+
 import { ReactNode } from 'react';
 
 import { assignInlineVars } from '@vanilla-extract/dynamic';
@@ -6,7 +8,6 @@ import {
   teamAwayColor,
   teamHomeColor,
 } from '@/components/MatchLogList/colors.css';
-import { commonPaper } from '@/styles/paper.css';
 
 import * as styles from './MatchRecordLayout.css';
 

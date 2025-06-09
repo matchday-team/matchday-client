@@ -1,3 +1,5 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import { useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
@@ -7,7 +9,6 @@ import {
   teamAwayColor,
   teamHomeColor,
 } from '@/components/MatchLogList/colors.css';
-import { lightThemeVars } from '@/styles/theme.css';
 
 import { StatCompareCounter } from './StatCompareCounter';
 

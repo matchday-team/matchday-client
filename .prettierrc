@@ -12,6 +12,7 @@
   "importOrderSortSpecifiers": true,
   "embeddedLanguageFormatting": "auto",
   "importOrder": [
+    ".*\\/styles\\/.*\\.css$",
     "^(react/(.*)$)|^(react$)",
     "<THIRD_PARTY_MODULES>",
     "^(@/(.*)$)",
