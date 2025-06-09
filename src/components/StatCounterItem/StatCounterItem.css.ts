@@ -1,6 +1,6 @@
 import { recipe } from '@vanilla-extract/recipes';
 
-import { teamColor } from '@/components/PlayerList/TeamColor.css';
+import { selectedTeamColorVar } from '@/features/matchRecord/styles';
 import { lightThemeVars } from '@/styles/theme.css';
 
 export const rootContainer = recipe({
@@ -72,7 +72,7 @@ export const value = recipe({
   variants: {
     colorIntegration: {
       true: {
-        color: teamColor,
+        color: selectedTeamColorVar,
       },
     },
     type: {

@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { teamColor } from '@/components/PlayerList/TeamColor.css';
+import { selectedTeamColorVar } from '@/features/matchRecord/styles';
 import { commonPaper } from '@/styles/paper.css';
 import { lightThemeVars } from '@/styles/theme.css';
 
@@ -10,7 +10,7 @@ export const rootContainer = style([
     boxSizing: 'border-box',
     display: 'flex',
     flexDirection: 'column',
-    border: `2px solid ${teamColor}`,
+    border: `2px solid ${selectedTeamColorVar}`,
   },
 ]);
 

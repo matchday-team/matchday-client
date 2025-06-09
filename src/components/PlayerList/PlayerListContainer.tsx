@@ -4,9 +4,9 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import { TeamResponse } from '@/apis/models';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
+import { selectedTeamColorVar } from '@/features/matchRecord/styles';
 
 import * as styles from './PlayerListContainer.css';
-import { teamColor } from './TeamColor.css';
 
 interface PlayerListContainerProps extends ComponentProps<'div'> {
   team: TeamResponse;
@@ -33,7 +33,7 @@ export const PlayerListContainer = ({
     <div
       className={styles.rootContainer({ isDragOver, disabled })}
       style={assignInlineVars({
-        [teamColor]: team.teamColor,
+        [selectedTeamColorVar]: team.teamColor,
       })}
       {...props}
     >

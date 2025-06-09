@@ -1,8 +1,8 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import { teamColor } from '@/components/PlayerList/TeamColor.css';
 import { StatCounterItem } from '@/components/StatCounterItem';
 import { MatchEventType } from '@/constants';
+import { selectedTeamColorVar } from '@/features/matchRecord/styles';
 import { useSelectedPlayerStore } from '@/stores';
 
 import { CardBlock } from './CardBlock';
@@ -57,7 +57,7 @@ export const PlayerStatCounterGrid = ({
     <div
       className={styles.rootContainer}
       style={assignInlineVars({
-        [teamColor]: selectedPlayer.team.teamColor,
+        [selectedTeamColorVar]: selectedPlayer.team.teamColor,
       })}
     >
       <PlayerBlock team={selectedPlayer.team} player={selectedPlayer.player} />

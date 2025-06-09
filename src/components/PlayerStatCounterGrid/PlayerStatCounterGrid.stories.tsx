@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-import { teamColor } from '@/components/PlayerList/TeamColor.css';
+import { selectedTeamColorVar } from '@/features/matchRecord/styles';
 import { matchRecordMocks } from '@/mocks';
 import { useSelectedPlayerStore } from '@/stores';
 import { lightThemeVars } from '@/styles/theme.css';
@@ -20,7 +20,7 @@ const meta = {
         style={{
           width: '280px',
           ...assignInlineVars({
-            [teamColor]: lightThemeVars.color.soccer.red,
+            [selectedTeamColorVar]: lightThemeVars.color.soccer.red,
           }),
         }}
       >

@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
-// FIXME: teamColor 공통화 필요
-import { teamColor } from '@/components/PlayerList/TeamColor.css';
+import { selectedTeamColorVar } from '@/features/matchRecord/styles';
 import { matchRecordMocks } from '@/mocks';
 import { lightThemeVars } from '@/styles/theme.css';
 
@@ -18,7 +17,7 @@ const meta = {
     Story => (
       <div
         style={assignInlineVars({
-          [teamColor]: lightThemeVars.color.soccer.red,
+          [selectedTeamColorVar]: lightThemeVars.color.soccer.red,
         })}
       >
         <Story />

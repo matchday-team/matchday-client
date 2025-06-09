@@ -1,9 +1,8 @@
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
+import { selectedTeamColorVar } from '@/features/matchRecord/styles';
 import { lightThemeVars } from '@/styles/theme.css';
-
-import { teamColor } from './TeamColor.css';
 
 export const rootContainer = recipe({
   base: {
@@ -27,8 +26,8 @@ export const rootContainer = recipe({
   variants: {
     isSelected: {
       true: {
-        borderTop: `2px dashed ${teamColor}`,
-        borderBottom: `2px dashed ${teamColor}`,
+        borderTop: `2px dashed ${selectedTeamColorVar}`,
+        borderBottom: `2px dashed ${selectedTeamColorVar}`,
       },
     },
     isDragOver: {
