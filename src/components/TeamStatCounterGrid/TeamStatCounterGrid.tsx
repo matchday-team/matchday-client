@@ -43,7 +43,7 @@ export const TeamStatCounterGrid = ({
   // NOTE: grid로 4*2 구성하고 싶었지만, 컨테이너 padding에도 border를 적용해야 하므로 flex로 렌더링
   return (
     <div className={styles.rootContainer}>
-      <div className={styles.gridLine}>
+      <div className={styles.firstLine}>
         {firstLine.map(stat => (
           <StatCounterItem
             key={stat}
@@ -56,7 +56,7 @@ export const TeamStatCounterGrid = ({
           />
         ))}
       </div>
-      <div className={styles.gridLine}>
+      <div className={styles.secondLine}>
         {secondLine.map(stat => (
           <StatCounterItem
             key={stat}
