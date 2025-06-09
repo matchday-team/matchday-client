@@ -1,10 +1,13 @@
 import { ApiResponse, MatchEventResponse } from '@/apis/models';
 import { MatchEventType } from '@/constants';
+import { SessionLogger } from '@/utils/SessionLogger/SessionLogger';
 
 import {
   RequestMapperDefinition,
   ResponseMapperDefinition,
 } from './SharedTypeSafeWebSocket';
+
+const logger = new SessionLogger('websocket-infra');
 
 export interface MatchRecordPlayerStatRequest {
   matchUserId: number;
@@ -98,7 +101,7 @@ export const responseMapperDefinition = {
     responseMapper:
       (handlers: { reset?: (matchId: number) => void }) => payload => {
         const { id } = JSON.parse(payload) as { id: number };
-        console.log('match reset. target matchId:', id);
+        logger.debug('match reset. target matchId:', id);
         handlers.reset?.(id);
       },
   },
@@ -108,7 +111,7 @@ export const responseMapperDefinition = {
       (handlers: { event?: (event: MatchEventResponse) => void }) =>
       payload => {
         const event = JSON.parse(payload) as MatchEventResponse;
-        console.log('match websocket event', event);
+        logger.debug('match websocket event', event);
         handlers.event?.(event);
       },
   },
