@@ -3,6 +3,7 @@ import { ComponentPropsWithRef, SyntheticEvent } from 'react';
 import { MatchUserResponse } from '@/apis/models';
 import { ChevronDownIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
+import { StringUtils } from '@/utils';
 
 import * as styles from './PlayerListItem.css';
 
@@ -13,14 +14,9 @@ export interface PlayerListItemProps extends ComponentPropsWithRef<'li'> {
   disabled: boolean;
 }
 
-const displayDashIfZero = (value: number) => {
-  return value === 0 ? '-' : value;
-};
-
 export const PlayerListItem = ({
   isSelected,
   player,
-  onClick,
   isDragOver,
   disabled,
   ...props
@@ -52,9 +48,11 @@ export const PlayerListItem = ({
         <span className={styles.position}>{player.matchPosition}</span>
       </div>
       <div className={styles.statContainer}>
-        <span className={styles.number}>{displayDashIfZero(player.goals)}</span>
         <span className={styles.number}>
-          {displayDashIfZero(player.assists)}
+          {StringUtils.displayDashIfZero(player.goals)}
+        </span>
+        <span className={styles.number}>
+          {StringUtils.displayDashIfZero(player.assists)}
         </span>
         <div className={styles.cautionContainer}>
           <div
