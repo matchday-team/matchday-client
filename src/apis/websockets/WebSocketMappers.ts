@@ -27,6 +27,12 @@ export interface MatchMemoSyncResponse {
   memo: string;
 }
 
+export interface MatchRecordStatCancelRequest {
+  matchUserId: number | null; // NOTE: 팀 스탯 취소의 경우 null
+  teamId: number;
+  matchEventType: MatchEventType;
+}
+
 export const requestMapperDefinition = {
   recordPlayerStat: {
     channelMapper: (matchId: number) => `/app/match/${matchId}`,
@@ -62,6 +68,12 @@ export const requestMapperDefinition = {
         ...payload,
         description: '',
       });
+    },
+  },
+  recordStatCancel: {
+    channelMapper: (matchId: number) => `/app/match/${matchId}/cancel`,
+    requestMapper: (payload: MatchRecordStatCancelRequest) => {
+      return JSON.stringify(payload);
     },
   },
 } satisfies RequestMapperDefinition;
