@@ -2,7 +2,7 @@ import * as atomicStyles from '@/styles/atomic.css';
 
 import { useEffect } from 'react';
 
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseQueries, useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useParams } from '@tanstack/react-router';
 
 import { matchQuery, teamQuery } from '@/apis/queries';
@@ -30,8 +30,7 @@ import { usePageTitle } from '@/hooks';
 import { queryClient } from '@/react-query-provider';
 import { useSelectedPlayerStore } from '@/stores';
 
-import { MatchRecordLayout } from './-components';
-import { MatchTimeControllerAdapter } from './-components/MatchRecordLayout/MatchTimeControllerAdapter';
+import { MatchRecordLayout, MatchTimeControllerAdapter } from './-components';
 import { dividePlayers } from './-utils';
 
 export const Route = createFileRoute('/matches/$matchId/record')({
@@ -55,12 +54,21 @@ function MatchRecordPage() {
   useMatchRecordWsSubscribe(matchId);
   const { requestTeamStatChange, requestPlayerStatChange } =
     useMatchRecordWsMutation(matchId);
-
   const { memo, updateMemo } = useSyncMatchMemo(matchId);
-  const { data: matchInfo } = useSuspenseQuery(matchQuery.info(matchId));
-  const { data: matchScore } = useSuspenseQuery(matchQuery.score(matchId));
-  const { data: matchEvents } = useSuspenseQuery(matchQuery.events(matchId));
-  const { data: matchPlayers } = useSuspenseQuery(matchQuery.players(matchId));
+  const [
+    { data: matchInfo },
+    { data: matchScore },
+    { data: matchEvents },
+    { data: matchPlayers },
+  ] = useSuspenseQueries({
+    queries: [
+      matchQuery.info(matchId),
+      matchQuery.score(matchId),
+      matchQuery.events(matchId),
+      matchQuery.players(matchId),
+    ],
+  });
+
   const { starters: homeTeamStarters, substitutes: homeTeamSubstitutes } =
     dividePlayers(matchPlayers.data.homeTeam);
   const { starters: awayTeamStarters, substitutes: awayTeamSubstitutes } =
