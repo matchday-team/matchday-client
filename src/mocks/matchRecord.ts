@@ -164,7 +164,7 @@ export const mockPlayersByTeamType = (
     id: startingIdx + 1 + idx,
     userId: startingIdx + 1 + idx,
     name: playerNames[startingIdx + 1 + idx],
-    number: 99,
+    number: idx % 2 === 0 ? 99 : 1,
     matchPosition: 'FW',
     profileImg: 'https://via.placeholder.com/150',
     goals: Math.max(0, 5 - idx),
