@@ -127,6 +127,7 @@ export const number = style([
   commonText,
   {
     width: 17,
+    textAlign: 'center',
   },
 ]);
 
