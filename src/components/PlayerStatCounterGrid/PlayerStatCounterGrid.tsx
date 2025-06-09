@@ -2,6 +2,7 @@ import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import { StatCounterItem } from '@/components/StatCounterItem';
 import { MatchEventType } from '@/constants';
+import { RequestStatCancelParams } from '@/features/matchRecord';
 import { selectedTeamColorVar } from '@/features/matchRecord/styles';
 import { useSelectedPlayerStore } from '@/stores';
 
@@ -11,11 +12,13 @@ import { PlayerBlock } from './PlayerBlock';
 import * as styles from './PlayerStatCounterGrid.css';
 
 type PlayerStatCounterGridProps = {
-  onStatChange: (playerId: number, matchEvent: MatchEventType) => void;
+  onStatIncrement: (playerId: number, matchEvent: MatchEventType) => void;
+  onStatCancel: (params: RequestStatCancelParams) => void;
 };
 
 export const PlayerStatCounterGrid = ({
-  onStatChange,
+  onStatIncrement,
+  onStatCancel,
 }: PlayerStatCounterGridProps) => {
   const { selectedPlayer } = useSelectedPlayerStore();
 
@@ -25,9 +28,9 @@ export const PlayerStatCounterGrid = ({
     }
 
     if (type === 'yellow') {
-      onStatChange(selectedPlayer.player.id, MatchEventType.YELLOW_CARD);
+      onStatIncrement(selectedPlayer.player.id, MatchEventType.YELLOW_CARD);
     } else {
-      onStatChange(selectedPlayer.player.id, MatchEventType.RED_CARD);
+      onStatIncrement(selectedPlayer.player.id, MatchEventType.RED_CARD);
     }
   };
 
@@ -71,7 +74,14 @@ export const PlayerStatCounterGrid = ({
               value={stat.value}
               colorIntegration={false}
               onIncrement={() => {
-                onStatChange(selectedPlayer.player.id, stat.eventType);
+                onStatIncrement(selectedPlayer.player.id, stat.eventType);
+              }}
+              onDecrement={() => {
+                onStatCancel({
+                  matchEventType: stat.eventType,
+                  teamId: selectedPlayer.team.id,
+                  matchUserId: selectedPlayer.player.id,
+                });
               }}
             />
           ))}

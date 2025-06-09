@@ -7,30 +7,32 @@ import {
   mapStatResponseField,
   teamStatList,
 } from '@/constants';
+import { RequestStatCancelParams } from '@/features/matchRecord';
 
 import * as styles from './TeamStatCounterGrid.css';
 
 export interface TeamStatCounterGridProps {
   team: TeamResponse;
   stats: ScoreResponse;
-  onStatChange?: (
-    matchEvent: MatchEventType,
-    teamId: number,
-    isIncrement: boolean,
-  ) => void;
+  onStatIncrement?: (matchEvent: MatchEventType, teamId: number) => void;
+  onStatCancel?: (params: RequestStatCancelParams) => void;
 }
 
 export const TeamStatCounterGrid = ({
   team,
   stats,
-  onStatChange,
+  onStatIncrement,
+  onStatCancel,
 }: TeamStatCounterGridProps) => {
   const handleIncrement = (stat: Stat) => {
-    onStatChange?.(mapStatRequestField[stat], team.id, true);
+    onStatIncrement?.(mapStatRequestField[stat], team.id);
   };
 
   const handleDecrement = (stat: Stat) => {
-    onStatChange?.(mapStatRequestField[stat], team.id, false);
+    onStatCancel?.({
+      matchEventType: mapStatRequestField[stat],
+      teamId: team.id,
+    });
   };
 
   const firstLine = teamStatList.slice(0, 4);

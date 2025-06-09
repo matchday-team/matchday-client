@@ -53,7 +53,7 @@ function MatchRecordPage() {
   const { matchId: _matchId } = useParams({ from: '/matches/$matchId/record' });
   const matchId = Number(_matchId);
   useMatchRecordWsSubscribe(matchId);
-  const { requestTeamStatChange, requestPlayerStatChange } =
+  const { requestTeamStatChange, requestPlayerStatChange, requestStatCancel } =
     useMatchRecordWsMutation(matchId);
   const { memo, updateMemo } = useSyncMatchMemo(matchId);
   const [
@@ -123,7 +123,8 @@ function MatchRecordPage() {
             <TeamStatCounterGrid
               team={homeTeam.data}
               stats={matchScore.data.homeScore}
-              onStatChange={requestTeamStatChange}
+              onStatIncrement={requestTeamStatChange}
+              onStatCancel={requestStatCancel}
             />
           </div>
         </>
@@ -154,7 +155,8 @@ function MatchRecordPage() {
             <TeamStatCounterGrid
               team={awayTeam.data}
               stats={matchScore.data.awayScore}
-              onStatChange={requestTeamStatChange}
+              onStatIncrement={requestTeamStatChange}
+              onStatCancel={requestStatCancel}
             />
           </div>
         </>
@@ -174,7 +176,10 @@ function MatchRecordPage() {
         </>
       }
       selectedPlayer={
-        <PlayerStatCounterGrid onStatChange={requestPlayerStatChange} />
+        <PlayerStatCounterGrid
+          onStatIncrement={requestPlayerStatChange}
+          onStatCancel={requestStatCancel}
+        />
       }
       timer={<MatchTimeControllerAdapter matchId={matchId} />}
       info={<MatchSchedule matchInfo={matchInfo.data} />}

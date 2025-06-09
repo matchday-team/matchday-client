@@ -37,7 +37,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Unselected: Story = {
   args: {
-    onStatChange: () => {},
+    onStatIncrement: () => {},
+    onStatCancel: () => {},
   },
   decorators: [
     Story => {
@@ -53,7 +54,8 @@ export const Unselected: Story = {
 
 export const OneYellowCard: Story = {
   args: {
-    onStatChange: () => {},
+    onStatIncrement: () => {},
+    onStatCancel: () => {},
   },
   decorators: [
     Story => {
@@ -72,7 +74,8 @@ export const OneYellowCard: Story = {
 
 export const OneRedCard: Story = {
   args: {
-    onStatChange: () => {},
+    onStatIncrement: () => {},
+    onStatCancel: () => {},
   },
   decorators: [
     Story => {
