@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef } from 'react';
 
 import * as styles from './Button.css';
 
-type ButtonVariant = 'primary' | 'danger';
+type ButtonVariant = 'primary' | 'danger' | 'default';
 
 interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
   children: React.ReactNode;

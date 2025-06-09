@@ -1,5 +1,6 @@
 import { Outlet, createRootRoute, redirect } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
+import { OverlayProvider } from 'overlay-kit';
 
 import { Layout } from '@/components';
 import { useLoggedInUserStore } from '@/stores';
@@ -22,11 +23,11 @@ export const Route = createRootRoute({
 
 function Root() {
   return (
-    <>
+    <OverlayProvider>
       <Layout>
         <Outlet />
       </Layout>
       <TanStackRouterDevtools />
-    </>
+    </OverlayProvider>
   );
 }

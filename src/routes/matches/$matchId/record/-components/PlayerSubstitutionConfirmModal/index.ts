@@ -1,2 +1,1 @@
-export * from './MatchRecordLayout';
 export * from './PlayerSubstitutionConfirmModal';
