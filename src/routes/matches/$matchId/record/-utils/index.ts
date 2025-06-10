@@ -1,1 +1,1 @@
-export * from './dividePlayers';
+export * from './categorizeAndSortPlayers';
