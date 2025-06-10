@@ -2,9 +2,10 @@ import { lightThemeVars } from '@/styles/theme.css';
 
 import { style } from '@vanilla-extract/css';
 
-export const container = style({
+export const rootContainer = style({
   borderRadius: 8,
   padding: 20,
+  paddingRight: 51,
 });
 
 export const header = style({

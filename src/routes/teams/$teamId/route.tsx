@@ -196,27 +196,21 @@ function TeamDetailPage() {
   const currentMonth = '2025-04';
 
   return (
-    <div className={styles.pageContainer}>
-      <div className={styles.outerContainer}>
-        <div className={styles.mainCard}>
-          <TeamHeader teamInfo={teamInfo} />
-          <div className={styles.contentContainer}>
-            <div className={styles.topSection}>
-              <div className={styles.grid}>
-                <div className={styles.recordsSection}>
-                  <RecentRecords matchResults={matchResults} />
-                </div>
-                <div className={styles.verticalDivider}></div>
-                <div className={styles.scheduleSection}>
-                  <ScheduleCalendar
-                    currentMonth={currentMonth}
-                    calendarDays={calendarDays}
-                  />
-                </div>
-              </div>
-            </div>
+    <div className={styles.rootContainer}>
+      <div className={styles.mainCard}>
+        <TeamHeader teamInfo={teamInfo} />
+        <div className={styles.bodyContainer}>
+          <div className={styles.leftContainer}>
+            <RecentRecords matchResults={matchResults} />
             <div className={styles.horizontalDivider}></div>
             <NoticeBoard notices={notices} />
+          </div>
+          <div className={styles.verticalDivider}></div>
+          <div className={styles.rightContainer}>
+            <ScheduleCalendar
+              currentMonth={currentMonth}
+              calendarDays={calendarDays}
+            />
           </div>
         </div>
       </div>

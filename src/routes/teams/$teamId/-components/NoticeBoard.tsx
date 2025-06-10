@@ -35,7 +35,7 @@ const NoticeItem = ({ notice }: NoticeItemProps) => {
 
 export const NoticeBoard = ({ notices }: NoticeBoardProps) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.rootContainer}>
       <div className={styles.header}>
         <h2 className={styles.title}>공지사항</h2>
         <div className={styles.moreSection}>

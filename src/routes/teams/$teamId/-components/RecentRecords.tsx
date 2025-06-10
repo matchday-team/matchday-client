@@ -21,6 +21,28 @@ interface RecentRecordsProps {
   matchResults: MatchResult[];
 }
 
+export const RecentRecords = ({ matchResults }: RecentRecordsProps) => {
+  return (
+    <div className={styles.rootContainer}>
+      {/* 헤더 */}
+      <div className={styles.header}>
+        <h2 className={styles.title}>최근 기록</h2>
+        <div className={styles.moreSection}>
+          <span className={styles.moreText}>자세히 보기</span>
+          <ChevronRightIcon />
+        </div>
+      </div>
+
+      {/* 경기 결과 */}
+      <div className={styles.matchGrid}>
+        {matchResults.map((match, index) => (
+          <MatchResultCard key={index} match={match} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 interface MatchResultCardProps {
   match: MatchResult;
 }
@@ -80,28 +102,6 @@ const MatchResultCard = ({ match }: MatchResultCardProps) => {
             {match.awayTeam.score}
           </span>
         </div>
-      </div>
-    </div>
-  );
-};
-
-export const RecentRecords = ({ matchResults }: RecentRecordsProps) => {
-  return (
-    <div className={styles.container}>
-      {/* 헤더 */}
-      <div className={styles.header}>
-        <h2 className={styles.title}>최근 기록</h2>
-        <div className={styles.moreSection}>
-          <span className={styles.moreText}>자세히 보기</span>
-          <ChevronRightIcon />
-        </div>
-      </div>
-
-      {/* 경기 결과 */}
-      <div className={styles.matchGrid}>
-        {matchResults.map((match, index) => (
-          <MatchResultCard key={index} match={match} />
-        ))}
       </div>
     </div>
   );
