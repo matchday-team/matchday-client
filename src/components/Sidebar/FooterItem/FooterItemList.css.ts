@@ -50,7 +50,7 @@ export const footerItem = recipe({
 
 export const footerRightIcon = style({
   position: 'relative',
-  right: 34,
+  right: 18,
   flexShrink: 0,
   width: 24,
   height: 24,

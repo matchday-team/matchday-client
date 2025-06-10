@@ -17,6 +17,7 @@ export const navbar = recipe({
     alignItems: 'center',
     justifyContent: 'space-between',
     transition: 'left 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+    borderBottom: `1px solid ${lightThemeVars.color.primary[100]}`,
     boxShadow: `0 1px 2px ${lightThemeVars.color.black}1a`,
     backgroundColor: lightThemeVars.color.white.main,
     padding: '0 32px',

@@ -12,6 +12,8 @@ export const rootContainer = style([
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: lightThemeVars.color.white.main,
+    paddingTop: 60,
+    paddingBottom: 100,
     width: '100%',
     height: '100%',
   },
