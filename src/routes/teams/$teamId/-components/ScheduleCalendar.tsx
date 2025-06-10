@@ -1,28 +1,6 @@
+import { ChevronLeftIcon, ChevronRightIcon } from '@/assets/icons';
+
 import * as styles from './ScheduleCalendar.css';
-
-const ChevronLeftIcon = () => (
-  <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
-    <path
-      d='M15 18L9 12L15 6'
-      stroke='currentColor'
-      strokeWidth='1.5'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-  </svg>
-);
-
-const ChevronRightIcon = () => (
-  <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
-    <path
-      d='M9 18L15 12L9 6'
-      stroke='currentColor'
-      strokeWidth='1.5'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-  </svg>
-);
 
 interface CalendarDay {
   day: number;

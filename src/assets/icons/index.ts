@@ -16,6 +16,8 @@ export { default as SeoulLogo } from './seoul-team.png';
 export { default as SuwonLogo } from './suwon-team.png';
 export { default as ExclamationIcon } from './exclamation.svg?react';
 export { default as ChevronDownIcon } from './chevron-down.svg?react';
+export { default as ChevronLeftIcon } from './chevron-left.svg?react';
+export { default as ChevronRightIcon } from './chevron-right.svg?react';
 export { default as FootballShoeIcon } from './football-shoe.svg?react';
 export { default as MagnifyingGlassIcon } from './magnifying-glass.svg?react';
 export { default as CheckboxCheckIcon } from './checkbox-check.svg?react';

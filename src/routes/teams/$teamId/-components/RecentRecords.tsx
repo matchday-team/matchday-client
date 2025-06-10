@@ -1,17 +1,6 @@
-import * as styles from './RecentRecords.css';
+import { ChevronRightIcon } from '@/assets/icons';
 
-// 커스텀 아이콘 컴포넌트
-const ChevronRightIcon = () => (
-  <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
-    <path
-      d='M9 18L15 12L9 6'
-      stroke='currentColor'
-      strokeWidth='1.5'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-  </svg>
-);
+import * as styles from './RecentRecords.css';
 
 interface MatchResult {
   date: string;
