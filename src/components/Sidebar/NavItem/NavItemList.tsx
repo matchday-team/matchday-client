@@ -25,16 +25,17 @@ export function NavItem({ to, icon, label, isOpen }: NavItemProps) {
 
   if (!isOpen) {
     return (
-      <Tooltip.Root delayDuration={100}>
+      <Tooltip.Root delayDuration={0}>
         <Tooltip.Trigger asChild>{linkContent}</Tooltip.Trigger>
         <Tooltip.Portal>
           <Tooltip.Content
             className={styles.tooltipContent}
             side='right'
-            sideOffset={8}
+            sideOffset={0}
           >
             {label}
-            <Tooltip.Arrow className={styles.tooltipArrow} />
+            <Tooltip.Arrow className={styles.tooltipArrowBorder} />
+            <Tooltip.Arrow className={styles.tooltipArrowFill} />
           </Tooltip.Content>
         </Tooltip.Portal>
       </Tooltip.Root>

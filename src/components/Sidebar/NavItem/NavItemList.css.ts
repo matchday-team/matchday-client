@@ -12,17 +12,31 @@ export { navItem, navItemIcon, label };
 
 export const tooltipContent = style({
   zIndex: 1000,
-  borderRadius: 6,
-  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-  backgroundColor: lightThemeVars.color.primary[800],
-  padding: '8px 12px',
-  maxWidth: 200,
-  whiteSpace: 'nowrap',
-  color: lightThemeVars.color.white.main,
-  fontSize: 12,
+  transform: 'translateX(-14px)',
+  border: `1px solid ${lightThemeVars.color.primary[100]}`,
+  borderRadius: 4,
+  boxShadow: '4px 4px 8px 0px rgba(0, 0, 0, 0.05)',
+  backgroundColor: lightThemeVars.color.white.main,
+  padding: '12px 16px',
+  color: lightThemeVars.color.black,
+  fontSize: 14,
   fontWeight: 500,
 });
 
-export const tooltipArrow = style({
-  fill: lightThemeVars.color.primary[800],
+export const tooltipArrowBorder = style({
+  zIndex: 1000,
+  width: 10,
+  height: 10,
+  fill: 'none',
+  stroke: lightThemeVars.color.primary[100],
+  strokeWidth: 2,
+});
+
+export const tooltipArrowFill = style({
+  zIndex: 1001,
+  transform: 'translateY(-1.5px)',
+  width: 10,
+  height: 10,
+  fill: lightThemeVars.color.white.main,
+  stroke: 'none',
 });
