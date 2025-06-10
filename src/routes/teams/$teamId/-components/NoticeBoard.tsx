@@ -40,7 +40,7 @@ export const NoticeBoard = ({ notices }: NoticeBoardProps) => {
         <h2 className={styles.title}>공지사항</h2>
         <div className={styles.moreSection}>
           <span className={styles.moreText}>자세히 보기</span>
-          <ChevronRightIcon />
+          <ChevronRightIcon className={styles.chevronIcon} />
         </div>
       </div>
       <div className={styles.noticeList}>

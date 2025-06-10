@@ -26,7 +26,6 @@ export const title = style({
 export const moreSection = style({
   display: 'flex',
   alignItems: 'center',
-  gap: 16,
   color: lightThemeVars.color.gray[500],
 });
 
@@ -35,6 +34,10 @@ export const moreText = style({
   letterSpacing: -0.3,
   fontSize: 12,
   fontWeight: 500,
+});
+
+export const chevronIcon = style({
+  width: 16,
 });
 
 export const calendarContainer = style({

@@ -1,7 +1,7 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 
 import {
-  ArrowRightIcon,
+  ChevronRightIcon,
   CrownIcon,
   JerseyIcon,
   LoaderIcon,
@@ -57,7 +57,7 @@ export const TeamHeader = ({ teamInfo }: TeamHeaderProps) => {
               </div>
               <div className={styles.editSection}>
                 <span className={styles.editText}>수정하기</span>
-                <ArrowRightIcon className={styles.chevronIcon} />
+                <ChevronRightIcon className={styles.chevronIcon} />
               </div>
             </div>
           </div>

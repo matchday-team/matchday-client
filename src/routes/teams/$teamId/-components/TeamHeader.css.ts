@@ -73,7 +73,6 @@ export const editSection = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-start',
-  gap: 8,
   color: lightThemeVars.color.primary[300],
 });
 
