@@ -1,5 +1,8 @@
 import { useMemo } from 'react';
 
+import { useSuspenseQuery } from '@tanstack/react-query';
+
+import { userQuery } from '@/apis/queries';
 import {
   CheckRightIcon,
   HelpCircleIcon,
@@ -26,12 +29,18 @@ interface SidebarProps {
 
 export function Sidebar({ isOpen, toggle }: SidebarProps) {
   const { open } = useUserSettingsModalStore();
+  const { data: user } = useSuspenseQuery(userQuery.me);
 
   const navItems = [
     {
       to: '/',
       icon: <HomeIcon className={styles.icon} />,
       label: '팀 매치 리스트',
+    },
+    {
+      to: `/teams/${user?.teamId}`,
+      icon: <HomeIcon className={styles.icon} />,
+      label: '팀 프로필',
     },
     {
       to: '/matches/create',
@@ -75,6 +84,7 @@ export function Sidebar({ isOpen, toggle }: SidebarProps) {
         <CheckRightIcon
           className={`${styles.rightIcon} ${isOpen ? styles.rotateIcon : ''}`}
         />
+        hello
       </button>
 
       <div className={styles.logo({ isOpen })}>
