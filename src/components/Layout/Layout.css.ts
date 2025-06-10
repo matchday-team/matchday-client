@@ -2,11 +2,7 @@ import { lightThemeVars } from '@/styles/theme.css';
 
 import { style } from '@vanilla-extract/css';
 
-import {
-  NAVBAR_HEIGHT,
-  SIDEBAR_BREAKPOINT,
-  SIDEBAR_WIDTH_SMALL,
-} from '@/constants';
+import { NAVBAR_HEIGHT } from '@/constants';
 
 export const layoutContainer = style({
   display: 'flex',
@@ -28,10 +24,4 @@ export const contentArea = style({
   flex: 1,
   backgroundColor: lightThemeVars.color.white.background,
   paddingTop: NAVBAR_HEIGHT,
-
-  '@media': {
-    [`(max-width: ${SIDEBAR_BREAKPOINT}px)`]: {
-      paddingLeft: SIDEBAR_WIDTH_SMALL,
-    },
-  },
 });

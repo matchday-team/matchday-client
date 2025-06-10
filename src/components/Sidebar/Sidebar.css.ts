@@ -3,11 +3,7 @@ import { lightThemeVars } from '@/styles/theme.css';
 import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-import {
-  SIDEBAR_BREAKPOINT,
-  SIDEBAR_WIDTH,
-  SIDEBAR_WIDTH_SMALL,
-} from '@/constants';
+import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_SMALL } from '@/constants';
 
 import {
   footer,
@@ -30,12 +26,6 @@ export const container = recipe({
     borderRight: `1px solid ${lightThemeVars.color.gray[100]}`,
     backgroundColor: lightThemeVars.color.white.main,
     height: '100dvh',
-
-    '@media': {
-      [`(max-width: ${SIDEBAR_BREAKPOINT - 1}px)`]: {
-        position: 'fixed',
-      },
-    },
   },
   variants: {
     isOpen: {
@@ -122,7 +112,7 @@ export const toggleButton = style({
   zIndex: 1,
   top: '50%',
   right: -16,
-  display: 'flex',
+  display: 'none',
   alignItems: 'center',
   justifyContent: 'center',
   clipPath: 'inset(0 0 0 50%)',
@@ -133,12 +123,6 @@ export const toggleButton = style({
   cursor: 'pointer',
   width: 36,
   height: 36,
-
-  '@media': {
-    [`(min-width: ${SIDEBAR_BREAKPOINT}px)`]: {
-      display: 'none',
-    },
-  },
 
   selectors: {
     '&::after': {
