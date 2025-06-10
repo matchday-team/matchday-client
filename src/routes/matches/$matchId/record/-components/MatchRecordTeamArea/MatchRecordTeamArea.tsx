@@ -1,8 +1,7 @@
 import * as atomicStyles from '@/styles/atomic.css';
 
 import { MatchUserResponse, ScoreResponse, TeamResponse } from '@/apis/models';
-import { TeamStatCounterGrid } from '@/components';
-import { GridListToggleView } from '@/components/GridListToggleView';
+import { GridListToggleView, TeamStatCounterGrid } from '@/components';
 import { MatchEventType, Stat } from '@/constants';
 import { RequestStatCancelParams } from '@/features/matchRecord';
 import {
@@ -10,6 +9,17 @@ import {
   StarterPlayerListForSubstitution,
   SubPlayerListForSubstitution,
 } from '@/features/playerSubstitution';
+
+interface MatchRecordTeamAreaProps {
+  matchId: number;
+  team: TeamResponse;
+  starters: MatchUserResponse[];
+  substitutes: MatchUserResponse[];
+  stats: ScoreResponse;
+  onStatIncrement: (matchEvent: MatchEventType, teamId: number) => void;
+  onStatCancel: (params: RequestStatCancelParams) => void;
+  disabledCriteria?: (stat: Stat) => boolean;
+}
 
 export const MatchRecordTeamArea = ({
   matchId,
@@ -20,16 +30,7 @@ export const MatchRecordTeamArea = ({
   onStatIncrement,
   onStatCancel,
   disabledCriteria,
-}: {
-  matchId: number;
-  team: TeamResponse;
-  starters: MatchUserResponse[];
-  substitutes: MatchUserResponse[];
-  stats: ScoreResponse;
-  onStatIncrement: (matchEvent: MatchEventType, teamId: number) => void;
-  onStatCancel: (params: RequestStatCancelParams) => void;
-  disabledCriteria?: (stat: Stat) => boolean;
-}) => {
+}: MatchRecordTeamAreaProps) => {
   return (
     <>
       <GridListToggleView
