@@ -1,21 +1,8 @@
 import { ChevronRightIcon } from '@/assets/icons';
+import DefaultTeamLogo from '@/assets/images/teams/default-team-logo.svg?react';
+import type { MatchResult } from '@/routes/teams/$teamId/-temp-server-types';
 
 import * as styles from './RecentRecords.css';
-
-interface MatchResult {
-  date: string;
-  duration: string;
-  homeTeam: {
-    name: string;
-    logo: string;
-    score: number;
-  };
-  awayTeam: {
-    name: string;
-    logo: string;
-    score: number;
-  };
-}
 
 interface RecentRecordsProps {
   matchResults: MatchResult[];
@@ -64,11 +51,18 @@ const MatchResultCard = ({ match }: MatchResultCardProps) => {
         <div className={styles.teamRow}>
           <div className={styles.teamInfo}>
             <div className={styles.teamLogo}>
-              <img
-                src={match.homeTeam.logo}
-                alt={`${match.homeTeam.name} logo`}
-                className={styles.logoImage}
-              />
+              {match.homeTeam.logo ? (
+                <img
+                  src={match.homeTeam.logo}
+                  alt=''
+                  className={styles.logoImage}
+                />
+              ) : (
+                <DefaultTeamLogo
+                  className={styles.logoImage}
+                  style={{ color: match.homeTeam.uniformColor.top }}
+                />
+              )}
             </div>
             <span
               className={homeWon ? styles.teamNameWinner : styles.teamNameLoser}
@@ -85,11 +79,18 @@ const MatchResultCard = ({ match }: MatchResultCardProps) => {
         <div className={styles.teamRow}>
           <div className={styles.teamInfo}>
             <div className={styles.teamLogo}>
-              <img
-                src={match.awayTeam.logo}
-                alt={`${match.awayTeam.name} logo`}
-                className={styles.logoImage}
-              />
+              {match.awayTeam.logo ? (
+                <img
+                  src={match.awayTeam.logo}
+                  alt=''
+                  className={styles.logoImage}
+                />
+              ) : (
+                <DefaultTeamLogo
+                  className={styles.logoImage}
+                  style={{ color: match.awayTeam.uniformColor.top }}
+                />
+              )}
             </div>
             <span
               className={awayWon ? styles.teamNameWinner : styles.teamNameLoser}

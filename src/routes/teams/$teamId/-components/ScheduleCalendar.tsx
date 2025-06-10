@@ -1,13 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@/assets/icons';
+import type { CalendarDay } from '@/routes/teams/$teamId/-temp-server-types';
 
 import * as styles from './ScheduleCalendar.css';
-
-interface CalendarDay {
-  day: number;
-  isCurrentMonth: boolean;
-  isSelected?: boolean;
-  hasEvent?: boolean;
-}
 
 interface ScheduleCalendarProps {
   currentMonth: string;

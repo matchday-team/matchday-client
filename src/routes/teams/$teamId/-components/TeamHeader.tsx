@@ -10,23 +10,9 @@ import {
   UsersIcon,
 } from '@/assets/icons';
 import DefaultTeamLogo from '@/assets/images/teams/default-team-logo.svg?react';
+import type { TeamInfo } from '@/routes/teams/$teamId/-temp-server-types';
 
 import * as styles from './TeamHeader.css';
-
-interface TeamInfo {
-  name: string;
-  description: string;
-  logoUrl: string | null;
-  leader: string;
-  foundedYear: number;
-  region: string;
-  memberCount: number;
-  uniformColors: {
-    top: string;
-    bottom: string;
-    socks: string;
-  };
-}
 
 interface TeamHeaderProps {
   teamInfo: TeamInfo;
