@@ -5,8 +5,7 @@ import { createVar, style } from '@vanilla-extract/css';
 export const sockColorVar = createVar();
 
 export const container = style({
-  borderTopLeftRadius: 8,
-  borderTopRightRadius: 8,
+  borderRadius: 10,
   backgroundColor: lightThemeVars.color.primary[800],
 });
 
