@@ -1,6 +1,8 @@
 import { lightThemeVars } from '@/styles/theme.css';
 
-import { style } from '@vanilla-extract/css';
+import { createVar, style } from '@vanilla-extract/css';
+
+export const sockColorVar = createVar();
 
 export const container = style({
   borderTopLeftRadius: 8,
@@ -34,7 +36,6 @@ export const logoContainer = style({
 
 export const logoImage = style({
   width: 64,
-  height: 76,
 });
 
 export const teamDetails = style({
@@ -86,7 +87,9 @@ export const editText = style({
 export const statsGrid = style({
   display: 'flex',
   justifyContent: 'space-between',
+  justifySelf: 'center', // NOTE: 부모 하나를 더 두고 center 주는 대신 self justify 사용
   gap: 0,
+  width: 1112,
 });
 
 export const statItem = style({
@@ -151,28 +154,33 @@ export const uniformIcon = style({
 export const jerseyIcon = style({
   position: 'absolute',
   top: 0,
+  left: 2.5,
+  width: 20,
+  color: lightThemeVars.color.primary[100],
 });
 
 export const shortsIcon = style({
   position: 'absolute',
-  top: 20,
+  top: 16,
+  left: 5,
+  color: lightThemeVars.color.primary[100],
 });
 
 export const socksContainer = style({
   position: 'absolute',
-  bottom: 0,
-  left: 6,
+  bottom: 3,
+  left: 5.5,
   display: 'flex',
-  gap: 6,
+  gap: 4,
 });
 
 export const sock = style({
-  border: `1px solid ${lightThemeVars.color.primary[300]}`,
+  border: `1.5px solid ${lightThemeVars.color.primary[100]}`,
+  backgroundColor: sockColorVar,
   width: 2,
-  height: 6,
+  height: 7,
 });
 
-// 아이콘 스타일 추가
 export const statIcon = style({
   color: lightThemeVars.color.primary[300],
 });

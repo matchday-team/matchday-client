@@ -1,6 +1,9 @@
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 
+import { teamQuery } from '@/apis/queries';
 import { usePageTitle } from '@/hooks';
+import { queryClient } from '@/react-query-provider';
 
 import {
   NoticeBoard,
@@ -12,24 +15,28 @@ import * as styles from './-route.css';
 
 export const Route = createFileRoute('/teams/$teamId')({
   component: TeamDetailPage,
+  loader: ({ params }) => {
+    const teamId = Number(params.teamId);
+
+    return queryClient.ensureQueryData(teamQuery.byId(teamId));
+  },
 });
 
-// 구단 정보 타입
 interface TeamInfo {
   name: string;
   description: string;
-  logoUrl: string;
+  logoUrl: string | null;
   leader: string;
   foundedYear: number;
   region: string;
   memberCount: number;
   uniformColors: {
-    primary: string;
-    secondary: string;
+    top: string;
+    bottom: string;
+    socks: string;
   };
 }
 
-// 경기 기록 타입
 interface MatchResult {
   date: string;
   duration: string;
@@ -45,14 +52,12 @@ interface MatchResult {
   };
 }
 
-// 공지사항 타입
 interface Notice {
   title: string;
   author: string;
   date: string;
 }
 
-// 캘린더 일정 타입
 interface CalendarDay {
   day: number;
   isCurrentMonth: boolean;
@@ -61,21 +66,25 @@ interface CalendarDay {
 }
 
 function TeamDetailPage() {
+  const { teamId } = Route.useParams();
   usePageTitle('팀 프로필');
 
-  // 임시 데이터 - 실제로는 API나 상태 관리에서 가져올 데이터
+  const { data: teamResponse } = useSuspenseQuery(
+    teamQuery.byId(Number(teamId)),
+  );
+
   const teamInfo: TeamInfo = {
-    name: 'FC서울',
-    description:
-      '서울의 자부심, FC 서울! 뜨거운 열정과 투지로 K리그를 이끄는 명문 구단. 팬과 함께 성장하며 승리를 향해 나아갑니다.',
-    logoUrl: '/api/placeholder/66/78',
-    leader: '홍명보',
+    name: teamResponse.data.name,
+    description: `${teamResponse.data.name}의 팀 소개입니다.`,
+    logoUrl: teamResponse.data.teamImg,
+    leader: '팀 리더',
     foundedYear: 2025,
-    region: '서울 성동구',
+    region: '지역 정보',
     memberCount: 43,
     uniformColors: {
-      primary: '#DBE4FF',
-      secondary: '#DBE4FF',
+      top: teamResponse.data.teamColor,
+      bottom: teamResponse.data.bottomColor,
+      socks: teamResponse.data.stockingColor,
     },
   };
 
