@@ -1,150 +1,12 @@
+import {
+  ArrowRightIcon,
+  CrownIcon,
+  LoaderIcon,
+  MapIcon,
+  UsersIcon,
+} from '@/assets/icons';
+
 import * as styles from './TeamHeader.css';
-
-// 커스텀 아이콘 컴포넌트들
-const CrownIcon = ({ className }: { className?: string }) => (
-  <svg
-    width='28'
-    height='28'
-    viewBox='0 0 28 28'
-    fill='none'
-    className={className}
-  >
-    <path
-      d='M4.5 12.5L7 8.5L10.5 11L14 6L17.5 11L21 8.5L23.5 12.5L22 21H6L4.5 12.5Z'
-      stroke='currentColor'
-      strokeWidth='1.5'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-    <circle cx='14' cy='9' r='1.5' fill='currentColor' />
-    <circle cx='7' cy='8.5' r='1' fill='currentColor' />
-    <circle cx='21' cy='8.5' r='1' fill='currentColor' />
-  </svg>
-);
-
-const ClockIcon = ({ className }: { className?: string }) => (
-  <svg
-    width='28'
-    height='28'
-    viewBox='0 0 28 28'
-    fill='none'
-    className={className}
-  >
-    <circle
-      cx='14'
-      cy='14'
-      r='9'
-      stroke='currentColor'
-      strokeWidth='1.5'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-    <polyline
-      points='14,5 14,14 20,17'
-      stroke='currentColor'
-      strokeWidth='1.5'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-  </svg>
-);
-
-const MapIcon = ({ className }: { className?: string }) => (
-  <svg
-    width='28'
-    height='28'
-    viewBox='0 0 28 28'
-    fill='none'
-    className={className}
-  >
-    <polygon
-      points='3,6 9,4 21,8 21,18 15,20 3,16'
-      stroke='currentColor'
-      strokeWidth='1.5'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-    <line
-      x1='9'
-      y1='4'
-      x2='9'
-      y2='16'
-      stroke='currentColor'
-      strokeWidth='1.5'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-    <line
-      x1='15'
-      y1='8'
-      x2='15'
-      y2='20'
-      stroke='currentColor'
-      strokeWidth='1.5'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-  </svg>
-);
-
-const UsersIcon = ({ className }: { className?: string }) => (
-  <svg
-    width='28'
-    height='28'
-    viewBox='0 0 28 28'
-    fill='none'
-    className={className}
-  >
-    <path
-      d='M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2'
-      stroke='currentColor'
-      strokeWidth='1.5'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-    <circle
-      cx='9'
-      cy='7'
-      r='4'
-      stroke='currentColor'
-      strokeWidth='1.5'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-    <path
-      d='M23 21v-2a4 4 0 0 0-3-3.87'
-      stroke='currentColor'
-      strokeWidth='1.5'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-    <path
-      d='M16 3.13a4 4 0 0 1 0 7.75'
-      stroke='currentColor'
-      strokeWidth='1.5'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-  </svg>
-);
-
-const ChevronRightIcon = ({ className }: { className?: string }) => (
-  <svg
-    width='24'
-    height='24'
-    viewBox='0 0 24 24'
-    fill='none'
-    className={className}
-  >
-    <path
-      d='M9 18L15 12L9 6'
-      stroke='currentColor'
-      strokeWidth='1.5'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-  </svg>
-);
 
 export const TeamHeader = () => {
   return (
@@ -170,7 +32,7 @@ export const TeamHeader = () => {
               </div>
               <div className={styles.editSection}>
                 <span className={styles.editText}>수정하기</span>
-                <ChevronRightIcon className={styles.chevronIcon} />
+                <ArrowRightIcon className={styles.chevronIcon} />
               </div>
             </div>
           </div>
@@ -190,7 +52,7 @@ export const TeamHeader = () => {
           {/* 창단연도 */}
           <div className={styles.statItem}>
             <div className={styles.statHeader}>
-              <ClockIcon className={styles.statIcon} />
+              <LoaderIcon className={styles.statIcon} />
               <span className={styles.statLabel}>창단연도</span>
             </div>
             <span className={styles.statValue}>2025</span>

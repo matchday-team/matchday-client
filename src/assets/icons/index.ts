@@ -21,3 +21,7 @@ export { default as MagnifyingGlassIcon } from './magnifying-glass.svg?react';
 export { default as CheckboxCheckIcon } from './checkbox-check.svg?react';
 export { default as SoccerBallBoxyIcon } from './soccer-ball-boxy.svg?react';
 export { default as ArrowRightIcon } from './arrow-right.svg?react';
+export { default as CrownIcon } from './crown.svg?react';
+export { default as LoaderIcon } from './loader.svg?react';
+export { default as MapIcon } from './map.svg?react';
+export { default as UsersIcon } from './users.svg?react';
