@@ -1,5 +1,3 @@
-import * as atomicStyles from '@/styles/atomic.css';
-
 import { useEffect } from 'react';
 
 import { useSuspenseQueries, useSuspenseQuery } from '@tanstack/react-query';
@@ -8,13 +6,11 @@ import { createFileRoute, useParams } from '@tanstack/react-router';
 import { matchQuery, teamQuery } from '@/apis/queries';
 import {
   GameScoreArea,
-  GridListToggleView,
   MatchLogList,
   MatchRecordSimpleMemo,
   MatchSchedule,
   PlayerStatCounterGrid,
   TeamStatCompareCounterList,
-  TeamStatCounterGrid,
 } from '@/components';
 import {
   MatchTimeControllerAdapter,
@@ -23,17 +19,12 @@ import {
   useSyncMatchMemo,
 } from '@/features/matchRecord';
 import { HOME_TEAM_DISABLED_TEAM_STATS } from '@/features/matchRecord/matchRecordPolicy';
-import {
-  StarterPlayerGridForSubstitution,
-  StarterPlayerListForSubstitution,
-  SubPlayerListForSubstitution,
-} from '@/features/playerSubstitution';
 import { usePageTitle } from '@/hooks';
 import { queryClient } from '@/react-query-provider';
 import { useSelectedPlayerStore } from '@/stores';
 
-import { MatchRecordLayout } from './-components';
-import { dividePlayers } from './-utils';
+import { MatchRecordLayout, MatchRecordTeamArea } from './-components';
+import { categorizeAndSortPlayers } from './-utils';
 
 export const Route = createFileRoute('/matches/$matchId/record')({
   component: MatchRecordPage,
@@ -71,17 +62,23 @@ function MatchRecordPage() {
     ],
   });
 
-  const { starters: homeTeamStarters, substitutes: homeTeamSubstitutes } =
-    dividePlayers(matchPlayers.data.homeTeam);
-  const { starters: awayTeamStarters, substitutes: awayTeamSubstitutes } =
-    dividePlayers(matchPlayers.data.awayTeam);
-
   // FIXME: 얘내는 순차 로딩을 하게 되는데...
   const { data: homeTeam } = useSuspenseQuery(
     teamQuery.byId(matchInfo.data.homeTeamId),
   );
   const { data: awayTeam } = useSuspenseQuery(
     teamQuery.byId(matchInfo.data.awayTeamId),
+  );
+
+  const { starters: homeTeamStarters, substitutes: homeTeamSubstitutes } =
+    categorizeAndSortPlayers(matchPlayers.data.homeTeam);
+  const { starters: awayTeamStarters, substitutes: awayTeamSubstitutes } =
+    categorizeAndSortPlayers(matchPlayers.data.awayTeam);
+
+  const maxScore = Math.max(
+    1,
+    ...Object.values(matchScore.data.homeScore),
+    ...Object.values(matchScore.data.awayScore),
   );
 
   usePageTitle(matchInfo.data.title);
@@ -99,71 +96,29 @@ function MatchRecordPage() {
       team1Color={homeTeam.data.teamColor}
       team2Color={awayTeam.data.teamColor}
       team1={
-        <>
-          <GridListToggleView
-            render={isGridView => {
-              const Component = isGridView
-                ? StarterPlayerGridForSubstitution
-                : StarterPlayerListForSubstitution;
-
-              return (
-                <Component
-                  matchId={matchId}
-                  team={homeTeam.data}
-                  players={homeTeamStarters}
-                />
-              );
-            }}
-          />
-          <div className={atomicStyles.flexContainer}>
-            <SubPlayerListForSubstitution
-              matchId={matchId}
-              team={homeTeam.data}
-              players={homeTeamSubstitutes}
-            />
-            <TeamStatCounterGrid
-              team={homeTeam.data}
-              stats={matchScore.data.homeScore}
-              onStatIncrement={requestTeamStatChange}
-              onStatCancel={requestStatCancel}
-              disabledCriteria={stat =>
-                HOME_TEAM_DISABLED_TEAM_STATS.includes(stat)
-              }
-            />
-          </div>
-        </>
+        <MatchRecordTeamArea
+          matchId={matchId}
+          team={homeTeam.data}
+          starters={homeTeamStarters}
+          substitutes={homeTeamSubstitutes}
+          stats={matchScore.data.homeScore}
+          onStatIncrement={requestTeamStatChange}
+          onStatCancel={requestStatCancel}
+          disabledCriteria={stat =>
+            HOME_TEAM_DISABLED_TEAM_STATS.includes(stat)
+          }
+        />
       }
       team2={
-        <>
-          <GridListToggleView
-            render={isGridView => {
-              const Component = isGridView
-                ? StarterPlayerGridForSubstitution
-                : StarterPlayerListForSubstitution;
-
-              return (
-                <Component
-                  matchId={matchId}
-                  team={awayTeam.data}
-                  players={awayTeamStarters}
-                />
-              );
-            }}
-          />
-          <div className={atomicStyles.flexContainer}>
-            <SubPlayerListForSubstitution
-              matchId={matchId}
-              team={awayTeam.data}
-              players={awayTeamSubstitutes}
-            />
-            <TeamStatCounterGrid
-              team={awayTeam.data}
-              stats={matchScore.data.awayScore}
-              onStatIncrement={requestTeamStatChange}
-              onStatCancel={requestStatCancel}
-            />
-          </div>
-        </>
+        <MatchRecordTeamArea
+          matchId={matchId}
+          team={awayTeam.data}
+          starters={awayTeamStarters}
+          substitutes={awayTeamSubstitutes}
+          stats={matchScore.data.awayScore}
+          onStatIncrement={requestTeamStatChange}
+          onStatCancel={requestStatCancel}
+        />
       }
       teamStats={
         <>
@@ -175,7 +130,7 @@ function MatchRecordPage() {
           <TeamStatCompareCounterList
             homeTeamStat={matchScore.data.homeScore}
             awayTeamStat={matchScore.data.awayScore}
-            maxValue={30}
+            maxValue={maxScore}
           />
         </>
       }
