@@ -19,23 +19,9 @@ interface Notice {
   date: string;
 }
 
-const notices: Notice[] = [
-  {
-    title: '신입 선수 모집 안내 (2025년 봄 시즌)',
-    author: '홍명보',
-    date: '2025-04-12',
-  },
-  {
-    title: '주말 정기 연습 일정 변경 안내 – 장소 및 시간을 꼭 확인해주세요!',
-    author: '홍명보',
-    date: '2025-03-27',
-  },
-  {
-    title: '우리 동네 대표로 출전! 지역 친선 경기 참가자 모집합니다',
-    author: '홍명보',
-    date: '2025-03-24',
-  },
-];
+interface NoticeBoardProps {
+  notices: Notice[];
+}
 
 interface NoticeItemProps {
   notice: Notice;
@@ -58,10 +44,9 @@ const NoticeItem = ({ notice }: NoticeItemProps) => {
   );
 };
 
-export const NoticeBoard = () => {
+export const NoticeBoard = ({ notices }: NoticeBoardProps) => {
   return (
     <div className={styles.container}>
-      {/* 헤더 */}
       <div className={styles.header}>
         <h2 className={styles.title}>공지사항</h2>
         <div className={styles.moreSection}>
@@ -69,8 +54,6 @@ export const NoticeBoard = () => {
           <ChevronRightIcon />
         </div>
       </div>
-
-      {/* 공지사항 목록 */}
       <div className={styles.noticeList}>
         {notices.map((notice, index) => (
           <NoticeItem key={index} notice={notice} />

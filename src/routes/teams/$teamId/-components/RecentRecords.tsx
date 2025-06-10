@@ -28,50 +28,9 @@ interface MatchResult {
   };
 }
 
-const matchResults: MatchResult[] = [
-  {
-    date: '2025-04-23',
-    duration: '96"',
-    homeTeam: {
-      name: 'FC 서울',
-      logo: '/api/placeholder/44/44',
-      score: 1,
-    },
-    awayTeam: {
-      name: 'FC 수원',
-      logo: '/api/placeholder/44/44',
-      score: 2,
-    },
-  },
-  {
-    date: '2025-04-01',
-    duration: '90"',
-    homeTeam: {
-      name: 'FC 서울',
-      logo: '/api/placeholder/44/44',
-      score: 1,
-    },
-    awayTeam: {
-      name: 'FC 수원',
-      logo: '/api/placeholder/44/44',
-      score: 1,
-    },
-  },
-  {
-    date: '2025-03-21',
-    duration: '94"',
-    homeTeam: {
-      name: 'FC 서울',
-      logo: '/api/placeholder/44/44',
-      score: 3,
-    },
-    awayTeam: {
-      name: 'FC 수원',
-      logo: '/api/placeholder/44/44',
-      score: 0,
-    },
-  },
-];
+interface RecentRecordsProps {
+  matchResults: MatchResult[];
+}
 
 interface MatchResultCardProps {
   match: MatchResult;
@@ -137,7 +96,7 @@ const MatchResultCard = ({ match }: MatchResultCardProps) => {
   );
 };
 
-export const RecentRecords = () => {
+export const RecentRecords = ({ matchResults }: RecentRecordsProps) => {
   return (
     <div className={styles.container}>
       {/* 헤더 */}
