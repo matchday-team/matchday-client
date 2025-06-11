@@ -43,6 +43,7 @@ interface TableProps<T = Record<string, unknown>> {
   headerVerticalAlign?: 'top' | 'center' | 'bottom';
   bodyVerticalAlign?: 'top' | 'center' | 'bottom';
   onRowClick?: (record: T, index: number) => void;
+  headerActions?: ReactNode;
 }
 
 export function Table<T = Record<string, unknown>>({
@@ -53,6 +54,7 @@ export function Table<T = Record<string, unknown>>({
   headerVerticalAlign = 'center',
   bodyVerticalAlign = 'center',
   onRowClick,
+  headerActions,
 }: TableProps<T>) {
   const tableVars = assignInlineVars(styles.tableWidthVars, {
     totalWidth: `${columns.reduce((sum, col) => sum + col.width, 0)}px`,
@@ -60,6 +62,9 @@ export function Table<T = Record<string, unknown>>({
 
   return (
     <div className={styles.container} style={tableVars}>
+      {headerActions && (
+        <div className={styles.headerActions}>{headerActions}</div>
+      )}
       <div className={styles.header}>
         <div
           className={styles.headerRow}

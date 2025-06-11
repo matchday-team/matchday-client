@@ -18,6 +18,14 @@ export const container = style({
   overflow: 'hidden',
 });
 
+export const headerActions = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  backgroundColor: lightThemeVars.color.white.main,
+  padding: 20,
+});
+
 export const header = style({
   borderTop: `1px solid ${lightThemeVars.color.primary[100]}`,
   backgroundColor: lightThemeVars.color.white.main,
