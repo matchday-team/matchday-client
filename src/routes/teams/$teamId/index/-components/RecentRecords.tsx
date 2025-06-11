@@ -1,6 +1,6 @@
 import { ChevronRightIcon } from '@/assets/icons';
 import DefaultTeamLogo from '@/assets/images/teams/default-team-logo.svg?react';
-import type { MatchResult } from '@/routes/teams/$teamId/-temp-server-types';
+import type { MatchResult } from '@/routes/teams/$teamId/index/-temp-server-types';
 
 import * as styles from './RecentRecords.css';
 

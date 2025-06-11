@@ -1,5 +1,7 @@
 import { ComponentPropsWithoutRef, useEffect, useRef, useState } from 'react';
 
+import clsx from 'clsx';
+
 import { ChevronDownIcon } from '@/assets/icons';
 
 import * as styles from './Select.css';
@@ -17,6 +19,7 @@ interface SelectProps
   isError?: boolean;
   onChange?: (value: string) => void;
   name?: string;
+  variant?: 'gray-small' | 'white-large';
 }
 
 export const Select = ({
@@ -26,6 +29,8 @@ export const Select = ({
   isError = false,
   onChange,
   name,
+  className,
+  variant = 'gray-small',
   ...props
 }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +51,6 @@ export const Select = ({
     optionRefs.current = optionRefs.current.slice(0, options.length);
   }, [options.length]);
 
-  // NOTE: 드롭다운 위/아래 표시를 위한 위치 계산
   useEffect(() => {
     if (isOpen && selectRef.current) {
       const selectRect = selectRef.current.getBoundingClientRect();
@@ -218,11 +222,15 @@ export const Select = ({
   };
 
   return (
-    <div className={styles.selectContainer} ref={selectRef} {...props}>
+    <div
+      className={clsx(styles.selectContainer, className)}
+      ref={selectRef}
+      {...props}
+    >
       {name && <input type='hidden' name={name} value={value || ''} />}
 
       <div
-        className={styles.selectButton({ isPlaceholder, isError })}
+        className={styles.selectButton({ isPlaceholder, isError, variant })}
         onClick={handleToggle}
         onKeyDown={handleKeyDown}
         onBlur={handleBlur}

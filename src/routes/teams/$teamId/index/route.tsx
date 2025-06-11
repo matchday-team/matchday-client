@@ -20,7 +20,7 @@ import {
 import * as styles from './-route.css';
 import type { MatchResult, TeamInfo } from './-temp-server-types';
 
-export const Route = createFileRoute('/teams/$teamId')({
+export const Route = createFileRoute('/teams/$teamId/')({
   component: TeamDetailPage,
   loader: ({ params }) => {
     const teamId = Number(params.teamId);
