@@ -15,10 +15,11 @@ import { Route as LoginRouteImport } from './routes/login/route'
 import { Route as IndexRouteImport } from './routes/index/route'
 import { Route as UsersCreateRouteImport } from './routes/users/create/route'
 import { Route as TeamsCreateRouteImport } from './routes/teams/create/route'
-import { Route as TeamsTeamIdRouteImport } from './routes/teams/$teamId/route'
 import { Route as MatchesEntryRouteImport } from './routes/matches/entry/route'
 import { Route as MatchesCreateRouteImport } from './routes/matches/create/route'
+import { Route as TeamsTeamIdPlayersRouteImport } from './routes/teams/$teamId/players/route'
 import { Route as MatchesMatchIdRecordRouteImport } from './routes/matches/$matchId/record/route'
+import { Route as TeamsTeamIdIndexRouteImport } from './routes/teams/$teamId/index/route'
 import { Route as MatchesMatchIdPlayersEditRouteImport } from './routes/matches/$matchId/players/edit/route'
 
 // Create/Update Routes
@@ -47,12 +48,6 @@ const TeamsCreateRouteRoute = TeamsCreateRouteImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const TeamsTeamIdRouteRoute = TeamsTeamIdRouteImport.update({
-  id: '/teams/$teamId',
-  path: '/teams/$teamId',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const MatchesEntryRouteRoute = MatchesEntryRouteImport.update({
   id: '/matches/entry',
   path: '/matches/entry',
@@ -65,9 +60,21 @@ const MatchesCreateRouteRoute = MatchesCreateRouteImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const TeamsTeamIdPlayersRouteRoute = TeamsTeamIdPlayersRouteImport.update({
+  id: '/teams/$teamId/players',
+  path: '/teams/$teamId/players',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const MatchesMatchIdRecordRouteRoute = MatchesMatchIdRecordRouteImport.update({
   id: '/matches/$matchId/record',
   path: '/matches/$matchId/record',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TeamsTeamIdIndexRouteRoute = TeamsTeamIdIndexRouteImport.update({
+  id: '/teams/$teamId/',
+  path: '/teams/$teamId/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -110,13 +117,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MatchesEntryRouteImport
       parentRoute: typeof rootRoute
     }
-    '/teams/$teamId': {
-      id: '/teams/$teamId'
-      path: '/teams/$teamId'
-      fullPath: '/teams/$teamId'
-      preLoaderRoute: typeof TeamsTeamIdRouteImport
-      parentRoute: typeof rootRoute
-    }
     '/teams/create': {
       id: '/teams/create'
       path: '/teams/create'
@@ -131,11 +131,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UsersCreateRouteImport
       parentRoute: typeof rootRoute
     }
+    '/teams/$teamId/': {
+      id: '/teams/$teamId/'
+      path: '/teams/$teamId'
+      fullPath: '/teams/$teamId'
+      preLoaderRoute: typeof TeamsTeamIdIndexRouteImport
+      parentRoute: typeof rootRoute
+    }
     '/matches/$matchId/record': {
       id: '/matches/$matchId/record'
       path: '/matches/$matchId/record'
       fullPath: '/matches/$matchId/record'
       preLoaderRoute: typeof MatchesMatchIdRecordRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/teams/$teamId/players': {
+      id: '/teams/$teamId/players'
+      path: '/teams/$teamId/players'
+      fullPath: '/teams/$teamId/players'
+      preLoaderRoute: typeof TeamsTeamIdPlayersRouteImport
       parentRoute: typeof rootRoute
     }
     '/matches/$matchId/players/edit': {
@@ -155,10 +169,11 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRouteRoute
   '/matches/create': typeof MatchesCreateRouteRoute
   '/matches/entry': typeof MatchesEntryRouteRoute
-  '/teams/$teamId': typeof TeamsTeamIdRouteRoute
   '/teams/create': typeof TeamsCreateRouteRoute
   '/users/create': typeof UsersCreateRouteRoute
+  '/teams/$teamId': typeof TeamsTeamIdIndexRouteRoute
   '/matches/$matchId/record': typeof MatchesMatchIdRecordRouteRoute
+  '/teams/$teamId/players': typeof TeamsTeamIdPlayersRouteRoute
   '/matches/$matchId/players/edit': typeof MatchesMatchIdPlayersEditRouteRoute
 }
 
@@ -167,10 +182,11 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRouteRoute
   '/matches/create': typeof MatchesCreateRouteRoute
   '/matches/entry': typeof MatchesEntryRouteRoute
-  '/teams/$teamId': typeof TeamsTeamIdRouteRoute
   '/teams/create': typeof TeamsCreateRouteRoute
   '/users/create': typeof UsersCreateRouteRoute
+  '/teams/$teamId': typeof TeamsTeamIdIndexRouteRoute
   '/matches/$matchId/record': typeof MatchesMatchIdRecordRouteRoute
+  '/teams/$teamId/players': typeof TeamsTeamIdPlayersRouteRoute
   '/matches/$matchId/players/edit': typeof MatchesMatchIdPlayersEditRouteRoute
 }
 
@@ -180,10 +196,11 @@ export interface FileRoutesById {
   '/login': typeof LoginRouteRoute
   '/matches/create': typeof MatchesCreateRouteRoute
   '/matches/entry': typeof MatchesEntryRouteRoute
-  '/teams/$teamId': typeof TeamsTeamIdRouteRoute
   '/teams/create': typeof TeamsCreateRouteRoute
   '/users/create': typeof UsersCreateRouteRoute
+  '/teams/$teamId/': typeof TeamsTeamIdIndexRouteRoute
   '/matches/$matchId/record': typeof MatchesMatchIdRecordRouteRoute
+  '/teams/$teamId/players': typeof TeamsTeamIdPlayersRouteRoute
   '/matches/$matchId/players/edit': typeof MatchesMatchIdPlayersEditRouteRoute
 }
 
@@ -194,10 +211,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/matches/create'
     | '/matches/entry'
-    | '/teams/$teamId'
     | '/teams/create'
     | '/users/create'
+    | '/teams/$teamId'
     | '/matches/$matchId/record'
+    | '/teams/$teamId/players'
     | '/matches/$matchId/players/edit'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -205,10 +223,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/matches/create'
     | '/matches/entry'
-    | '/teams/$teamId'
     | '/teams/create'
     | '/users/create'
+    | '/teams/$teamId'
     | '/matches/$matchId/record'
+    | '/teams/$teamId/players'
     | '/matches/$matchId/players/edit'
   id:
     | '__root__'
@@ -216,10 +235,11 @@ export interface FileRouteTypes {
     | '/login'
     | '/matches/create'
     | '/matches/entry'
-    | '/teams/$teamId'
     | '/teams/create'
     | '/users/create'
+    | '/teams/$teamId/'
     | '/matches/$matchId/record'
+    | '/teams/$teamId/players'
     | '/matches/$matchId/players/edit'
   fileRoutesById: FileRoutesById
 }
@@ -229,10 +249,11 @@ export interface RootRouteChildren {
   LoginRouteRoute: typeof LoginRouteRoute
   MatchesCreateRouteRoute: typeof MatchesCreateRouteRoute
   MatchesEntryRouteRoute: typeof MatchesEntryRouteRoute
-  TeamsTeamIdRouteRoute: typeof TeamsTeamIdRouteRoute
   TeamsCreateRouteRoute: typeof TeamsCreateRouteRoute
   UsersCreateRouteRoute: typeof UsersCreateRouteRoute
+  TeamsTeamIdIndexRouteRoute: typeof TeamsTeamIdIndexRouteRoute
   MatchesMatchIdRecordRouteRoute: typeof MatchesMatchIdRecordRouteRoute
+  TeamsTeamIdPlayersRouteRoute: typeof TeamsTeamIdPlayersRouteRoute
   MatchesMatchIdPlayersEditRouteRoute: typeof MatchesMatchIdPlayersEditRouteRoute
 }
 
@@ -241,10 +262,11 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRouteRoute: LoginRouteRoute,
   MatchesCreateRouteRoute: MatchesCreateRouteRoute,
   MatchesEntryRouteRoute: MatchesEntryRouteRoute,
-  TeamsTeamIdRouteRoute: TeamsTeamIdRouteRoute,
   TeamsCreateRouteRoute: TeamsCreateRouteRoute,
   UsersCreateRouteRoute: UsersCreateRouteRoute,
+  TeamsTeamIdIndexRouteRoute: TeamsTeamIdIndexRouteRoute,
   MatchesMatchIdRecordRouteRoute: MatchesMatchIdRecordRouteRoute,
+  TeamsTeamIdPlayersRouteRoute: TeamsTeamIdPlayersRouteRoute,
   MatchesMatchIdPlayersEditRouteRoute: MatchesMatchIdPlayersEditRouteRoute,
 }
 
@@ -262,10 +284,11 @@ export const routeTree = rootRoute
         "/login",
         "/matches/create",
         "/matches/entry",
-        "/teams/$teamId",
         "/teams/create",
         "/users/create",
+        "/teams/$teamId/",
         "/matches/$matchId/record",
+        "/teams/$teamId/players",
         "/matches/$matchId/players/edit"
       ]
     },
@@ -281,17 +304,20 @@ export const routeTree = rootRoute
     "/matches/entry": {
       "filePath": "matches/entry/route.tsx"
     },
-    "/teams/$teamId": {
-      "filePath": "teams/$teamId/route.tsx"
-    },
     "/teams/create": {
       "filePath": "teams/create/route.tsx"
     },
     "/users/create": {
       "filePath": "users/create/route.tsx"
     },
+    "/teams/$teamId/": {
+      "filePath": "teams/$teamId/index/route.tsx"
+    },
     "/matches/$matchId/record": {
       "filePath": "matches/$matchId/record/route.tsx"
+    },
+    "/teams/$teamId/players": {
+      "filePath": "teams/$teamId/players/route.tsx"
     },
     "/matches/$matchId/players/edit": {
       "filePath": "matches/$matchId/players/edit/route.tsx"
