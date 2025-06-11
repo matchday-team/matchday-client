@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 
-import { assignInlineVars } from '@vanilla-extract/dynamic';
 import clsx from 'clsx';
 
 import * as styles from './Table.css';
@@ -59,12 +58,8 @@ export function Table<T = Record<string, unknown>>({
   headerActions,
   className,
 }: TableProps<T>) {
-  const tableVars = assignInlineVars(styles.tableWidthVars, {
-    totalWidth: `${columns.reduce((sum, col) => sum + col.width, 0)}px`,
-  });
-
   return (
-    <div className={clsx(styles.rootContainer, className)} style={tableVars}>
+    <div className={clsx(styles.rootContainer, className)}>
       {headerActions && (
         <div className={styles.headerActions}>{headerActions}</div>
       )}
@@ -76,26 +71,20 @@ export function Table<T = Record<string, unknown>>({
             alignItems: getAlignItems(headerVerticalAlign),
           }}
         >
-          {columns.map(column => {
-            const headerVars = assignInlineVars(styles.columnWidthVars, {
-              width: `${column.width}px`,
-            });
-
-            return (
-              <div
-                key={column.key}
-                className={styles.headerCell}
-                style={{
-                  ...headerVars,
-                  justifyContent: getJustifyContent(
-                    column.headerAlign || 'center',
-                  ),
-                }}
-              >
-                {column.title}
-              </div>
-            );
-          })}
+          {columns.map(column => (
+            <div
+              key={column.key}
+              className={styles.headerCell}
+              style={{
+                width: column.width,
+                justifyContent: getJustifyContent(
+                  column.headerAlign || 'center',
+                ),
+              }}
+            >
+              {column.title}
+            </div>
+          ))}
         </div>
       </div>
       <div className={styles.body}>
@@ -110,10 +99,6 @@ export function Table<T = Record<string, unknown>>({
             onClick={() => onRowClick?.(record, index)}
           >
             {columns.map(column => {
-              const cellVars = assignInlineVars(styles.columnWidthVars, {
-                width: `${column.width}px`,
-              });
-
               const cellValue = (record as Record<string, unknown>)[column.key];
               const cellContent = column.render
                 ? column.render(cellValue, record, index)
@@ -124,7 +109,7 @@ export function Table<T = Record<string, unknown>>({
                   key={column.key}
                   className={styles.cell}
                   style={{
-                    ...cellVars,
+                    width: column.width,
                     justifyContent: getJustifyContent(
                       column.bodyAlign || 'center',
                     ),

@@ -1,20 +1,11 @@
 import { lightThemeVars } from '@/styles/theme.css';
 
-import { createVar, style } from '@vanilla-extract/css';
-
-export const tableWidthVars = {
-  totalWidth: createVar(),
-};
-
-export const columnWidthVars = {
-  width: createVar(),
-};
+import { style } from '@vanilla-extract/css';
 
 export const rootContainer = style({
   borderRadius: 10,
   boxShadow: '4px 4px 8px 0px rgba(0, 0, 0, 0.05)',
   backgroundColor: lightThemeVars.color.white.main,
-  width: tableWidthVars.totalWidth,
   overflow: 'hidden',
 });
 
@@ -43,7 +34,6 @@ export const headerRow = style({
 export const headerCell = style({
   display: 'flex',
   flexShrink: 0,
-  width: columnWidthVars.width,
 });
 
 export const body = style({
@@ -67,5 +57,4 @@ export const row = style({
 export const cell = style({
   display: 'flex',
   flexShrink: 0,
-  width: columnWidthVars.width,
 });
