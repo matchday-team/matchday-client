@@ -9,11 +9,6 @@ export const container = style({
   justifyContent: 'center',
   padding: 20,
   width: '100%',
-  '@media': {
-    '(max-width: 991px)': {
-      maxWidth: '100%',
-    },
-  },
 });
 
 export const searchContainer = style({
@@ -73,11 +68,6 @@ export const filtersContainer = style({
   marginTop: 'auto',
   marginBottom: 'auto',
   minWidth: 240,
-  '@media': {
-    '(max-width: 991px)': {
-      flexWrap: 'wrap',
-    },
-  },
 });
 
 export const filterSelect = style({
@@ -93,9 +83,4 @@ export const filterSelect = style({
   color: lightThemeVars.color.gray[500],
   fontSize: 16,
   fontWeight: 500,
-  '@media': {
-    '(max-width: 991px)': {
-      minWidth: 100,
-    },
-  },
 });

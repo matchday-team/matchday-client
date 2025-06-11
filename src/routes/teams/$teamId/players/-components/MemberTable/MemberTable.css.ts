@@ -9,11 +9,6 @@ export const container = style({
   backgroundColor: lightThemeVars.color.white.main,
   width: 1336,
   overflow: 'hidden',
-  '@media': {
-    '(max-width: 991px)': {
-      width: '100%',
-    },
-  },
 });
 
 export const tableContainer = style({
@@ -25,12 +20,6 @@ export const tableContainer = style({
   fontFamily:
     'Pretendard Variable, -apple-system, Roboto, Helvetica, sans-serif',
   fontWeight: 500,
-  '@media': {
-    '(max-width: 991px)': {
-      maxWidth: '100%',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const tableHeader = style({
@@ -45,13 +34,6 @@ export const tableHeader = style({
   letterSpacing: -0.35,
   color: lightThemeVars.color.gray[500],
   fontSize: 14,
-  '@media': {
-    '(max-width: 991px)': {
-      padding: '20px',
-      maxWidth: '100%',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const headerRow = style({
@@ -63,12 +45,6 @@ export const headerRow = style({
   borderRadius: '0px 0px 0px 0px',
   padding: '0 1px',
   width: '100%',
-  '@media': {
-    '(max-width: 991px)': {
-      maxWidth: '100%',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const leftHeaderSection = style({
@@ -77,14 +53,6 @@ export const leftHeaderSection = style({
   gap: 20,
   paddingLeft: 76,
   width: 220, // 순번(20px) + 프로필이미지(36px) + gap(20px) = 76px
-  '@media': {
-    '(max-width: 991px)': {
-      gap: 20,
-      paddingLeft: 0,
-      width: 'auto',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const rightHeaderSection = style({
@@ -94,14 +62,6 @@ export const rightHeaderSection = style({
   justifyContent: 'space-between',
   gap: 93,
   paddingRight: 44, // 더보기 버튼(24px) + gap 공간 = 44px
-  '@media': {
-    '(max-width: 991px)': {
-      gap: 40,
-      paddingRight: 0,
-      maxWidth: '100%',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const headerItem = style({
@@ -115,12 +75,6 @@ export const tableBody = style({
   letterSpacing: -0.4,
   color: lightThemeVars.color.black,
   fontSize: 16,
-  '@media': {
-    '(max-width: 991px)': {
-      maxWidth: '100%',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const memberRowContainer = style({
@@ -130,24 +84,11 @@ export const memberRowContainer = style({
   justifyContent: 'center',
   padding: '16px 40px',
   width: '100%',
-  '@media': {
-    '(max-width: 991px)': {
-      padding: '16px 20px',
-      maxWidth: '100%',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const memberRowContent = style({
   width: '100%',
   maxWidth: 1336,
-  '@media': {
-    '(max-width: 991px)': {
-      maxWidth: '100%',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const memberRowInner = style({
@@ -157,12 +98,6 @@ export const memberRowInner = style({
   justifyContent: 'space-between',
   gap: 20,
   width: '100%',
-  '@media': {
-    '(max-width: 991px)': {
-      maxWidth: '100%',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const leftSection = style({
@@ -171,12 +106,6 @@ export const leftSection = style({
   gap: 20,
   width: 220,
   textAlign: 'center',
-  '@media': {
-    '(max-width: 991px)': {
-      width: 'auto',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const indexNumber = style({
@@ -190,12 +119,6 @@ export const indexNumber = style({
   letterSpacing: -0.35,
   color: lightThemeVars.color.gray[500],
   fontSize: 14,
-  '@media': {
-    '(max-width: 991px)': {
-      width: 'auto',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const profileImage = style({
@@ -217,12 +140,6 @@ export const memberName = style({
   width: 60,
   textAlign: 'center',
   color: lightThemeVars.color.black,
-  '@media': {
-    '(max-width: 991px)': {
-      width: 'auto',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const memberNumber = style({
@@ -233,12 +150,6 @@ export const memberNumber = style({
   width: 40,
   textAlign: 'center',
   color: lightThemeVars.color.black,
-  '@media': {
-    '(max-width: 991px)': {
-      width: 'auto',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const rightSection = style({
@@ -249,13 +160,6 @@ export const rightSection = style({
   gap: 93,
   marginTop: 'auto',
   marginBottom: 'auto',
-  '@media': {
-    '(max-width: 991px)': {
-      gap: 40,
-      maxWidth: '100%',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const positionTag = style({
@@ -269,12 +173,6 @@ export const positionTag = style({
   width: 40,
   letterSpacing: -0.35,
   fontSize: 14,
-  '@media': {
-    '(max-width: 991px)': {
-      width: 'auto',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const positionTagFW = style({
@@ -301,11 +199,6 @@ export const positionText = style({
   alignSelf: 'stretch',
   gap: 8,
   width: '100%',
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const footText = style({
@@ -317,12 +210,6 @@ export const footText = style({
   width: 60,
   textAlign: 'center',
   color: lightThemeVars.color.black,
-  '@media': {
-    '(max-width: 991px)': {
-      width: 'auto',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const roleText = style({
@@ -334,12 +221,6 @@ export const roleText = style({
   width: 60,
   textAlign: 'center',
   color: lightThemeVars.color.black,
-  '@media': {
-    '(max-width: 991px)': {
-      width: 'auto',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const joinDateText = style({
@@ -351,12 +232,6 @@ export const joinDateText = style({
   width: 100,
   textAlign: 'center',
   color: lightThemeVars.color.gray[500],
-  '@media': {
-    '(max-width: 991px)': {
-      width: 'auto',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const moreIcon = style({
@@ -377,9 +252,4 @@ export const tableFooter = style({
   display: 'flex',
   padding: '16px 0',
   minHeight: 14,
-  '@media': {
-    '(max-width: 991px)': {
-      maxWidth: '100%',
-    },
-  },
 });

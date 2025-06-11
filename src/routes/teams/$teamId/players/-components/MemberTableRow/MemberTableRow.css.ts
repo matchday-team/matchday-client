@@ -9,24 +9,11 @@ export const container = style({
   justifyContent: 'center',
   padding: '16px 40px 16px 40px',
   width: '100%',
-  '@media': {
-    '(max-width: 991px)': {
-      padding: '16px 20px',
-      maxWidth: '100%',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const rowContent = style({
   width: '100%',
   maxWidth: 1246,
-  '@media': {
-    '(max-width: 991px)': {
-      maxWidth: '100%',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const rowContainer = style({
@@ -36,12 +23,6 @@ export const rowContainer = style({
   justifyContent: 'space-between',
   gap: 20,
   width: '100%',
-  '@media': {
-    '(max-width: 991px)': {
-      maxWidth: '100%',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const leftSection = style({
@@ -49,11 +30,6 @@ export const leftSection = style({
   alignItems: 'center',
   gap: 20,
   textAlign: 'center',
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const indexNumber = style({
@@ -65,11 +41,6 @@ export const indexNumber = style({
   letterSpacing: -0.35,
   color: lightThemeVars.color.gray[500],
   fontSize: 14,
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const profileImage = style({
@@ -92,11 +63,6 @@ export const memberName = style({
   color: lightThemeVars.color.black,
   fontSize: 16,
   fontWeight: 500,
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const memberNumber = style({
@@ -108,11 +74,6 @@ export const memberNumber = style({
   color: lightThemeVars.color.black,
   fontSize: 16,
   fontWeight: 500,
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const rightSection = style({
@@ -121,13 +82,6 @@ export const rightSection = style({
   gap: 93,
   marginTop: 'auto',
   marginBottom: 'auto',
-  '@media': {
-    '(max-width: 991px)': {
-      gap: 40,
-      maxWidth: '100%',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const positionTag = style({
@@ -140,11 +94,6 @@ export const positionTag = style({
   padding: '4px 8px',
   letterSpacing: -0.35,
   fontSize: 14,
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const positionTagFW = style({
@@ -171,11 +120,6 @@ export const positionText = style({
   alignSelf: 'stretch',
   gap: 8,
   width: '100%',
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const footText = style({
@@ -189,11 +133,6 @@ export const footText = style({
   color: lightThemeVars.color.black,
   fontSize: 16,
   fontWeight: 500,
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const roleText = style({
@@ -207,11 +146,6 @@ export const roleText = style({
   color: lightThemeVars.color.black,
   fontSize: 16,
   fontWeight: 500,
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const joinDateText = style({
@@ -225,11 +159,6 @@ export const joinDateText = style({
   color: lightThemeVars.color.gray[500],
   fontSize: 16,
   fontWeight: 500,
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const moreIcon = style({

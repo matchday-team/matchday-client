@@ -14,12 +14,6 @@ export const container = style({
   lineHeight: 1.4,
   fontFamily:
     'Pretendard Variable, -apple-system, Roboto, Helvetica, sans-serif',
-  '@media': {
-    '(max-width: 991px)': {
-      padding: '20px',
-      maxWidth: '100%',
-    },
-  },
 });
 
 export const totalMembersSection = style({
@@ -54,12 +48,6 @@ export const positionStatsContainer = style({
   minWidth: 240,
   whiteSpace: 'nowrap',
   color: lightThemeVars.color.white.main,
-  '@media': {
-    '(max-width: 991px)': {
-      maxWidth: '100%',
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const positionStatItem = style({
@@ -72,11 +60,6 @@ export const positionStatItem = style({
   marginBottom: 'auto',
   borderRadius: 100,
   padding: '10px 14px',
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const positionStatContent = style({
@@ -85,11 +68,6 @@ export const positionStatContent = style({
   justifyContent: 'start',
   gap: 4,
   width: '100%',
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const positionLabel = style({
@@ -110,11 +88,6 @@ export const positionCountContainer = style({
   gap: 4,
   marginTop: 'auto',
   marginBottom: 'auto',
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const positionCount = style({
@@ -127,11 +100,6 @@ export const positionCount = style({
   color: lightThemeVars.color.white.main,
   fontSize: 24,
   fontWeight: 600,
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const positionCountLabel = style({
