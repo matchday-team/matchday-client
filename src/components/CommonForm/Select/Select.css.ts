@@ -20,26 +20,41 @@ export const selectButton = recipe({
     alignItems: 'center',
     justifyContent: 'space-between',
     outline: '1px solid transparent',
-    border: `1px solid ${lightThemeVars.color.primary[100]}`,
-    borderRadius: 6,
-    backgroundColor: lightThemeVars.color.white.hover,
     cursor: 'pointer',
-    padding: '7px 14px',
     width: '100%',
-    height: OPTION_ITEM_HEIGHT,
     lineHeight: 1.4,
     letterSpacing: -0.35,
-    fontSize: 14,
     fontWeight: 400,
 
     ':focus': {
       outlineColor: lightThemeVars.color.primary[700],
     },
-    ':hover': {
-      backgroundColor: lightThemeVars.color.white.hover,
-    },
   },
   variants: {
+    variant: {
+      'gray-small': {
+        border: `1px solid ${lightThemeVars.color.primary[100]}`,
+        borderRadius: 6,
+        backgroundColor: lightThemeVars.color.white.hover,
+        padding: '7px 14px',
+        height: OPTION_ITEM_HEIGHT,
+        fontSize: 14,
+        ':hover': {
+          backgroundColor: lightThemeVars.color.white.hover,
+        },
+      },
+      'white-large': {
+        border: `1px solid ${lightThemeVars.color.primary[100]}`,
+        borderRadius: 10,
+        backgroundColor: lightThemeVars.color.white.main,
+        padding: '10px 16px',
+        height: 44,
+        fontSize: 16,
+        ':hover': {
+          backgroundColor: lightThemeVars.color.white.hover,
+        },
+      },
+    },
     isPlaceholder: {
       true: {
         color: lightThemeVars.color.gray[500],
@@ -53,6 +68,9 @@ export const selectButton = recipe({
         borderColor: lightThemeVars.color.warning,
       },
     },
+  },
+  defaultVariants: {
+    variant: 'gray-small',
   },
   compoundVariants: [
     {

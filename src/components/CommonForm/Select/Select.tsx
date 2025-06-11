@@ -17,6 +17,7 @@ interface SelectProps
   isError?: boolean;
   onChange?: (value: string) => void;
   name?: string;
+  variant?: 'gray-small' | 'white-large';
 }
 
 export const Select = ({
@@ -26,6 +27,7 @@ export const Select = ({
   isError = false,
   onChange,
   name,
+  variant = 'gray-small',
   ...props
 }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -222,7 +224,7 @@ export const Select = ({
       {name && <input type='hidden' name={name} value={value || ''} />}
 
       <div
-        className={styles.selectButton({ isPlaceholder, isError })}
+        className={styles.selectButton({ isPlaceholder, isError, variant })}
         onClick={handleToggle}
         onKeyDown={handleKeyDown}
         onBlur={handleBlur}
