@@ -5,13 +5,7 @@ import { Input, Select } from '@/components/CommonForm';
 
 import * as styles from './MemberFilters.css';
 
-interface MemberFiltersProps {
-  onSearchChange?: (value: string) => void;
-  onPositionFilter?: (position: string) => void;
-  onFootFilter?: (foot: string) => void;
-  onDateFilter?: (date: string) => void;
-}
-
+// TODO: 상수로 추출
 const positionOptions = [
   { value: '', label: '포지션' },
   { value: 'FW', label: 'FW' },
@@ -32,6 +26,13 @@ const dateOptions = [
   { value: 'recent', label: '최근 가입' },
   { value: 'oldest', label: '오래된 순' },
 ];
+
+interface MemberFiltersProps {
+  onSearchChange?: (value: string) => void;
+  onPositionFilter?: (position: string) => void;
+  onFootFilter?: (foot: string) => void;
+  onDateFilter?: (date: string) => void;
+}
 
 export function MemberFilters({
   onSearchChange,
@@ -72,7 +73,7 @@ export function MemberFilters({
           <Input
             placeholder='검색어를 입력하세요'
             value={searchValue}
-            onChange={handleSearchChange}
+            onChange={e => handleSearchChange(e.target.value)}
             className={styles.searchInput}
           />
         </div>

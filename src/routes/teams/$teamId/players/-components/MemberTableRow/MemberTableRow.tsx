@@ -1,19 +1,11 @@
+import { ChevronRightIcon } from '@/assets/icons';
+import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
+import type {
+  Member,
+  Position,
+} from '@/routes/teams/$teamId/players/-temp-server-types';
+
 import * as styles from './MemberTableRow.css';
-
-export type Position = 'FW' | 'MF' | 'DF' | 'GK';
-export type Foot = '왼발' | '오른발' | '양발';
-export type Role = '일반' | '관리자';
-
-interface Member {
-  id: number;
-  name: string;
-  number: string;
-  position: Position;
-  foot: Foot;
-  role: Role;
-  joinDate: string;
-  profileImage?: string;
-}
 
 interface MemberTableRowProps {
   member: Member;
@@ -46,12 +38,9 @@ export function MemberTableRow({
       <div className={styles.leftSection}>
         <div className={styles.indexNumber}>{index}</div>
         <img
-          src={
-            member.profileImage ||
-            'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/e74f0710b5ab267430e810eabb2122e5690bd3ed?placeholderIfAbsent=true'
-          }
+          src={member.profileImage ?? noProfilePlayerImage}
           className={styles.profileImage}
-          alt={`${member.name} 프로필`}
+          alt=''
         />
         <div className={styles.memberName}>{member.name}</div>
         <div className={styles.memberNumber}>{member.number}</div>
@@ -65,12 +54,12 @@ export function MemberTableRow({
         <div className={styles.footText}>{member.foot}</div>
         <div className={styles.roleText}>{member.role}</div>
         <div className={styles.joinDateText}>{member.joinDate}</div>
-        <img
-          src='https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/55c39dcd781d632c0a614aac68f69d1f93101561?placeholderIfAbsent=true'
+        <button
           className={styles.moreIcon}
-          alt='더보기'
           onClick={() => onMoreClick?.(member)}
-        />
+        >
+          <ChevronRightIcon />
+        </button>
       </div>
     </div>
   );

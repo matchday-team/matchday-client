@@ -175,6 +175,7 @@ export const positionTag = style({
   fontSize: 14,
 });
 
+// TODO: 컬러를 상수로 추출하고 vars로 적용
 export const positionTagFW = style({
   backgroundColor: 'rgba(255, 236, 236, 1)',
   color: 'rgba(255, 0, 0, 1)',

@@ -1,9 +1,6 @@
-import * as styles from './MemberStatsSummary.css';
+import type { PositionStat } from '@/routes/teams/$teamId/players/-temp-server-types';
 
-interface PositionStat {
-  position: string;
-  count: number;
-}
+import * as styles from './MemberStatsSummary.css';
 
 interface MemberStatsSummaryProps {
   totalMembers?: number;
