@@ -1,5 +1,5 @@
 import { ChevronRightIcon } from '@/assets/icons';
-import type { Notice } from '@/routes/teams/$teamId/-temp-server-types';
+import type { Notice } from '@/routes/teams/$teamId/index/-temp-server-types';
 
 import * as styles from './NoticeBoard.css';
 

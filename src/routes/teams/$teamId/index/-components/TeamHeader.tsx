@@ -10,7 +10,7 @@ import {
   UsersIcon,
 } from '@/assets/icons';
 import DefaultTeamLogo from '@/assets/images/teams/default-team-logo.svg?react';
-import type { TeamInfo } from '@/routes/teams/$teamId/-temp-server-types';
+import type { TeamInfo } from '@/routes/teams/$teamId/index/-temp-server-types';
 
 import * as styles from './TeamHeader.css';
 
