@@ -18,7 +18,6 @@ export const rowContent = style({
 
 export const rowContainer = style({
   display: 'flex',
-  flexWrap: 'wrap',
   alignItems: 'stretch',
   justifyContent: 'space-between',
   gap: 20,

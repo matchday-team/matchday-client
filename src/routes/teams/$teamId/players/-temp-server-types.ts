@@ -14,17 +14,6 @@ export interface Member {
 }
 
 export interface PositionStat {
-  position: string;
-  count: number;
-}
-
-export interface Member {
-  id: number;
-  name: string;
-  number: string;
   position: Position;
-  foot: Foot;
-  role: Role;
-  joinDate: string;
-  profileImage: string | null;
+  count: number;
 }
