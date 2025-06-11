@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 
 import { assignInlineVars } from '@vanilla-extract/dynamic';
+import clsx from 'clsx';
 
 import * as styles from './Table.css';
 
@@ -44,6 +45,7 @@ interface TableProps<T = Record<string, unknown>> {
   bodyVerticalAlign?: 'top' | 'center' | 'bottom';
   onRowClick?: (record: T, index: number) => void;
   headerActions?: ReactNode;
+  className?: string;
 }
 
 export function Table<T = Record<string, unknown>>({
@@ -55,13 +57,14 @@ export function Table<T = Record<string, unknown>>({
   bodyVerticalAlign = 'center',
   onRowClick,
   headerActions,
+  className,
 }: TableProps<T>) {
   const tableVars = assignInlineVars(styles.tableWidthVars, {
     totalWidth: `${columns.reduce((sum, col) => sum + col.width, 0)}px`,
   });
 
   return (
-    <div className={styles.container} style={tableVars}>
+    <div className={clsx(styles.rootContainer, className)} style={tableVars}>
       {headerActions && (
         <div className={styles.headerActions}>{headerActions}</div>
       )}

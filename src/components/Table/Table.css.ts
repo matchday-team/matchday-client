@@ -10,7 +10,7 @@ export const columnWidthVars = {
   width: createVar(),
 };
 
-export const container = style({
+export const rootContainer = style({
   borderRadius: 10,
   boxShadow: '4px 4px 8px 0px rgba(0, 0, 0, 0.05)',
   backgroundColor: lightThemeVars.color.white.main,
