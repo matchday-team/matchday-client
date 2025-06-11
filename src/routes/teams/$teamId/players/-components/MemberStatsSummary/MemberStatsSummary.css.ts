@@ -6,7 +6,7 @@ export const container = style({
   display: 'flex',
   flexWrap: 'wrap',
   alignItems: 'center',
-  justifyContent: 'start',
+  justifyContent: 'space-between',
   borderRadius: 10,
   boxShadow: '4px 4px 8px 0px rgba(0, 0, 0, 0.05)',
   backgroundColor: lightThemeVars.color.primary[800],

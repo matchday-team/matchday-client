@@ -1,9 +1,19 @@
+import { commonPageRoot } from '@/styles/page.css';
 import { lightThemeVars } from '@/styles/theme.css';
 
 import { style } from '@vanilla-extract/css';
 
-export const container = style({
-  backgroundColor: lightThemeVars.color.white.background,
-  padding: '67px 52px 113px',
-  overflow: 'hidden',
-});
+export const rootContainer = style([
+  commonPageRoot,
+  {
+    display: 'flex',
+    flexDirection: 'column',
+    flexShrink: 0,
+    gap: 20,
+    backgroundColor: lightThemeVars.color.white.background,
+    paddingTop: 60,
+    paddingBottom: 60,
+    width: 1336,
+    overflow: 'hidden',
+  },
+]);

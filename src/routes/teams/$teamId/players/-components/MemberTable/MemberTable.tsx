@@ -38,7 +38,7 @@ export function MemberTable({ members, onMemberMoreClick }: MemberTableProps) {
   const columns: TableColumn<(typeof tableData)[0]>[] = [
     {
       key: 'index',
-      title: '순번',
+      title: '',
       width: 80,
       headerAlign: 'center',
       bodyAlign: 'center',
@@ -48,7 +48,7 @@ export function MemberTable({ members, onMemberMoreClick }: MemberTableProps) {
     },
     {
       key: 'profileImage',
-      title: '프로필',
+      title: '',
       width: 80,
       headerAlign: 'center',
       bodyAlign: 'center',
@@ -125,7 +125,7 @@ export function MemberTable({ members, onMemberMoreClick }: MemberTableProps) {
       title: '',
       width: 80,
       headerAlign: 'center',
-      bodyAlign: 'center',
+      bodyAlign: 'right',
       render: (_, record) => (
         <ChevronRightIcon
           className={styles.moreIcon}
@@ -136,9 +136,12 @@ export function MemberTable({ members, onMemberMoreClick }: MemberTableProps) {
   ];
 
   return (
-    <div className={styles.container}>
-      <MemberFilters />
-      <Table columns={columns} data={tableData} />
-    </div>
+    <Table
+      columns={columns}
+      data={tableData}
+      headerActions={<MemberFilters />}
+      className={styles.tableOverride}
+      rowHeight={68}
+    />
   );
 }

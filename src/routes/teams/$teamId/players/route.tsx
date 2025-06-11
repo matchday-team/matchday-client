@@ -14,7 +14,7 @@ export const Route = createFileRoute('/teams/$teamId/players')({
 
 function RouteComponent() {
   return (
-    <div className={styles.container}>
+    <div className={styles.rootContainer}>
       <MemberStatsSummary />
       <MemberTable members={mockMembers} />
     </div>

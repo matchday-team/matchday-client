@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
-import { SearchIcon } from '@/assets/icons';
-import { Input, Select } from '@/components/CommonForm';
+import { InputWithIcon, Select } from '@/components/CommonForm';
 
 import * as styles from './MemberFilters.css';
 
@@ -68,33 +67,33 @@ export function MemberFilters({
   return (
     <div className={styles.container}>
       <div className={styles.searchContainer}>
-        <div className={styles.searchInputWrapper}>
-          <SearchIcon className={styles.searchIcon} />
-          <Input
-            placeholder='검색어를 입력하세요'
-            value={searchValue}
-            onChange={e => handleSearchChange(e.target.value)}
-            className={styles.searchInput}
-          />
-        </div>
+        <InputWithIcon
+          placeholder='선수 이름을 입력해주세요'
+          value={searchValue}
+          onChange={e => handleSearchChange(e.target.value)}
+          variant='white-large'
+        />
       </div>
       <div className={styles.filtersContainer}>
         <Select
           options={positionOptions}
           value={positionValue}
           onChange={handlePositionChange}
+          variant='white-large'
           className={styles.filterSelect}
         />
         <Select
           options={footOptions}
           value={footValue}
           onChange={handleFootChange}
+          variant='white-large'
           className={styles.filterSelect}
         />
         <Select
           options={dateOptions}
           value={dateValue}
           onChange={handleDateChange}
+          variant='white-large'
           className={styles.filterSelect}
         />
       </div>

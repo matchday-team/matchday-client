@@ -2,8 +2,8 @@ import { lightThemeVars } from '@/styles/theme.css';
 
 import { style } from '@vanilla-extract/css';
 
-export const container = style({
-  marginTop: 20,
+export const tableOverride = style({
+  width: '100%',
 });
 
 export const indexNumber = style({
