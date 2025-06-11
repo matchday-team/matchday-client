@@ -1,6 +1,6 @@
 import { ComponentProps, ReactNode } from 'react';
 
-import { SearchIcon } from '@/assets/icons';
+import { MagnifyingGlassIcon } from '@/assets/icons';
 
 import * as styles from './InputWithIcon.css';
 
@@ -13,7 +13,7 @@ interface InputWithIconProps extends ComponentProps<'input'> {
 
 export function InputWithIcon({
   isError = false,
-  icon = <SearchIcon />,
+  icon = <MagnifyingGlassIcon />,
   iconPosition = 'left',
   variant = 'gray-small',
   ...props

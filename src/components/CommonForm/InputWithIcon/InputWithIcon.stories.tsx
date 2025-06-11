@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { CalendarIcon, SearchIcon, UserIcon } from '@/assets/icons';
+import { CalendarIcon, MagnifyingGlassIcon, UserIcon } from '@/assets/icons';
 
 import { InputWithIcon } from './InputWithIcon';
 
@@ -35,7 +35,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     placeholder: '검색어를 입력하세요',
-    icon: <SearchIcon />,
+    icon: <MagnifyingGlassIcon />,
     iconPosition: 'left',
   },
 };
@@ -43,7 +43,7 @@ export const Default: Story = {
 export const IconRight: Story = {
   args: {
     placeholder: '검색어를 입력하세요',
-    icon: <SearchIcon />,
+    icon: <MagnifyingGlassIcon />,
     iconPosition: 'right',
   },
 };
@@ -68,7 +68,7 @@ export const DateInput: Story = {
 export const ErrorState: Story = {
   args: {
     placeholder: '검색어를 입력하세요',
-    icon: <SearchIcon />,
+    icon: <MagnifyingGlassIcon />,
     isError: true,
     iconPosition: 'left',
   },
@@ -77,7 +77,7 @@ export const ErrorState: Story = {
 export const Disabled: Story = {
   args: {
     placeholder: '검색어를 입력하세요',
-    icon: <SearchIcon />,
+    icon: <MagnifyingGlassIcon />,
     disabled: true,
     iconPosition: 'left',
   },
@@ -87,7 +87,7 @@ export const Disabled: Story = {
 export const WhiteLarge: Story = {
   args: {
     placeholder: '검색어를 입력하세요',
-    icon: <SearchIcon />,
+    icon: <MagnifyingGlassIcon />,
     variant: 'white-large',
     iconPosition: 'left',
   },
@@ -96,7 +96,7 @@ export const WhiteLarge: Story = {
 export const WhiteLargeRight: Story = {
   args: {
     placeholder: '검색어를 입력하세요',
-    icon: <SearchIcon />,
+    icon: <MagnifyingGlassIcon />,
     variant: 'white-large',
     iconPosition: 'right',
   },
@@ -105,7 +105,7 @@ export const WhiteLargeRight: Story = {
 export const WhiteLargeError: Story = {
   args: {
     placeholder: '검색어를 입력하세요',
-    icon: <SearchIcon />,
+    icon: <MagnifyingGlassIcon />,
     variant: 'white-large',
     isError: true,
     iconPosition: 'left',
@@ -136,7 +136,7 @@ export const CompareAllVariants: Story = {
           </label>
           <InputWithIcon
             placeholder='기본 스타일'
-            icon={<SearchIcon />}
+            icon={<MagnifyingGlassIcon />}
             variant='gray-small'
             iconPosition='left'
           />
@@ -154,7 +154,7 @@ export const CompareAllVariants: Story = {
           </label>
           <InputWithIcon
             placeholder='검색 스타일'
-            icon={<SearchIcon />}
+            icon={<MagnifyingGlassIcon />}
             variant='white-large'
             iconPosition='left'
           />
