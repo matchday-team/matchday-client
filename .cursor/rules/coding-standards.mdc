@@ -10,6 +10,10 @@ alwaysApply: true
 - 주석은 "합니다" 등을 붙이지 않고 간결한 개조식으로 작성한다.
 - 변수명, 함수명은 영어로 작성하되 의미가 명확해야 한다.
 
+## 스타일링
+- className을 여러 개 처리할 때는 clsx를 사용하며, template string은 사용하지 않는다.
+- 동적인 값을 받아야 하는 경우 assignInlineVars를 사용한다.
+
 ## 네이밍 컨벤션
 - 컴포넌트명: PascalCase (예: `TeamCreatePage`)
 - 함수명: camelCase (예: `handleSubmit`)
