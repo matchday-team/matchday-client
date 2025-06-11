@@ -1,5 +1,6 @@
 import { ChevronRightIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
+import { Table, type TableColumn } from '@/components';
 import { MemberFilters } from '@/routes/teams/$teamId/players/-components/MemberFilters';
 import type {
   Member,
@@ -29,64 +30,115 @@ interface MemberTableProps {
 }
 
 export function MemberTable({ members, onMemberMoreClick }: MemberTableProps) {
+  const tableData = members.map((member, index) => ({
+    ...member,
+    index: index + 1,
+  }));
+
+  const columns: TableColumn<(typeof tableData)[0]>[] = [
+    {
+      key: 'index',
+      title: '순번',
+      width: 80,
+      headerAlign: 'center',
+      bodyAlign: 'center',
+      render: value => (
+        <div className={styles.indexNumber}>{value as string}</div>
+      ),
+    },
+    {
+      key: 'profileImage',
+      title: '프로필',
+      width: 80,
+      headerAlign: 'center',
+      bodyAlign: 'center',
+      render: (value, record) => (
+        <img
+          src={(value as string) ?? noProfilePlayerImage}
+          className={styles.profileImage}
+          alt=''
+        />
+      ),
+    },
+    {
+      key: 'name',
+      title: '이름',
+      width: 200,
+      headerAlign: 'center',
+      bodyAlign: 'center',
+      render: value => (
+        <div className={styles.memberName}>{value as string}</div>
+      ),
+    },
+    {
+      key: 'number',
+      title: '번호',
+      width: 120,
+      headerAlign: 'center',
+      bodyAlign: 'center',
+      render: value => (
+        <div className={styles.memberNumber}>{value as string}</div>
+      ),
+    },
+    {
+      key: 'position',
+      title: '포지션',
+      width: 150,
+      headerAlign: 'center',
+      bodyAlign: 'center',
+      render: (value, record) => (
+        <div
+          className={`${styles.positionTag} ${getPositionStyle(value as Position)}`}
+        >
+          <div className={styles.positionText}>{value as string}</div>
+        </div>
+      ),
+    },
+    {
+      key: 'foot',
+      title: '주발',
+      width: 150,
+      headerAlign: 'center',
+      bodyAlign: 'center',
+      render: value => <div className={styles.footText}>{value as string}</div>,
+    },
+    {
+      key: 'role',
+      title: '권한',
+      width: 200,
+      headerAlign: 'center',
+      bodyAlign: 'center',
+      render: value => <div className={styles.roleText}>{value as string}</div>,
+    },
+    {
+      key: 'joinDate',
+      title: '가입일',
+      width: 186,
+      headerAlign: 'center',
+      bodyAlign: 'center',
+      render: value => (
+        <div className={styles.joinDateText}>{value as string}</div>
+      ),
+    },
+    {
+      key: 'actions',
+      title: '',
+      width: 80,
+      headerAlign: 'center',
+      bodyAlign: 'center',
+      render: (_, record) => (
+        <ChevronRightIcon
+          className={styles.moreIcon}
+          onClick={() => onMemberMoreClick?.(record as Member)}
+        />
+      ),
+    },
+  ];
+
   return (
     <div className={styles.container}>
       <MemberFilters />
-
-      <div className={styles.tableContainer}>
-        <div className={styles.tableHeader}>
-          <div className={styles.headerRow}>
-            <div className={styles.leftHeaderSection}>
-              <div className={styles.headerItem}>이름</div>
-              <div className={styles.headerItem}>번호</div>
-            </div>
-            <div className={styles.rightHeaderSection}>
-              <div className={styles.headerItem}>포지션</div>
-              <div className={styles.headerItem}>주발</div>
-              <div className={styles.headerItem}>권한</div>
-              <div className={styles.headerItem}>가입일</div>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.tableBody}>
-          {members.map((member, index) => (
-            <div key={member.id} className={styles.memberRowContainer}>
-              <div className={styles.memberRowContent}>
-                <div className={styles.memberRowInner}>
-                  <div className={styles.leftSection}>
-                    <div className={styles.indexNumber}>{index + 1}</div>
-                    <img
-                      src={member.profileImage ?? noProfilePlayerImage}
-                      className={styles.profileImage}
-                      alt=''
-                    />
-                    <div className={styles.memberName}>{member.name}</div>
-                    <div className={styles.memberNumber}>{member.number}</div>
-                  </div>
-                  <div className={styles.rightSection}>
-                    <div
-                      className={`${styles.positionTag} ${getPositionStyle(member.position)}`}
-                    >
-                      <div className={styles.positionText}>
-                        {member.position}
-                      </div>
-                    </div>
-                    <div className={styles.footText}>{member.foot}</div>
-                    <div className={styles.roleText}>{member.role}</div>
-                    <div className={styles.joinDateText}>{member.joinDate}</div>
-                    <ChevronRightIcon
-                      className={styles.moreIcon}
-                      onClick={() => onMemberMoreClick?.(member)}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-          <div className={styles.tableFooter} />
-        </div>
-      </div>
+      <Table columns={columns} data={tableData} />
     </div>
   );
 }
