@@ -1,11 +1,21 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import { MemberManagement } from './-components';
+import {
+  MemberStatsSummary,
+  MemberTable,
+} from '@/routes/teams/$teamId/players/-components';
+
+import * as styles from './-route.css';
 
 export const Route = createFileRoute('/teams/$teamId/players')({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  return <MemberManagement />;
+  return (
+    <div className={styles.container}>
+      <MemberStatsSummary />
+      <MemberTable />
+    </div>
+  );
 }

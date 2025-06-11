@@ -1,4 +1,3 @@
-export * from './MemberManagement';
 export * from './MemberStatsSummary';
 export * from './MemberFilters';
 export * from './MemberTable';
