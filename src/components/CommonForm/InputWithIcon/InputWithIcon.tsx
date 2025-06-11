@@ -1,25 +1,35 @@
 import { ComponentProps, ReactNode } from 'react';
 
+import { SearchIcon } from '@/assets/icons';
+
 import * as styles from './InputWithIcon.css';
 
 interface InputWithIconProps extends ComponentProps<'input'> {
   isError?: boolean;
   icon?: ReactNode;
+  iconPosition?: 'left' | 'right';
+  variant?: 'gray-small' | 'white-large';
 }
 
 export function InputWithIcon({
   isError = false,
-  icon,
+  icon = <SearchIcon />,
+  iconPosition = 'left',
+  variant = 'gray-small',
   ...props
 }: InputWithIconProps) {
   return (
     <div className={styles.inputWrapper}>
       <input
         aria-invalid={isError}
-        className={styles.textInputWithIcon}
+        className={styles.textInput({ variant, iconPosition })}
         {...props}
       />
-      {icon && <div className={styles.iconContainer}>{icon}</div>}
+      {icon && (
+        <div className={styles.iconContainer({ variant, iconPosition })}>
+          {icon}
+        </div>
+      )}
     </div>
   );
 }
