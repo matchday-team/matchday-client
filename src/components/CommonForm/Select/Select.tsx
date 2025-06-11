@@ -1,5 +1,7 @@
 import { ComponentPropsWithoutRef, useEffect, useRef, useState } from 'react';
 
+import clsx from 'clsx';
+
 import { ChevronDownIcon } from '@/assets/icons';
 
 import * as styles from './Select.css';
@@ -27,6 +29,7 @@ export const Select = ({
   isError = false,
   onChange,
   name,
+  className,
   variant = 'gray-small',
   ...props
 }: SelectProps) => {
@@ -48,7 +51,6 @@ export const Select = ({
     optionRefs.current = optionRefs.current.slice(0, options.length);
   }, [options.length]);
 
-  // NOTE: 드롭다운 위/아래 표시를 위한 위치 계산
   useEffect(() => {
     if (isOpen && selectRef.current) {
       const selectRect = selectRef.current.getBoundingClientRect();
@@ -220,7 +222,11 @@ export const Select = ({
   };
 
   return (
-    <div className={styles.selectContainer} ref={selectRef} {...props}>
+    <div
+      className={clsx(styles.selectContainer, className)}
+      ref={selectRef}
+      {...props}
+    >
       {name && <input type='hidden' name={name} value={value || ''} />}
 
       <div
