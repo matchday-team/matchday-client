@@ -17,3 +17,15 @@ export interface PositionStat {
   position: Position;
   count: number;
 }
+
+export interface MatchRecord {
+  id: number;
+  opponentTeam: string;
+  opponentLogo: string;
+  homeScore: number;
+  awayScore: number;
+  isWin: boolean;
+  goals: number;
+  assists: number;
+  yellowCards: number;
+}
