@@ -38,7 +38,6 @@ export const positionTag = style({
   justifyContent: 'center',
   borderRadius: 100,
   padding: '4px 8px',
-  width: 40,
   letterSpacing: -0.35,
   fontSize: 14,
 });
