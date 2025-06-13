@@ -1,6 +1,7 @@
 import { lightThemeVars } from '@/styles/theme.css';
 
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 export const rootContainer = style({
   borderRadius: 10,
@@ -22,18 +23,35 @@ export const header = style({
   backgroundColor: lightThemeVars.color.white.main,
 });
 
-export const headerRow = style({
-  display: 'flex',
-  alignItems: 'center',
-  letterSpacing: -0.35,
-  color: lightThemeVars.color.gray[500],
-  fontSize: 14,
-  fontWeight: 500,
+export const headerRow = recipe({
+  base: {
+    display: 'flex',
+    letterSpacing: -0.35,
+    color: lightThemeVars.color.gray[500],
+    fontSize: 14,
+    fontWeight: 500,
+  },
+  variants: {
+    align: {
+      top: { alignItems: 'flex-start' },
+      center: { alignItems: 'center' },
+      bottom: { alignItems: 'flex-end' },
+    },
+  },
 });
 
-export const headerCell = style({
-  display: 'flex',
-  flexShrink: 0,
+export const headerCell = recipe({
+  base: {
+    display: 'flex',
+    flexShrink: 0,
+  },
+  variants: {
+    align: {
+      left: { justifyContent: 'flex-start' },
+      center: { justifyContent: 'center' },
+      right: { justifyContent: 'flex-end' },
+    },
+  },
 });
 
 export const body = style({
@@ -41,20 +59,38 @@ export const body = style({
   overflow: 'auto',
 });
 
-export const row = style({
-  display: 'flex',
-  borderBottom: `1px solid ${lightThemeVars.color.gray[100]}`,
-  cursor: 'pointer',
-  letterSpacing: -0.4,
-  color: lightThemeVars.color.black,
-  fontSize: 16,
+export const row = recipe({
+  base: {
+    display: 'flex',
+    borderBottom: `1px solid ${lightThemeVars.color.gray[100]}`,
+    cursor: 'pointer',
+    letterSpacing: -0.4,
+    color: lightThemeVars.color.black,
+    fontSize: 16,
 
-  ':hover': {
-    backgroundColor: lightThemeVars.color.gray[100],
+    ':hover': {
+      backgroundColor: lightThemeVars.color.gray[100],
+    },
+  },
+  variants: {
+    align: {
+      top: { alignItems: 'flex-start' },
+      center: { alignItems: 'center' },
+      bottom: { alignItems: 'flex-end' },
+    },
   },
 });
 
-export const cell = style({
-  display: 'flex',
-  flexShrink: 0,
+export const cell = recipe({
+  base: {
+    display: 'flex',
+    flexShrink: 0,
+  },
+  variants: {
+    align: {
+      left: { justifyContent: 'flex-start' },
+      center: { justifyContent: 'center' },
+      right: { justifyContent: 'flex-end' },
+    },
+  },
 });

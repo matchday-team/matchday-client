@@ -4,28 +4,6 @@ import clsx from 'clsx';
 
 import * as styles from './Table.css';
 
-const getAlignItems = (align: 'top' | 'center' | 'bottom') => {
-  switch (align) {
-    case 'top':
-      return 'flex-start';
-    case 'center':
-      return 'center';
-    case 'bottom':
-      return 'flex-end';
-  }
-};
-
-const getJustifyContent = (align: 'left' | 'center' | 'right') => {
-  switch (align) {
-    case 'left':
-      return 'flex-start';
-    case 'center':
-      return 'center';
-    case 'right':
-      return 'flex-end';
-  }
-};
-
 export interface TableColumn<
   T = Record<string, unknown>,
   K extends keyof T = keyof T,
@@ -77,21 +55,19 @@ export function Table<T = Record<string, unknown>>({
       )}
       <div className={styles.header}>
         <div
-          className={styles.headerRow}
+          className={styles.headerRow({ align: headerVerticalAlign })}
           style={{
             height: headerHeight,
-            alignItems: getAlignItems(headerVerticalAlign),
           }}
         >
           {columnEntries.map(([key, column]) => (
             <div
               key={String(key)}
-              className={styles.headerCell}
+              className={styles.headerCell({
+                align: column.headerAlign || 'center',
+              })}
               style={{
                 width: column.width,
-                justifyContent: getJustifyContent(
-                  column.headerAlign || 'center',
-                ),
               }}
             >
               {column.title}
@@ -103,10 +79,9 @@ export function Table<T = Record<string, unknown>>({
         {data.map((record, index) => (
           <div
             key={index}
-            className={styles.row}
+            className={styles.row({ align: bodyVerticalAlign })}
             style={{
               height: rowHeight,
-              alignItems: getAlignItems(bodyVerticalAlign),
             }}
             onClick={() => onRowClick?.(record, index)}
           >
@@ -119,12 +94,11 @@ export function Table<T = Record<string, unknown>>({
               return (
                 <div
                   key={String(key)}
-                  className={styles.cell}
+                  className={styles.cell({
+                    align: column.bodyAlign || 'center',
+                  })}
                   style={{
                     width: column.width,
-                    justifyContent: getJustifyContent(
-                      column.bodyAlign || 'center',
-                    ),
                   }}
                 >
                   {cellContent as ReactNode}
