@@ -8,8 +8,7 @@ export const rootContainer = style({
   alignItems: 'center',
   gap: 40,
   padding: '40px 20px 0',
-  width: '100%',
-  maxWidth: 314,
+  width: 314,
   lineHeight: 1.4,
 });
 
