@@ -38,11 +38,7 @@ export function PlayerProfile({ member }: PlayerProfileProps) {
           <div className={styles.divider} />
           <div className={styles.positionColumn}>
             <div className={styles.positionLabel}>부 포지션</div>
-            <div className={styles.secondaryPositionTag}>
-              <div className={styles.secondaryPositionText}>
-                {member.secondaryPosition}
-              </div>
-            </div>
+            <PositionTag position={member.secondaryPosition} />
           </div>
         </div>
       </div>

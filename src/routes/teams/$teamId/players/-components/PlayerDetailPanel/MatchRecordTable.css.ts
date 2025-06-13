@@ -9,9 +9,9 @@ export const rootContainer = style({
 
 export const headerContainer = style({
   display: 'flex',
-  flexDirection: 'column',
   justifyContent: 'center',
   padding: '16px 0 16px 52px',
+  maxWidth: 273,
   lineHeight: 1.4,
   letterSpacing: -0.3,
   color: lightThemeVars.color.gray[500],
@@ -19,31 +19,12 @@ export const headerContainer = style({
   fontWeight: 400,
 });
 
-export const headerRowContainer = style({
-  display: 'flex',
-  justifyContent: 'space-between',
-  gap: 20,
-  borderRadius: 0,
-  width: '100%',
-  maxWidth: 273,
-});
-
 export const opponentLabel = style({
   color: lightThemeVars.color.gray[500],
 });
 
-export const statsLabels = style({
-  display: 'flex',
-  gap: 24,
-});
-
 export const scoreLabel = style({
   color: lightThemeVars.color.gray[500],
-});
-
-export const personalStatsLabels = style({
-  display: 'flex',
-  gap: 12,
 });
 
 export const statsLabel = style({

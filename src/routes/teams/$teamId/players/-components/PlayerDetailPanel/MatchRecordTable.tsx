@@ -11,17 +11,11 @@ export function MatchRecordTable({ matchRecords }: MatchRecordTableProps) {
   return (
     <div className={styles.rootContainer}>
       <div className={styles.headerContainer}>
-        <div className={styles.headerRowContainer}>
-          <div className={styles.opponentLabel}>상대팀</div>
-          <div className={styles.statsLabels}>
-            <div className={styles.scoreLabel}>스코어</div>
-            <div className={styles.personalStatsLabels}>
-              <div className={styles.statsLabel}>득점</div>
-              <div className={styles.statsLabel}>어시스트</div>
-              <div className={styles.statsLabel}>경고</div>
-            </div>
-          </div>
-        </div>
+        <div className={styles.opponentLabel}>상대팀</div>
+        <div className={styles.scoreLabel}>스코어</div>
+        <div className={styles.statsLabel}>득점</div>
+        <div className={styles.statsLabel}>어시스트</div>
+        <div className={styles.statsLabel}>경고</div>
       </div>
       <div className={styles.bodyContainer}>
         {matchRecords.map(record => (
