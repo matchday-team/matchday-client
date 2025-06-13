@@ -8,12 +8,7 @@ import {
   PlayerDetailPanel,
 } from '@/routes/teams/$teamId/players/-components';
 
-import {
-  mockMatchRecords,
-  mockMembers,
-  mockPersonalInfo,
-  mockSecondaryPosition,
-} from './-mock-data';
+import { mockMatchRecords, mockMembers } from './-mock-data';
 import * as styles from './-route.css';
 import type { Member } from './-temp-server-types';
 
@@ -43,8 +38,6 @@ function RouteComponent() {
             <PlayerDetailPanel
               member={selectedMember}
               matchRecords={mockMatchRecords}
-              personalInfo={mockPersonalInfo}
-              secondaryPosition={mockSecondaryPosition}
             />
           </div>
         )}

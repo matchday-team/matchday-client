@@ -13,6 +13,10 @@ export const mockMembers: Member[] = [
     role: '일반',
     joinDate: '2025-04-23',
     profileImage: null,
+    birthDate: '1992-07-08',
+    height: '183cm',
+    weight: '77kg',
+    secondaryPosition: 'MF',
   },
   {
     id: 2,
@@ -23,6 +27,10 @@ export const mockMembers: Member[] = [
     role: '일반',
     joinDate: '2025-04-23',
     profileImage: null,
+    birthDate: '1992-07-08',
+    height: '183cm',
+    weight: '77kg',
+    secondaryPosition: 'FW',
   },
   {
     id: 3,
@@ -33,6 +41,10 @@ export const mockMembers: Member[] = [
     role: '일반',
     joinDate: '2025-04-23',
     profileImage: null,
+    birthDate: '1992-07-08',
+    height: '183cm',
+    weight: '77kg',
+    secondaryPosition: 'MF',
   },
   {
     id: 4,
@@ -43,6 +55,10 @@ export const mockMembers: Member[] = [
     role: '일반',
     joinDate: '2025-04-23',
     profileImage: null,
+    birthDate: '1992-07-08',
+    height: '183cm',
+    weight: '77kg',
+    secondaryPosition: 'DF',
   },
   {
     id: 5,
@@ -53,6 +69,10 @@ export const mockMembers: Member[] = [
     role: '일반',
     joinDate: '2025-04-23',
     profileImage: null,
+    birthDate: '1992-07-08',
+    height: '183cm',
+    weight: '77kg',
+    secondaryPosition: 'MF',
   },
   {
     id: 6,
@@ -63,6 +83,10 @@ export const mockMembers: Member[] = [
     role: '일반',
     joinDate: '2025-04-23',
     profileImage: null,
+    birthDate: '1992-07-08',
+    height: '183cm',
+    weight: '77kg',
+    secondaryPosition: 'MF',
   },
   {
     id: 7,
@@ -73,6 +97,10 @@ export const mockMembers: Member[] = [
     role: '일반',
     joinDate: '2025-04-23',
     profileImage: null,
+    birthDate: '1992-07-08',
+    height: '183cm',
+    weight: '77kg',
+    secondaryPosition: 'MF',
   },
   {
     id: 8,
@@ -83,6 +111,10 @@ export const mockMembers: Member[] = [
     role: '일반',
     joinDate: '2025-04-23',
     profileImage: null,
+    birthDate: '1992-07-08',
+    height: '183cm',
+    weight: '77kg',
+    secondaryPosition: 'MF',
   },
 ];
 
@@ -98,6 +130,7 @@ export const mockMatchRecords: MatchRecord[] = [
     goals: 1,
     assists: 0,
     yellowCards: 0,
+    redCards: 1,
   },
   {
     id: 2,
@@ -110,6 +143,7 @@ export const mockMatchRecords: MatchRecord[] = [
     goals: 1,
     assists: 0,
     yellowCards: 0,
+    redCards: 1,
   },
   {
     id: 3,
@@ -121,7 +155,8 @@ export const mockMatchRecords: MatchRecord[] = [
     isWin: false,
     goals: 1,
     assists: 0,
-    yellowCards: 0,
+    yellowCards: 1,
+    redCards: 0,
   },
   {
     id: 4,
@@ -133,7 +168,8 @@ export const mockMatchRecords: MatchRecord[] = [
     isWin: false,
     goals: 1,
     assists: 0,
-    yellowCards: 0,
+    yellowCards: 1,
+    redCards: 1,
   },
   {
     id: 5,
@@ -146,6 +182,7 @@ export const mockMatchRecords: MatchRecord[] = [
     goals: 1,
     assists: 0,
     yellowCards: 0,
+    redCards: 1,
   },
   {
     id: 6,
@@ -158,6 +195,7 @@ export const mockMatchRecords: MatchRecord[] = [
     goals: 1,
     assists: 0,
     yellowCards: 0,
+    redCards: 1,
   },
   {
     id: 7,
@@ -170,6 +208,7 @@ export const mockMatchRecords: MatchRecord[] = [
     goals: 1,
     assists: 0,
     yellowCards: 0,
+    redCards: 1,
   },
   {
     id: 8,
@@ -182,6 +221,7 @@ export const mockMatchRecords: MatchRecord[] = [
     goals: 1,
     assists: 0,
     yellowCards: 0,
+    redCards: 1,
   },
   {
     id: 9,
@@ -194,6 +234,7 @@ export const mockMatchRecords: MatchRecord[] = [
     goals: 1,
     assists: 0,
     yellowCards: 0,
+    redCards: 1,
   },
 ];
 

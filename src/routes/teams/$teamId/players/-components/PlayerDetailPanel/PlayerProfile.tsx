@@ -9,19 +9,9 @@ const fallbackImageHandler = createFallbackImageHandler();
 
 export interface PlayerProfileProps {
   member: Member;
-  personalInfo: {
-    birthDate: string;
-    height: string;
-    weight: string;
-  };
-  secondaryPosition: string;
 }
 
-export function PlayerProfile({
-  member,
-  personalInfo,
-  secondaryPosition,
-}: PlayerProfileProps) {
+export function PlayerProfile({ member }: PlayerProfileProps) {
   return (
     <div className={styles.rootContainer}>
       <div className={styles.profileSection}>
@@ -46,7 +36,7 @@ export function PlayerProfile({
             <div className={styles.positionLabel}>부 포지션</div>
             <div className={styles.secondaryPositionTag}>
               <div className={styles.secondaryPositionText}>
-                {secondaryPosition}
+                {member.secondaryPosition}
               </div>
             </div>
           </div>
@@ -60,10 +50,10 @@ export function PlayerProfile({
           <div className={styles.infoLabel}>몸무게</div>
         </div>
         <div className={styles.personalInfoValues}>
-          <div className={styles.infoValue}>{personalInfo.birthDate}</div>
+          <div className={styles.infoValue}>{member.birthDate}</div>
           <div className={styles.infoValue}>{member.foot}</div>
-          <div className={styles.infoValue}>{personalInfo.height}</div>
-          <div className={styles.infoValue}>{personalInfo.weight}</div>
+          <div className={styles.infoValue}>{member.height}</div>
+          <div className={styles.infoValue}>{member.weight}</div>
         </div>
       </div>
     </div>

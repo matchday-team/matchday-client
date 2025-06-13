@@ -11,6 +11,10 @@ export interface Member {
   role: Role;
   joinDate: string;
   profileImage: string | null;
+  birthDate: string;
+  height: string;
+  weight: string;
+  secondaryPosition: string;
 }
 
 export interface PositionStat {
@@ -28,4 +32,5 @@ export interface MatchRecord {
   goals: number;
   assists: number;
   yellowCards: number;
+  redCards: number;
 }
