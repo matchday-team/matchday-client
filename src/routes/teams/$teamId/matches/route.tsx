@@ -13,7 +13,7 @@ import * as styles from './-components/MyTeamMatchListPage.css';
 
 const fallbackImageHandler = createFallbackImageHandler();
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute('/teams/$teamId/matches')({
   component: MyTeamMatchListPage,
   loader: () => {
     return queryClient.ensureQueryData(userQuery.me);
