@@ -18,6 +18,10 @@ export const headerActions = style({
   padding: 20,
 });
 
+export const tableContainer = style({
+  overflowX: 'auto',
+});
+
 export const header = style({
   borderTop: `1px solid ${lightThemeVars.color.primary[100]}`,
   backgroundColor: lightThemeVars.color.white.main,
@@ -43,7 +47,7 @@ export const headerRow = recipe({
 export const headerCell = recipe({
   base: {
     display: 'flex',
-    flexShrink: 0,
+    flex: '1 1 0',
   },
   variants: {
     align: {
@@ -56,7 +60,6 @@ export const headerCell = recipe({
 
 export const body = style({
   minHeight: 500,
-  overflow: 'auto',
 });
 
 export const row = recipe({
@@ -84,7 +87,7 @@ export const row = recipe({
 export const cell = recipe({
   base: {
     display: 'flex',
-    flexShrink: 0,
+    flex: '1 1 0',
   },
   variants: {
     align: {
