@@ -4,6 +4,7 @@ import { ChevronRightIcon, MagnifyingGlassIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import { InputWithIcon } from '@/components/CommonForm/InputWithIcon';
 import { Select } from '@/components/CommonForm/Select';
+import { PositionTag } from '@/routes/teams/$teamId/players/-components/PositionTag/PositionTag';
 
 import { Table } from './Table';
 import * as styles from './Table.stories.css';
@@ -71,22 +72,6 @@ const sampleMembers = [
   },
 ];
 
-// 포지션별 스타일 함수
-const getPositionStyleClass = (position: string): string => {
-  switch (position) {
-    case 'FW':
-      return styles.positionTagFW;
-    case 'MF':
-      return styles.positionTagMF;
-    case 'DF':
-      return styles.positionTagDF;
-    case 'GK':
-      return styles.positionTagGK;
-    default:
-      return styles.positionTagFW;
-  }
-};
-
 const tableData = sampleMembers.map((member, index) => ({
   ...member,
   index: index + 1,
@@ -144,9 +129,7 @@ const columns = [
     headerAlign: 'center' as const,
     bodyAlign: 'center' as const,
     render: (value: unknown) => (
-      <div className={getPositionStyleClass(value as string)}>
-        {value as string}
-      </div>
+      <PositionTag position={value as 'FW' | 'MF' | 'DF' | 'GK'} />
     ),
   },
   {

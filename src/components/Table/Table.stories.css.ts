@@ -23,50 +23,6 @@ export const centerText = style({
   color: lightThemeVars.color.black,
 });
 
-export const positionTag = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRadius: 100,
-  padding: '4px 8px',
-  width: 40,
-  textAlign: 'center',
-  letterSpacing: -0.35,
-  fontSize: 14,
-});
-
-export const positionTagFW = style([
-  positionTag,
-  {
-    backgroundColor: 'rgba(255, 236, 236, 1)',
-    color: 'rgba(255, 0, 0, 1)',
-  },
-]);
-
-export const positionTagMF = style([
-  positionTag,
-  {
-    backgroundColor: 'rgba(225, 254, 232, 1)',
-    color: 'rgba(0, 152, 36, 1)',
-  },
-]);
-
-export const positionTagDF = style([
-  positionTag,
-  {
-    backgroundColor: '#DBE4FF',
-    color: '#0043FF',
-  },
-]);
-
-export const positionTagGK = style([
-  positionTag,
-  {
-    backgroundColor: 'rgba(255, 244, 203, 1)',
-    color: 'rgba(183, 125, 0, 1)',
-  },
-]);
-
 export const moreIcon = style({
   cursor: 'pointer',
   width: 24,
