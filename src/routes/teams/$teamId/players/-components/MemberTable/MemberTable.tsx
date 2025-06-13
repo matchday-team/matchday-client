@@ -102,17 +102,12 @@ export function MemberTable({ members, onMemberMoreClick }: MemberTableProps) {
     },
     actions: {
       key: 'actions',
-      title: '상세 보기',
+      title: '',
       width: 100,
       minWidth: 80,
       headerAlign: 'center',
       bodyAlign: 'center',
-      render: (_, record) => (
-        <ChevronRightIcon
-          className={styles.moreIcon}
-          onClick={() => onMemberMoreClick?.(record)}
-        />
-      ),
+      render: () => <ChevronRightIcon className={styles.moreIcon} />,
     },
   } satisfies TableColumnsDefinition<TableData>;
 
@@ -123,6 +118,7 @@ export function MemberTable({ members, onMemberMoreClick }: MemberTableProps) {
       headerActions={<MemberFilters />}
       className={styles.tableOverride}
       rowHeight={68}
+      onRowClick={onMemberMoreClick}
     />
   );
 }
