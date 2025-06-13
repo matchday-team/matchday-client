@@ -10,7 +10,7 @@ export const mockMembers: Member[] = [
     number: '#7',
     position: 'FW',
     foot: '왼발',
-    role: '일반',
+    role: '관리자',
     joinDate: '2025-04-23',
     profileImage: null,
     birthDate: '1992-07-08',

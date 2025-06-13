@@ -1,3 +1,4 @@
+import { CrownIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import { PositionTag } from '@/routes/teams/$teamId/players/-components';
 import type { Member } from '@/routes/teams/$teamId/players/-temp-server-types';
@@ -24,6 +25,9 @@ export function PlayerProfile({ member }: PlayerProfileProps) {
           />
           <div className={styles.playerInfo}>
             <div className={styles.playerName}>{member.name}</div>
+            {member.role === '관리자' && (
+              <CrownIcon className={styles.crownIcon} />
+            )}
           </div>
         </div>
         <div className={styles.positionSection}>

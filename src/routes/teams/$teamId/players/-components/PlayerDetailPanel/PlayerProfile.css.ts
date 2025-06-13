@@ -37,16 +37,21 @@ export const playerAvatar = style({
 
 export const playerInfo = style({
   display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  width: 234,
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  width: '100%',
 });
 
 export const playerName = style({
-  marginTop: 6,
   width: 58,
-  height: '100%',
   color: lightThemeVars.color.black,
+});
+
+export const crownIcon = style({
+  width: 24,
+  height: 24,
+  color: lightThemeVars.color.gray[500],
 });
 
 export const positionSection = style({
