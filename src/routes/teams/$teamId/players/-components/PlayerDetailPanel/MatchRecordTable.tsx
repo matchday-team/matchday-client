@@ -30,7 +30,9 @@ export function MatchRecordTable({ matchRecords }: MatchRecordTableProps) {
               <div className={styles.matchMainInfo}>
                 <div className={styles.teamName}>{record.opponentTeam}</div>
                 <div
-                  className={`${styles.scoreDisplay} ${record.isWin ? styles.scoreWin : styles.scoreLoss}`}
+                  className={styles.scoreDisplay({
+                    result: record.isWin ? 'win' : 'loss',
+                  })}
                 >
                   <div className={styles.scoreNumber({ team: 'home' })}>
                     {record.homeScore}

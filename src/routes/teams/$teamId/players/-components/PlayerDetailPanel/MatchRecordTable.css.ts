@@ -97,17 +97,21 @@ export const teamName = style({
   color: lightThemeVars.color.black,
 });
 
-export const scoreDisplay = style({
-  display: 'flex',
-  gap: 4,
-});
-
-export const scoreLoss = style({
-  color: lightThemeVars.color.soccer.red,
-});
-
-export const scoreWin = style({
-  color: lightThemeVars.color.primary[700],
+export const scoreDisplay = recipe({
+  base: {
+    display: 'flex',
+    gap: 4,
+  },
+  variants: {
+    result: {
+      win: {
+        color: lightThemeVars.color.primary[700],
+      },
+      loss: {
+        color: lightThemeVars.color.soccer.red,
+      },
+    },
+  },
 });
 
 export const scoreNumber = recipe({
