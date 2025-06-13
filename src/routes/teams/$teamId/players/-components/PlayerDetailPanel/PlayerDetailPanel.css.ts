@@ -91,20 +91,6 @@ export const positionLabel = style({
   fontWeight: 600,
 });
 
-export const primaryPositionTag = style({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  marginTop: 4,
-  borderRadius: 100,
-  backgroundColor: 'rgba(255, 236, 236, 1)', // FIXME: 색상을 받아와야 함
-  padding: '4px 8px',
-  letterSpacing: -0.35,
-  color: lightThemeVars.color.soccer.red,
-  fontSize: 14,
-  fontWeight: 500,
-});
-
 export const divider = style({
   alignSelf: 'center',
   backgroundColor: lightThemeVars.color.primary[100],

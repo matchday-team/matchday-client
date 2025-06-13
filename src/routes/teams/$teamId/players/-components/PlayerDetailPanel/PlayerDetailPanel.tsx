@@ -1,4 +1,5 @@
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
+import { PositionTag } from '@/routes/teams/$teamId/players/-components';
 import type {
   MatchRecord,
   Member,
@@ -44,7 +45,7 @@ export function PlayerDetailPanel({
           <div className={styles.positionSection}>
             <div className={styles.positionColumn}>
               <div className={styles.positionLabel}>주 포지션</div>
-              <div className={styles.primaryPositionTag}>{member.position}</div>
+              <PositionTag position={member.position} />
             </div>
             <div className={styles.divider} />
             <div className={styles.positionColumn}>

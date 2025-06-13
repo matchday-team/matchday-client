@@ -1,28 +1,19 @@
 import { ChevronRightIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import { Table, type TableColumn } from '@/components';
-import { MemberFilters } from '@/routes/teams/$teamId/players/-components/MemberFilters';
+import {
+  MemberFilters,
+  PositionTag,
+} from '@/routes/teams/$teamId/players/-components';
 import type {
   Member,
   Position,
 } from '@/routes/teams/$teamId/players/-temp-server-types';
+import { createFallbackImageHandler } from '@/utils/createFallbackImageHandler';
 
 import * as styles from './MemberTable.css';
 
-const getPositionStyle = (position: Position): string => {
-  switch (position) {
-    case 'FW':
-      return styles.positionTagFW;
-    case 'MF':
-      return styles.positionTagMF;
-    case 'DF':
-      return styles.positionTagDF;
-    case 'GK':
-      return styles.positionTagGK;
-    default:
-      return styles.positionTagFW;
-  }
-};
+const fallbackImageHandler = createFallbackImageHandler();
 
 interface MemberTableProps {
   members: Member[];
@@ -47,27 +38,21 @@ export function MemberTable({ members, onMemberMoreClick }: MemberTableProps) {
       ),
     },
     {
-      key: 'profileImage',
-      title: '',
+      key: 'name',
+      title: '이름',
       width: 80,
       headerAlign: 'center',
       bodyAlign: 'center',
       render: (value, record) => (
-        <img
-          src={(value as string) ?? noProfilePlayerImage}
-          className={styles.profileImage}
-          alt=''
-        />
-      ),
-    },
-    {
-      key: 'name',
-      title: '이름',
-      width: 200,
-      headerAlign: 'center',
-      bodyAlign: 'center',
-      render: value => (
-        <div className={styles.memberName}>{value as string}</div>
+        <div className={styles.memberNameContainer}>
+          <img
+            src={(value as string) ?? noProfilePlayerImage}
+            onError={fallbackImageHandler}
+            className={styles.profileImage}
+            alt=''
+          />
+          <div className={styles.memberName}>{value as string}</div>
+        </div>
       ),
     },
     {
@@ -86,13 +71,7 @@ export function MemberTable({ members, onMemberMoreClick }: MemberTableProps) {
       width: 150,
       headerAlign: 'center',
       bodyAlign: 'center',
-      render: (value, record) => (
-        <div
-          className={`${styles.positionTag} ${getPositionStyle(value as Position)}`}
-        >
-          <div className={styles.positionText}>{value as string}</div>
-        </div>
-      ),
+      render: value => <PositionTag position={value as Position} />,
     },
     {
       key: 'foot',
@@ -122,10 +101,10 @@ export function MemberTable({ members, onMemberMoreClick }: MemberTableProps) {
     },
     {
       key: 'actions',
-      title: '',
-      width: 80,
+      title: '상세 보기',
+      width: 100,
       headerAlign: 'center',
-      bodyAlign: 'right',
+      bodyAlign: 'center',
       render: (_, record) => (
         <ChevronRightIcon
           className={styles.moreIcon}
