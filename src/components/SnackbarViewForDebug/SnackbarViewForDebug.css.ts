@@ -16,7 +16,6 @@ export const rootContainer = style([
     lineHeight: 1.4,
     letterSpacing: -0.35,
     color: lightThemeVars.color.gray[600],
-    fontFamily: 'Pretendard Variable',
     fontSize: 10,
     fontWeight: 400,
   },

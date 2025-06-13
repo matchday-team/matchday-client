@@ -12,8 +12,6 @@ export const container = style({
   backgroundColor: lightThemeVars.color.primary[800],
   padding: '20px 40px',
   lineHeight: 1.4,
-  fontFamily:
-    'Pretendard Variable, -apple-system, Roboto, Helvetica, sans-serif',
 });
 
 export const totalMembersSection = style({
