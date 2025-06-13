@@ -97,7 +97,6 @@ export const stepText = style({
   letterSpacing: -0.35,
   whiteSpace: 'nowrap',
   color: lightThemeVars.color.white.main,
-  fontFamily: 'Pretendard Variable',
   fontSize: 14,
   fontWeight: 600,
 });

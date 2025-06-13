@@ -4,39 +4,25 @@ import clsx from 'clsx';
 
 import * as styles from './Table.css';
 
-const getAlignItems = (align: 'top' | 'center' | 'bottom') => {
-  switch (align) {
-    case 'top':
-      return 'flex-start';
-    case 'center':
-      return 'center';
-    case 'bottom':
-      return 'flex-end';
-  }
-};
-
-const getJustifyContent = (align: 'left' | 'center' | 'right') => {
-  switch (align) {
-    case 'left':
-      return 'flex-start';
-    case 'center':
-      return 'center';
-    case 'right':
-      return 'flex-end';
-  }
-};
-
-export interface TableColumn<T = Record<string, unknown>> {
-  key: string;
+export interface TableColumn<
+  T = Record<string, unknown>,
+  K extends keyof T = keyof T,
+> {
+  key: K;
   title: string;
   width: number;
+  minWidth?: number;
   headerAlign?: 'left' | 'center' | 'right';
   bodyAlign?: 'left' | 'center' | 'right';
-  render?: (value: unknown, record: T, index: number) => ReactNode;
+  render?: (value: T[K], record: T, index: number) => ReactNode;
 }
 
+export type TableColumnsDefinition<T> = {
+  [K in keyof T]?: TableColumn<T, K>;
+};
+
 interface TableProps<T = Record<string, unknown>> {
-  columns: TableColumn<T>[];
+  columns: Partial<TableColumnsDefinition<T>>;
   data: T[];
   headerHeight?: number;
   rowHeight?: number;
@@ -58,69 +44,74 @@ export function Table<T = Record<string, unknown>>({
   headerActions,
   className,
 }: TableProps<T>) {
+  const columnEntries = Object.entries(columns).map(
+    ([key, column]) =>
+      [key as keyof T, column as TableColumn<T, keyof T>] as const,
+  );
+
   return (
     <div className={clsx(styles.rootContainer, className)}>
       {headerActions && (
         <div className={styles.headerActions}>{headerActions}</div>
       )}
-      <div className={styles.header}>
-        <div
-          className={styles.headerRow}
-          style={{
-            height: headerHeight,
-            alignItems: getAlignItems(headerVerticalAlign),
-          }}
-        >
-          {columns.map(column => (
+      <div className={styles.tableContainer}>
+        <div className={styles.header}>
+          <div
+            className={styles.headerRow({ align: headerVerticalAlign })}
+            style={{
+              height: headerHeight,
+            }}
+          >
+            {columnEntries.map(([key, column]) => (
+              <div
+                key={String(key)}
+                className={styles.headerCell({
+                  align: column.headerAlign || 'center',
+                })}
+                style={{
+                  flexBasis: column.width,
+                  minWidth: column.minWidth ?? column.width,
+                }}
+              >
+                {column.title}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className={styles.body}>
+          {data.map((record, index) => (
             <div
-              key={column.key}
-              className={styles.headerCell}
+              key={index}
+              className={styles.row({ align: bodyVerticalAlign })}
               style={{
-                width: column.width,
-                justifyContent: getJustifyContent(
-                  column.headerAlign || 'center',
-                ),
+                height: rowHeight,
               }}
+              onClick={() => onRowClick?.(record, index)}
             >
-              {column.title}
+              {columnEntries.map(([key, column]) => {
+                const cellValue = record[key];
+                const cellContent = column.render
+                  ? column.render(cellValue, record, index)
+                  : cellValue;
+
+                return (
+                  <div
+                    key={String(key)}
+                    className={styles.cell({
+                      align: column.bodyAlign || 'center',
+                    })}
+                    style={{
+                      flexBasis: column.width,
+                      minWidth: column.minWidth ?? column.width,
+                    }}
+                  >
+                    {cellContent as ReactNode}
+                  </div>
+                );
+              })}
             </div>
           ))}
         </div>
-      </div>
-      <div className={styles.body}>
-        {data.map((record, index) => (
-          <div
-            key={index}
-            className={styles.row}
-            style={{
-              height: rowHeight,
-              alignItems: getAlignItems(bodyVerticalAlign),
-            }}
-            onClick={() => onRowClick?.(record, index)}
-          >
-            {columns.map(column => {
-              const cellValue = (record as Record<string, unknown>)[column.key];
-              const cellContent = column.render
-                ? column.render(cellValue, record, index)
-                : cellValue;
-
-              return (
-                <div
-                  key={column.key}
-                  className={styles.cell}
-                  style={{
-                    width: column.width,
-                    justifyContent: getJustifyContent(
-                      column.bodyAlign || 'center',
-                    ),
-                  }}
-                >
-                  {cellContent as ReactNode}
-                </div>
-              );
-            })}
-          </div>
-        ))}
       </div>
     </div>
   );

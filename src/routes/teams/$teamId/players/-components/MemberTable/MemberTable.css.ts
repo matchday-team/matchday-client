@@ -4,6 +4,7 @@ import { style } from '@vanilla-extract/css';
 
 export const tableOverride = style({
   width: '100%',
+  height: 700,
 });
 
 export const indexNumber = style({
@@ -11,6 +12,12 @@ export const indexNumber = style({
   letterSpacing: -0.35,
   color: lightThemeVars.color.gray[500],
   fontSize: 14,
+});
+
+export const memberNameContainer = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: 8,
 });
 
 export const profileImage = style({
@@ -23,6 +30,7 @@ export const profileImage = style({
 });
 
 export const memberName = style({
+  width: 50,
   textAlign: 'center',
   color: lightThemeVars.color.black,
 });
@@ -38,7 +46,6 @@ export const positionTag = style({
   justifyContent: 'center',
   borderRadius: 100,
   padding: '4px 8px',
-  width: 40,
   letterSpacing: -0.35,
   fontSize: 14,
 });

@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 import { ChevronRightIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import type {
@@ -13,7 +15,7 @@ interface MemberTableRowProps {
   onMoreClick?: (member: Member) => void;
 }
 
-const getPositionStyle = (position: Position): string => {
+const getPositionTagStyle = (position: Position) => {
   switch (position) {
     case 'FW':
       return styles.positionTagFW;
@@ -24,7 +26,7 @@ const getPositionStyle = (position: Position): string => {
     case 'GK':
       return styles.positionTagGK;
     default:
-      return styles.positionTagFW;
+      return '';
   }
 };
 
@@ -47,7 +49,10 @@ export function MemberTableRow({
       </div>
       <div className={styles.rightSection}>
         <div
-          className={`${styles.positionTag} ${getPositionStyle(member.position)}`}
+          className={clsx(
+            styles.positionTag,
+            getPositionTagStyle(member.position),
+          )}
         >
           <div className={styles.positionText}>{member.position}</div>
         </div>

@@ -4,6 +4,7 @@ import { ChevronRightIcon, MagnifyingGlassIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
 import { InputWithIcon } from '@/components/CommonForm/InputWithIcon';
 import { Select } from '@/components/CommonForm/Select';
+import { PositionTag } from '@/routes/teams/$teamId/players/-components/PositionTag/PositionTag';
 
 import { Table } from './Table';
 import * as styles from './Table.stories.css';
@@ -34,7 +35,7 @@ const sampleMembers = [
     profileImage: null,
     name: '김철수',
     number: '10',
-    position: 'FW' as const,
+    position: 'FW',
     foot: '오른발',
     role: '팀장',
     joinDate: '2024-01-15',
@@ -44,7 +45,7 @@ const sampleMembers = [
     profileImage: null,
     name: '이영희',
     number: '7',
-    position: 'MF' as const,
+    position: 'MF',
     foot: '왼발',
     role: '부팀장',
     joinDate: '2024-02-20',
@@ -54,7 +55,7 @@ const sampleMembers = [
     profileImage: null,
     name: '박민수',
     number: '3',
-    position: 'DF' as const,
+    position: 'DF',
     foot: '오른발',
     role: '일반',
     joinDate: '2024-03-10',
@@ -64,130 +65,112 @@ const sampleMembers = [
     profileImage: null,
     name: '최지원',
     number: '1',
-    position: 'GK' as const,
+    position: 'GK',
     foot: '오른발',
     role: '일반',
     joinDate: '2024-01-25',
   },
 ];
 
-// 포지션별 스타일 함수
-const getPositionStyleClass = (position: string): string => {
-  switch (position) {
-    case 'FW':
-      return styles.positionTagFW;
-    case 'MF':
-      return styles.positionTagMF;
-    case 'DF':
-      return styles.positionTagDF;
-    case 'GK':
-      return styles.positionTagGK;
-    default:
-      return styles.positionTagFW;
-  }
-};
-
 const tableData = sampleMembers.map((member, index) => ({
   ...member,
   index: index + 1,
 }));
 
-const columns = [
-  {
-    key: 'index' as const,
+const columns = {
+  index: {
+    key: 'index',
     title: '순번',
     width: 80,
-    headerAlign: 'center' as const,
-    bodyAlign: 'center' as const,
+    headerAlign: 'center',
+    bodyAlign: 'center',
     render: (value: unknown) => (
-      <div className={styles.indexNumber}>{value as string}</div>
+      <div className={styles.indexNumber}>{String(value)}</div>
     ),
   },
-  {
-    key: 'profileImage' as const,
+  profileImage: {
+    key: 'profileImage',
     title: '프로필',
     width: 80,
-    headerAlign: 'center' as const,
-    bodyAlign: 'center' as const,
+    headerAlign: 'center',
+    bodyAlign: 'center',
     render: (value: unknown) => (
       <img
-        src={(value as string) ?? noProfilePlayerImage}
+        src={value ? String(value) : noProfilePlayerImage}
         className={styles.profileImage}
         alt=''
       />
     ),
   },
-  {
-    key: 'name' as const,
+  name: {
+    key: 'name',
     title: '이름',
     width: 200,
-    headerAlign: 'center' as const,
-    bodyAlign: 'center' as const,
+    headerAlign: 'center',
+    bodyAlign: 'center',
     render: (value: unknown) => (
-      <div className={styles.centerText}>{value as string}</div>
+      <div className={styles.centerText}>{String(value)}</div>
     ),
   },
-  {
-    key: 'number' as const,
+  number: {
+    key: 'number',
     title: '번호',
     width: 120,
-    headerAlign: 'center' as const,
-    bodyAlign: 'center' as const,
+    headerAlign: 'center',
+    bodyAlign: 'center',
     render: (value: unknown) => (
-      <div className={styles.centerText}>{value as string}</div>
+      <div className={styles.centerText}>{String(value)}</div>
     ),
   },
-  {
-    key: 'position' as const,
+  position: {
+    key: 'position',
     title: '포지션',
     width: 150,
-    headerAlign: 'center' as const,
-    bodyAlign: 'center' as const,
+    headerAlign: 'center',
+    bodyAlign: 'center',
     render: (value: unknown) => (
-      <div className={getPositionStyleClass(value as string)}>
-        {value as string}
-      </div>
+      <PositionTag position={value as 'FW' | 'MF' | 'DF' | 'GK'} />
     ),
   },
-  {
-    key: 'foot' as const,
+  foot: {
+    key: 'foot',
     title: '주발',
     width: 150,
-    headerAlign: 'center' as const,
-    bodyAlign: 'center' as const,
+    headerAlign: 'center',
+    bodyAlign: 'center',
     render: (value: unknown) => (
-      <div className={styles.centerText}>{value as string}</div>
+      <div className={styles.centerText}>{String(value)}</div>
     ),
   },
-  {
-    key: 'role' as const,
+  role: {
+    key: 'role',
     title: '권한',
     width: 200,
-    headerAlign: 'center' as const,
-    bodyAlign: 'center' as const,
+    headerAlign: 'center',
+    bodyAlign: 'center',
     render: (value: unknown) => (
-      <div className={styles.centerText}>{value as string}</div>
+      <div className={styles.centerText}>{String(value)}</div>
     ),
   },
-  {
-    key: 'joinDate' as const,
+  joinDate: {
+    key: 'joinDate',
     title: '가입일',
     width: 186,
-    headerAlign: 'center' as const,
-    bodyAlign: 'center' as const,
+    headerAlign: 'center',
+    bodyAlign: 'center',
     render: (value: unknown) => (
-      <div className={styles.centerText}>{value as string}</div>
+      <div className={styles.centerText}>{String(value)}</div>
     ),
   },
-  {
-    key: 'actions' as const,
+  actions: {
+    key: 'actions',
     title: '',
     width: 80,
-    headerAlign: 'center' as const,
-    bodyAlign: 'center' as const,
+    headerAlign: 'center',
+    bodyAlign: 'center',
     render: () => <ChevronRightIcon className={styles.moreIcon} />,
   },
-];
+};
 
 const SampleFilters = () => (
   <div className={styles.filtersContainer}>

@@ -11,9 +11,26 @@ export interface Member {
   role: Role;
   joinDate: string;
   profileImage: string | null;
+  birthDate: string;
+  height: number;
+  weight: number;
+  secondaryPosition: Position | null;
 }
 
 export interface PositionStat {
   position: Position;
   count: number;
+}
+
+export interface MatchRecord {
+  id: number;
+  opponentTeam: string;
+  opponentLogo: string;
+  homeScore: number;
+  awayScore: number;
+  isWin: boolean;
+  goals: number;
+  assists: number;
+  yellowCards: number;
+  redCards: number;
 }

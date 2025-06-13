@@ -3,6 +3,7 @@ import { ComponentPropsWithRef, SyntheticEvent } from 'react';
 import { MatchUserResponse } from '@/apis/models';
 import { ChevronDownIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
+import { PlayerReceivedCard } from '@/components';
 import { StringUtils } from '@/utils';
 
 import * as styles from './PlayerListItem.css';
@@ -54,18 +55,10 @@ export const PlayerListItem = ({
         <span className={styles.number}>
           {StringUtils.displayDashIfZero(player.assists)}
         </span>
-        <div className={styles.cautionContainer}>
-          <div
-            className={styles.playerCautionCard({
-              variant: player.yellowCards > 0 ? 'yellow' : 'empty',
-            })}
-          />
-          <div
-            className={styles.playerCautionCard({
-              variant: player.redCards > 0 ? 'red' : 'empty',
-            })}
-          />
-        </div>
+        <PlayerReceivedCard
+          yellowCards={player.yellowCards}
+          redCards={player.redCards}
+        />
       </div>
     </li>
   );

@@ -1,4 +1,7 @@
-import type { Member } from '@/routes/teams/$teamId/players/-temp-server-types';
+import type {
+  MatchRecord,
+  Member,
+} from '@/routes/teams/$teamId/players/-temp-server-types';
 
 export const mockMembers: Member[] = [
   {
@@ -7,9 +10,13 @@ export const mockMembers: Member[] = [
     number: '#7',
     position: 'FW',
     foot: '왼발',
-    role: '일반',
+    role: '관리자',
     joinDate: '2025-04-23',
     profileImage: null,
+    birthDate: '1992-07-08',
+    height: 183,
+    weight: 77,
+    secondaryPosition: 'MF',
   },
   {
     id: 2,
@@ -20,6 +27,10 @@ export const mockMembers: Member[] = [
     role: '일반',
     joinDate: '2025-04-23',
     profileImage: null,
+    birthDate: '1992-07-08',
+    height: 183,
+    weight: 77,
+    secondaryPosition: 'FW',
   },
   {
     id: 3,
@@ -30,6 +41,10 @@ export const mockMembers: Member[] = [
     role: '일반',
     joinDate: '2025-04-23',
     profileImage: null,
+    birthDate: '1992-07-08',
+    height: 183,
+    weight: 77,
+    secondaryPosition: 'MF',
   },
   {
     id: 4,
@@ -40,6 +55,10 @@ export const mockMembers: Member[] = [
     role: '일반',
     joinDate: '2025-04-23',
     profileImage: null,
+    birthDate: '1992-07-08',
+    height: 183,
+    weight: 77,
+    secondaryPosition: 'DF',
   },
   {
     id: 5,
@@ -50,6 +69,10 @@ export const mockMembers: Member[] = [
     role: '일반',
     joinDate: '2025-04-23',
     profileImage: null,
+    birthDate: '1992-07-08',
+    height: 183,
+    weight: 77,
+    secondaryPosition: 'MF',
   },
   {
     id: 6,
@@ -60,6 +83,10 @@ export const mockMembers: Member[] = [
     role: '일반',
     joinDate: '2025-04-23',
     profileImage: null,
+    birthDate: '1992-07-08',
+    height: 183,
+    weight: 77,
+    secondaryPosition: 'MF',
   },
   {
     id: 7,
@@ -70,6 +97,10 @@ export const mockMembers: Member[] = [
     role: '일반',
     joinDate: '2025-04-23',
     profileImage: null,
+    birthDate: '1992-07-08',
+    height: 183,
+    weight: 77,
+    secondaryPosition: null,
   },
   {
     id: 8,
@@ -80,5 +111,137 @@ export const mockMembers: Member[] = [
     role: '일반',
     joinDate: '2025-04-23',
     profileImage: null,
+    birthDate: '1992-07-08',
+    height: 183,
+    weight: 77,
+    secondaryPosition: 'MF',
   },
 ];
+
+export const mockMatchRecords: MatchRecord[] = [
+  {
+    id: 1,
+    opponentTeam: 'FC 수원',
+    opponentLogo:
+      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/181167531f31440b9d0a2e64eae667e0b04064fd?placeholderIfAbsent=true',
+    homeScore: 2,
+    awayScore: 1,
+    isWin: false,
+    goals: 1,
+    assists: 1,
+    yellowCards: 0,
+    redCards: 1,
+  },
+  {
+    id: 2,
+    opponentTeam: 'FC 수원',
+    opponentLogo:
+      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/beb07efff81bb6031b3f181a8f8f667dcf8225db?placeholderIfAbsent=true',
+    homeScore: 2,
+    awayScore: 1,
+    isWin: false,
+    goals: 1,
+    assists: 0,
+    yellowCards: 0,
+    redCards: 1,
+  },
+  {
+    id: 3,
+    opponentTeam: 'FC 수원',
+    opponentLogo:
+      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/5bb38bdecfbaaaf6f52761f63f063c968bcc80ea?placeholderIfAbsent=true',
+    homeScore: 2,
+    awayScore: 1,
+    isWin: false,
+    goals: 1,
+    assists: 2,
+    yellowCards: 1,
+    redCards: 0,
+  },
+  {
+    id: 4,
+    opponentTeam: 'FC 수원',
+    opponentLogo:
+      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/6d5d0a26429099e60a654cc42008837ac52ca021?placeholderIfAbsent=true',
+    homeScore: 2,
+    awayScore: 1,
+    isWin: false,
+    goals: 1,
+    assists: 0,
+    yellowCards: 1,
+    redCards: 1,
+  },
+  {
+    id: 5,
+    opponentTeam: 'FC 수원',
+    opponentLogo:
+      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/f096e7d9c888c5c16905fc150be2438df2a91e0b?placeholderIfAbsent=true',
+    homeScore: 1,
+    awayScore: 2,
+    isWin: true,
+    goals: 1,
+    assists: 3,
+    yellowCards: 0,
+    redCards: 1,
+  },
+  {
+    id: 6,
+    opponentTeam: 'FC 수원',
+    opponentLogo:
+      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/0ad7905717c4ec11d68a3149a01f6e064b95030c?placeholderIfAbsent=true',
+    homeScore: 1,
+    awayScore: 2,
+    isWin: true,
+    goals: 1,
+    assists: 0,
+    yellowCards: 0,
+    redCards: 1,
+  },
+  {
+    id: 7,
+    opponentTeam: 'FC 수원',
+    opponentLogo:
+      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/7cc913f19c399023dfabb0f499ca6f7882606188?placeholderIfAbsent=true',
+    homeScore: 1,
+    awayScore: 2,
+    isWin: true,
+    goals: 1,
+    assists: 0,
+    yellowCards: 0,
+    redCards: 1,
+  },
+  {
+    id: 8,
+    opponentTeam: 'FC 수원',
+    opponentLogo:
+      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/af29afb976c74643962af254b51dc4293914be49?placeholderIfAbsent=true',
+    homeScore: 1,
+    awayScore: 2,
+    isWin: true,
+    goals: 1,
+    assists: 0,
+    yellowCards: 0,
+    redCards: 1,
+  },
+  {
+    id: 9,
+    opponentTeam: 'FC 수원',
+    opponentLogo:
+      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/714321937e3d75add3450373ae73b0faa7e1ea27?placeholderIfAbsent=true',
+    homeScore: 1,
+    awayScore: 2,
+    isWin: true,
+    goals: 1,
+    assists: 0,
+    yellowCards: 0,
+    redCards: 1,
+  },
+];
+
+export const mockPersonalInfo = {
+  birthDate: '1992.07.08',
+  height: 183,
+  weight: 77,
+};
+
+export const mockSecondaryPosition = 'MF';

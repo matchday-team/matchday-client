@@ -23,3 +23,4 @@ export * from './CommonForm';
 export * from './Button';
 export * from './MatchCreateStepper';
 export * from './Table';
+export * from './PlayerReceivedCard';
