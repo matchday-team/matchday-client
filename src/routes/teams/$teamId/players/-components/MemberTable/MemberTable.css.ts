@@ -4,6 +4,7 @@ import { style } from '@vanilla-extract/css';
 
 export const tableOverride = style({
   width: '100%',
+  height: 700,
 });
 
 export const indexNumber = style({

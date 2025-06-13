@@ -19,10 +19,16 @@ export const headerActions = style({
 });
 
 export const tableContainer = style({
+  display: 'flex',
+  flexDirection: 'column',
+  height: '100%',
   overflowX: 'auto',
 });
 
 export const header = style({
+  // NOTE: sticky 없이 별도로 스크롤 구성할 수도 있는데, header row와 body row가 x축에 대해 별도로 스크롤되는 문제가 생김
+  position: 'sticky',
+  top: 0,
   borderTop: `1px solid ${lightThemeVars.color.primary[100]}`,
   backgroundColor: lightThemeVars.color.white.main,
 });
@@ -59,7 +65,7 @@ export const headerCell = recipe({
 });
 
 export const body = style({
-  minHeight: 500,
+  flex: 1,
 });
 
 export const row = recipe({

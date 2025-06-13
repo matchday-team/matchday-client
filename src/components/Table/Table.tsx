@@ -70,7 +70,7 @@ export function Table<T = Record<string, unknown>>({
                 })}
                 style={{
                   flexBasis: column.width,
-                  minWidth: column.minWidth || column.width * 0.5,
+                  minWidth: column.minWidth ?? column.width,
                 }}
               >
                 {column.title}
@@ -102,7 +102,7 @@ export function Table<T = Record<string, unknown>>({
                     })}
                     style={{
                       flexBasis: column.width,
-                      minWidth: column.minWidth || column.width * 0.5,
+                      minWidth: column.minWidth ?? column.width,
                     }}
                   >
                     {cellContent as ReactNode}
