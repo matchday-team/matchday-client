@@ -26,10 +26,6 @@ export function PlayerDetailPanel({
   personalInfo,
   secondaryPosition,
 }: PlayerDetailPanelProps) {
-  if (!member) {
-    return null;
-  }
-
   return (
     <div className={styles.rootContainer}>
       <div className={styles.profileContainer}>
