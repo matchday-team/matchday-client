@@ -12,8 +12,8 @@ export interface Member {
   joinDate: string;
   profileImage: string | null;
   birthDate: string;
-  height: string;
-  weight: string;
+  height: number;
+  weight: number;
   secondaryPosition: Position;
 }
 

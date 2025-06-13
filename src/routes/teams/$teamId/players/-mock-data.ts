@@ -14,8 +14,8 @@ export const mockMembers: Member[] = [
     joinDate: '2025-04-23',
     profileImage: null,
     birthDate: '1992-07-08',
-    height: '183cm',
-    weight: '77kg',
+    height: 183,
+    weight: 77,
     secondaryPosition: 'MF',
   },
   {
@@ -28,8 +28,8 @@ export const mockMembers: Member[] = [
     joinDate: '2025-04-23',
     profileImage: null,
     birthDate: '1992-07-08',
-    height: '183cm',
-    weight: '77kg',
+    height: 183,
+    weight: 77,
     secondaryPosition: 'FW',
   },
   {
@@ -42,8 +42,8 @@ export const mockMembers: Member[] = [
     joinDate: '2025-04-23',
     profileImage: null,
     birthDate: '1992-07-08',
-    height: '183cm',
-    weight: '77kg',
+    height: 183,
+    weight: 77,
     secondaryPosition: 'MF',
   },
   {
@@ -56,8 +56,8 @@ export const mockMembers: Member[] = [
     joinDate: '2025-04-23',
     profileImage: null,
     birthDate: '1992-07-08',
-    height: '183cm',
-    weight: '77kg',
+    height: 183,
+    weight: 77,
     secondaryPosition: 'DF',
   },
   {
@@ -70,8 +70,8 @@ export const mockMembers: Member[] = [
     joinDate: '2025-04-23',
     profileImage: null,
     birthDate: '1992-07-08',
-    height: '183cm',
-    weight: '77kg',
+    height: 183,
+    weight: 77,
     secondaryPosition: 'MF',
   },
   {
@@ -84,8 +84,8 @@ export const mockMembers: Member[] = [
     joinDate: '2025-04-23',
     profileImage: null,
     birthDate: '1992-07-08',
-    height: '183cm',
-    weight: '77kg',
+    height: 183,
+    weight: 77,
     secondaryPosition: 'MF',
   },
   {
@@ -98,8 +98,8 @@ export const mockMembers: Member[] = [
     joinDate: '2025-04-23',
     profileImage: null,
     birthDate: '1992-07-08',
-    height: '183cm',
-    weight: '77kg',
+    height: 183,
+    weight: 77,
     secondaryPosition: 'MF',
   },
   {
@@ -112,8 +112,8 @@ export const mockMembers: Member[] = [
     joinDate: '2025-04-23',
     profileImage: null,
     birthDate: '1992-07-08',
-    height: '183cm',
-    weight: '77kg',
+    height: 183,
+    weight: 77,
     secondaryPosition: 'MF',
   },
 ];
@@ -240,8 +240,8 @@ export const mockMatchRecords: MatchRecord[] = [
 
 export const mockPersonalInfo = {
   birthDate: '1992.07.08',
-  height: '183cm',
-  weight: '77kg',
+  height: 183,
+  weight: 77,
 };
 
 export const mockSecondaryPosition = 'MF';

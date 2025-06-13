@@ -52,8 +52,8 @@ export function PlayerProfile({ member }: PlayerProfileProps) {
         <div className={styles.personalInfoValues}>
           <div className={styles.infoValue}>{member.birthDate}</div>
           <div className={styles.infoValue}>{member.foot}</div>
-          <div className={styles.infoValue}>{member.height}</div>
-          <div className={styles.infoValue}>{member.weight}</div>
+          <div className={styles.infoValue}>{member.height}cm</div>
+          <div className={styles.infoValue}>{member.weight}kg</div>
         </div>
       </div>
     </div>
