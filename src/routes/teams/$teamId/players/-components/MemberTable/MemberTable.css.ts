@@ -13,6 +13,12 @@ export const indexNumber = style({
   fontSize: 14,
 });
 
+export const memberNameContainer = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: 8,
+});
+
 export const profileImage = style({
   aspectRatio: '1',
   borderRadius: '50%',
@@ -23,6 +29,7 @@ export const profileImage = style({
 });
 
 export const memberName = style({
+  width: 50,
   textAlign: 'center',
   color: lightThemeVars.color.black,
 });
