@@ -14,7 +14,7 @@ export interface Member {
   birthDate: string;
   height: number;
   weight: number;
-  secondaryPosition: Position;
+  secondaryPosition: Position | null;
 }
 
 export interface PositionStat {

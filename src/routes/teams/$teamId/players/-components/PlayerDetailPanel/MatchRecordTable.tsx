@@ -60,7 +60,7 @@ const columns = {
     width: 50,
     headerAlign: 'center',
     bodyAlign: 'center',
-    render: () => '-',
+    render: (assists: number) => assists,
   },
   yellowCards: {
     key: 'yellowCards',

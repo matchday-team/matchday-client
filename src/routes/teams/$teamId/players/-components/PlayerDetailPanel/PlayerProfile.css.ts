@@ -69,6 +69,7 @@ export const positionColumn = style({
   alignItems: 'center',
   gap: 4,
   width: 58,
+  height: '100%',
 });
 
 export const positionLabel = style({
