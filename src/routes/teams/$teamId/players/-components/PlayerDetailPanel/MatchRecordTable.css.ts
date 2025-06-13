@@ -4,7 +4,6 @@ import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 export const rootContainer = style({
-  marginTop: 100,
   width: '100%',
 });
 
@@ -13,7 +12,6 @@ export const headerContainer = style({
   flexDirection: 'column',
   justifyContent: 'center',
   padding: '16px 0 16px 52px',
-  width: '100%',
   lineHeight: 1.4,
   letterSpacing: -0.3,
   color: lightThemeVars.color.gray[500],

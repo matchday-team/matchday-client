@@ -63,6 +63,7 @@ export const positionColumn = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  gap: 4,
   width: 58,
 });
 
@@ -125,7 +126,7 @@ export const personalInfoValues = style({
   flexDirection: 'column',
   justifyContent: 'center',
   gap: 12,
-  width: 68,
+  width: 80,
   color: lightThemeVars.color.black,
 });
 
