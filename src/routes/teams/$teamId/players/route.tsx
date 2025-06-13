@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { createFileRoute } from '@tanstack/react-router';
 
+import { usePageTitle } from '@/hooks';
 import {
   MemberStatsSummary,
   MemberTable,
@@ -17,6 +18,8 @@ export const Route = createFileRoute('/teams/$teamId/players')({
 });
 
 function RouteComponent() {
+  usePageTitle('멤버 관리');
+
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);
 
   const handleMemberMoreClick = (member: Member) => {
