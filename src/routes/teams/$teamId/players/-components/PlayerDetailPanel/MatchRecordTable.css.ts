@@ -12,7 +12,7 @@ export const headerContainer = style({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  padding: '16px 0 16px 66px',
+  padding: '16px 0 16px 52px',
   width: '100%',
   lineHeight: 1.4,
   letterSpacing: -0.3,

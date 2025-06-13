@@ -138,35 +138,3 @@ export const statContainer = style({
   width: 93,
   //gap: 36, // 원본 디자인
 });
-
-export const cautionContainer = style([
-  number,
-  {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 1,
-  },
-]);
-
-export const playerCautionCard = recipe({
-  base: {
-    borderRadius: 2,
-    width: 8,
-    height: 10,
-  },
-  variants: {
-    variant: {
-      empty: {
-        backgroundColor: lightThemeVars.color.white.background,
-      },
-      yellow: {
-        backgroundColor: lightThemeVars.color.soccer.yellow,
-      },
-      red: {
-        backgroundColor: lightThemeVars.color.soccer.red,
-      },
-    },
-  },
-});

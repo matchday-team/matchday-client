@@ -1,3 +1,4 @@
+import { PlayerReceivedCard } from '@/components';
 import type { MatchRecord } from '@/routes/teams/$teamId/players/-temp-server-types';
 
 import * as styles from './MatchRecordTable.css';
@@ -48,9 +49,10 @@ export function MatchRecordTable({ matchRecords }: MatchRecordTableProps) {
               <div className={styles.playerStats}>
                 <div className={styles.statValue}>{record.goals}</div>
                 <div className={styles.statValue}>-</div>
-                <div className={styles.cardDisplay}>
-                  <div className={styles.cardPlaceholder} />
-                </div>
+                <PlayerReceivedCard
+                  yellowCards={record.yellowCards}
+                  redCards={record.redCards}
+                />
               </div>
             </div>
           </div>
