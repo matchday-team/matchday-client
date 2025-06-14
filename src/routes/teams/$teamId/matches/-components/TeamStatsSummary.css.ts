@@ -2,88 +2,62 @@ import { lightThemeVars } from '@/styles/theme.css';
 
 import { style } from '@vanilla-extract/css';
 
-export const container = style({
+export const rootContainer = style({
   display: 'flex',
-  flexWrap: 'wrap',
-  gap: '58px',
+  gap: 60,
   borderRadius: 10,
-  backgroundColor: '#1C263C',
-  padding: '20px 20px 20px 20px',
+  backgroundColor: lightThemeVars.color.primary[800],
+  padding: '20px 40px',
 });
 
 export const teamInfoContainer = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'center',
+  color: lightThemeVars.color.white.main,
+});
+
+export const teamLogo = style({
+  objectFit: 'cover',
+  width: 64,
+});
+
+export const teamName = style({
   textAlign: 'center',
-  letterSpacing: '-0.6px',
-  whiteSpace: 'nowrap',
+  lineHeight: 1.4,
+  letterSpacing: -0.6,
   color: lightThemeVars.color.white.main,
   fontSize: 24,
   fontWeight: 600,
 });
 
-export const teamLogo = style({
-  aspectRatio: '1',
-  alignSelf: 'center',
-  objectFit: 'contain',
-  objectPosition: 'center',
-  width: 64,
-});
-
-export const teamName = style({
-  flex: '1',
-  flexBasis: '0',
-  flexShrink: 1,
-  gap: 10,
-  width: '100%',
-  color: lightThemeVars.color.white.main,
-});
-
 export const statsContainer = style({
   display: 'flex',
-  flexBasis: 'auto',
-  flexGrow: 1,
-  flexShrink: 1,
-  flexWrap: 'wrap',
   alignItems: 'center',
-  justifyContent: 'start',
-  gap: '100px',
-  marginTop: 'auto',
-  marginBottom: 'auto',
-  letterSpacing: '-0.4px',
+  gap: 100,
+  letterSpacing: -0.4,
   fontSize: 16,
 });
 
 export const statItem = style({
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'start',
-  marginTop: 'auto',
-  marginBottom: 'auto',
-  minWidth: 'fit-content',
 });
 
 export const statLabel = style({
   gap: 6,
-  color: '#DBE4FF',
+  color: lightThemeVars.color.primary[300],
   fontWeight: 600,
 });
 
 export const statValue = style({
-  alignSelf: 'start',
-  gap: 10,
   marginTop: 20,
-  whiteSpace: 'nowrap',
   color: lightThemeVars.color.white.main,
   fontWeight: 500,
 });
 
 export const recordContainer = style({
   display: 'flex',
-  alignItems: 'start',
-  justifyContent: 'start',
   gap: 16,
   marginTop: 20,
   color: lightThemeVars.color.white.main,
@@ -91,7 +65,6 @@ export const recordContainer = style({
 });
 
 export const recordValue = style({
-  gap: 10,
   color: lightThemeVars.color.white.main,
 });
 
@@ -102,6 +75,7 @@ export const recentMatchesContainer = style({
   width: 140,
 });
 
+// FIXME: 체크, 엑스 아이콘으로 개선
 export const recentMatchResult = style({
   display: 'flex',
   alignItems: 'center',

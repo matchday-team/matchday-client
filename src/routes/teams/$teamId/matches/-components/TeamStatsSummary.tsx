@@ -14,7 +14,7 @@ export function TeamStatsSummary({
   className,
 }: TeamStatsSummaryProps) {
   return (
-    <div className={clsx(styles.container, className)}>
+    <div className={clsx(styles.rootContainer, className)}>
       <div className={styles.teamInfoContainer}>
         <img
           src={teamStats.logo}
