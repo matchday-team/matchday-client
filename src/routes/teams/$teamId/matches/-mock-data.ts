@@ -6,7 +6,7 @@ import type {
 export const mockTeamStats: TeamStats = {
   id: 1,
   name: 'FC서울',
-  logo: 'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/2906b86dcbcd80281f0c1dfa5b6939cbc56c0683?placeholderIfAbsent=true',
+  logo: 'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
   matchesPlayed: 38,
   topScorer: '손흥민',
   wins: 21,
@@ -24,7 +24,7 @@ export const mockMatches: Match[] = [
     name: '교내 리그 3R 매치 기록',
     opponentTeam: 'FC수원',
     opponentLogo:
-      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/1d04f96493aee301f44b1ba2c60bdacb0aadf192?placeholderIfAbsent=true',
+      'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
     result: '승',
     duration: 101,
     location: '서울 성동구 왕십리로 22',
@@ -38,7 +38,7 @@ export const mockMatches: Match[] = [
     name: '교내 리그 3R 매치 기록',
     opponentTeam: 'FC수원',
     opponentLogo:
-      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/7c1ba88412930645fe34fba67a6246a3918fa308?placeholderIfAbsent=true',
+      'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
     result: '무',
     duration: 101,
     location: '서울 성동구 왕십리로 22',
@@ -52,7 +52,7 @@ export const mockMatches: Match[] = [
     name: '교내 리그 3R 매치 기록',
     opponentTeam: 'FC수원',
     opponentLogo:
-      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/70a59e13c2d6c2e2e02870bb43fcb41635a0ed12?placeholderIfAbsent=true',
+      'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
     result: '패',
     duration: 101,
     location: '서울 성동구 왕십리로 22',
@@ -66,7 +66,7 @@ export const mockMatches: Match[] = [
     name: '교내 리그 3R 매치 기록',
     opponentTeam: 'FC수원',
     opponentLogo:
-      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/b0b9d6e77e7dfaf058eb8a4517d349553b7ac27d?placeholderIfAbsent=true',
+      'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
     result: '패',
     duration: 101,
     location: '서울 성동구 왕십리로 22',
@@ -80,7 +80,7 @@ export const mockMatches: Match[] = [
     name: '교내 리그 3R 매치 기록',
     opponentTeam: 'FC수원',
     opponentLogo:
-      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/9c40dac4bb7da9b9a2344cd5dda51db69c3c535c?placeholderIfAbsent=true',
+      'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
     result: '패',
     duration: 101,
     location: '서울 성동구 왕십리로 22',
@@ -94,7 +94,7 @@ export const mockMatches: Match[] = [
     name: '교내 리그 3R 매치 기록',
     opponentTeam: 'FC수원',
     opponentLogo:
-      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/1faa5ad4c3874bffd84493be9af9e419b4d82475?placeholderIfAbsent=true',
+      'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
     result: '승',
     duration: 101,
     location: '서울 성동구 왕십리로 22',
@@ -108,7 +108,7 @@ export const mockMatches: Match[] = [
     name: '교내 리그 3R 매치 기록',
     opponentTeam: 'FC수원',
     opponentLogo:
-      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/d545c8b6a7ae76cbf243b39cb9b3797f1325b448?placeholderIfAbsent=true',
+      'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
     result: '승',
     duration: 101,
     location: '서울 성동구 왕십리로 22',
@@ -122,7 +122,7 @@ export const mockMatches: Match[] = [
     name: '교내 리그 3R 매치 기록',
     opponentTeam: 'FC수원',
     opponentLogo:
-      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/916e715d2cf007fddcfbd66cf69762b72d5bc455?placeholderIfAbsent=true',
+      'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
     result: '승',
     duration: 101,
     location: '서울 성동구 왕십리로 22',

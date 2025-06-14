@@ -123,7 +123,7 @@ export const mockMatchRecords: MatchRecord[] = [
     id: 1,
     opponentTeam: 'FC 수원',
     opponentLogo:
-      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/181167531f31440b9d0a2e64eae667e0b04064fd?placeholderIfAbsent=true',
+      'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
     homeScore: 2,
     awayScore: 1,
     isWin: false,
@@ -136,7 +136,7 @@ export const mockMatchRecords: MatchRecord[] = [
     id: 2,
     opponentTeam: 'FC 수원',
     opponentLogo:
-      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/beb07efff81bb6031b3f181a8f8f667dcf8225db?placeholderIfAbsent=true',
+      'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
     homeScore: 2,
     awayScore: 1,
     isWin: false,
@@ -149,7 +149,7 @@ export const mockMatchRecords: MatchRecord[] = [
     id: 3,
     opponentTeam: 'FC 수원',
     opponentLogo:
-      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/5bb38bdecfbaaaf6f52761f63f063c968bcc80ea?placeholderIfAbsent=true',
+      'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
     homeScore: 2,
     awayScore: 1,
     isWin: false,
@@ -162,7 +162,7 @@ export const mockMatchRecords: MatchRecord[] = [
     id: 4,
     opponentTeam: 'FC 수원',
     opponentLogo:
-      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/6d5d0a26429099e60a654cc42008837ac52ca021?placeholderIfAbsent=true',
+      'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
     homeScore: 2,
     awayScore: 1,
     isWin: false,
@@ -175,7 +175,7 @@ export const mockMatchRecords: MatchRecord[] = [
     id: 5,
     opponentTeam: 'FC 수원',
     opponentLogo:
-      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/f096e7d9c888c5c16905fc150be2438df2a91e0b?placeholderIfAbsent=true',
+      'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
     homeScore: 1,
     awayScore: 2,
     isWin: true,
@@ -188,7 +188,7 @@ export const mockMatchRecords: MatchRecord[] = [
     id: 6,
     opponentTeam: 'FC 수원',
     opponentLogo:
-      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/0ad7905717c4ec11d68a3149a01f6e064b95030c?placeholderIfAbsent=true',
+      'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
     homeScore: 1,
     awayScore: 2,
     isWin: true,
@@ -201,7 +201,7 @@ export const mockMatchRecords: MatchRecord[] = [
     id: 7,
     opponentTeam: 'FC 수원',
     opponentLogo:
-      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/7cc913f19c399023dfabb0f499ca6f7882606188?placeholderIfAbsent=true',
+      'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
     homeScore: 1,
     awayScore: 2,
     isWin: true,
@@ -214,7 +214,7 @@ export const mockMatchRecords: MatchRecord[] = [
     id: 8,
     opponentTeam: 'FC 수원',
     opponentLogo:
-      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/af29afb976c74643962af254b51dc4293914be49?placeholderIfAbsent=true',
+      'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
     homeScore: 1,
     awayScore: 2,
     isWin: true,
@@ -227,7 +227,7 @@ export const mockMatchRecords: MatchRecord[] = [
     id: 9,
     opponentTeam: 'FC 수원',
     opponentLogo:
-      'https://cdn.builder.io/api/v1/image/assets/38cbf5816d9b4e569facb33a6b794634/714321937e3d75add3450373ae73b0faa7e1ea27?placeholderIfAbsent=true',
+      'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
     homeScore: 1,
     awayScore: 2,
     isWin: true,
