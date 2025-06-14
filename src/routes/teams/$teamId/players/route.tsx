@@ -28,8 +28,8 @@ function RouteComponent() {
 
   return (
     <div className={styles.rootContainer}>
-      <div className={styles.mainContent}>
-        <div className={styles.leftContent}>
+      <div className={styles.collapsibleContainer}>
+        <div className={styles.defaultContainer}>
           <MemberStatsSummary />
           <MemberTable
             members={mockMembers}
@@ -37,7 +37,7 @@ function RouteComponent() {
           />
         </div>
         {selectedMember && (
-          <div className={styles.rightContent}>
+          <div className={styles.detailContainer}>
             <PlayerDetailPanel
               member={selectedMember}
               matchRecords={mockMatchRecords}
