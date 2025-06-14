@@ -10,17 +10,13 @@ export const container = style({
 });
 
 export const table = style({
-  width: '100%',
   height: '100%',
 });
 
 export const opponentContainer = style({
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'start',
   gap: 12,
-  padding: '16px 10px',
-  whiteSpace: 'nowrap',
 });
 
 export const opponentLogo = style({
@@ -32,23 +28,8 @@ export const opponentLogo = style({
 });
 
 export const opponentName = style({
-  alignSelf: 'stretch',
-  marginTop: 'auto',
-  marginBottom: 'auto',
   width: 47,
-  color: lightThemeVars.color.black,
-  fontWeight: 500,
-});
-
-export const resultCell = style({
-  alignSelf: 'stretch',
-  gap: 10,
-  marginTop: 'auto',
-  marginBottom: 'auto',
-  padding: '16px 10px',
-  minHeight: 22,
-  whiteSpace: 'nowrap',
-  fontWeight: 500,
+  textAlign: 'center',
 });
 
 export const win = style({
@@ -63,27 +44,11 @@ export const draw = style({
   color: lightThemeVars.color.gray[500],
 });
 
-export const durationCell = style({
-  alignSelf: 'stretch',
-  justifyContent: 'center',
-  gap: 10,
-  marginTop: 'auto',
-  marginBottom: 'auto',
-  padding: '16px 10px',
-  minHeight: 22,
-  whiteSpace: 'nowrap',
+export const timeCell = style({
   color: lightThemeVars.color.black,
-  fontWeight: 500,
 });
 
 export const actionIcon = style({
-  aspectRatio: '1',
-  flexShrink: 0,
-  alignSelf: 'stretch',
-  marginTop: 'auto',
-  marginBottom: 'auto',
-  objectFit: 'contain',
-  objectPosition: 'center',
   cursor: 'pointer',
   width: 24,
   color: lightThemeVars.color.gray[500],

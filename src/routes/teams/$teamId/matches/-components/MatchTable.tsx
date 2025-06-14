@@ -61,18 +61,14 @@ export function MatchTable({
       title: '경기 결과',
       width: 80,
       minWidth: 70,
-      render: value => (
-        <div className={clsx(styles.resultCell, resultClassMap[value])}>
-          {value}
-        </div>
-      ),
+      render: value => <div className={resultClassMap[value]}>{value}</div>,
     },
     duration: {
       key: 'duration',
       title: '경기 시간',
       width: 80,
       minWidth: 80,
-      render: value => <div className={styles.durationCell}>{value}분</div>,
+      render: value => `${value}분`,
     },
     location: {
       key: 'location',
@@ -85,6 +81,7 @@ export function MatchTable({
       title: '경기일시',
       width: 100,
       minWidth: 120,
+      render: value => <div className={styles.timeCell}>{value}</div>,
     },
     id: {
       key: 'id',
