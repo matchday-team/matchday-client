@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login/route'
+import { Route as IndexImport } from './routes/index'
 import { Route as UsersCreateRouteImport } from './routes/users/create/route'
 import { Route as TeamsCreateRouteImport } from './routes/teams/create/route'
 import { Route as MatchesEntryRouteImport } from './routes/matches/entry/route'
@@ -27,6 +28,12 @@ import { Route as MatchesMatchIdPlayersEditRouteImport } from './routes/matches/
 const LoginRouteRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const IndexRoute = IndexImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -89,6 +96,13 @@ const MatchesMatchIdPlayersEditRouteRoute =
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -165,6 +179,7 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
   '/login': typeof LoginRouteRoute
   '/matches/create': typeof MatchesCreateRouteRoute
   '/matches/entry': typeof MatchesEntryRouteRoute
@@ -178,6 +193,7 @@ export interface FileRoutesByFullPath {
 }
 
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
   '/login': typeof LoginRouteRoute
   '/matches/create': typeof MatchesCreateRouteRoute
   '/matches/entry': typeof MatchesEntryRouteRoute
@@ -192,6 +208,7 @@ export interface FileRoutesByTo {
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
+  '/': typeof IndexRoute
   '/login': typeof LoginRouteRoute
   '/matches/create': typeof MatchesCreateRouteRoute
   '/matches/entry': typeof MatchesEntryRouteRoute
@@ -207,6 +224,7 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/login'
     | '/matches/create'
     | '/matches/entry'
@@ -219,6 +237,7 @@ export interface FileRouteTypes {
     | '/matches/$matchId/players/edit'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/login'
     | '/matches/create'
     | '/matches/entry'
@@ -231,6 +250,7 @@ export interface FileRouteTypes {
     | '/matches/$matchId/players/edit'
   id:
     | '__root__'
+    | '/'
     | '/login'
     | '/matches/create'
     | '/matches/entry'
@@ -245,6 +265,7 @@ export interface FileRouteTypes {
 }
 
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
   LoginRouteRoute: typeof LoginRouteRoute
   MatchesCreateRouteRoute: typeof MatchesCreateRouteRoute
   MatchesEntryRouteRoute: typeof MatchesEntryRouteRoute
@@ -258,6 +279,7 @@ export interface RootRouteChildren {
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   LoginRouteRoute: LoginRouteRoute,
   MatchesCreateRouteRoute: MatchesCreateRouteRoute,
   MatchesEntryRouteRoute: MatchesEntryRouteRoute,
@@ -280,6 +302,7 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
+        "/",
         "/login",
         "/matches/create",
         "/matches/entry",
@@ -291,6 +314,9 @@ export const routeTree = rootRoute
         "/teams/$teamId/players",
         "/matches/$matchId/players/edit"
       ]
+    },
+    "/": {
+      "filePath": "index.tsx"
     },
     "/login": {
       "filePath": "login/route.tsx"
