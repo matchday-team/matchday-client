@@ -10,7 +10,6 @@ export const rootContainer = style({
 
 export const titleContainer = style({
   display: 'flex',
-  flexWrap: 'wrap',
   justifyContent: 'space-between',
   gap: 20,
   width: '100%',

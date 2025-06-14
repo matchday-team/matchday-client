@@ -4,7 +4,6 @@ import { style } from '@vanilla-extract/css';
 
 export const container = style({
   display: 'flex',
-  flexWrap: 'wrap',
   alignItems: 'center',
   justifyContent: 'space-between',
   borderRadius: 10,
@@ -15,15 +14,13 @@ export const container = style({
 });
 
 export const totalMembersSection = style({
-  marginTop: 'auto',
-  marginBottom: 'auto',
   width: 91,
   fontWeight: 500,
 });
 
 export const totalMembersLabel = style({
   letterSpacing: -0.35,
-  color: '#DBE4FF',
+  color: lightThemeVars.color.primary[300],
   fontSize: 14,
 });
 
@@ -35,14 +32,9 @@ export const totalMembersCount = style({
 
 export const positionStatsContainer = style({
   display: 'flex',
-  flexWrap: 'wrap',
   alignItems: 'center',
-  justifyContent: 'start',
   gap: 24,
-  marginTop: 'auto',
-  marginBottom: 'auto',
   minWidth: 240,
-  whiteSpace: 'nowrap',
   color: lightThemeVars.color.white.main,
 });
 
@@ -50,8 +42,6 @@ export const positionStatItem = style({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  marginTop: 'auto',
-  marginBottom: 'auto',
   borderRadius: 100,
   padding: '10px 14px',
 });
@@ -59,14 +49,11 @@ export const positionStatItem = style({
 export const positionStatContent = style({
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'start',
   gap: 4,
   width: '100%',
 });
 
 export const positionLabel = style({
-  marginTop: 'auto',
-  marginBottom: 'auto',
   letterSpacing: -0.35,
   color: lightThemeVars.color.white.main,
   fontSize: 14,
@@ -76,15 +63,10 @@ export const positionLabel = style({
 export const positionCountContainer = style({
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'start',
   gap: 4,
-  marginTop: 'auto',
-  marginBottom: 'auto',
 });
 
 export const positionCount = style({
-  marginTop: 'auto',
-  marginBottom: 'auto',
   width: 35,
   textAlign: 'right',
   letterSpacing: -0.6,
@@ -94,8 +76,6 @@ export const positionCount = style({
 });
 
 export const positionCountLabel = style({
-  marginTop: 'auto',
-  marginBottom: 'auto',
   letterSpacing: -0.35,
   color: lightThemeVars.color.white.main,
   fontSize: 14,
