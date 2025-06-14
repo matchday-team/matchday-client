@@ -16,7 +16,6 @@ export const contentWrapper = style({
 export const teamInfoSection = style({
   display: 'flex',
   flexDirection: 'row',
-  alignItems: 'flex-start',
   gap: 16,
   marginBottom: 40,
 });
@@ -45,7 +44,6 @@ export const teamDetails = style({
 export const teamDetailsInner = style({
   display: 'flex',
   flexDirection: 'row',
-  alignItems: 'flex-start',
   justifyContent: 'space-between',
   gap: 16,
 });
@@ -71,7 +69,6 @@ export const teamDescription = style({
 export const editSection = style({
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'flex-start',
   color: lightThemeVars.color.primary[300],
 });
 

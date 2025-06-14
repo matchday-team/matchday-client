@@ -111,7 +111,7 @@ export function Sidebar({ isOpen, toggle }: SidebarProps) {
       </div>
 
       <div className={styles.matchDayLogo({ isOpen })}>
-        <div className={styles.footerItemIcon({ isOpen })}>
+        <div className={styles.footerItemIcon}>
           <LogoIcon className={styles.matchDayIcon} />
         </div>
         {isOpen && <LogoTextIcon className={styles.logoTextImage} />}

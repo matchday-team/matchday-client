@@ -18,7 +18,7 @@ export function NavItem({ to, icon, label, isOpen }: NavItemProps) {
 
   const linkContent = (
     <Link to={to} className={styles.navItem({ active: isActive })}>
-      <div className={styles.navItemIcon({ isOpen })}>{icon}</div>
+      <div className={styles.navItemIcon}>{icon}</div>
       {isOpen && <span className={styles.label}>{label}</span>}
     </Link>
   );
