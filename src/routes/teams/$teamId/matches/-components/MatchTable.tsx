@@ -8,6 +8,12 @@ import type { Match } from '@/routes/teams/$teamId/matches/-temp-server-types';
 
 import * as styles from './MatchTable.css';
 
+const resultClassMap = {
+  승: styles.win,
+  패: styles.loss,
+  무: styles.draw,
+};
+
 interface MatchTableProps {
   matches: Match[];
   onMatchClick?: (match: Match) => void;
@@ -26,24 +32,19 @@ export function MatchTable({
       key: 'type',
       title: '경기 유형',
       width: 100,
-      headerAlign: 'center',
-      bodyAlign: 'center',
-      render: value => value,
+      minWidth: 75,
     },
     name: {
       key: 'name',
       title: '경기 이름',
       width: 200,
-      headerAlign: 'center',
-      bodyAlign: 'left',
-      render: value => value,
+      minWidth: 160,
     },
     opponentTeam: {
       key: 'opponentTeam',
       title: '상대팀',
       width: 150,
-      headerAlign: 'center',
-      bodyAlign: 'center',
+      minWidth: 70,
       render: (value, record) => (
         <div className={styles.opponentContainer}>
           <img
@@ -59,17 +60,9 @@ export function MatchTable({
       key: 'result',
       title: '경기 결과',
       width: 80,
-      headerAlign: 'center',
-      bodyAlign: 'center',
+      minWidth: 70,
       render: value => (
-        <div
-          className={clsx(
-            styles.resultCell,
-            value === '승' && styles.win,
-            value === '패' && styles.loss,
-            value === '무' && styles.draw,
-          )}
-        >
+        <div className={clsx(styles.resultCell, resultClassMap[value])}>
           {value}
         </div>
       ),
@@ -78,32 +71,25 @@ export function MatchTable({
       key: 'duration',
       title: '경기 시간',
       width: 80,
-      headerAlign: 'center',
-      bodyAlign: 'center',
+      minWidth: 80,
       render: value => <div className={styles.durationCell}>{value}분</div>,
     },
     location: {
       key: 'location',
       title: '장소',
       width: 180,
-      headerAlign: 'center',
-      bodyAlign: 'center',
-      render: value => value,
+      minWidth: 180,
     },
     date: {
       key: 'date',
       title: '경기일시',
       width: 100,
-      headerAlign: 'center',
-      bodyAlign: 'center',
-      render: value => value,
+      minWidth: 120,
     },
     id: {
       key: 'id',
       title: '',
       width: 60,
-      headerAlign: 'center',
-      bodyAlign: 'center',
       render: () => <XIcon className={styles.actionIcon} />,
     },
   } satisfies TableColumnsDefinition<Match>;
@@ -118,7 +104,7 @@ export function MatchTable({
         columns={columns}
         data={matches}
         headerHeight={60}
-        rowHeight={70}
+        rowHeight={76}
         onRowClick={handleRowClick}
         headerActions={headerActions}
         className={styles.table}
