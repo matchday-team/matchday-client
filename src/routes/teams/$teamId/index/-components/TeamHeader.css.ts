@@ -10,7 +10,7 @@ export const container = style({
 });
 
 export const contentWrapper = style({
-  padding: '40px 40px',
+  padding: 40,
 });
 
 export const teamInfoSection = style({

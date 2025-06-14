@@ -5,7 +5,6 @@ import { style } from '@vanilla-extract/css';
 export const container = style({
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'stretch',
   justifyContent: 'center',
   padding: '16px 40px 16px 40px',
   width: '100%',
@@ -18,7 +17,6 @@ export const rowContent = style({
 
 export const rowContainer = style({
   display: 'flex',
-  alignItems: 'stretch',
   justifyContent: 'space-between',
   gap: 20,
   width: '100%',
@@ -32,7 +30,6 @@ export const leftSection = style({
 });
 
 export const indexNumber = style({
-  alignSelf: 'stretch',
   marginTop: 'auto',
   marginBottom: 'auto',
   padding: '0 6px',
@@ -45,7 +42,6 @@ export const indexNumber = style({
 export const profileImage = style({
   aspectRatio: '1',
   flexShrink: 0,
-  alignSelf: 'stretch',
   objectFit: 'contain',
   objectPosition: 'center',
   width: 36,
@@ -53,7 +49,6 @@ export const profileImage = style({
 });
 
 export const memberName = style({
-  alignSelf: 'stretch',
   gap: 10,
   marginTop: 'auto',
   marginBottom: 'auto',
@@ -65,7 +60,6 @@ export const memberName = style({
 });
 
 export const memberNumber = style({
-  alignSelf: 'stretch',
   marginTop: 'auto',
   marginBottom: 'auto',
   padding: '0 10px',
@@ -86,8 +80,6 @@ export const rightSection = style({
 export const positionTag = style({
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'stretch',
-  alignSelf: 'stretch',
   justifyContent: 'center',
   borderRadius: 100,
   padding: '4px 8px',
@@ -116,13 +108,11 @@ export const positionTagGK = style({
 });
 
 export const positionText = style({
-  alignSelf: 'stretch',
   gap: 8,
   width: '100%',
 });
 
 export const footText = style({
-  alignSelf: 'stretch',
   gap: 10,
   marginTop: 'auto',
   marginBottom: 'auto',
@@ -135,7 +125,6 @@ export const footText = style({
 });
 
 export const roleText = style({
-  alignSelf: 'stretch',
   gap: 10,
   marginTop: 'auto',
   marginBottom: 'auto',
@@ -148,7 +137,6 @@ export const roleText = style({
 });
 
 export const joinDateText = style({
-  alignSelf: 'stretch',
   gap: 10,
   marginTop: 'auto',
   marginBottom: 'auto',
@@ -163,7 +151,6 @@ export const joinDateText = style({
 export const moreIcon = style({
   aspectRatio: '1',
   flexShrink: 0,
-  alignSelf: 'stretch',
   marginTop: 'auto',
   marginBottom: 'auto',
   objectFit: 'contain',

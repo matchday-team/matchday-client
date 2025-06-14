@@ -5,7 +5,6 @@ import { style } from '@vanilla-extract/css';
 export const container = style({
   display: 'flex',
   flexWrap: 'wrap',
-  alignItems: 'stretch',
   gap: '58px',
   borderRadius: 10,
   backgroundColor: '#1C263C',
@@ -37,7 +36,6 @@ export const teamName = style({
   flex: '1',
   flexBasis: '0',
   flexShrink: 1,
-  alignSelf: 'stretch',
   gap: 10,
   width: '100%',
   color: lightThemeVars.color.white.main,
@@ -61,8 +59,6 @@ export const statsContainer = style({
 export const statItem = style({
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'stretch',
-  alignSelf: 'stretch',
   justifyContent: 'start',
   marginTop: 'auto',
   marginBottom: 'auto',
@@ -70,7 +66,6 @@ export const statItem = style({
 });
 
 export const statLabel = style({
-  alignSelf: 'stretch',
   gap: 6,
   color: '#DBE4FF',
   fontWeight: 600,
@@ -96,7 +91,6 @@ export const recordContainer = style({
 });
 
 export const recordValue = style({
-  alignSelf: 'stretch',
   gap: 10,
   color: lightThemeVars.color.white.main,
 });

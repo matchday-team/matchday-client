@@ -27,7 +27,6 @@ export const titleText = style({
 });
 
 export const formRootContainer = style({
-  alignSelf: 'stretch',
   marginTop: 36,
   width: '100%',
 });
@@ -73,7 +72,6 @@ export const profileImageWrapper = style({
 });
 
 export const profileImage = style({
-  alignSelf: 'stretch',
   objectFit: 'contain',
   objectPosition: 'center',
   color: lightThemeVars.color.primary[300],

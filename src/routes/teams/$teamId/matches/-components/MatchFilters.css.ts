@@ -18,7 +18,6 @@ export const searchContainer = style({
 export const filtersContainer = style({
   display: 'flex',
   alignItems: 'center',
-  alignSelf: 'stretch',
   justifyContent: 'start',
   gap: 8,
   marginTop: 'auto',

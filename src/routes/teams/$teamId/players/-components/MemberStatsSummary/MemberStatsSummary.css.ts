@@ -15,7 +15,6 @@ export const container = style({
 });
 
 export const totalMembersSection = style({
-  alignSelf: 'stretch',
   marginTop: 'auto',
   marginBottom: 'auto',
   width: 91,
@@ -38,7 +37,6 @@ export const positionStatsContainer = style({
   display: 'flex',
   flexWrap: 'wrap',
   alignItems: 'center',
-  alignSelf: 'stretch',
   justifyContent: 'start',
   gap: 24,
   marginTop: 'auto',
@@ -51,8 +49,6 @@ export const positionStatsContainer = style({
 export const positionStatItem = style({
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'stretch',
-  alignSelf: 'stretch',
   justifyContent: 'center',
   marginTop: 'auto',
   marginBottom: 'auto',
@@ -69,7 +65,6 @@ export const positionStatContent = style({
 });
 
 export const positionLabel = style({
-  alignSelf: 'stretch',
   marginTop: 'auto',
   marginBottom: 'auto',
   letterSpacing: -0.35,
@@ -81,7 +76,6 @@ export const positionLabel = style({
 export const positionCountContainer = style({
   display: 'flex',
   alignItems: 'center',
-  alignSelf: 'stretch',
   justifyContent: 'start',
   gap: 4,
   marginTop: 'auto',
@@ -89,7 +83,6 @@ export const positionCountContainer = style({
 });
 
 export const positionCount = style({
-  alignSelf: 'stretch',
   marginTop: 'auto',
   marginBottom: 'auto',
   width: 35,
@@ -101,7 +94,6 @@ export const positionCount = style({
 });
 
 export const positionCountLabel = style({
-  alignSelf: 'stretch',
   marginTop: 'auto',
   marginBottom: 'auto',
   letterSpacing: -0.35,

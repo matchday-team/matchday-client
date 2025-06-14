@@ -35,7 +35,6 @@ export const navItem = recipe({
     display: 'flex',
     flexShrink: 0,
     alignItems: 'center',
-    alignSelf: 'stretch',
     gap: 16,
     transition: `background-color 0.3s ${transitionTiming}`,
     padding: '4px 0',
