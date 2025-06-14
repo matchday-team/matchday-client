@@ -7,12 +7,12 @@ import {
 } from '@/routes/teams/$teamId/matches/-temp-server-types';
 
 import { GoalList } from './GoalList';
-import * as styles from './MatchDetailCard.css';
 import { MatchDetailLink } from './MatchDetailLink';
+import * as styles from './MatchDetailPanel.css';
 import { MatchHeader } from './MatchHeader';
 import { MatchMetadata } from './MatchMetadata';
 
-export interface MatchDetailCardProps {
+export interface MatchDetailPanelProps {
   homeTeam: TeamData;
   awayTeam: TeamData;
   goals: Goal[];
@@ -24,7 +24,7 @@ export interface MatchDetailCardProps {
   players: PlayerStat[];
 }
 
-export function MatchDetailCard({
+export function MatchDetailPanel({
   homeTeam,
   awayTeam,
   goals,
@@ -34,7 +34,7 @@ export function MatchDetailCard({
   date,
   location,
   players,
-}: MatchDetailCardProps) {
+}: MatchDetailPanelProps) {
   return (
     <div className={styles.rootContainer}>
       <div className={styles.infoContainer}>

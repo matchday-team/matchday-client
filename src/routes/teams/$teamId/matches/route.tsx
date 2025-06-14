@@ -6,7 +6,7 @@ import { DetailCollapsibleLayout } from '@/components';
 import { usePageTitle } from '@/hooks';
 
 import {
-  MatchDetailCard,
+  MatchDetailPanel,
   MatchFilters,
   MatchTable,
   TeamStatsSummary,
@@ -51,7 +51,7 @@ function TeamMatchListPage() {
         }
         detailChildren={
           selectedMatch && (
-            <MatchDetailCard
+            <MatchDetailPanel
               homeTeam={mockHomeTeam}
               awayTeam={mockAwayTeam}
               goals={mockGoals}

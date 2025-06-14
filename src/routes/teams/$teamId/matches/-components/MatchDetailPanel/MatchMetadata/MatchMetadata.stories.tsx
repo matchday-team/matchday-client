@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { MatchMetadata } from './MatchMetadata';
 
 const meta = {
-  title: 'Routes/Teams/Matches/MatchDetailCard/MatchMetadata',
+  title: 'Routes/Teams/Matches/MatchDetailPanel/MatchMetadata',
   component: MatchMetadata,
   parameters: {
     layout: 'centered',

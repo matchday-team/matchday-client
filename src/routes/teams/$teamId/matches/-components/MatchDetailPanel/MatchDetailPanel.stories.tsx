@@ -7,11 +7,11 @@ import {
   mockPlayerStats,
 } from '@/routes/teams/$teamId/matches/-mock-data';
 
-import { MatchDetailCard } from './MatchDetailCard';
+import { MatchDetailPanel } from './MatchDetailPanel';
 
 const meta = {
-  title: 'Routes/Teams/Matches/MatchDetailCard',
-  component: MatchDetailCard,
+  title: 'Routes/Teams/Matches/MatchDetailPanel',
+  component: MatchDetailPanel,
   parameters: {
     layout: 'centered',
   },
@@ -28,7 +28,7 @@ const meta = {
     ),
   ],
   tags: ['autodocs'],
-} satisfies Meta<typeof MatchDetailCard>;
+} satisfies Meta<typeof MatchDetailPanel>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
