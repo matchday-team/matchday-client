@@ -6,6 +6,7 @@ export const rootContainer = style({
   display: 'flex',
   gap: 60,
   borderRadius: 10,
+  boxShadow: '4px 4px 8px 0px rgba(0, 0, 0, 0.05)',
   backgroundColor: lightThemeVars.color.primary[800],
   padding: '20px 40px',
 });
