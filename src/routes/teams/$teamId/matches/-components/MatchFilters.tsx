@@ -1,57 +1,20 @@
 import clsx from 'clsx';
 
 import { InputWithIcon, Select } from '@/components/CommonForm';
-import type { MatchFilters as MatchFiltersType } from '@/routes/teams/$teamId/matches/-temp-server-types';
 
 import * as styles from './MatchFilters.css';
 
 interface MatchFiltersProps {
-  filters: MatchFiltersType;
-  onFiltersChange: (filters: MatchFiltersType) => void;
   className?: string;
 }
 
-export function MatchFilters({
-  filters,
-  onFiltersChange,
-  className,
-}: MatchFiltersProps) {
-  const handleSearchChange = (value: string) => {
-    onFiltersChange({
-      ...filters,
-      search: value,
-    });
-  };
-
-  const handleTeamFilterChange = (value: string) => {
-    onFiltersChange({
-      ...filters,
-      teamFilter: value,
-    });
-  };
-
-  const handleResultFilterChange = (value: string) => {
-    onFiltersChange({
-      ...filters,
-      resultFilter: value,
-    });
-  };
-
-  const handleSortOrderChange = (value: string) => {
-    onFiltersChange({
-      ...filters,
-      sortOrder: value,
-    });
-  };
-
+export function MatchFilters({ className }: MatchFiltersProps) {
   return (
     <div className={clsx(styles.container, className)}>
       <div className={styles.searchContainer}>
         <InputWithIcon
           type='text'
           placeholder='경기 이름 검색'
-          value={filters.search}
-          onChange={e => handleSearchChange(e.target.value)}
           variant='white-large'
           iconPosition='right'
         />
@@ -64,8 +27,6 @@ export function MatchFilters({
             { value: 'fc-seoul', label: 'FC서울' },
             { value: 'fc-suwon', label: 'FC수원' },
           ]}
-          value={filters.teamFilter}
-          onChange={handleTeamFilterChange}
           placeholder='전체 팀'
           variant='white-large'
           className={styles.filterSelect}
@@ -78,8 +39,6 @@ export function MatchFilters({
             { value: 'loss', label: '패' },
             { value: 'draw', label: '무' },
           ]}
-          value={filters.resultFilter}
-          onChange={handleResultFilterChange}
           placeholder='승 / 패'
           variant='white-large'
           className={styles.filterSelect}
@@ -90,8 +49,6 @@ export function MatchFilters({
             { value: 'latest', label: '최신순' },
             { value: 'oldest', label: '오래된순' },
           ]}
-          value={filters.sortOrder}
-          onChange={handleSortOrderChange}
           placeholder='최신순'
           variant='white-large'
           className={styles.filterSelect}

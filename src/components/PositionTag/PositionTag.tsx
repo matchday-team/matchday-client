@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 
-import type { Position } from '@/routes/teams/$teamId/players/-temp-server-types';
-
 import * as styles from './PositionTag.css';
+
+type Position = 'FW' | 'MF' | 'DF' | 'GK';
 
 const getPositionStyle = (position: Position): string => {
   switch (position) {

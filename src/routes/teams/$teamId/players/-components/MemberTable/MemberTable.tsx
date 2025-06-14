@@ -1,10 +1,7 @@
 import { ChevronRightIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
-import { Table, TableColumnsDefinition } from '@/components';
-import {
-  MemberFilters,
-  PositionTag,
-} from '@/routes/teams/$teamId/players/-components';
+import { PositionTag, Table, TableColumnsDefinition } from '@/components';
+import { MemberFilters } from '@/routes/teams/$teamId/players/-components';
 import type { Member } from '@/routes/teams/$teamId/players/-temp-server-types';
 import { createFallbackImageHandler } from '@/utils/createFallbackImageHandler';
 
@@ -37,8 +34,8 @@ export function MemberTable({ members, onMemberMoreClick }: MemberTableProps) {
     name: {
       key: 'name',
       title: '이름',
-      width: 80,
-      minWidth: 80,
+      width: 120,
+      minWidth: 120,
       render: (value, record) => (
         <div className={styles.memberNameContainer}>
           <img
