@@ -55,7 +55,7 @@ function TeamMatchListPage() {
               homeTeam={mockHomeTeam}
               awayTeam={mockAwayTeam}
               goals={mockGoals}
-              duration={101}
+              duration={selectedMatch.duration}
               playersPlayed={13}
               totalPlayers={16}
               date={selectedMatch.date}

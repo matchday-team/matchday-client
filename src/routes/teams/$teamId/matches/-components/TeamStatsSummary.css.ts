@@ -47,7 +47,6 @@ export const statItem = style({
 });
 
 export const statLabel = style({
-  gap: 6,
   color: lightThemeVars.color.primary[300],
   fontWeight: 600,
 });

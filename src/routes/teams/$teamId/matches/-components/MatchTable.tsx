@@ -23,7 +23,6 @@ export function MatchTable({
   matches,
   onMatchClick,
   headerActions,
-  className,
 }: MatchTableProps) {
   const columns = {
     type: {
