@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { type Goal } from '@/routes/teams/$teamId/matches/-temp-server-types';
+
 import { MatchDetailCard } from './MatchDetailCard';
 
 const meta = {
@@ -44,7 +46,7 @@ const mockAwayTeam = {
   teamColor: '#30CAB3',
 };
 
-const mockGoals = [
+const mockGoals: Goal[] = [
   { time: '13', playerName: '손흥민', team: 'home' },
   { time: '41', playerName: '손흥민', team: 'away' },
   { time: '84', playerName: '손흥민', team: 'home' },
@@ -152,10 +154,10 @@ export const Draw: Story = {
     homeTeam: { ...mockHomeTeam, score: 2 },
     awayTeam: { ...mockAwayTeam, score: 2 },
     goals: [
-      { time: '15', playerName: '손흥민' },
-      { time: '34', playerName: '이강인' },
-      { time: '67', playerName: '황의조' },
-      { time: '89', playerName: '조규성' },
+      { time: '15', playerName: '손흥민', team: 'home' },
+      { time: '34', playerName: '이강인', team: 'away' },
+      { time: '67', playerName: '황의조', team: 'home' },
+      { time: '89', playerName: '조규성', team: 'away' },
     ],
     duration: 96,
     playersPlayed: 14,

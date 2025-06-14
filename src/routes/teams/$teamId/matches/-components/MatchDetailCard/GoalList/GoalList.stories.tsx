@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { GoalList } from './GoalList';
 
 const meta = {
-  title: 'Routes/Teams/Matches/MatchDetailCard/Components/GoalList',
+  title: 'Routes/Teams/Matches/MatchDetailCard/GoalList',
   component: GoalList,
   parameters: {
     layout: 'centered',

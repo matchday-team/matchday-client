@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { MatchParticipatedPlayerList } from './MatchParticipatedPlayerList';
 
 const meta: Meta<typeof MatchParticipatedPlayerList> = {
-  title: 'Routes/Teams/Matches/MatchDetailCard/MatchParticipatedPlayerList',
+  title: 'Routes/Teams/Matches/MatchParticipatedPlayerList',
   component: MatchParticipatedPlayerList,
   tags: ['autodocs'],
   parameters: {

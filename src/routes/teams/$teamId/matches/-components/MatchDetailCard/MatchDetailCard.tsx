@@ -1,32 +1,27 @@
-import { clsx } from 'clsx';
-
 import { XIcon } from '@/assets/icons';
+import { MatchParticipatedPlayerList } from '@/routes/teams/$teamId/matches/-components/MatchParticipatedPlayerList';
 import {
   Goal,
   PlayerStat,
   TeamData,
 } from '@/routes/teams/$teamId/matches/-temp-server-types';
 
+import { GoalList } from './GoalList';
 import * as styles from './MatchDetailCard.css';
-import {
-  GoalList,
-  MatchDetailLink,
-  MatchHeader,
-  MatchMetadata,
-  PlayerStatsList,
-} from './components';
+import { MatchDetailLink } from './MatchDetailLink';
+import { MatchHeader } from './MatchHeader';
+import { MatchMetadata } from './MatchMetadata';
 
 export interface MatchDetailCardProps {
   homeTeam: TeamData;
   awayTeam: TeamData;
   goals: Goal[];
-  duration: number; // 경기 시간 (분)
+  duration: number;
   playersPlayed: number;
   totalPlayers: number;
   date: string;
   location: string;
   players: PlayerStat[];
-  className?: string;
 }
 
 export function MatchDetailCard({
@@ -39,10 +34,9 @@ export function MatchDetailCard({
   date,
   location,
   players,
-  className,
 }: MatchDetailCardProps) {
   return (
-    <div className={clsx(styles.rootContainer, className)}>
+    <div className={styles.rootContainer}>
       <div className={styles.infoContainer}>
         <div className={styles.closeButtonContainer}>
           <button>
@@ -60,7 +54,11 @@ export function MatchDetailCard({
         />
         <MatchDetailLink />
       </div>
-      <PlayerStatsList players={players} />
+      <MatchParticipatedPlayerList
+        players={players}
+        homeTeam={homeTeam}
+        awayTeam={awayTeam}
+      />
     </div>
   );
 }
