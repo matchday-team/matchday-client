@@ -13,7 +13,7 @@ alwaysApply: true
 ## 스타일링
 - className을 여러 개 처리할 때는 clsx를 사용하며, template string은 사용하지 않는다.
 - 컴포넌트 외부에서 className을 주입하는 경우 반드시 clsx로 병합하고, 외부 className으로 덮어쓰지 않아야 한다.
-- 동적인 값을 받아야 하는 경우 assignInlineVars를 사용한다.
+- 동적인 값을 받아야 하는 경우 assignInlineVars를 사용하되, 그 개수가 많은 경우 단순 style로 지정한다.
 - 페이지 컴포넌트(route.tsx 등)의 root element의 className은 `rootContainer`이며, `import { commonPageRoot } from '@/styles/page.css';`를 항상 상속한다.
 - 컨테이너 className은 `container` suffix를 사용한다.
 - 불필요한 style이 있지 않는지 항상 확인하며, className으로 HTML 요소의 역할을 명확히 알 수 있어야 한다.
@@ -22,6 +22,9 @@ alwaysApply: true
 - 개별적인 padding 값을 줘야 하는 경우 shorthand를 사용한다.
 - Figma 기반으로 화면을 생성할 때 Layer를 그대로 옮기기보다 최소 마크업/스타일로 작성한다. 즉, 부득이한 경우가 아니라면 자식이 하나만 있는 element를 중첩하지 않는다.
 - 아직 baseline으로 지원되지 않는 스타일은 지양한다 (fit-content, max-content 등)
+- alignItems: stretch 와 같은 CSS 기본값은 명시적으로 사용하지 않는다.
+- CSS 작성 시에는 shorthand를 선호하며, Vanilla Extract에서 숫자로 표현할 수 있는 값은 숫자로 표현한다. (e.g. "padding: 40px 40px" -> "padding: 40")
+- alignSelf: stretch 옵션은 최소한으로 사용한다.
 
 ## 네이밍 컨벤션
 - 컴포넌트명: PascalCase (예: `TeamCreatePage`)
