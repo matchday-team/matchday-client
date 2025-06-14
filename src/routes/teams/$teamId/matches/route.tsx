@@ -83,21 +83,19 @@ function TeamMatchListPage() {
 
   return (
     <div className={styles.rootContainer}>
-      <div className={styles.contentContainer}>
-        <TeamStatsSummary teamStats={mockTeamStats} />
+      <TeamStatsSummary teamStats={mockTeamStats} />
 
-        <div className={styles.tableSection}>
-          <MatchTable
-            matches={filteredMatches}
-            onMatchClick={handleMatchClick}
-            headerActions={
-              <MatchFilters
-                filters={filters}
-                onFiltersChange={handleFiltersChange}
-              />
-            }
-          />
-        </div>
+      <div className={styles.tableSection}>
+        <MatchTable
+          matches={filteredMatches}
+          onMatchClick={handleMatchClick}
+          headerActions={
+            <MatchFilters
+              filters={filters}
+              onFiltersChange={handleFiltersChange}
+            />
+          }
+        />
       </div>
     </div>
   );

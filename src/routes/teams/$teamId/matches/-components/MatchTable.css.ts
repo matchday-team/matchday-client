@@ -14,20 +14,6 @@ export const table = style({
   height: '100%',
 });
 
-export const typeCell = style({
-  padding: '16px 10px',
-  textAlign: 'center',
-  whiteSpace: 'nowrap',
-  color: lightThemeVars.color.black,
-  fontWeight: 400,
-});
-
-export const nameCell = style({
-  padding: '16px 10px',
-  color: lightThemeVars.color.black,
-  fontWeight: 400,
-});
-
 export const opponentContainer = style({
   display: 'flex',
   alignItems: 'center',
@@ -88,28 +74,6 @@ export const durationCell = style({
   whiteSpace: 'nowrap',
   color: lightThemeVars.color.black,
   fontWeight: 500,
-});
-
-export const locationCell = style({
-  alignSelf: 'stretch',
-  justifyContent: 'center',
-  gap: 10,
-  marginTop: 'auto',
-  marginBottom: 'auto',
-  padding: '16px 10px',
-  minHeight: 22,
-  color: lightThemeVars.color.gray[500],
-});
-
-export const dateCell = style({
-  alignSelf: 'stretch',
-  gap: 10,
-  marginTop: 'auto',
-  marginBottom: 'auto',
-  padding: '16px 10px',
-  minHeight: 22,
-  whiteSpace: 'nowrap',
-  color: lightThemeVars.color.gray[500],
 });
 
 export const actionIcon = style({

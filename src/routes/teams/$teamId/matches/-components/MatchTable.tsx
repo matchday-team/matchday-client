@@ -28,7 +28,7 @@ export function MatchTable({
       width: 100,
       headerAlign: 'center',
       bodyAlign: 'center',
-      render: value => <div className={styles.typeCell}>{value}</div>,
+      render: value => value,
     },
     name: {
       key: 'name',
@@ -36,7 +36,7 @@ export function MatchTable({
       width: 200,
       headerAlign: 'center',
       bodyAlign: 'left',
-      render: value => <div className={styles.nameCell}>{value}</div>,
+      render: value => value,
     },
     opponentTeam: {
       key: 'opponentTeam',
@@ -88,7 +88,7 @@ export function MatchTable({
       width: 180,
       headerAlign: 'center',
       bodyAlign: 'center',
-      render: value => <div className={styles.locationCell}>{value}</div>,
+      render: value => value,
     },
     date: {
       key: 'date',
@@ -96,7 +96,7 @@ export function MatchTable({
       width: 100,
       headerAlign: 'center',
       bodyAlign: 'center',
-      render: value => <div className={styles.dateCell}>{value}</div>,
+      render: value => value,
     },
     id: {
       key: 'id',

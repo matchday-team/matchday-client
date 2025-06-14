@@ -7,16 +7,10 @@ export const rootContainer = style([
   commonPageRoot,
   {
     backgroundColor: lightThemeVars.color.white.background,
+    width: 1336,
     minHeight: '100vh',
   },
 ]);
-
-export const contentContainer = style({
-  marginTop: 20,
-  marginRight: 22,
-  marginLeft: 21,
-  maxWidth: 1336,
-});
 
 export const tableSection = style({
   marginTop: 20,
