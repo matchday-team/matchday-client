@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import clsx from 'clsx';
 
 import XIcon from '@/assets/icons/x.svg?react';
-import { Table, TableColumn } from '@/components/Table';
+import { Table, TableColumnsDefinition } from '@/components/Table';
 import type { Match } from '@/routes/teams/$teamId/matches/-temp-server-types';
 
 import * as styles from './MatchTable.css';
@@ -21,16 +21,14 @@ export function MatchTable({
   headerActions,
   className,
 }: MatchTableProps) {
-  const columns: Partial<Record<keyof Match, TableColumn<Match>>> = {
+  const columns = {
     type: {
       key: 'type',
       title: '경기 유형',
       width: 100,
       headerAlign: 'center',
       bodyAlign: 'center',
-      render: (value: Match['type']) => (
-        <div className={styles.typeCell}>{value}</div>
-      ),
+      render: value => <div className={styles.typeCell}>{value}</div>,
     },
     name: {
       key: 'name',
@@ -38,9 +36,7 @@ export function MatchTable({
       width: 200,
       headerAlign: 'center',
       bodyAlign: 'left',
-      render: (value: Match['name']) => (
-        <div className={styles.nameCell}>{value}</div>
-      ),
+      render: value => <div className={styles.nameCell}>{value}</div>,
     },
     opponentTeam: {
       key: 'opponentTeam',
@@ -48,11 +44,11 @@ export function MatchTable({
       width: 150,
       headerAlign: 'center',
       bodyAlign: 'center',
-      render: (value: Match['opponentTeam'], record: Match) => (
+      render: (value, record) => (
         <div className={styles.opponentContainer}>
           <img
             src={record.opponentLogo}
-            alt={value}
+            alt=''
             className={styles.opponentLogo}
           />
           <div className={styles.opponentName}>{value}</div>
@@ -65,7 +61,7 @@ export function MatchTable({
       width: 80,
       headerAlign: 'center',
       bodyAlign: 'center',
-      render: (value: Match['result']) => (
+      render: value => (
         <div
           className={clsx(
             styles.resultCell,
@@ -84,9 +80,7 @@ export function MatchTable({
       width: 80,
       headerAlign: 'center',
       bodyAlign: 'center',
-      render: (value: Match['duration']) => (
-        <div className={styles.durationCell}>{value}분</div>
-      ),
+      render: value => <div className={styles.durationCell}>{value}분</div>,
     },
     location: {
       key: 'location',
@@ -94,19 +88,15 @@ export function MatchTable({
       width: 180,
       headerAlign: 'center',
       bodyAlign: 'center',
-      render: (value: Match['location']) => (
-        <div className={styles.locationCell}>{value}</div>
-      ),
+      render: value => <div className={styles.locationCell}>{value}</div>,
     },
     date: {
       key: 'date',
-      title: '��시',
+      title: '경기일시',
       width: 100,
       headerAlign: 'center',
       bodyAlign: 'center',
-      render: (value: Match['date']) => (
-        <div className={styles.dateCell}>{value}</div>
-      ),
+      render: value => <div className={styles.dateCell}>{value}</div>,
     },
     id: {
       key: 'id',
@@ -116,7 +106,7 @@ export function MatchTable({
       bodyAlign: 'center',
       render: () => <XIcon className={styles.actionIcon} />,
     },
-  };
+  } satisfies TableColumnsDefinition<Match>;
 
   const handleRowClick = (match: Match) => {
     onMatchClick?.(match);

@@ -4,10 +4,9 @@ import { style } from '@vanilla-extract/css';
 
 export const container = style({
   borderRadius: 10,
-  boxShadow: '4px 4px 8px 0px rgba(0, 0, 0, 0.05)',
   backgroundColor: lightThemeVars.color.white.main,
   width: '100%',
-  minHeight: 661,
+  height: 700,
 });
 
 export const table = style({
