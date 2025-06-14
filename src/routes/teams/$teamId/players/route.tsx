@@ -35,7 +35,7 @@ function RouteComponent() {
           <>
             <MemberStatsSummary />
             <MemberTable
-              members={mockMembers}
+              members={[...mockMembers, ...mockMembers]}
               onMemberMoreClick={handleMemberMoreClick}
             />
           </>

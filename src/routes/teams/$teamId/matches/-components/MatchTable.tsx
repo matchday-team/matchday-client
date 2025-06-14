@@ -1,7 +1,5 @@
 import { ReactNode } from 'react';
 
-import clsx from 'clsx';
-
 import { ChevronRightIcon } from '@/assets/icons';
 import { Table, TableColumnsDefinition } from '@/components/Table';
 import type { Match } from '@/routes/teams/$teamId/matches/-temp-server-types';
@@ -96,16 +94,14 @@ export function MatchTable({
   };
 
   return (
-    <div className={clsx(styles.container, className)}>
-      <Table
-        columns={columns}
-        data={matches}
-        headerHeight={60}
-        rowHeight={76}
-        onRowClick={handleRowClick}
-        headerActions={headerActions}
-        className={styles.table}
-      />
-    </div>
+    <Table
+      columns={columns}
+      data={matches}
+      headerHeight={60}
+      rowHeight={76}
+      onRowClick={handleRowClick}
+      headerActions={headerActions}
+      className={styles.tableOverride}
+    />
   );
 }

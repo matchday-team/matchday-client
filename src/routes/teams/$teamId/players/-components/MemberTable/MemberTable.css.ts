@@ -3,6 +3,9 @@ import { lightThemeVars } from '@/styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
 export const tableOverride = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 20,
   width: '100%',
   height: 700,
 });
