@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import clsx from 'clsx';
 
-import XIcon from '@/assets/icons/x.svg?react';
+import { ChevronRightIcon } from '@/assets/icons';
 import { Table, TableColumnsDefinition } from '@/components/Table';
 import type { Match } from '@/routes/teams/$teamId/matches/-temp-server-types';
 
@@ -87,7 +87,7 @@ export function MatchTable({
       key: 'id',
       title: '',
       width: 60,
-      render: () => <XIcon className={styles.actionIcon} />,
+      render: () => <ChevronRightIcon className={styles.actionIcon} />,
     },
   } satisfies TableColumnsDefinition<Match>;
 

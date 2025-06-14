@@ -13,3 +13,7 @@ export const rootContainer = style([
     width: 1336,
   },
 ]);
+
+export const tableContainer = style({
+  minWidth: 962,
+});

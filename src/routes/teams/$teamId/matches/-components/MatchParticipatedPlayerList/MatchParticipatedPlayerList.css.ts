@@ -4,12 +4,14 @@ import { style } from '@vanilla-extract/css';
 
 export const container = style({
   zIndex: 10,
+  flex: 1,
   width: '100%',
 });
 
 export const tableOverride = style({
   borderTopLeftRadius: 0,
   borderTopRightRadius: 0,
+  height: '100%',
 });
 
 export const headerOverride = style({

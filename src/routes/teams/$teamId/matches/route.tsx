@@ -40,14 +40,14 @@ function TeamMatchListPage() {
       <DetailCollapsibleLayout
         isOpen={!!selectedMatch}
         defaultChildren={
-          <>
+          <div className={styles.tableContainer}>
             <TeamStatsSummary teamStats={mockTeamStats} />
             <MatchTable
               matches={mockMatches}
               onMatchClick={handleMatchClick}
               headerActions={<MatchFilters />}
             />
-          </>
+          </div>
         }
         detailChildren={
           selectedMatch && (

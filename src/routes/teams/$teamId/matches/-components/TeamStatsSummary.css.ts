@@ -34,8 +34,9 @@ export const teamName = style({
 
 export const statsContainer = style({
   display: 'flex',
+  flex: 1,
   alignItems: 'center',
-  gap: 100,
+  justifyContent: 'space-between',
   letterSpacing: -0.4,
   fontSize: 16,
 });

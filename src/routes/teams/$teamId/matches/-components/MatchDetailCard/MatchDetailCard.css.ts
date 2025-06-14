@@ -4,8 +4,11 @@ import { style } from '@vanilla-extract/css';
 
 export const rootContainer = style({
   boxSizing: 'border-box',
+  display: 'flex',
+  flexDirection: 'column',
   boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.05)',
   width: 354,
+  height: '100%',
 });
 
 export const infoContainer = style({
