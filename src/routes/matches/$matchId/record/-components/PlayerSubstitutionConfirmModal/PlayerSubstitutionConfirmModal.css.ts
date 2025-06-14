@@ -57,7 +57,6 @@ export const warningIcon = style({
 });
 
 export const title = style({
-  alignSelf: 'stretch',
   textAlign: 'center',
   lineHeight: 1.4,
   letterSpacing: -0.4,

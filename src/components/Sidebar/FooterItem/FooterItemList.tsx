@@ -27,7 +27,7 @@ export function FooterItem({
 }: FooterItemProps) {
   return (
     <Link to={to} className={styles.footerItem({ disabled })} onClick={onClick}>
-      <div className={styles.footerItemIcon({ isOpen })}>
+      <div className={styles.footerItemIcon}>
         {icon}
         {label && <span className={styles.label}>{label}</span>}
       </div>

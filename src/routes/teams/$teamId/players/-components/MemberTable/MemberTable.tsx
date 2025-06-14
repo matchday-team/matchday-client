@@ -1,10 +1,7 @@
 import { ChevronRightIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
-import { Table, TableColumnsDefinition } from '@/components';
-import {
-  MemberFilters,
-  PositionTag,
-} from '@/routes/teams/$teamId/players/-components';
+import { PositionTag, Table, TableColumnsDefinition } from '@/components';
+import { MemberFilters } from '@/routes/teams/$teamId/players/-components';
 import type { Member } from '@/routes/teams/$teamId/players/-temp-server-types';
 import { createFallbackImageHandler } from '@/utils/createFallbackImageHandler';
 
@@ -32,17 +29,13 @@ export function MemberTable({ members, onMemberMoreClick }: MemberTableProps) {
       title: '',
       width: 80,
       minWidth: 50,
-      headerAlign: 'center',
-      bodyAlign: 'center',
       render: value => <div className={styles.indexNumber}>{value}</div>,
     },
     name: {
       key: 'name',
       title: '이름',
-      width: 80,
-      minWidth: 80,
-      headerAlign: 'center',
-      bodyAlign: 'center',
+      width: 120,
+      minWidth: 120,
       render: (value, record) => (
         <div className={styles.memberNameContainer}>
           <img
@@ -51,7 +44,7 @@ export function MemberTable({ members, onMemberMoreClick }: MemberTableProps) {
             className={styles.profileImage}
             alt=''
           />
-          <div className={styles.memberName}>{value}</div>
+          {value}
         </div>
       ),
     },
@@ -60,17 +53,12 @@ export function MemberTable({ members, onMemberMoreClick }: MemberTableProps) {
       title: '번호',
       width: 120,
       minWidth: 60,
-      headerAlign: 'center',
-      bodyAlign: 'center',
-      render: value => <div className={styles.memberNumber}>{value}</div>,
     },
     position: {
       key: 'position',
       title: '포지션',
       width: 150,
       minWidth: 60,
-      headerAlign: 'center',
-      bodyAlign: 'center',
       render: value => <PositionTag position={value} />,
     },
     foot: {
@@ -78,35 +66,24 @@ export function MemberTable({ members, onMemberMoreClick }: MemberTableProps) {
       title: '주발',
       width: 150,
       minWidth: 60,
-      headerAlign: 'center',
-      bodyAlign: 'center',
-      render: value => <div className={styles.footText}>{value}</div>,
     },
     role: {
       key: 'role',
       title: '권한',
       width: 200,
       minWidth: 60,
-      headerAlign: 'center',
-      bodyAlign: 'center',
-      render: value => <div className={styles.roleText}>{value}</div>,
     },
     joinDate: {
       key: 'joinDate',
       title: '가입일',
       width: 200,
       minWidth: 120,
-      headerAlign: 'center',
-      bodyAlign: 'center',
-      render: value => <div className={styles.joinDateText}>{value}</div>,
     },
     actions: {
       key: 'actions',
       title: '',
       width: 100,
       minWidth: 80,
-      headerAlign: 'center',
-      bodyAlign: 'center',
       render: () => <ChevronRightIcon className={styles.moreIcon} />,
     },
   } satisfies TableColumnsDefinition<TableData>;

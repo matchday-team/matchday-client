@@ -2,9 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { ChevronRightIcon, MagnifyingGlassIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
-import { InputWithIcon } from '@/components/CommonForm/InputWithIcon';
-import { Select } from '@/components/CommonForm/Select';
-import { PositionTag } from '@/routes/teams/$teamId/players/-components/PositionTag/PositionTag';
+import { InputWithIcon, PositionTag, Select } from '@/components';
 
 import { Table } from './Table';
 import * as styles from './Table.stories.css';

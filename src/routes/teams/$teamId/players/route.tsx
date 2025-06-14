@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { createFileRoute } from '@tanstack/react-router';
 
+import { DetailCollapsibleLayout } from '@/components';
 import { usePageTitle } from '@/hooks';
 import {
   MemberStatsSummary,
@@ -28,23 +29,26 @@ function RouteComponent() {
 
   return (
     <div className={styles.rootContainer}>
-      <div className={styles.mainContent}>
-        <div className={styles.leftContent}>
-          <MemberStatsSummary />
-          <MemberTable
-            members={mockMembers}
-            onMemberMoreClick={handleMemberMoreClick}
-          />
-        </div>
-        {selectedMember && (
-          <div className={styles.rightContent}>
+      <DetailCollapsibleLayout
+        isOpen={!!selectedMember}
+        defaultChildren={
+          <>
+            <MemberStatsSummary />
+            <MemberTable
+              members={[...mockMembers, ...mockMembers]}
+              onMemberMoreClick={handleMemberMoreClick}
+            />
+          </>
+        }
+        detailChildren={
+          selectedMember && (
             <PlayerDetailPanel
               member={selectedMember}
               matchRecords={mockMatchRecords}
             />
-          </div>
-        )}
-      </div>
+          )
+        }
+      />
     </div>
   );
 }

@@ -12,7 +12,6 @@ export const nav = recipe({
     display: 'flex',
     flex: 1,
     flexDirection: 'column',
-    alignItems: 'flex-start',
     overflow: 'hidden',
   },
   variants: {
@@ -35,7 +34,6 @@ export const navItem = recipe({
     display: 'flex',
     flexShrink: 0,
     alignItems: 'center',
-    alignSelf: 'stretch',
     gap: 16,
     transition: `background-color 0.3s ${transitionTiming}`,
     padding: '4px 0',
@@ -68,49 +66,24 @@ export const navItem = recipe({
   },
 });
 
-export const navItemIcon = recipe({
-  base: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 12,
-    marginLeft: 18,
-  },
-  variants: {
-    isOpen: {
-      false: {
-        justifyContent: 'flex-start',
-      },
-    },
-  },
-  defaultVariants: {
-    isOpen: true,
-  },
+export const navItemIcon = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: 12,
+  marginLeft: 18,
 });
 
-export const footerItemIcon = recipe({
-  base: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 16,
-    marginLeft: 18,
-  },
-  variants: {
-    isOpen: {
-      false: {
-        justifyContent: 'flex-start',
-      },
-    },
-  },
-  defaultVariants: {
-    isOpen: true,
-  },
+export const footerItemIcon = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: 16,
+  marginLeft: 18,
 });
 
 export const footer = recipe({
   base: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'flex-start',
     overflow: 'hidden',
   },
   variants: {

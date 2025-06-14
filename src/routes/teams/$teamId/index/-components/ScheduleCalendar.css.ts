@@ -69,7 +69,6 @@ export const monthText = style({
 export const calendarGrid = style({
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'flex-start',
 });
 
 export const weekHeader = style({

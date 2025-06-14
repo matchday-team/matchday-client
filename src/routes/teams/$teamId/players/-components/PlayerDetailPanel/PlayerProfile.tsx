@@ -1,6 +1,6 @@
 import { CrownIcon } from '@/assets/icons';
 import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
-import { PositionTag } from '@/routes/teams/$teamId/players/-components';
+import { PositionTag } from '@/components';
 import type { Member } from '@/routes/teams/$teamId/players/-temp-server-types';
 import { createFallbackImageHandler } from '@/utils';
 
