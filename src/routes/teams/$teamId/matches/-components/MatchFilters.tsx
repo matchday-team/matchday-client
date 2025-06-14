@@ -1,9 +1,6 @@
-import { useState } from 'react';
-
 import clsx from 'clsx';
 
-import MagnifyingGlassIcon from '@/assets/icons/magnifying-glass.svg?react';
-import { Select } from '@/components/CommonForm';
+import { InputWithIcon, Select } from '@/components/CommonForm';
 import type { MatchFilters as MatchFiltersType } from '@/routes/teams/$teamId/matches/-temp-server-types';
 
 import * as styles from './MatchFilters.css';
@@ -19,8 +16,6 @@ export function MatchFilters({
   onFiltersChange,
   className,
 }: MatchFiltersProps) {
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
-
   const handleSearchChange = (value: string) => {
     onFiltersChange({
       ...filters,
@@ -52,19 +47,14 @@ export function MatchFilters({
   return (
     <div className={clsx(styles.container, className)}>
       <div className={styles.searchContainer}>
-        <input
+        <InputWithIcon
           type='text'
           placeholder='경기 이름 검색'
           value={filters.search}
           onChange={e => handleSearchChange(e.target.value)}
-          onFocus={() => setIsSearchFocused(true)}
-          onBlur={() => setIsSearchFocused(false)}
-          className={clsx(
-            styles.searchInput,
-            isSearchFocused && styles.searchInputFocused,
-          )}
+          variant='white-large'
+          iconPosition='right'
         />
-        <MagnifyingGlassIcon className={styles.searchIcon} />
       </div>
 
       <div className={styles.filtersContainer}>
