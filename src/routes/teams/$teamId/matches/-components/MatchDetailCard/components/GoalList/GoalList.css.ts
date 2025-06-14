@@ -7,6 +7,7 @@ export const rootContainer = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  marginTop: 4,
   width: 240,
 });
 

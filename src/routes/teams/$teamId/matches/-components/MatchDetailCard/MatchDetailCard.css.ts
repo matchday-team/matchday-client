@@ -3,6 +3,8 @@ import { lightThemeVars } from '@/styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
 export const rootContainer = style({
+  boxSizing: 'border-box',
+  boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.05)',
   width: 354,
 });
 
@@ -13,8 +15,6 @@ export const infoContainer = style({
   borderRadius: 10,
   backgroundColor: lightThemeVars.color.primary[800],
   padding: 12,
-  width: '100%',
-  height: 470,
 });
 
 export const closeButtonContainer = style({
