@@ -25,3 +25,4 @@ export * from './MatchCreateStepper';
 export * from './Table';
 export * from './PlayerReceivedCard';
 export * from './PositionTag';
+export * from './DetailCollapsibleLayout';
