@@ -22,10 +22,10 @@ export const goalItem = recipe({
   variants: {
     team: {
       home: {
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-start',
       },
       away: {
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-end',
       },
     },
   },
@@ -39,12 +39,12 @@ export const goalText = recipe({
   variants: {
     team: {
       home: {
-        paddingRight: 30,
-        textAlign: 'left',
-      },
-      away: {
         paddingLeft: 30,
         textAlign: 'right',
+      },
+      away: {
+        paddingRight: 30,
+        textAlign: 'left',
       },
     },
   },

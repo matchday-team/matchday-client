@@ -1,10 +1,6 @@
-import * as styles from './GoalList.css';
+import { Goal } from '@/routes/teams/$teamId/matches/-temp-server-types';
 
-export interface Goal {
-  time: string;
-  playerName: string;
-  team: 'home' | 'away';
-}
+import * as styles from './GoalList.css';
 
 export interface GoalListProps {
   goals: Goal[];
