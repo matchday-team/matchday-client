@@ -5,7 +5,7 @@ export const lightThemeRawValues = {
   color: {
     primary: {
       100: '#E5E5EC',
-      300: '#B7C8EE',
+      300: '#DBE4FF',
       700: '#0043FF',
       '700Darken': '#003CE5', // rgb(0, 60, 229)
       800: '#1C263C',

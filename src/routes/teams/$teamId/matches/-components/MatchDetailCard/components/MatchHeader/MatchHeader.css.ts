@@ -4,7 +4,7 @@ import { style } from '@vanilla-extract/css';
 
 export const rootContainer = style({
   display: 'flex',
-  alignItems: 'center',
+  justifyContent: 'center',
   gap: 32,
   marginTop: 12,
   width: '100%',
@@ -68,7 +68,7 @@ export const teamName = style([
 ]);
 
 export const teamTypeLabel = style({
-  color: '#DBE4FF',
+  color: lightThemeVars.color.primary[300],
   fontWeight: 400,
 });
 
