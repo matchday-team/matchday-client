@@ -29,3 +29,4 @@ export { default as MapIcon } from './map.svg?react';
 export { default as UsersIcon } from './users.svg?react';
 export { default as JerseyIcon } from './jersey.svg?react';
 export { default as ShortsIcon } from './shorts.svg?react';
+export { default as XIcon } from './x.svg?react';
