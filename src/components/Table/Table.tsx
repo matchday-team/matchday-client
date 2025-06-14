@@ -14,6 +14,7 @@ export interface TableColumn<
   minWidth?: number;
   headerAlign?: 'left' | 'center' | 'right';
   bodyAlign?: 'left' | 'center' | 'right';
+  renderHeader?: (name: string) => ReactNode;
   render?: (value: T[K], record: T, index: number) => ReactNode;
 }
 
@@ -21,6 +22,7 @@ export type TableColumnsDefinition<T> = {
   [K in keyof T]?: TableColumn<T, K>;
 };
 
+// TODO: className override보다 Compound 형태로 좀 더 깔끔하게 쓸 수 있게
 interface TableProps<T = Record<string, unknown>> {
   columns: Partial<TableColumnsDefinition<T>>;
   data: T[];
@@ -31,6 +33,8 @@ interface TableProps<T = Record<string, unknown>> {
   onRowClick?: (record: T, index: number) => void;
   headerActions?: ReactNode;
   className?: string;
+  headerClassName?: string;
+  headerRowClassName?: string;
 }
 
 export function Table<T = Record<string, unknown>>({
@@ -43,6 +47,8 @@ export function Table<T = Record<string, unknown>>({
   onRowClick,
   headerActions,
   className,
+  headerClassName,
+  headerRowClassName,
 }: TableProps<T>) {
   const columnEntries = Object.entries(columns).map(
     ([key, column]) =>
@@ -55,9 +61,12 @@ export function Table<T = Record<string, unknown>>({
         <div className={styles.headerActions}>{headerActions}</div>
       )}
       <div className={styles.tableContainer}>
-        <div className={styles.header}>
+        <div className={clsx(styles.header, headerClassName)}>
           <div
-            className={styles.headerRow({ align: headerVerticalAlign })}
+            className={clsx(
+              styles.headerRow({ align: headerVerticalAlign }),
+              headerRowClassName,
+            )}
             style={{
               height: headerHeight,
             }}
@@ -73,7 +82,9 @@ export function Table<T = Record<string, unknown>>({
                   minWidth: column.minWidth ?? column.width,
                 }}
               >
-                {column.title}
+                {column.renderHeader
+                  ? column.renderHeader(column.title)
+                  : column.title}
               </div>
             ))}
           </div>
