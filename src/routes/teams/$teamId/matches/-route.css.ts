@@ -16,20 +16,8 @@ export const contentContainer = style({
   marginRight: 22,
   marginLeft: 21,
   maxWidth: 1336,
-  '@media': {
-    '(max-width: 991px)': {
-      marginTop: 20,
-      marginRight: 10,
-    },
-  },
 });
 
 export const tableSection = style({
   marginTop: 20,
-  '@media': {
-    '(max-width: 991px)': {
-      marginRight: 10,
-      paddingRight: 20,
-    },
-  },
 });

@@ -7,11 +7,6 @@ export const container = style({
   flexWrap: 'wrap',
   alignItems: 'stretch',
   gap: '58px',
-  '@media': {
-    '(max-width: 991px)': {
-      padding: '20px 20px 20px 20px',
-    },
-  },
   borderRadius: 10,
   backgroundColor: '#1C263C',
   padding: '20px 20px 20px 20px',
@@ -28,11 +23,6 @@ export const teamInfoContainer = style({
   color: lightThemeVars.color.white.main,
   fontSize: 24,
   fontWeight: 600,
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const teamLogo = style({
@@ -49,11 +39,6 @@ export const teamName = style({
   flexShrink: 1,
   alignSelf: 'stretch',
   gap: 10,
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
   width: '100%',
   color: lightThemeVars.color.white.main,
 });
@@ -71,12 +56,6 @@ export const statsContainer = style({
   marginBottom: 'auto',
   letterSpacing: '-0.4px',
   fontSize: 16,
-  '@media': {
-    '(max-width: 991px)': {
-      gap: '40px',
-      maxWidth: '100%',
-    },
-  },
 });
 
 export const statItem = style({
@@ -100,11 +79,6 @@ export const statLabel = style({
 export const statValue = style({
   alignSelf: 'start',
   gap: 10,
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
   marginTop: 20,
   whiteSpace: 'nowrap',
   color: lightThemeVars.color.white.main,

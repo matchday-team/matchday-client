@@ -8,11 +8,6 @@ export const container = style({
   backgroundColor: lightThemeVars.color.white.main,
   width: '100%',
   minHeight: 661,
-  '@media': {
-    '(max-width: 991px)': {
-      maxWidth: '100%',
-    },
-  },
 });
 
 export const table = style({
@@ -26,11 +21,6 @@ export const typeCell = style({
   whiteSpace: 'nowrap',
   color: lightThemeVars.color.black,
   fontWeight: 400,
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const nameCell = style({
@@ -46,11 +36,6 @@ export const opponentContainer = style({
   gap: 12,
   padding: '16px 10px',
   whiteSpace: 'nowrap',
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const opponentLogo = style({
@@ -68,11 +53,6 @@ export const opponentName = style({
   width: 47,
   color: lightThemeVars.color.black,
   fontWeight: 500,
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const resultCell = style({
@@ -84,11 +64,6 @@ export const resultCell = style({
   minHeight: 22,
   whiteSpace: 'nowrap',
   fontWeight: 500,
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const win = style({
@@ -114,11 +89,6 @@ export const durationCell = style({
   whiteSpace: 'nowrap',
   color: lightThemeVars.color.black,
   fontWeight: 500,
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const locationCell = style({
@@ -141,11 +111,6 @@ export const dateCell = style({
   minHeight: 22,
   whiteSpace: 'nowrap',
   color: lightThemeVars.color.gray[500],
-  '@media': {
-    '(max-width: 991px)': {
-      whiteSpace: 'initial',
-    },
-  },
 });
 
 export const actionIcon = style({

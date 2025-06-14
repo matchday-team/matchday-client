@@ -9,11 +9,6 @@ export const container = style({
   justifyContent: 'space-between',
   width: '100%',
   fontWeight: 500,
-  '@media': {
-    '(max-width: 991px)': {
-      maxWidth: '100%',
-    },
-  },
 });
 
 export const searchContainer = style({
