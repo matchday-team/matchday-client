@@ -15,5 +15,7 @@ export const rootContainer = style([
 ]);
 
 export const tableContainer = style({
-  minWidth: 962,
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 20,
 });
