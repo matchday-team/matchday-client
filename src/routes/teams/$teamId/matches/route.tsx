@@ -1,87 +1,103 @@
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useState } from 'react';
+
 import { createFileRoute } from '@tanstack/react-router';
 
-import { matchQuery, teamQuery, userQuery } from '@/apis/queries';
-import noProfilePlayerImage from '@/assets/images/noProfilePlayer.png';
-import { CommonLoader } from '@/components';
 import { usePageTitle } from '@/hooks';
-import { queryClient } from '@/react-query-provider';
-import { createFallbackImageHandler } from '@/utils';
 
-import { TeamList } from './-components';
-import * as styles from './-components/MyTeamMatchListPage.css';
-
-const fallbackImageHandler = createFallbackImageHandler();
+import { MatchFilters, MatchTable, TeamStatsSummary } from './-components';
+import { mockMatches, mockTeamStats } from './-mock-data';
+import * as styles from './-route.css';
+import type {
+  Match,
+  MatchFilters as MatchFiltersType,
+} from './-temp-server-types';
 
 export const Route = createFileRoute('/teams/$teamId/matches')({
-  component: MyTeamMatchListPage,
-  loader: () => {
-    return queryClient.ensureQueryData(userQuery.me);
-  },
+  component: TeamMatchListPage,
 });
 
-function MyTeamMatchListPage() {
-  usePageTitle('매치 리스트');
+function TeamMatchListPage() {
+  usePageTitle('기록 관리');
 
-  // 애초에 유저가 없으면 렌더링이 되면 안 됨
-  const { data: user } = useSuspenseQuery(userQuery.me);
-  if (!user) {
-    throw new Error('로그인 없이 인증된 페이지에 접근했습니다');
-  }
-
-  const { data: team } = useQuery({
-    ...teamQuery.byId(user.teamId),
-    enabled: Boolean(user.teamId),
-  });
-  const { data: matchList, isLoading } = useQuery({
-    ...matchQuery.list(user.teamId),
-    enabled: Boolean(user.teamId),
+  const [filters, setFilters] = useState<MatchFiltersType>({
+    search: '',
+    teamFilter: '',
+    resultFilter: '',
+    sortOrder: 'latest',
   });
 
-  // NOTE: enabled 때문에 타입 가드가 안 됨
-  if (isLoading || !matchList || !team) {
-    return <CommonLoader />;
-  }
+  // 필터링된 경기 목록
+  const filteredMatches = mockMatches
+    .filter(match => {
+      // 검색어 필터
+      if (
+        filters.search &&
+        !match.name.toLowerCase().includes(filters.search.toLowerCase())
+      ) {
+        return false;
+      }
+
+      // 팀 필터 (현재는 상대팀 기준)
+      if (
+        filters.teamFilter &&
+        filters.teamFilter !==
+          match.opponentTeam.toLowerCase().replace('fc', '').trim()
+      ) {
+        return false;
+      }
+
+      // 결과 필터
+      if (filters.resultFilter) {
+        const resultMap = {
+          win: '승',
+          loss: '패',
+          draw: '무',
+        };
+        if (
+          resultMap[filters.resultFilter as keyof typeof resultMap] !==
+          match.result
+        ) {
+          return false;
+        }
+      }
+
+      return true;
+    })
+    .sort((a, b) => {
+      // 정렬
+      if (filters.sortOrder === 'latest') {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      } else {
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+      }
+    });
+
+  const handleMatchClick = (match: Match) => {
+    console.log('Match clicked:', match);
+    // 여기에 경기 상세 페이지로 이동하는 로직 추가
+  };
+
+  const handleFiltersChange = (newFilters: MatchFiltersType) => {
+    setFilters(newFilters);
+  };
 
   return (
     <div className={styles.rootContainer}>
-      <div className={styles.header}>
-        <div className={styles.team}>
-          <div className={styles.logoContainer}>
-            <img
-              src={team.data.teamImg ?? noProfilePlayerImage}
-              alt=''
-              className={styles.logo}
-              onError={fallbackImageHandler}
-            />
-          </div>
-          <div className={styles.headerTitle}>{team.data.name}</div>
+      <div className={styles.contentContainer}>
+        <TeamStatsSummary teamStats={mockTeamStats} />
+
+        <div className={styles.tableSection}>
+          <MatchTable
+            matches={filteredMatches}
+            onMatchClick={handleMatchClick}
+            headerActions={
+              <MatchFilters
+                filters={filters}
+                onFiltersChange={handleFiltersChange}
+              />
+            }
+          />
         </div>
-        <div className={styles.headerListContainer}>
-          <div className={styles.headerListItemContainer}>
-            <span className={styles.headerListHeader}>출전 경기 수</span>
-            <span className={styles.headerListItem}>-</span>
-          </div>
-          <div className={styles.headerListItemContainer}>
-            <span className={styles.headerListHeader}>최다 출전</span>
-            <span className={styles.headerListItem}>-</span>
-          </div>
-          <div className={styles.headerListItemContainer}>
-            <span className={styles.headerListHeader}>승 / 패 / 무</span>
-            <span className={styles.headerListItem}>승:- 패:- 무:-</span>
-          </div>
-          <div className={styles.headerListItemContainer}>
-            <span className={styles.headerListHeader}>최근 경기</span>
-            <span className={styles.headerListItem}>- - - - -</span>
-          </div>
-          <div className={styles.headerListItemContainer}>
-            <span className={styles.headerListHeader}>득 / 실</span>
-            <span className={styles.headerListItem}>득: - 실: -</span>
-          </div>
-        </div>
-      </div>
-      <div className={styles.listContainer}>
-        <TeamList matchList={matchList.data} />
       </div>
     </div>
   );
