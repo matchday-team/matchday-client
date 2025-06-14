@@ -1,6 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { type Goal } from '@/routes/teams/$teamId/matches/-temp-server-types';
+import {
+  mockAwayTeam,
+  mockGoals,
+  mockHomeTeam,
+  mockPlayerStats,
+} from '@/routes/teams/$teamId/matches/-mock-data';
 
 import { MatchDetailCard } from './MatchDetailCard';
 
@@ -28,89 +33,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const mockHomeTeam = {
-  id: 1,
-  name: 'FC 서울',
-  logo: 'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
-  isHome: true,
-  score: 3,
-  teamColor: '#AA33FF',
-};
-
-const mockAwayTeam = {
-  id: 2,
-  name: 'FC 수원',
-  logo: 'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
-  isHome: false,
-  score: 1,
-  teamColor: '#30CAB3',
-};
-
-const mockGoals: Goal[] = [
-  { time: '13', playerName: '손흥민', team: 'home' },
-  { time: '41', playerName: '손흥민', team: 'away' },
-  { time: '84', playerName: '손흥민', team: 'home' },
-  { time: '91', playerName: '손흥민', team: 'away' },
-];
-
-const mockPlayers = [
-  {
-    id: 1,
-    number: 7,
-    name: '손흥민',
-    position: 'FW',
-    goals: 1,
-    assists: 0,
-    yellowCards: 0,
-    redCards: 0,
-    isStarter: true,
-  },
-  {
-    id: 2,
-    number: 10,
-    name: '이강인',
-    position: 'MF',
-    goals: 0,
-    assists: 1,
-    yellowCards: 1,
-    redCards: 0,
-    isStarter: true,
-  },
-  {
-    id: 3,
-    number: 9,
-    name: '황희찬',
-    position: 'FW',
-    goals: 2,
-    assists: 0,
-    yellowCards: 0,
-    redCards: 1,
-    isStarter: true,
-  },
-  {
-    id: 4,
-    number: 4,
-    name: '김민재',
-    position: 'DF',
-    goals: 0,
-    assists: 0,
-    yellowCards: 0,
-    redCards: 0,
-    isStarter: true,
-  },
-  {
-    id: 5,
-    number: 22,
-    name: '권창훈',
-    position: 'MF',
-    goals: 0,
-    assists: 0,
-    yellowCards: 0,
-    redCards: 0,
-    isStarter: false,
-  },
-];
-
 export const Default: Story = {
   args: {
     homeTeam: mockHomeTeam,
@@ -121,7 +43,7 @@ export const Default: Story = {
     totalPlayers: 16,
     date: '2025-04-23',
     location: '서울 성동구 왕십리로 22',
-    players: mockPlayers,
+    players: mockPlayerStats,
   },
 };
 
@@ -145,7 +67,7 @@ export const HighScoringMatch: Story = {
     totalPlayers: 18,
     date: '2025-05-15',
     location: '서울월드컵경기장',
-    players: mockPlayers,
+    players: mockPlayerStats,
   },
 };
 
@@ -164,7 +86,7 @@ export const Draw: Story = {
     totalPlayers: 16,
     date: '2025-03-10',
     location: '수원월드컵경기장',
-    players: mockPlayers,
+    players: mockPlayerStats,
   },
 };
 

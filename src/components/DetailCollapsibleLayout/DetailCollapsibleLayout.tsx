@@ -1,6 +1,6 @@
 import * as styles from './DetailCollapsibleLayout.css';
 
-const DetailCollapsibleLayout = ({
+export const DetailCollapsibleLayout = ({
   isOpen,
   defaultChildren,
   detailChildren,
@@ -16,5 +16,3 @@ const DetailCollapsibleLayout = ({
     </div>
   );
 };
-
-export default DetailCollapsibleLayout;

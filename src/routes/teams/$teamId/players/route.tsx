@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { createFileRoute } from '@tanstack/react-router';
 
-import DetailCollapsibleLayout from '@/components/DetailCollapsibleLayout/DetailCollapsibleLayout';
+import { DetailCollapsibleLayout } from '@/components';
 import { usePageTitle } from '@/hooks';
 import {
   MemberStatsSummary,

@@ -1,5 +1,7 @@
 import type {
+  Goal,
   Match,
+  PlayerStat,
   TeamStats,
 } from '@/routes/teams/$teamId/matches/-temp-server-types';
 
@@ -129,5 +131,88 @@ export const mockMatches: Match[] = [
     date: '2025-04-23',
     homeScore: 4,
     awayScore: 2,
+  },
+];
+
+export const mockHomeTeam = {
+  id: 1,
+  name: 'FC 서울',
+  logo: 'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
+  isHome: true,
+  score: 3,
+  teamColor: '#AA33FF',
+};
+
+export const mockAwayTeam = {
+  id: 2,
+  name: 'FC 수원',
+  logo: 'https://matchday2025.s3.ap-northeast-2.amazonaws.com/images/default-team-logo.svg',
+  isHome: false,
+  score: 1,
+  teamColor: '#30CAB3',
+};
+
+export const mockGoals: Goal[] = [
+  { time: '13', playerName: '손흥민', team: 'home' },
+  { time: '41', playerName: '손흥민', team: 'away' },
+  { time: '84', playerName: '손흥민', team: 'home' },
+  { time: '91', playerName: '손흥민', team: 'away' },
+];
+
+export const mockPlayerStats: PlayerStat[] = [
+  {
+    id: 1,
+    number: 7,
+    name: '손흥민',
+    position: 'FW',
+    goals: 1,
+    assists: 0,
+    yellowCards: 0,
+    redCards: 0,
+    isStarter: true,
+  },
+  {
+    id: 2,
+    number: 10,
+    name: '이강인',
+    position: 'MF',
+    goals: 0,
+    assists: 1,
+    yellowCards: 1,
+    redCards: 0,
+    isStarter: true,
+  },
+  {
+    id: 3,
+    number: 9,
+    name: '황희찬',
+    position: 'FW',
+    goals: 2,
+    assists: 0,
+    yellowCards: 0,
+    redCards: 1,
+    isStarter: true,
+  },
+  {
+    id: 4,
+    number: 4,
+    name: '김민재',
+    position: 'DF',
+    goals: 0,
+    assists: 0,
+    yellowCards: 0,
+    redCards: 0,
+    isStarter: true,
+  },
+  {
+    id: 5,
+    number: 22,
+    name: '권창훈',
+    position: 'MF',
+    goals: 0,
+    assists: 0,
+    yellowCards: 0,
+    redCards: 0,
+    isStarter: false,
   },
 ];

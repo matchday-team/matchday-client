@@ -1,9 +1,24 @@
+import { useState } from 'react';
+
 import { createFileRoute } from '@tanstack/react-router';
 
+import { DetailCollapsibleLayout } from '@/components';
 import { usePageTitle } from '@/hooks';
 
-import { MatchFilters, MatchTable, TeamStatsSummary } from './-components';
-import { mockMatches, mockTeamStats } from './-mock-data';
+import {
+  MatchDetailCard,
+  MatchFilters,
+  MatchTable,
+  TeamStatsSummary,
+} from './-components';
+import {
+  mockAwayTeam,
+  mockGoals,
+  mockHomeTeam,
+  mockMatches,
+  mockPlayerStats,
+  mockTeamStats,
+} from './-mock-data';
 import * as styles from './-route.css';
 import type { Match } from './-temp-server-types';
 
@@ -14,17 +29,41 @@ export const Route = createFileRoute('/teams/$teamId/matches')({
 function TeamMatchListPage() {
   usePageTitle('기록 관리');
 
+  const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
+
   const handleMatchClick = (match: Match) => {
-    console.log('Match clicked:', match);
+    setSelectedMatch(match);
   };
 
   return (
     <div className={styles.rootContainer}>
-      <TeamStatsSummary teamStats={mockTeamStats} />
-      <MatchTable
-        matches={mockMatches}
-        onMatchClick={handleMatchClick}
-        headerActions={<MatchFilters />}
+      <DetailCollapsibleLayout
+        isOpen={!!selectedMatch}
+        defaultChildren={
+          <>
+            <TeamStatsSummary teamStats={mockTeamStats} />
+            <MatchTable
+              matches={mockMatches}
+              onMatchClick={handleMatchClick}
+              headerActions={<MatchFilters />}
+            />
+          </>
+        }
+        detailChildren={
+          selectedMatch && (
+            <MatchDetailCard
+              homeTeam={mockHomeTeam}
+              awayTeam={mockAwayTeam}
+              goals={mockGoals}
+              duration={101}
+              playersPlayed={13}
+              totalPlayers={16}
+              date={selectedMatch.date}
+              location={selectedMatch.location}
+              players={mockPlayerStats}
+            />
+          )
+        }
       />
     </div>
   );
