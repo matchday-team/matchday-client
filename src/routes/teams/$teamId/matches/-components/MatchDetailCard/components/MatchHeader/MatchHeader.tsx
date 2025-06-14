@@ -1,13 +1,6 @@
-import * as styles from './MatchHeader.css';
+import { TeamData } from '@/routes/teams/$teamId/matches/-temp-server-types';
 
-export interface TeamData {
-  id: number;
-  name: string;
-  logo: string;
-  isHome: boolean;
-  teamColor: string;
-  score: number;
-}
+import * as styles from './MatchHeader.css';
 
 export interface MatchHeaderProps {
   homeTeam: TeamData;

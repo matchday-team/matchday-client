@@ -7,6 +7,7 @@ export const container = style({
   alignItems: 'center',
   justifyContent: 'center',
   marginTop: 12,
+  marginBottom: 6,
 });
 
 export const text = style({

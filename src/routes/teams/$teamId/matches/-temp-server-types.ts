@@ -35,3 +35,30 @@ export interface MatchFilters {
   resultFilter: string;
   sortOrder: string;
 }
+
+export interface Goal {
+  time: string;
+  playerName: string;
+  team: 'home' | 'away';
+}
+
+export interface TeamData {
+  id: number;
+  name: string;
+  logo: string;
+  isHome: boolean;
+  teamColor: string;
+  score: number;
+}
+
+export interface PlayerStat {
+  id: number;
+  number: number;
+  name: string;
+  position: string;
+  goals: number;
+  assists: number;
+  yellowCards: number;
+  redCards: number;
+  isStarter: boolean;
+}

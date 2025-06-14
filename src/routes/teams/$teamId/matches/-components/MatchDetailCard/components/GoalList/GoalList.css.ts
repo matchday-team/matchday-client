@@ -16,6 +16,7 @@ export const goalItem = recipe({
     margin: '0 12px',
     borderBottom: `1px solid ${lightThemeVars.color.primary[300]}`,
     width: '100%',
+    height: 20,
     lineHeight: 1.4,
     letterSpacing: -0.35,
   },
