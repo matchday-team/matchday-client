@@ -1,6 +1,9 @@
+import { useState } from 'react';
+
 import { PlusIcon } from '@/assets/icons';
 import type { ScheduleDetailData } from '@/routes/teams/$teamId/schedules/-temp-server-types';
 
+import { ScheduleCreateForm } from './ScheduleCreateForm';
 import * as styles from './ScheduleDetailPanel.css';
 import ScheduleItem from './ScheduleItem';
 
@@ -10,11 +13,21 @@ interface ScheduleDetailPanelProps {
   onEditSchedule?: (scheduleId: string) => void;
 }
 
+interface ScheduleFormData {
+  title: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  description: string;
+}
+
 export const ScheduleDetailPanel = ({
   data,
   onCreateSchedule,
   onEditSchedule,
 }: ScheduleDetailPanelProps) => {
+  const [isCreateMode, setIsCreateMode] = useState(false);
+
   const formatDisplayDate = (dateString: string) => {
     const date = new Date(dateString);
     const month = date.getMonth() + 1;
@@ -26,10 +39,33 @@ export const ScheduleDetailPanel = ({
   const { month, day } = formatDisplayDate(data.selectedDate);
 
   const handleCreateClick = () => {
+    setIsCreateMode(true);
     if (onCreateSchedule) {
       onCreateSchedule();
     }
   };
+
+  const handleCancelCreate = () => {
+    setIsCreateMode(false);
+  };
+
+  const handleSubmitCreate = (formData: ScheduleFormData) => {
+    console.log('일정 생성:', formData);
+    setIsCreateMode(false);
+    // TODO: 실제 일정 생성 API 호출
+  };
+
+  if (isCreateMode) {
+    return (
+      <div className={styles.rootContainer}>
+        <ScheduleCreateForm
+          selectedDate={data.selectedDate}
+          onCancel={handleCancelCreate}
+          onSubmit={handleSubmitCreate}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.rootContainer}>
