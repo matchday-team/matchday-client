@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import ScheduleItem from './ScheduleItem';
+import { ScheduleItem } from './ScheduleItem';
 
 const meta = {
   title: 'Routes/Teams/Schedules/ScheduleItem',

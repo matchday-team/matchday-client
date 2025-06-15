@@ -7,7 +7,7 @@ interface ScheduleItemProps {
   onEdit?: (scheduleId: string) => void;
 }
 
-function ScheduleItem({ schedule, onEdit }: ScheduleItemProps) {
+export const ScheduleItem = ({ schedule, onEdit }: ScheduleItemProps) => {
   const handleEditClick = () => {
     if (onEdit) {
       onEdit(schedule.id);
@@ -35,6 +35,4 @@ function ScheduleItem({ schedule, onEdit }: ScheduleItemProps) {
       <div className={styles.categoryTag}>{schedule.category}</div>
     </div>
   );
-}
-
-export default ScheduleItem;
+};

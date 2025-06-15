@@ -6,7 +6,7 @@ export interface GoalListProps {
   goals: Goal[];
 }
 
-export function GoalList({ goals }: GoalListProps) {
+export const GoalList = ({ goals }: GoalListProps) => {
   return (
     <div className={styles.rootContainer}>
       {goals.map((goal, index) => (
@@ -18,4 +18,4 @@ export function GoalList({ goals }: GoalListProps) {
       ))}
     </div>
   );
-}
+};

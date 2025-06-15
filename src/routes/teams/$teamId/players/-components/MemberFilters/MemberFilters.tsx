@@ -33,12 +33,12 @@ interface MemberFiltersProps {
   onDateFilter?: (date: string) => void;
 }
 
-export function MemberFilters({
+export const MemberFilters = ({
   onSearchChange,
   onPositionFilter,
   onFootFilter,
   onDateFilter,
-}: MemberFiltersProps) {
+}: MemberFiltersProps) => {
   const [searchValue, setSearchValue] = useState('');
   const [positionValue, setPositionValue] = useState('');
   const [footValue, setFootValue] = useState('');
@@ -99,4 +99,4 @@ export function MemberFilters({
       </div>
     </div>
   );
-}
+};

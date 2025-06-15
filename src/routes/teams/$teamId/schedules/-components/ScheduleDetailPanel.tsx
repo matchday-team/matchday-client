@@ -5,7 +5,7 @@ import type { ScheduleDetailData } from '@/routes/teams/$teamId/schedules/-temp-
 
 import { ScheduleCreateForm } from './ScheduleCreateForm';
 import * as styles from './ScheduleDetailPanel.css';
-import ScheduleItem from './ScheduleItem';
+import { ScheduleItem } from './ScheduleItem';
 
 interface ScheduleDetailPanelProps {
   data: ScheduleDetailData;

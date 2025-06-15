@@ -24,7 +24,7 @@ export interface MatchDetailPanelProps {
   players: PlayerStat[];
 }
 
-export function MatchDetailPanel({
+export const MatchDetailPanel = ({
   homeTeam,
   awayTeam,
   goals,
@@ -34,7 +34,7 @@ export function MatchDetailPanel({
   date,
   location,
   players,
-}: MatchDetailPanelProps) {
+}: MatchDetailPanelProps) => {
   return (
     <div className={styles.rootContainer}>
       <div className={styles.infoContainer}>
@@ -61,4 +61,4 @@ export function MatchDetailPanel({
       />
     </div>
   );
-}
+};
