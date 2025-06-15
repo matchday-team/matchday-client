@@ -17,7 +17,11 @@ export const ScheduleItem = ({ schedule, onEdit }: ScheduleItemProps) => {
   return (
     <div className={styles.rootContainer}>
       <div className={styles.headerContainer}>
-        <button className={styles.editButton} onClick={handleEditClick}>
+        <button
+          type='button'
+          className={styles.editButton}
+          onClick={handleEditClick}
+        >
           수정하기
         </button>
       </div>
