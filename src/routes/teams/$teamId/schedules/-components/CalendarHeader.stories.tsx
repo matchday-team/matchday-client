@@ -22,7 +22,6 @@ const meta = {
   ],
   tags: ['autodocs'],
   argTypes: {
-    year: { control: 'number' },
     month: { control: { type: 'range', min: 1, max: 12 } },
     filters: { control: 'object' },
     onPreviousMonth: { action: 'previous month clicked' },
@@ -36,7 +35,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    year: 2025,
     month: 2,
     filters: [
       { category: '대회/리그', count: 11, isActive: true },

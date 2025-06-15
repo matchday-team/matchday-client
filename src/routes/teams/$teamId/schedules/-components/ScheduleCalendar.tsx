@@ -44,7 +44,6 @@ export const ScheduleCalendar = ({
   return (
     <div className={styles.calendarContainer}>
       <CalendarHeader
-        year={data.year}
         month={data.month}
         filters={data.filters}
         onPreviousMonth={handlePreviousMonth}
