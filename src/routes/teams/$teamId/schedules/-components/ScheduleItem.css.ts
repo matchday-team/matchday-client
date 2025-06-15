@@ -9,8 +9,6 @@ export const rootContainer = style({
   borderRadius: 10,
   backgroundColor: lightThemeVars.color.primary[300],
   padding: '12px 20px 24px',
-  width: '100%',
-  maxWidth: 330,
 });
 
 export const headerContainer = style({
