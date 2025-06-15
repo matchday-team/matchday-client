@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import CalendarHeader from './CalendarHeader';
+import { CalendarHeader } from './CalendarHeader';
 
 const meta = {
   title: 'Routes/Teams/Schedules/CalendarHeader',

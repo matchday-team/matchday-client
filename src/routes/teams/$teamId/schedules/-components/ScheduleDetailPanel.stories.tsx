@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { getMockScheduleDetailData } from '@/routes/teams/$teamId/schedules/-mock-data';
 
-import ScheduleDetailPanel from './ScheduleDetailPanel';
+import { ScheduleDetailPanel } from './ScheduleDetailPanel';
 
 const mockDataWithSchedules = getMockScheduleDetailData('2025-02-11');
 

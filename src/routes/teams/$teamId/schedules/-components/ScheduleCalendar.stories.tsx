@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { getMockCalendarData } from '@/routes/teams/$teamId/schedules/-mock-data';
 
-import ScheduleCalendar from './ScheduleCalendar';
+import { ScheduleCalendar } from './ScheduleCalendar';
 
 const meta = {
   title: 'Routes/Teams/Schedules/ScheduleCalendar',

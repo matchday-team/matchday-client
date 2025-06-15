@@ -1,7 +1,7 @@
 import type { CalendarData } from '@/routes/teams/$teamId/schedules/-temp-server-types';
 
-import CalendarGrid from './CalendarGrid';
-import CalendarHeader from './CalendarHeader';
+import { CalendarGrid } from './CalendarGrid';
+import { CalendarHeader } from './CalendarHeader';
 import * as styles from './ScheduleCalendar.css';
 
 interface ScheduleCalendarProps {
@@ -11,7 +11,7 @@ interface ScheduleCalendarProps {
   onFilterToggle: (category: string) => void;
 }
 
-const ScheduleCalendar = ({
+export const ScheduleCalendar = ({
   data,
   onDateSelect,
   onMonthChange,
@@ -61,5 +61,3 @@ const ScheduleCalendar = ({
     </div>
   );
 };
-
-export default ScheduleCalendar;

@@ -29,14 +29,13 @@ interface CalendarHeaderProps {
   onFilterToggle: (category: string) => void;
 }
 
-function CalendarHeader({
-  year,
+export const CalendarHeader = ({
   month,
   filters,
   onPreviousMonth,
   onNextMonth,
   onFilterToggle,
-}: CalendarHeaderProps) {
+}: CalendarHeaderProps) => {
   return (
     <div className={styles.headerContainer}>
       <div className={styles.monthNavigation}>
@@ -78,6 +77,4 @@ function CalendarHeader({
       </div>
     </div>
   );
-}
-
-export default CalendarHeader;
+};

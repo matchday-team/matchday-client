@@ -37,6 +37,60 @@ const formatDateString = (year: number, month: number, dayNumber: number) => {
   return `${year}-${month.toString().padStart(2, '0')}-${dayNumber.toString().padStart(2, '0')}`;
 };
 
+interface CalendarGridProps {
+  days: CalendarDay[];
+  filters: ScheduleFilter[];
+  onDateSelect: (date: string, dayNumber: number) => void;
+  year: number;
+  month: number;
+}
+
+export const CalendarGrid = ({
+  days,
+  filters,
+  onDateSelect,
+  year,
+  month,
+}: CalendarGridProps) => {
+  const weeks = Array.from({ length: Math.ceil(days.length / 7) }, (_, index) =>
+    days.slice(index * 7, (index + 1) * 7),
+  );
+
+  return (
+    <div className={styles.gridContainer}>
+      <div className={styles.row}>
+        {weekDays.map(day => (
+          <div key={day} className={styles.weekHeaderCell}>
+            <div className={styles.eventIndicators} />
+            <div className={styles.weekHeaderText}>{day}</div>
+          </div>
+        ))}
+      </div>
+      {weeks.map((week, weekIndex) => {
+        const isInactiveWeek = week.every(day => !day.isCurrentMonth);
+
+        return (
+          <div
+            key={weekIndex}
+            className={clsx(styles.row, isInactiveWeek && styles.dayInactive)}
+          >
+            {week.map((day, dayIndex) =>
+              renderDayCell(
+                day,
+                weekIndex * 7 + dayIndex,
+                filters,
+                year,
+                month,
+                onDateSelect,
+              ),
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
 const renderDayCell = (
   day: CalendarDay,
   index: number,
@@ -90,59 +144,3 @@ const renderDayCell = (
     </div>
   );
 };
-
-interface CalendarGridProps {
-  days: CalendarDay[];
-  filters: ScheduleFilter[];
-  onDateSelect: (date: string, dayNumber: number) => void;
-  year: number;
-  month: number;
-}
-
-const CalendarGrid = ({
-  days,
-  filters,
-  onDateSelect,
-  year,
-  month,
-}: CalendarGridProps) => {
-  const weeks = Array.from({ length: Math.ceil(days.length / 7) }, (_, index) =>
-    days.slice(index * 7, (index + 1) * 7),
-  );
-
-  return (
-    <div className={styles.gridContainer}>
-      <div className={styles.row}>
-        {weekDays.map(day => (
-          <div key={day} className={styles.weekHeaderCell}>
-            <div className={styles.eventIndicators} />
-            <div className={styles.weekHeaderText}>{day}</div>
-          </div>
-        ))}
-      </div>
-      {weeks.map((week, weekIndex) => {
-        const isInactiveWeek = week.every(day => !day.isCurrentMonth);
-
-        return (
-          <div
-            key={weekIndex}
-            className={clsx(styles.row, isInactiveWeek && styles.dayInactive)}
-          >
-            {week.map((day, dayIndex) =>
-              renderDayCell(
-                day,
-                weekIndex * 7 + dayIndex,
-                filters,
-                year,
-                month,
-                onDateSelect,
-              ),
-            )}
-          </div>
-        );
-      })}
-    </div>
-  );
-};
-
-export default CalendarGrid;

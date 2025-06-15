@@ -10,11 +10,11 @@ interface ScheduleDetailPanelProps {
   onEditSchedule?: (scheduleId: string) => void;
 }
 
-function ScheduleDetailPanel({
+export const ScheduleDetailPanel = ({
   data,
   onCreateSchedule,
   onEditSchedule,
-}: ScheduleDetailPanelProps) {
+}: ScheduleDetailPanelProps) => {
   const formatDisplayDate = (dateString: string) => {
     const date = new Date(dateString);
     const month = date.getMonth() + 1;
@@ -72,6 +72,4 @@ function ScheduleDetailPanel({
       </div>
     </div>
   );
-}
-
-export default ScheduleDetailPanel;
+};
