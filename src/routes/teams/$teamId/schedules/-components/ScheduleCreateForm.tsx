@@ -28,7 +28,7 @@ const scheduleFormSchema = z.object({
   description: z.string().optional(),
 });
 
-type ScheduleFormData = z.infer<typeof scheduleFormSchema>;
+export type ScheduleFormData = z.infer<typeof scheduleFormSchema>;
 
 const generateTimeOptions = () => {
   return Array.from({ length: 24 }, (_, hour) =>

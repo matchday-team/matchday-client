@@ -3,7 +3,10 @@ import { useState } from 'react';
 import { PlusIcon } from '@/assets/icons';
 import type { ScheduleDetailData } from '@/routes/teams/$teamId/schedules/-temp-server-types';
 
-import { ScheduleCreateForm } from './ScheduleCreateForm';
+import {
+  ScheduleCreateForm,
+  type ScheduleFormData,
+} from './ScheduleCreateForm';
 import * as styles from './ScheduleDetailPanel.css';
 import { ScheduleItem } from './ScheduleItem';
 
@@ -11,14 +14,6 @@ interface ScheduleDetailPanelProps {
   data: ScheduleDetailData;
   onCreateSchedule?: () => void;
   onEditSchedule?: (scheduleId: string) => void;
-}
-
-interface ScheduleFormData {
-  title: string;
-  date: string;
-  startTime: string;
-  endTime: string;
-  description: string;
 }
 
 export const ScheduleDetailPanel = ({
