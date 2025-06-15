@@ -21,7 +21,6 @@ const monthNames = [
 ];
 
 interface CalendarHeaderProps {
-  year: number;
   month: number;
   filters: ScheduleFilter[];
   onPreviousMonth: () => void;
@@ -39,12 +38,13 @@ export const CalendarHeader = ({
   return (
     <div className={styles.headerContainer}>
       <div className={styles.monthNavigation}>
-        <ChevronLeftIcon
-          className={styles.navButton}
-          onClick={onPreviousMonth}
-        />
+        <button type='button' onClick={onPreviousMonth}>
+          <ChevronLeftIcon className={styles.navButton} />
+        </button>
         <div className={styles.monthText}>{monthNames[month - 1]}</div>
-        <ChevronRightIcon className={styles.navButton} onClick={onNextMonth} />
+        <button type='button' onClick={onNextMonth}>
+          <ChevronRightIcon className={styles.navButton} />
+        </button>
       </div>
       <div className={styles.filtersContainer}>
         {filters.map(filter => (
