@@ -12,7 +12,7 @@ export interface PlayerProfileProps {
   member: Member;
 }
 
-export function PlayerProfile({ member }: PlayerProfileProps) {
+export const PlayerProfile = ({ member }: PlayerProfileProps) => {
   return (
     <div className={styles.rootContainer}>
       <div className={styles.profileSection}>
@@ -60,4 +60,4 @@ export function PlayerProfile({ member }: PlayerProfileProps) {
       </div>
     </div>
   );
-}
+};

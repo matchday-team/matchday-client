@@ -77,7 +77,7 @@ const columns = {
   },
 } satisfies TableColumnsDefinition<MatchRecord>;
 
-export function MatchRecordTable({ matchRecords }: MatchRecordTableProps) {
+export const MatchRecordTable = ({ matchRecords }: MatchRecordTableProps) => {
   return (
     <Table
       columns={columns}
@@ -87,4 +87,4 @@ export function MatchRecordTable({ matchRecords }: MatchRecordTableProps) {
       className={styles.matchRecordTable}
     />
   );
-}
+};

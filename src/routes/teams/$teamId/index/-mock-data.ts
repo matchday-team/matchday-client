@@ -7,7 +7,7 @@ import type {
   TeamInfo,
 } from './-temp-server-types';
 
-export function createTeamAndMatch(teamResponse: ApiResponse<TeamResponse>) {
+export const createTeamAndMatch = (teamResponse: ApiResponse<TeamResponse>) => {
   const teamInfo: TeamInfo = {
     name: teamResponse.data.name,
     description: `${teamResponse.data.name}의 팀 소개입니다.`,
@@ -99,7 +99,7 @@ export function createTeamAndMatch(teamResponse: ApiResponse<TeamResponse>) {
   ];
 
   return { teamInfo, matchResults };
-}
+};
 
 export const notices: Notice[] = [
   {

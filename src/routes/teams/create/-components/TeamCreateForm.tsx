@@ -46,7 +46,10 @@ interface TeamCreateFormProps {
   onSuccess: () => void;
 }
 
-export function TeamCreateForm({ onSubmit, onSuccess }: TeamCreateFormProps) {
+export const TeamCreateForm = ({
+  onSubmit,
+  onSuccess,
+}: TeamCreateFormProps) => {
   const [profileImagePreview, setProfileImagePreview] = useState<string | null>(
     null,
   );
@@ -376,4 +379,4 @@ export function TeamCreateForm({ onSubmit, onSuccess }: TeamCreateFormProps) {
       </form>
     </div>
   );
-}
+};

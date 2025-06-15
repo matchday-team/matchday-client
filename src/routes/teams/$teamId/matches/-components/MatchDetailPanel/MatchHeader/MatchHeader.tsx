@@ -7,7 +7,7 @@ export interface MatchHeaderProps {
   awayTeam: TeamData;
 }
 
-export function MatchHeader({ homeTeam, awayTeam }: MatchHeaderProps) {
+export const MatchHeader = ({ homeTeam, awayTeam }: MatchHeaderProps) => {
   return (
     <div className={styles.rootContainer}>
       <TeamInfo team={homeTeam} type='Home' />
@@ -23,7 +23,7 @@ export function MatchHeader({ homeTeam, awayTeam }: MatchHeaderProps) {
       <TeamInfo team={awayTeam} type='Away' />
     </div>
   );
-}
+};
 
 interface TeamInfoProps {
   team: TeamData;

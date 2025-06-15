@@ -12,14 +12,14 @@ export interface PlayerDetailPanelProps {
   matchRecords: MatchRecord[];
 }
 
-export function PlayerDetailPanel({
+export const PlayerDetailPanel = ({
   member,
   matchRecords,
-}: PlayerDetailPanelProps) {
+}: PlayerDetailPanelProps) => {
   return (
     <div className={styles.rootContainer}>
       <PlayerProfile member={member} />
       <MatchRecordTable matchRecords={matchRecords} />
     </div>
   );
-}
+};

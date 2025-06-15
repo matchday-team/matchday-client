@@ -14,10 +14,10 @@ const defaultPositionStats: PositionStat[] = [
   { position: 'GK', count: 6 },
 ];
 
-export function MemberStatsSummary({
+export const MemberStatsSummary = ({
   totalMembers = 54,
   positionStats = defaultPositionStats,
-}: MemberStatsSummaryProps) {
+}: MemberStatsSummaryProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.totalMembersSection}>
@@ -39,4 +39,4 @@ export function MemberStatsSummary({
       </div>
     </div>
   );
-}
+};
