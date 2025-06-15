@@ -14,13 +14,13 @@ interface PlayerSubstitutionConfirmModalProps {
   isOpen: boolean;
 }
 
-export function PlayerSubstitutionConfirmModal({
+export const PlayerSubstitutionConfirmModal = ({
   outPlayer,
   inPlayer,
   onConfirm,
   onClose,
   isOpen,
-}: PlayerSubstitutionConfirmModalProps) {
+}: PlayerSubstitutionConfirmModalProps) => {
   if (!isOpen) {
     return null;
   }
@@ -68,7 +68,7 @@ export function PlayerSubstitutionConfirmModal({
       </div>
     </div>
   );
-}
+};
 
 const fallbackImageHandler = createFallbackImageHandler();
 

@@ -17,10 +17,10 @@ const colorTypes = [
   { key: 'socks', label: '스타킹' },
 ] as const;
 
-export function UniformColorPicker({
+export const UniformColorPicker = ({
   uniformColors,
   onColorChange,
-}: UniformColorPickerProps) {
+}: UniformColorPickerProps) => {
   return (
     <div className={styles.uniformColors}>
       {colorTypes.map(({ key, label }) => (
@@ -53,4 +53,4 @@ export function UniformColorPicker({
       ))}
     </div>
   );
-}
+};

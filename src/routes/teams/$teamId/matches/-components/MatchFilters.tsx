@@ -8,7 +8,7 @@ interface MatchFiltersProps {
   className?: string;
 }
 
-export function MatchFilters({ className }: MatchFiltersProps) {
+export const MatchFilters = ({ className }: MatchFiltersProps) => {
   return (
     <div className={clsx(styles.container, className)}>
       <div className={styles.searchContainer}>
@@ -56,4 +56,4 @@ export function MatchFilters({ className }: MatchFiltersProps) {
       </div>
     </div>
   );
-}
+};

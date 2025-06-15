@@ -8,13 +8,13 @@ export interface MatchMetadataProps {
   location: string;
 }
 
-export function MatchMetadata({
+export const MatchMetadata = ({
   duration,
   playersPlayed,
   totalPlayers,
   date,
   location,
-}: MatchMetadataProps) {
+}: MatchMetadataProps) => {
   return (
     <div className={styles.container}>
       <Row label='경기 시간' value={`${duration}분`} />
@@ -23,7 +23,7 @@ export function MatchMetadata({
       <Row label='장소' value={location} />
     </div>
   );
-}
+};
 
 const Row = ({ label, value }: { label: string; value: string }) => {
   return (

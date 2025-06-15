@@ -19,11 +19,11 @@ interface MatchTableProps {
   className?: string;
 }
 
-export function MatchTable({
+export const MatchTable = ({
   matches,
   onMatchClick,
   headerActions,
-}: MatchTableProps) {
+}: MatchTableProps) => {
   const columns = {
     type: {
       key: 'type',
@@ -103,4 +103,4 @@ export function MatchTable({
       className={styles.tableOverride}
     />
   );
-}
+};

@@ -9,10 +9,10 @@ interface TeamStatsSummaryProps {
   className?: string;
 }
 
-export function TeamStatsSummary({
+export const TeamStatsSummary = ({
   teamStats,
   className,
-}: TeamStatsSummaryProps) {
+}: TeamStatsSummaryProps) => {
   return (
     <div className={clsx(styles.rootContainer, className)}>
       <div className={styles.teamInfoContainer}>
@@ -72,4 +72,4 @@ export function TeamStatsSummary({
       </div>
     </div>
   );
-}
+};
