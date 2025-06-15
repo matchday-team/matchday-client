@@ -1,3 +1,4 @@
+import { PlusIcon } from '@/assets/icons';
 import type { ScheduleDetailData } from '@/routes/teams/$teamId/schedules/-temp-server-types';
 
 import * as styles from './ScheduleDetailPanel.css';
@@ -42,22 +43,7 @@ function ScheduleDetailPanel({
             <div className={styles.dayOfWeek}>{data.dayOfWeek}</div>
           </div>
           <button className={styles.createButton} onClick={handleCreateClick}>
-            <div className={styles.createIcon}>
-              <svg width='12' height='12' viewBox='0 0 14 14' fill='none'>
-                <path
-                  d='M1 7H13'
-                  stroke='currentColor'
-                  strokeWidth='1.5'
-                  strokeLinecap='round'
-                />
-                <path
-                  d='M7 1L7 13'
-                  stroke='currentColor'
-                  strokeWidth='1.5'
-                  strokeLinecap='round'
-                />
-              </svg>
-            </div>
+            <PlusIcon className={styles.createIcon} />
             일정 생성하기
           </button>
         </div>
@@ -70,7 +56,6 @@ function ScheduleDetailPanel({
             {data.schedules.length}개
           </span>
         </div>
-
         <div className={styles.scheduleListContainer}>
           {data.schedules.length > 0 ? (
             data.schedules.map(schedule => (

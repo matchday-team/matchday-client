@@ -9,6 +9,7 @@ export const rootContainer = style({
   boxShadow: '4px 4px 8px 0px rgba(0, 0, 0, 0.05)',
   backgroundColor: lightThemeVars.color.white.main,
   width: 362,
+  height: '100%',
 });
 
 export const headerContainer = style({
@@ -123,8 +124,8 @@ export const scheduleListContainer = style({
   display: 'flex',
   flexDirection: 'column',
   gap: 20,
-  height: 692,
-  overflow: 'clip',
+  height: 672,
+  overflowY: 'auto',
 });
 
 export const emptyState = style({
