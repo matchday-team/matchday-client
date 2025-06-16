@@ -25,14 +25,16 @@ export const editorInner = style({
 });
 
 export const contentEditable = style({
+  boxSizing: 'border-box',
   position: 'relative',
   outline: 'none',
   border: 'none',
   cursor: 'text',
   padding: '16px',
   width: '100%',
-  height: '100%',
+  height: 500,
   minHeight: '300px',
+  overflow: 'auto',
   resize: 'none',
   lineHeight: '1.6',
   color: '#333333',
