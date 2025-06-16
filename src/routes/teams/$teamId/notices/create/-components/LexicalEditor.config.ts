@@ -3,9 +3,9 @@ import { AutoLinkNode, LinkNode } from '@lexical/link';
 import { ListItemNode, ListNode } from '@lexical/list';
 import { HeadingNode, QuoteNode } from '@lexical/rich-text';
 
-import * as styles from './LexicalEditor.css';
+import * as styles from './LexicalEditor.theme.css';
 
-export const theme = {
+export const LEXICAL_STYLE_CLASS_CONFIG = {
   text: {
     bold: styles.textBold,
     italic: styles.textItalic,
@@ -71,7 +71,7 @@ export const theme = {
 
 export const initialConfig = {
   namespace: 'NoticeEditor',
-  theme,
+  theme: LEXICAL_STYLE_CLASS_CONFIG,
   nodes: [
     HeadingNode,
     QuoteNode,
