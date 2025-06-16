@@ -5,37 +5,36 @@ import { style } from '@vanilla-extract/css';
 export const formContainer = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '20px',
+  gap: 20,
   margin: '0 auto',
   width: '100%',
-  maxWidth: '800px',
+  maxWidth: 800,
 });
 
 export const headerSection = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '16px',
+  gap: 16,
 });
 
 export const titleRow = style({
   display: 'flex',
   alignItems: 'center',
-  gap: '16px',
+  gap: 16,
 });
 
 export const titleInput = style({
-  flex: 1,
   outline: 'none',
-  border: '1px solid #E0E4E7',
-  borderRadius: '8px',
+  border: `1px solid ${lightThemeVars.color.gray[200]}`,
+  borderRadius: 8,
   cursor: 'text',
   padding: '12px 16px',
-  fontSize: '16px',
-  fontWeight: '500',
+  fontSize: 16,
+  fontWeight: 500,
 
   ':focus': {
-    borderColor: '#2196F3',
-    boxShadow: '0 0 0 3px rgba(33, 150, 243, 0.1)',
+    borderColor: lightThemeVars.color.primary[700],
+    boxShadow: `0 0 0 3px ${lightThemeVars.color.primary[300]}`,
   },
 });
 
@@ -52,25 +51,25 @@ export const editorSection = style({
 export const actionSection = style({
   display: 'flex',
   justifyContent: 'flex-end',
-  paddingTop: '16px',
+  paddingTop: 16,
 });
 
 export const submitButton = style({
   border: 'none',
-  borderRadius: '8px',
+  borderRadius: 8,
   backgroundColor: lightThemeVars.color.primary[700],
   cursor: 'pointer',
   padding: '12px 24px',
   color: lightThemeVars.color.white.main,
-  fontSize: '16px',
-  fontWeight: '600',
+  fontSize: 16,
+  fontWeight: 600,
 
   ':hover': {
     backgroundColor: lightThemeVars.color.primary['700Darken'],
   },
 
   ':disabled': {
-    backgroundColor: '#E0E4E7',
+    backgroundColor: lightThemeVars.color.gray[200],
     cursor: 'not-allowed',
   },
 });

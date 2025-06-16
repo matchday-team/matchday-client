@@ -1,3 +1,5 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import { style } from '@vanilla-extract/css';
 
 export const editorWrapper = style({
@@ -8,12 +10,12 @@ export const editorWrapper = style({
 
 export const editorContainer = style({
   position: 'relative',
-  border: '1px solid #e0e0e0',
-  borderRadius: '8px',
-  backgroundColor: '#fff',
+  border: `1px solid ${lightThemeVars.color.gray[200]}`,
+  borderRadius: 8,
+  backgroundColor: lightThemeVars.color.white.main,
   width: '100%',
   height: '100%',
-  minHeight: '300px',
+  minHeight: 300,
   overflow: 'hidden',
 });
 
@@ -21,7 +23,7 @@ export const editorInner = style({
   position: 'relative',
   width: '100%',
   height: '100%',
-  minHeight: '300px',
+  minHeight: 300,
 });
 
 export const contentEditable = style({
@@ -30,27 +32,26 @@ export const contentEditable = style({
   outline: 'none',
   border: 'none',
   cursor: 'text',
-  padding: '16px',
+  padding: 16,
   width: '100%',
   height: 500,
-  minHeight: '300px',
+  minHeight: 300,
   overflow: 'auto',
   resize: 'none',
-  lineHeight: '1.6',
-  color: '#333333',
-  fontFamily: 'inherit',
-  fontSize: '16px',
+  lineHeight: 1.6,
+  color: lightThemeVars.color.black,
+  fontSize: 16,
 });
 
 export const placeholder = style({
   position: 'absolute',
-  top: '16px',
-  left: '16px',
+  top: 16,
+  left: 16,
   pointerEvents: 'none',
   userSelect: 'none',
-  lineHeight: '1.6',
-  color: '#999999',
-  fontSize: '16px',
+  lineHeight: 1.6,
+  color: lightThemeVars.color.gray[300],
+  fontSize: 16,
 });
 
 export const textBold = style({
@@ -80,8 +81,8 @@ export const textSuperscript = style({
 });
 
 export const textCode = style({
-  borderRadius: '3px',
-  backgroundColor: '#f1f3f4',
+  borderRadius: 3,
+  backgroundColor: lightThemeVars.color.white.background,
   padding: '1px 0.25rem',
   fontFamily: 'Menlo, Consolas, Monaco, monospace',
   fontSize: '94%',
@@ -126,15 +127,15 @@ export const h6 = style({
 
 // Lists
 export const ol = style({
-  margin: '0',
-  marginLeft: '16px',
-  padding: '0',
+  margin: 0,
+  marginLeft: 16,
+  padding: 0,
 });
 
 export const ul = style({
-  margin: '0',
-  marginLeft: '16px',
-  padding: '0',
+  margin: 0,
+  marginLeft: 16,
+  padding: 0,
 });
 
 export const listItem = style({
@@ -147,11 +148,11 @@ export const nestedListItem = style({
 
 // Quote
 export const quote = style({
-  margin: '0',
-  marginBottom: '10px',
-  marginLeft: '20px',
-  borderLeft: '4px solid #ccc',
-  paddingLeft: '16px',
+  margin: 0,
+  marginBottom: 10,
+  marginLeft: 20,
+  borderLeft: `4px solid ${lightThemeVars.color.gray[300]}`,
+  paddingLeft: 16,
   fontStyle: 'italic',
 });
 
@@ -159,17 +160,16 @@ export const quote = style({
 export const code = style({
   position: 'relative',
   display: 'block',
-  margin: '0',
-  marginTop: '8px',
-  marginBottom: '8px',
-  backgroundColor: '#f8f8f8',
+  margin: 0,
+  marginTop: 8,
+  marginBottom: 8,
+  backgroundColor: lightThemeVars.color.white.background,
   padding: '8px 8px 8px 52px',
   overflow: 'auto',
-  tabSize: '2',
-  lineHeight: '1.53',
-  /* white-space: pre, */
+  tabSize: 2,
+  lineHeight: 1.53,
   fontFamily: 'Menlo, Consolas, Monaco, monospace',
-  fontSize: '13px',
+  fontSize: 13,
 });
 
 // Code highlighting
@@ -218,9 +218,9 @@ export const link = style({
 // Paragraph
 export const paragraph = style({
   position: 'relative',
-  margin: '0',
-  marginBottom: '8px',
+  margin: 0,
+  marginBottom: 8,
   ':last-child': {
-    marginBottom: '0',
+    marginBottom: 0,
   },
 });

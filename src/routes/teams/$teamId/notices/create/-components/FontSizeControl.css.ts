@@ -1,11 +1,13 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import { style } from '@vanilla-extract/css';
 
 export const fontSizeControl = style({
   display: 'flex',
   alignItems: 'center',
-  border: '1px solid #e0e0e0',
-  borderRadius: '6px',
-  backgroundColor: '#ffffff',
+  border: `1px solid ${lightThemeVars.color.gray[200]}`,
+  borderRadius: 6,
+  backgroundColor: lightThemeVars.color.white.main,
   overflow: 'hidden',
 });
 
@@ -17,14 +19,14 @@ export const sizeButton = style({
   border: 'none',
   backgroundColor: 'transparent',
   cursor: 'pointer',
-  width: '28px',
-  height: '28px',
-  color: '#333333',
-  fontSize: '14px',
+  width: 28,
+  height: 28,
+  color: lightThemeVars.color.black,
+  fontSize: 14,
   fontWeight: 'bold',
 
   ':hover': {
-    backgroundColor: '#f0f0f0',
+    backgroundColor: lightThemeVars.color.white.hover,
   },
 
   ':disabled': {
@@ -34,7 +36,7 @@ export const sizeButton = style({
   },
 
   ':active': {
-    backgroundColor: '#e0e0e0',
+    backgroundColor: lightThemeVars.color.gray[100],
   },
 });
 
@@ -43,10 +45,10 @@ export const sizeInput = style({
   border: 'none',
   backgroundColor: 'transparent',
   cursor: 'text',
-  width: '50px',
-  height: '28px',
+  width: 50,
+  height: 28,
   textAlign: 'center',
-  fontSize: '14px',
+  fontSize: 14,
 
   // Remove number input spinners
   selectors: {

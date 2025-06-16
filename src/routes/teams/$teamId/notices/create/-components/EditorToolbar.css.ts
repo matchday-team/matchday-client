@@ -1,12 +1,14 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import { style } from '@vanilla-extract/css';
 
 export const toolbar = style({
   display: 'flex',
   flexWrap: 'wrap',
   alignItems: 'center',
-  gap: '4px',
+  gap: 4,
   borderBottom: '1px solid #e0e0e0',
-  backgroundColor: '#ffffff',
+  backgroundColor: lightThemeVars.color.white.main,
   padding: '8px 12px',
 });
 
@@ -17,14 +19,14 @@ export const toolbarItem = style({
   transition: 'all 0.2s ease',
   outline: 'none',
   border: '1px solid transparent',
-  borderRadius: '4px',
+  borderRadius: 4,
   backgroundColor: 'transparent',
   cursor: 'pointer',
   padding: '6px 8px',
-  minWidth: '28px',
-  height: '28px',
+  minWidth: 28,
+  height: 28,
   color: '#333',
-  fontSize: '14px',
+  fontSize: 14,
 
   ':hover': {
     borderColor: '#ddd',
@@ -43,16 +45,13 @@ export const toolbarItem = style({
   },
 
   selectors: {
-    '&[type="button"]': {
-      fontFamily: 'inherit',
-    },
     'select&': {
       border: '1px solid #ddd',
-      borderRadius: '4px',
-      backgroundColor: '#fff',
+      borderRadius: 4,
+      backgroundColor: lightThemeVars.color.white.main,
       padding: '4px 8px',
-      minWidth: '120px',
-      fontSize: '13px',
+      minWidth: 120,
+      fontSize: 13,
     },
   },
 });
@@ -64,12 +63,12 @@ export const active = style({
 });
 
 export const spaced = style({
-  marginRight: '2px',
+  marginRight: 2,
 });
 
 export const format = style({
   lineHeight: 1,
-  fontSize: '14px',
+  fontSize: 14,
   fontWeight: 'bold',
   fontStyle: 'normal',
 });
@@ -77,11 +76,11 @@ export const format = style({
 export const divider = style({
   margin: '0 4px',
   backgroundColor: '#e0e0e0',
-  width: '1px',
-  height: '20px',
+  width: 1,
+  height: 20,
 });
 
 export const iconSize = style({
-  width: '24px',
-  height: '24px',
+  width: 24,
+  height: 24,
 });

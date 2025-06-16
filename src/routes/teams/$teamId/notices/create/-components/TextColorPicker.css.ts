@@ -1,58 +1,59 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import { style } from '@vanilla-extract/css';
 
 export const colorButtonContent = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  gap: '2px',
+  gap: 2,
 });
 
 export const colorPreview = style({
-  borderRadius: '1px',
-  width: '20px',
-  height: '3px',
+  borderRadius: 1,
+  width: 20,
+  height: 3,
 });
 
 export const colorPicker = style({
-  padding: '12px',
-  width: '240px',
+  padding: 12,
+  width: 240,
 });
 
 export const hexInput = style({
   display: 'flex',
   alignItems: 'center',
-  gap: '8px',
-  marginBottom: '12px',
+  gap: 8,
+  marginBottom: 12,
 });
 
 export const hexInputField = style({
-  flex: 1,
   outline: 'none',
-  border: '1px solid #e0e0e0',
-  borderRadius: '4px',
+  border: `1px solid ${lightThemeVars.color.gray[200]}`,
+  borderRadius: 4,
   cursor: 'text',
   padding: '4px 8px',
-  fontSize: '14px',
+  fontSize: 14,
 
   ':focus': {
-    borderColor: '#0969da',
+    borderColor: lightThemeVars.color.primary[700],
   },
 });
 
 export const presetColors = style({
   display: 'grid',
   gridTemplateColumns: 'repeat(8, 1fr)',
-  gap: '4px',
-  marginBottom: '12px',
+  gap: 4,
+  marginBottom: 12,
 });
 
 export const colorSwatch = style({
   transition: 'transform 0.1s ease',
-  border: '1px solid #d0d7de',
-  borderRadius: '4px',
+  border: `1px solid ${lightThemeVars.color.gray[200]}`,
+  borderRadius: 4,
   cursor: 'pointer',
-  width: '24px',
-  height: '24px',
+  width: 24,
+  height: 24,
 
   ':hover': {
     transform: 'scale(1.1)',
@@ -66,21 +67,21 @@ export const colorSwatch = style({
 export const customColorWrapper = style({
   display: 'flex',
   alignItems: 'center',
-  gap: '8px',
-  borderTop: '1px solid #e0e0e0',
-  paddingTop: '8px',
+  gap: 8,
+  borderTop: `1px solid ${lightThemeVars.color.gray[200]}`,
+  paddingTop: 8,
 });
 
 export const customColorInput = style({
   outline: 'none',
   border: 'none',
-  borderRadius: '4px',
+  borderRadius: 4,
   cursor: 'pointer',
-  width: '40px',
-  height: '24px',
+  width: 40,
+  height: 24,
 });
 
 export const customColorLabel = style({
-  color: '#656d76',
-  fontSize: '12px',
+  color: lightThemeVars.color.gray[500],
+  fontSize: 12,
 });
