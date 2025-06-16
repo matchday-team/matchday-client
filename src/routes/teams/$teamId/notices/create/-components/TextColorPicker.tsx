@@ -39,16 +39,16 @@ export const TextColorPicker = ({
   return (
     <DropdownButton
       buttonContent={
-        <div className={styles.colorButtonContent}>
+        <div className={styles.buttonOverride}>
           <span>A</span>
           <div
-            className={styles.colorPreview}
+            className={styles.colorPreviewUnderline}
             style={{ backgroundColor: currentColor }}
           />
         </div>
       }
     >
-      <div className={styles.colorPicker}>
+      <div className={styles.rootContainer}>
         <div className={styles.hexInput}>
           <span>Hex</span>
           <input

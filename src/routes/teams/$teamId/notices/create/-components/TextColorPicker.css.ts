@@ -2,20 +2,20 @@ import { lightThemeVars } from '@/styles/theme.css';
 
 import { style } from '@vanilla-extract/css';
 
-export const colorButtonContent = style({
+export const buttonOverride = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   gap: 2,
 });
 
-export const colorPreview = style({
+export const colorPreviewUnderline = style({
   borderRadius: 1,
   width: 20,
   height: 3,
 });
 
-export const colorPicker = style({
+export const rootContainer = style({
   padding: 12,
   width: 240,
 });
@@ -71,6 +71,7 @@ export const customColorWrapper = style({
 });
 
 export const customColorInput = style({
+  border: 'none',
   borderRadius: 4,
   cursor: 'pointer',
   width: 40,

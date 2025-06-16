@@ -40,22 +40,20 @@ export const NoticeCreateForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
-      <div className={styles.headerSection}>
-        <div className={styles.titleRow}>
-          <Input
-            {...register('title')}
-            placeholder='제목을 입력하세요'
-            className={styles.titleInput}
-            isError={!!errors.title}
-          />
-          <Checkbox
-            {...register('isImportant')}
-            className={styles.importantCheckbox}
-          >
-            중요
-          </Checkbox>
-        </div>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.rootContainer}>
+      <div className={styles.headerContainer}>
+        <Input
+          {...register('title')}
+          placeholder='제목을 입력하세요'
+          className={styles.titleInput}
+          isError={!!errors.title}
+        />
+        <Checkbox
+          {...register('isImportant')}
+          className={styles.importantCheckbox}
+        >
+          중요
+        </Checkbox>
       </div>
 
       <div className={styles.editorSection}>

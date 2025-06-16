@@ -42,13 +42,13 @@ export const FontSizeControl = ({ value = 15 }: FontSizeControlProps) => {
   };
 
   return (
-    <div className={styles.fontSizeControl}>
+    <div className={styles.rootContainer}>
       <button
         type='button'
-        className={styles.sizeButton}
+        className={styles.sizeAdjustButton}
         onClick={decrementSize}
         disabled={fontSize <= 8}
-        aria-label='Decrease font size'
+        aria-label='폰트 크기 줄이기'
       >
         −
       </button>
@@ -59,14 +59,14 @@ export const FontSizeControl = ({ value = 15 }: FontSizeControlProps) => {
         className={styles.sizeInput}
         min='8'
         max='72'
-        aria-label='Font size'
+        aria-label='현재 폰트 크기'
       />
       <button
         type='button'
-        className={styles.sizeButton}
+        className={styles.sizeAdjustButton}
         onClick={incrementSize}
         disabled={fontSize >= 72}
-        aria-label='Increase font size'
+        aria-label='폰트 크기 늘리기'
       >
         +
       </button>

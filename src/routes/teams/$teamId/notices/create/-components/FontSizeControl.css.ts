@@ -2,7 +2,7 @@ import { lightThemeVars } from '@/styles/theme.css';
 
 import { style } from '@vanilla-extract/css';
 
-export const fontSizeControl = style({
+export const rootContainer = style({
   display: 'flex',
   alignItems: 'center',
   border: `1px solid ${lightThemeVars.color.gray[200]}`,
@@ -11,7 +11,7 @@ export const fontSizeControl = style({
   overflow: 'hidden',
 });
 
-export const sizeButton = style({
+export const sizeAdjustButton = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -40,6 +40,8 @@ export const sizeButton = style({
 });
 
 export const sizeInput = style({
+  // FIXME: focus-visible로 outline 추가
+  outline: 'none',
   border: 'none',
   backgroundColor: 'transparent',
   width: 50,

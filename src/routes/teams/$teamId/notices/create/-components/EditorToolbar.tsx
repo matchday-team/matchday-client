@@ -158,7 +158,7 @@ export const EditorToolbar = () => {
   };
 
   return (
-    <div className={styles.toolbar}>
+    <div className={styles.rootContainer}>
       <button
         className={clsx(styles.toolbarItem, styles.spaced)}
         disabled={!canUndo}
@@ -215,7 +215,8 @@ export const EditorToolbar = () => {
         title='Italic (Ctrl+I)'
         aria-label='Format Italics'
       >
-        <ItalicIcon className={styles.iconSize} />
+        {/* NOTE: 세로로 긴 아이콘이어서 예외적으로 width: 8로 표시해야 함 */}
+        <ItalicIcon />
       </button>
       <button
         onClick={() => {

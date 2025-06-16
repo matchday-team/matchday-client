@@ -2,12 +2,14 @@ import { lightThemeVars } from '@/styles/theme.css';
 
 import { style } from '@vanilla-extract/css';
 
-export const toolbar = style({
+export const rootContainer = style({
   display: 'flex',
   flexWrap: 'wrap',
   alignItems: 'center',
   gap: 4,
   borderBottom: '1px solid #e0e0e0',
+  borderTopLeftRadius: 8, // NOTE: 바깥 영역에서 border가 toolbar 영역 때문에 덮어져서 hidden을 써야 하는데, toolbar에서 함께 radius 적용해서 해결
+  borderTopRightRadius: 8,
   backgroundColor: lightThemeVars.color.white.main,
   padding: '8px 12px',
 });

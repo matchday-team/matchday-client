@@ -32,32 +32,32 @@ export const LexicalEditor = ({
   };
 
   return (
-    <div className={styles.editorWrapper}>
-      <LexicalComposer initialConfig={initialConfig}>
-        <div className={styles.editorContainer}>
-          <EditorToolbar />
-          <div className={styles.editorInner}>
-            <RichTextPlugin
-              contentEditable={
-                <ContentEditable
-                  className={styles.contentEditable}
-                  ariaLabel='공지사항 내용'
-                />
-              }
-              placeholder={
-                <div className={styles.placeholder}>{placeholder}</div>
-              }
-              ErrorBoundary={LexicalErrorBoundary}
-            />
-            <OnChangePlugin onChange={handleEditorChange} />
-            <HistoryPlugin />
-            <ListPlugin />
-            <CheckListPlugin />
-            <LinkPlugin />
-            <TabIndentationPlugin />
-          </div>
+    <LexicalComposer initialConfig={initialConfig}>
+      <div className={styles.editorRootContainer}>
+        <EditorToolbar />
+        <div className={styles.editorBodyContainer}>
+          <RichTextPlugin
+            contentEditable={
+              <ContentEditable
+                className={styles.editorBody}
+                ariaLabel='공지사항 작성 내용'
+              />
+            }
+            placeholder={
+              <div className={styles.editorBodyPlaceholderText}>
+                {placeholder}
+              </div>
+            }
+            ErrorBoundary={LexicalErrorBoundary}
+          />
+          <OnChangePlugin onChange={handleEditorChange} />
+          <HistoryPlugin />
+          <ListPlugin />
+          <CheckListPlugin />
+          <LinkPlugin />
+          <TabIndentationPlugin />
         </div>
-      </LexicalComposer>
-    </div>
+      </div>
+    </LexicalComposer>
   );
 };

@@ -2,7 +2,7 @@ import { lightThemeVars } from '@/styles/theme.css';
 
 import { style } from '@vanilla-extract/css';
 
-export const formContainer = style({
+export const rootContainer = style({
   display: 'flex',
   flexDirection: 'column',
   gap: 20,
@@ -11,13 +11,7 @@ export const formContainer = style({
   maxWidth: 800,
 });
 
-export const headerSection = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 16,
-});
-
-export const titleRow = style({
+export const headerContainer = style({
   display: 'flex',
   alignItems: 'center',
   gap: 16,
@@ -38,7 +32,6 @@ export const titleInput = style({
 });
 
 export const importantCheckbox = style({
-  flexBasis: 50,
   flexShrink: 0,
   cursor: 'pointer',
 });
