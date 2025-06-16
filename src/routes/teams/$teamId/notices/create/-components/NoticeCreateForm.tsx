@@ -2,7 +2,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button } from '@/components';
 import { Checkbox, Input } from '@/components/CommonForm';
 
 import { LexicalEditor } from './LexicalEditor';
@@ -61,12 +60,6 @@ export const NoticeCreateForm = () => {
           placeholder='내용을 입력해주세요'
           onChange={handleContentChange}
         />
-      </div>
-
-      <div className={styles.actionSection}>
-        <Button type='submit' variant='primary' className={styles.submitButton}>
-          게시하기
-        </Button>
       </div>
     </form>
   );
