@@ -39,3 +39,8 @@ export { default as TableIcon } from './table.svg?react';
 export { default as AlignLeftIcon } from './align-left.svg?react';
 export { default as AlignCenterIcon } from './align-center.svg?react';
 export { default as AlignRightIcon } from './align-right.svg?react';
+export { default as UsersGroupIcon } from './users-group.svg?react';
+export { default as ClipboardCheckIcon } from './clipboard-check.svg?react';
+export { default as CalendarCheckIcon } from './calendar-check.svg?react';
+export { default as SpeakerIcon } from './speaker.svg?react';
+export { default as SoccerBallIconCustom } from './soccer-ball-icon.svg?react';
