@@ -22,6 +22,7 @@ import { Route as TeamsTeamIdPlayersRouteImport } from './routes/teams/$teamId/p
 import { Route as TeamsTeamIdMatchesRouteImport } from './routes/teams/$teamId/matches/route'
 import { Route as MatchesMatchIdRecordRouteImport } from './routes/matches/$matchId/record/route'
 import { Route as TeamsTeamIdIndexRouteImport } from './routes/teams/$teamId/index/route'
+import { Route as TeamsTeamIdNoticesCreateRouteImport } from './routes/teams/$teamId/notices/create/route'
 import { Route as MatchesMatchIdPlayersEditRouteImport } from './routes/matches/$matchId/players/edit/route'
 import { Route as TeamsTeamIdNoticesIndexRouteImport } from './routes/teams/$teamId/notices/index/route'
 
@@ -92,6 +93,13 @@ const TeamsTeamIdIndexRouteRoute = TeamsTeamIdIndexRouteImport.update({
   path: '/teams/$teamId/',
   getParentRoute: () => rootRoute,
 } as any)
+
+const TeamsTeamIdNoticesCreateRouteRoute =
+  TeamsTeamIdNoticesCreateRouteImport.update({
+    id: '/teams/$teamId/notices/create',
+    path: '/teams/$teamId/notices/create',
+    getParentRoute: () => rootRoute,
+  } as any)
 
 const MatchesMatchIdPlayersEditRouteRoute =
   MatchesMatchIdPlayersEditRouteImport.update({
@@ -202,6 +210,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MatchesMatchIdPlayersEditRouteImport
       parentRoute: typeof rootRoute
     }
+    '/teams/$teamId/notices/create': {
+      id: '/teams/$teamId/notices/create'
+      path: '/teams/$teamId/notices/create'
+      fullPath: '/teams/$teamId/notices/create'
+      preLoaderRoute: typeof TeamsTeamIdNoticesCreateRouteImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -221,6 +236,7 @@ export interface FileRoutesByFullPath {
   '/teams/$teamId/schedules': typeof TeamsTeamIdSchedulesRouteRoute
   '/teams/$teamId/notices': typeof TeamsTeamIdNoticesIndexRouteRoute
   '/matches/$matchId/players/edit': typeof MatchesMatchIdPlayersEditRouteRoute
+  '/teams/$teamId/notices/create': typeof TeamsTeamIdNoticesCreateRouteRoute
 }
 
 export interface FileRoutesByTo {
@@ -237,6 +253,7 @@ export interface FileRoutesByTo {
   '/teams/$teamId/schedules': typeof TeamsTeamIdSchedulesRouteRoute
   '/teams/$teamId/notices': typeof TeamsTeamIdNoticesIndexRouteRoute
   '/matches/$matchId/players/edit': typeof MatchesMatchIdPlayersEditRouteRoute
+  '/teams/$teamId/notices/create': typeof TeamsTeamIdNoticesCreateRouteRoute
 }
 
 export interface FileRoutesById {
@@ -254,6 +271,7 @@ export interface FileRoutesById {
   '/teams/$teamId/schedules': typeof TeamsTeamIdSchedulesRouteRoute
   '/teams/$teamId/notices/': typeof TeamsTeamIdNoticesIndexRouteRoute
   '/matches/$matchId/players/edit': typeof MatchesMatchIdPlayersEditRouteRoute
+  '/teams/$teamId/notices/create': typeof TeamsTeamIdNoticesCreateRouteRoute
 }
 
 export interface FileRouteTypes {
@@ -272,6 +290,7 @@ export interface FileRouteTypes {
     | '/teams/$teamId/schedules'
     | '/teams/$teamId/notices'
     | '/matches/$matchId/players/edit'
+    | '/teams/$teamId/notices/create'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -287,6 +306,7 @@ export interface FileRouteTypes {
     | '/teams/$teamId/schedules'
     | '/teams/$teamId/notices'
     | '/matches/$matchId/players/edit'
+    | '/teams/$teamId/notices/create'
   id:
     | '__root__'
     | '/'
@@ -302,6 +322,7 @@ export interface FileRouteTypes {
     | '/teams/$teamId/schedules'
     | '/teams/$teamId/notices/'
     | '/matches/$matchId/players/edit'
+    | '/teams/$teamId/notices/create'
   fileRoutesById: FileRoutesById
 }
 
@@ -319,6 +340,7 @@ export interface RootRouteChildren {
   TeamsTeamIdSchedulesRouteRoute: typeof TeamsTeamIdSchedulesRouteRoute
   TeamsTeamIdNoticesIndexRouteRoute: typeof TeamsTeamIdNoticesIndexRouteRoute
   MatchesMatchIdPlayersEditRouteRoute: typeof MatchesMatchIdPlayersEditRouteRoute
+  TeamsTeamIdNoticesCreateRouteRoute: typeof TeamsTeamIdNoticesCreateRouteRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -335,6 +357,7 @@ const rootRouteChildren: RootRouteChildren = {
   TeamsTeamIdSchedulesRouteRoute: TeamsTeamIdSchedulesRouteRoute,
   TeamsTeamIdNoticesIndexRouteRoute: TeamsTeamIdNoticesIndexRouteRoute,
   MatchesMatchIdPlayersEditRouteRoute: MatchesMatchIdPlayersEditRouteRoute,
+  TeamsTeamIdNoticesCreateRouteRoute: TeamsTeamIdNoticesCreateRouteRoute,
 }
 
 export const routeTree = rootRoute
@@ -359,7 +382,8 @@ export const routeTree = rootRoute
         "/teams/$teamId/players",
         "/teams/$teamId/schedules",
         "/teams/$teamId/notices/",
-        "/matches/$matchId/players/edit"
+        "/matches/$matchId/players/edit",
+        "/teams/$teamId/notices/create"
       ]
     },
     "/": {
@@ -400,6 +424,9 @@ export const routeTree = rootRoute
     },
     "/matches/$matchId/players/edit": {
       "filePath": "matches/$matchId/players/edit/route.tsx"
+    },
+    "/teams/$teamId/notices/create": {
+      "filePath": "teams/$teamId/notices/create/route.tsx"
     }
   }
 }
