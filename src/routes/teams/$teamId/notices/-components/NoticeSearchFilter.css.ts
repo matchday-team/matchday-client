@@ -4,13 +4,12 @@ export const container = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  gap: 16,
   width: '100%',
 });
 
 export const searchContainer = style({
   flex: 1,
-  maxWidth: 400,
+  maxWidth: 360,
 });
 
 export const filtersContainer = style({
@@ -20,5 +19,5 @@ export const filtersContainer = style({
 });
 
 export const filterSelect = style({
-  minWidth: 120,
+  width: 115,
 });

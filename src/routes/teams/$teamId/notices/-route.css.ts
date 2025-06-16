@@ -13,9 +13,3 @@ export const rootContainer = style([
     width: 1336,
   },
 ]);
-
-export const tableContainer = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 20,
-});

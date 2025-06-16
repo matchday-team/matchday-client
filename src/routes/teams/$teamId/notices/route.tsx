@@ -20,13 +20,11 @@ function TeamNoticesPage() {
 
   return (
     <div className={styles.rootContainer}>
-      <div className={styles.tableContainer}>
-        <NoticeTable
-          notices={mockNotices}
-          onNoticeClick={handleNoticeClick}
-          headerActions={<NoticeSearchFilter />}
-        />
-      </div>
+      <NoticeTable
+        notices={mockNotices}
+        onNoticeClick={handleNoticeClick}
+        headerActions={<NoticeSearchFilter />}
+      />
     </div>
   );
 }
