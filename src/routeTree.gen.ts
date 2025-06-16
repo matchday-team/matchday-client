@@ -19,11 +19,11 @@ import { Route as MatchesEntryRouteImport } from './routes/matches/entry/route'
 import { Route as MatchesCreateRouteImport } from './routes/matches/create/route'
 import { Route as TeamsTeamIdSchedulesRouteImport } from './routes/teams/$teamId/schedules/route'
 import { Route as TeamsTeamIdPlayersRouteImport } from './routes/teams/$teamId/players/route'
-import { Route as TeamsTeamIdNoticesRouteImport } from './routes/teams/$teamId/notices/route'
 import { Route as TeamsTeamIdMatchesRouteImport } from './routes/teams/$teamId/matches/route'
 import { Route as MatchesMatchIdRecordRouteImport } from './routes/matches/$matchId/record/route'
 import { Route as TeamsTeamIdIndexRouteImport } from './routes/teams/$teamId/index/route'
 import { Route as MatchesMatchIdPlayersEditRouteImport } from './routes/matches/$matchId/players/edit/route'
+import { Route as TeamsTeamIdNoticesIndexRouteImport } from './routes/teams/$teamId/notices/index/route'
 
 // Create/Update Routes
 
@@ -75,12 +75,6 @@ const TeamsTeamIdPlayersRouteRoute = TeamsTeamIdPlayersRouteImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const TeamsTeamIdNoticesRouteRoute = TeamsTeamIdNoticesRouteImport.update({
-  id: '/teams/$teamId/notices',
-  path: '/teams/$teamId/notices',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const TeamsTeamIdMatchesRouteRoute = TeamsTeamIdMatchesRouteImport.update({
   id: '/teams/$teamId/matches',
   path: '/teams/$teamId/matches',
@@ -103,6 +97,13 @@ const MatchesMatchIdPlayersEditRouteRoute =
   MatchesMatchIdPlayersEditRouteImport.update({
     id: '/matches/$matchId/players/edit',
     path: '/matches/$matchId/players/edit',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const TeamsTeamIdNoticesIndexRouteRoute =
+  TeamsTeamIdNoticesIndexRouteImport.update({
+    id: '/teams/$teamId/notices/',
+    path: '/teams/$teamId/notices/',
     getParentRoute: () => rootRoute,
   } as any)
 
@@ -173,13 +174,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeamsTeamIdMatchesRouteImport
       parentRoute: typeof rootRoute
     }
-    '/teams/$teamId/notices': {
-      id: '/teams/$teamId/notices'
-      path: '/teams/$teamId/notices'
-      fullPath: '/teams/$teamId/notices'
-      preLoaderRoute: typeof TeamsTeamIdNoticesRouteImport
-      parentRoute: typeof rootRoute
-    }
     '/teams/$teamId/players': {
       id: '/teams/$teamId/players'
       path: '/teams/$teamId/players'
@@ -192,6 +186,13 @@ declare module '@tanstack/react-router' {
       path: '/teams/$teamId/schedules'
       fullPath: '/teams/$teamId/schedules'
       preLoaderRoute: typeof TeamsTeamIdSchedulesRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/teams/$teamId/notices/': {
+      id: '/teams/$teamId/notices/'
+      path: '/teams/$teamId/notices'
+      fullPath: '/teams/$teamId/notices'
+      preLoaderRoute: typeof TeamsTeamIdNoticesIndexRouteImport
       parentRoute: typeof rootRoute
     }
     '/matches/$matchId/players/edit': {
@@ -216,9 +217,9 @@ export interface FileRoutesByFullPath {
   '/teams/$teamId': typeof TeamsTeamIdIndexRouteRoute
   '/matches/$matchId/record': typeof MatchesMatchIdRecordRouteRoute
   '/teams/$teamId/matches': typeof TeamsTeamIdMatchesRouteRoute
-  '/teams/$teamId/notices': typeof TeamsTeamIdNoticesRouteRoute
   '/teams/$teamId/players': typeof TeamsTeamIdPlayersRouteRoute
   '/teams/$teamId/schedules': typeof TeamsTeamIdSchedulesRouteRoute
+  '/teams/$teamId/notices': typeof TeamsTeamIdNoticesIndexRouteRoute
   '/matches/$matchId/players/edit': typeof MatchesMatchIdPlayersEditRouteRoute
 }
 
@@ -232,9 +233,9 @@ export interface FileRoutesByTo {
   '/teams/$teamId': typeof TeamsTeamIdIndexRouteRoute
   '/matches/$matchId/record': typeof MatchesMatchIdRecordRouteRoute
   '/teams/$teamId/matches': typeof TeamsTeamIdMatchesRouteRoute
-  '/teams/$teamId/notices': typeof TeamsTeamIdNoticesRouteRoute
   '/teams/$teamId/players': typeof TeamsTeamIdPlayersRouteRoute
   '/teams/$teamId/schedules': typeof TeamsTeamIdSchedulesRouteRoute
+  '/teams/$teamId/notices': typeof TeamsTeamIdNoticesIndexRouteRoute
   '/matches/$matchId/players/edit': typeof MatchesMatchIdPlayersEditRouteRoute
 }
 
@@ -249,9 +250,9 @@ export interface FileRoutesById {
   '/teams/$teamId/': typeof TeamsTeamIdIndexRouteRoute
   '/matches/$matchId/record': typeof MatchesMatchIdRecordRouteRoute
   '/teams/$teamId/matches': typeof TeamsTeamIdMatchesRouteRoute
-  '/teams/$teamId/notices': typeof TeamsTeamIdNoticesRouteRoute
   '/teams/$teamId/players': typeof TeamsTeamIdPlayersRouteRoute
   '/teams/$teamId/schedules': typeof TeamsTeamIdSchedulesRouteRoute
+  '/teams/$teamId/notices/': typeof TeamsTeamIdNoticesIndexRouteRoute
   '/matches/$matchId/players/edit': typeof MatchesMatchIdPlayersEditRouteRoute
 }
 
@@ -267,9 +268,9 @@ export interface FileRouteTypes {
     | '/teams/$teamId'
     | '/matches/$matchId/record'
     | '/teams/$teamId/matches'
-    | '/teams/$teamId/notices'
     | '/teams/$teamId/players'
     | '/teams/$teamId/schedules'
+    | '/teams/$teamId/notices'
     | '/matches/$matchId/players/edit'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -282,9 +283,9 @@ export interface FileRouteTypes {
     | '/teams/$teamId'
     | '/matches/$matchId/record'
     | '/teams/$teamId/matches'
-    | '/teams/$teamId/notices'
     | '/teams/$teamId/players'
     | '/teams/$teamId/schedules'
+    | '/teams/$teamId/notices'
     | '/matches/$matchId/players/edit'
   id:
     | '__root__'
@@ -297,9 +298,9 @@ export interface FileRouteTypes {
     | '/teams/$teamId/'
     | '/matches/$matchId/record'
     | '/teams/$teamId/matches'
-    | '/teams/$teamId/notices'
     | '/teams/$teamId/players'
     | '/teams/$teamId/schedules'
+    | '/teams/$teamId/notices/'
     | '/matches/$matchId/players/edit'
   fileRoutesById: FileRoutesById
 }
@@ -314,9 +315,9 @@ export interface RootRouteChildren {
   TeamsTeamIdIndexRouteRoute: typeof TeamsTeamIdIndexRouteRoute
   MatchesMatchIdRecordRouteRoute: typeof MatchesMatchIdRecordRouteRoute
   TeamsTeamIdMatchesRouteRoute: typeof TeamsTeamIdMatchesRouteRoute
-  TeamsTeamIdNoticesRouteRoute: typeof TeamsTeamIdNoticesRouteRoute
   TeamsTeamIdPlayersRouteRoute: typeof TeamsTeamIdPlayersRouteRoute
   TeamsTeamIdSchedulesRouteRoute: typeof TeamsTeamIdSchedulesRouteRoute
+  TeamsTeamIdNoticesIndexRouteRoute: typeof TeamsTeamIdNoticesIndexRouteRoute
   MatchesMatchIdPlayersEditRouteRoute: typeof MatchesMatchIdPlayersEditRouteRoute
 }
 
@@ -330,9 +331,9 @@ const rootRouteChildren: RootRouteChildren = {
   TeamsTeamIdIndexRouteRoute: TeamsTeamIdIndexRouteRoute,
   MatchesMatchIdRecordRouteRoute: MatchesMatchIdRecordRouteRoute,
   TeamsTeamIdMatchesRouteRoute: TeamsTeamIdMatchesRouteRoute,
-  TeamsTeamIdNoticesRouteRoute: TeamsTeamIdNoticesRouteRoute,
   TeamsTeamIdPlayersRouteRoute: TeamsTeamIdPlayersRouteRoute,
   TeamsTeamIdSchedulesRouteRoute: TeamsTeamIdSchedulesRouteRoute,
+  TeamsTeamIdNoticesIndexRouteRoute: TeamsTeamIdNoticesIndexRouteRoute,
   MatchesMatchIdPlayersEditRouteRoute: MatchesMatchIdPlayersEditRouteRoute,
 }
 
@@ -355,9 +356,9 @@ export const routeTree = rootRoute
         "/teams/$teamId/",
         "/matches/$matchId/record",
         "/teams/$teamId/matches",
-        "/teams/$teamId/notices",
         "/teams/$teamId/players",
         "/teams/$teamId/schedules",
+        "/teams/$teamId/notices/",
         "/matches/$matchId/players/edit"
       ]
     },
@@ -388,14 +389,14 @@ export const routeTree = rootRoute
     "/teams/$teamId/matches": {
       "filePath": "teams/$teamId/matches/route.tsx"
     },
-    "/teams/$teamId/notices": {
-      "filePath": "teams/$teamId/notices/route.tsx"
-    },
     "/teams/$teamId/players": {
       "filePath": "teams/$teamId/players/route.tsx"
     },
     "/teams/$teamId/schedules": {
       "filePath": "teams/$teamId/schedules/route.tsx"
+    },
+    "/teams/$teamId/notices/": {
+      "filePath": "teams/$teamId/notices/index/route.tsx"
     },
     "/matches/$matchId/players/edit": {
       "filePath": "matches/$matchId/players/edit/route.tsx"

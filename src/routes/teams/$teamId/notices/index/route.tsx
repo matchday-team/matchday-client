@@ -7,7 +7,7 @@ import { mockNotices } from './-mock-data';
 import * as styles from './-route.css';
 import type { Notice } from './-temp-server-types';
 
-export const Route = createFileRoute('/teams/$teamId/notices')({
+export const Route = createFileRoute('/teams/$teamId/notices/')({
   component: TeamNoticesPage,
 });
 
