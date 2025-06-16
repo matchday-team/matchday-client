@@ -14,15 +14,20 @@ export function Navbar({ isOpen }: NavbarProps) {
     from: '/matches/$matchId/record',
     shouldThrow: false,
   });
+  const teamNoticePage = useMatch({
+    from: '/teams/$teamId/notices',
+    shouldThrow: false,
+  });
   const isRecordPage = Boolean(matchRecordPage);
+  const isTeamNoticePage = Boolean(teamNoticePage);
 
   return (
     <header className={styles.navbar({ isOpen })}>
       <h1 className={styles.title}>{title}</h1>
       {/* FIXME: 나중엔 Navbar Action Button 영역으로 전역 상태로 구성하기 */}
-      {isRecordPage && (
+      {(isRecordPage || isTeamNoticePage) && (
         <button className={styles.signUpButton} onClick={() => {}}>
-          내보내기
+          {isTeamNoticePage ? '작성하기' : '내보내기'}
         </button>
       )}
     </header>
