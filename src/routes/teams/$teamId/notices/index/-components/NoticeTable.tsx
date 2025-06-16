@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import { ChevronRightIcon } from '@/assets/icons';
 import { Table, TableColumnsDefinition } from '@/components/Table';
-import type { Notice } from '@/routes/teams/$teamId/notices/-temp-server-types';
+import type { Notice } from '@/routes/teams/$teamId/notices/index/-temp-server-types';
 
 import * as styles from './NoticeTable.css';
 

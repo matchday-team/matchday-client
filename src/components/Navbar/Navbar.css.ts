@@ -44,9 +44,7 @@ export const title = style({
   fontWeight: 500,
 });
 
-export const signUpButton = style({
-  display: 'inline-flex',
-  flexShrink: 0,
+export const primaryActionButton = style({
   alignItems: 'center',
   justifyContent: 'center',
   gap: 6,
