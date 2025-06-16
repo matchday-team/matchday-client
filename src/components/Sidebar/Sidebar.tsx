@@ -4,17 +4,20 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { userQuery } from '@/apis/queries';
 import {
+  CalendarCheckIcon,
   CheckRightIcon,
+  ClipboardCheckIcon,
   HelpCircleIcon,
   HomeIcon,
   LogoIcon,
   LogoTextIcon,
-  PlayerIcon,
   RecordIcon,
   SeoulLogo,
   SettingsIcon,
-  SoccerBallBoxyIcon,
+  SoccerBallIconCustom,
+  SpeakerIcon,
   UserIcon,
+  UsersGroupIcon,
 } from '@/assets/icons';
 import { useUserSettingsModalStore } from '@/stores';
 
@@ -35,12 +38,27 @@ export function Sidebar({ isOpen, toggle }: SidebarProps) {
     {
       to: '/',
       icon: <HomeIcon className={styles.icon} />,
-      label: '팀 매치 리스트',
+      label: '팀 프로필',
     },
     {
-      to: `/teams/${user?.teamId}`,
-      icon: <HomeIcon className={styles.icon} />,
-      label: '팀 프로필',
+      to: `/teams/${user?.teamId}/notices`,
+      icon: <SpeakerIcon className={styles.icon} />,
+      label: '팀 공지사항',
+    },
+    {
+      to: `/teams/${user?.teamId}/matches`,
+      icon: <ClipboardCheckIcon className={styles.icon} />,
+      label: '팀 경기 기록',
+    },
+    {
+      to: `/teams/${user?.teamId}/schedules`,
+      icon: <CalendarCheckIcon className={styles.icon} />,
+      label: '팀 일정',
+    },
+    {
+      to: `/teams/${user?.teamId}/players`,
+      icon: <UsersGroupIcon className={styles.icon} />,
+      label: '팀 멤버',
     },
     {
       to: '/matches/create',
@@ -49,13 +67,8 @@ export function Sidebar({ isOpen, toggle }: SidebarProps) {
     },
     {
       to: '/teams/create',
-      icon: <SoccerBallBoxyIcon className={styles.icon} />,
+      icon: <SoccerBallIconCustom className={styles.icon} />,
       label: '팀 등록',
-    },
-    {
-      to: '/users/create',
-      icon: <PlayerIcon className={styles.icon} />,
-      label: '[임시] 임시 유저 등록',
     },
   ];
 
