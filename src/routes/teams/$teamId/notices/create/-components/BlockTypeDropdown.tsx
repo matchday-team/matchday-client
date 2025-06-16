@@ -15,7 +15,8 @@ import {
 
 import { DropdownButton } from '@/components/DropdownButton';
 
-import * as styles from './CommonDropdown.css';
+import * as styles from './BlockTypeDropdown.css';
+import * as commonStyles from './CommonDropdown.css';
 
 interface BlockTypeOption {
   key: string;
@@ -137,7 +138,7 @@ export function BlockTypeDropdown({ blockType }: BlockTypeDropdownProps) {
   return (
     <DropdownButton
       buttonContent={
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div className={styles.buttonContent}>
           <span>{currentBlockType.icon}</span>
           <span>{currentBlockType.name}</span>
         </div>
@@ -147,11 +148,11 @@ export function BlockTypeDropdown({ blockType }: BlockTypeDropdownProps) {
         <button
           key={option.key}
           type='button'
-          className={styles.dropdownItem}
+          className={commonStyles.dropdownItem}
           onClick={() => handleBlockTypeChange(option)}
         >
           <span className={styles.dropdownItemIcon}>{option.icon}</span>
-          <span className={styles.dropdownItemText}>{option.name}</span>
+          <span className={commonStyles.dropdownItemText}>{option.name}</span>
           {option.shortcut && (
             <span className={styles.dropdownItemShortcut}>
               {option.shortcut}

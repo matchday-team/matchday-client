@@ -5,7 +5,8 @@ import { $getSelection, $isRangeSelection } from 'lexical';
 import { DropdownButton } from '@/components/DropdownButton';
 import { FONT_FAMILY_OPTIONS } from '@/constants/editor';
 
-import * as styles from './CommonDropdown.css';
+import * as commonStyles from './CommonDropdown.css';
+import * as styles from './FontFamilyDropdown.css';
 
 interface FontFamilyDropdownProps {
   value?: string;
@@ -34,7 +35,7 @@ export function FontFamilyDropdown({
   return (
     <DropdownButton
       buttonContent={
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div className={styles.buttonContent}>
           <span style={{ fontFamily: currentFont.style }}>
             {currentFont.name}
           </span>
@@ -45,11 +46,11 @@ export function FontFamilyDropdown({
         <button
           key={option.key}
           type='button'
-          className={styles.dropdownItem}
+          className={commonStyles.dropdownItem}
           onClick={() => handleFontFamilyChange(option.style)}
           style={{ fontFamily: option.style }}
         >
-          <span className={styles.dropdownItemText}>{option.name}</span>
+          <span className={commonStyles.dropdownItemText}>{option.name}</span>
         </button>
       ))}
     </DropdownButton>

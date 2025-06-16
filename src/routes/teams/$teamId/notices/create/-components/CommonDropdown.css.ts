@@ -6,35 +6,25 @@ export const dropdownItem = style({
   display: 'flex',
   alignItems: 'center',
   gap: 16,
+  border: 'none',
+  backgroundColor: 'transparent',
+  cursor: 'pointer',
   padding: '8px 12px',
   width: '100%',
   textAlign: 'left',
-  color: '#333333',
+  color: lightThemeVars.color.black,
   fontSize: 14,
 
   ':hover': {
-    backgroundColor: '#f6f8fa',
+    backgroundColor: lightThemeVars.color.white.hover,
   },
-  ':focus': {
-    backgroundColor: '#f6f8fa',
-  },
-});
 
-export const dropdownItemIcon = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: 20,
-  height: 20,
-  fontSize: 16,
+  ':focus': {
+    outline: 'none',
+    backgroundColor: lightThemeVars.color.white.hover,
+  },
 });
 
 export const dropdownItemText = style({
   flex: 1,
-});
-
-export const dropdownItemShortcut = style({
-  marginLeft: 'auto',
-  color: lightThemeVars.color.gray[500],
-  fontSize: 12,
 });
