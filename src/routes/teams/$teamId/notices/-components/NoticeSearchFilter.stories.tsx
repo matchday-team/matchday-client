@@ -1,3 +1,5 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { NoticeSearchFilter } from './NoticeSearchFilter';
@@ -39,7 +41,7 @@ export const WithBackground: Story = {
         style={{
           width: '100%',
           minWidth: 800,
-          backgroundColor: '#F2F3F7',
+          backgroundColor: lightThemeVars.color.white.background,
           padding: 40,
         }}
       >

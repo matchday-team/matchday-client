@@ -1,3 +1,5 @@
+import { lightThemeVars } from '@/styles/theme.css';
+
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { NoticeTable } from './NoticeTable';
@@ -12,10 +14,9 @@ const meta = {
     Story => (
       <div
         style={{
-          width: '100%',
-          backgroundColor: '#F2F3F7',
+          width: 1336,
+          backgroundColor: lightThemeVars.color.white.background,
           padding: 20,
-          minHeight: '100vh',
         }}
       >
         <Story />
@@ -77,17 +78,9 @@ const mockNotices = [
   },
 ];
 
-const shortNotices = mockNotices.slice(0, 3);
-
 export const Default: Story = {
   args: {
     notices: mockNotices,
-  },
-};
-
-export const ShortList: Story = {
-  args: {
-    notices: shortNotices,
   },
 };
 

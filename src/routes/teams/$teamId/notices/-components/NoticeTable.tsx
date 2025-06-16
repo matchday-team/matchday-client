@@ -1,44 +1,73 @@
+import { ReactNode } from 'react';
+
 import { ChevronRightIcon } from '@/assets/icons';
+import { Table, TableColumnsDefinition } from '@/components/Table';
 import type { Notice } from '@/routes/teams/$teamId/notices/-temp-server-types';
 
 import * as styles from './NoticeTable.css';
 
 interface NoticeTableProps {
   notices: Notice[];
+  onNoticeClick?: (notice: Notice) => void;
+  headerActions?: ReactNode;
+  className?: string;
 }
 
-export const NoticeTable = ({ notices }: NoticeTableProps) => {
-  return (
-    <div className={styles.tableWrapper}>
-      <div className={styles.tableContainer}>
-        <div className={styles.tableHeader}>
-          <div className={styles.headerRow}>
-            <div className={styles.titleHeader}>제목</div>
-            <div className={styles.headerGroup}>
-              <div className={styles.authorHeader}>작성자</div>
-              <div className={styles.dateHeader}>가입일</div>
-            </div>
+export const NoticeTable = ({
+  notices,
+  onNoticeClick,
+  headerActions,
+}: NoticeTableProps) => {
+  const columns = {
+    title: {
+      key: 'title',
+      title: '제목',
+      width: 600,
+      minWidth: 400,
+      bodyAlign: 'left',
+      render: (value, record) => (
+        <div className={styles.titleContainer}>
+          <div className={styles.titleRow}>
+            {record.isPinned && <div className={styles.pinIndicator} />}
+            <div className={styles.noticeTitle}>{value}</div>
           </div>
+          <div className={styles.noticeContent}>{record.content}</div>
         </div>
-        {notices.map(notice => (
-          <div key={notice.id} className={styles.tableRow}>
-            <div className={styles.rowContent}>
-              <div className={styles.contentSection}>
-                <div className={styles.contentContainer}>
-                  <div className={styles.titleRow}>
-                    <div className={styles.pinIndicator} />
-                    <div className={styles.noticeTitle}>{notice.title}</div>
-                  </div>
-                  <div className={styles.noticeContent}>{notice.content}</div>
-                </div>
-              </div>
-              <div className={styles.authorCell}>{notice.author}</div>
-              <div className={styles.dateCell}>{notice.createdAt}</div>
-              <ChevronRightIcon className={styles.chevronIcon} />
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+      ),
+    },
+    author: {
+      key: 'author',
+      title: '작성자',
+      width: 120,
+      minWidth: 100,
+    },
+    createdAt: {
+      key: 'createdAt',
+      title: '작성일',
+      width: 120,
+      minWidth: 100,
+    },
+    id: {
+      key: 'id', // FIXME: 데이터가 없는 열도 구성할 수 있어야
+      title: '',
+      width: 60,
+      render: () => <ChevronRightIcon className={styles.actionIcon} />,
+    },
+  } satisfies TableColumnsDefinition<Notice>;
+
+  const handleRowClick = (notice: Notice) => {
+    onNoticeClick?.(notice);
+  };
+
+  return (
+    <Table
+      columns={columns}
+      data={notices}
+      headerHeight={60}
+      rowHeight={80}
+      onRowClick={handleRowClick}
+      headerActions={headerActions}
+      className={styles.tableOverride}
+    />
   );
 };

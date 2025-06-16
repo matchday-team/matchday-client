@@ -5,6 +5,7 @@ import { usePageTitle } from '@/hooks';
 import { NoticeSearchFilter, NoticeTable } from './-components';
 import { mockNotices } from './-mock-data';
 import * as styles from './-route.css';
+import type { Notice } from './-temp-server-types';
 
 export const Route = createFileRoute('/teams/$teamId/notices')({
   component: TeamNoticesPage,
@@ -13,15 +14,19 @@ export const Route = createFileRoute('/teams/$teamId/notices')({
 function TeamNoticesPage() {
   usePageTitle('공지사항');
 
+  const handleNoticeClick = (notice: Notice) => {
+    console.log('공지사항 클릭:', notice);
+  };
+
   return (
     <div className={styles.rootContainer}>
-      <div className={styles.pageContainer}>
-        <div className={styles.tableContainer}>
-          <NoticeSearchFilter />
-          <NoticeTable notices={mockNotices} />
-        </div>
+      <div className={styles.tableContainer}>
+        <NoticeTable
+          notices={mockNotices}
+          onNoticeClick={handleNoticeClick}
+          headerActions={<NoticeSearchFilter />}
+        />
       </div>
-      <div className={styles.scrollbar} />
     </div>
   );
 }

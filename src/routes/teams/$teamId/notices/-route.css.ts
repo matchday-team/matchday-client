@@ -6,32 +6,16 @@ export const rootContainer = style([
   commonPageRoot,
   {
     display: 'flex',
-    backgroundColor: '#F2F3F7',
-    overflow: 'hidden',
+    flexDirection: 'column',
+    gap: 20,
+    paddingTop: 60,
+    paddingBottom: 60,
+    width: 1336,
   },
 ]);
 
-export const pageContainer = style({
-  flexBasis: '0',
-  flexGrow: 1,
-  flexShrink: 0,
-  width: 'fit-content',
-});
-
 export const tableContainer = style({
   display: 'flex',
-  flexWrap: 'wrap',
-  marginTop: 59,
-  marginRight: 22,
-  marginLeft: 21,
-});
-
-export const scrollbar = style({
-  display: 'flex',
-  flexShrink: 0,
-  marginTop: 155,
-  borderRadius: 100,
-  backgroundColor: '#E5E5EC',
-  width: 4,
-  height: 195,
+  flexDirection: 'column',
+  gap: 20,
 });
