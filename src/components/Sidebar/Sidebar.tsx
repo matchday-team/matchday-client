@@ -36,7 +36,7 @@ export function Sidebar({ isOpen, toggle }: SidebarProps) {
 
   const navItems = [
     {
-      to: '/',
+      to: `/teams/${user?.teamId}`,
       icon: <HomeIcon className={styles.icon} />,
       label: '팀 프로필',
     },
