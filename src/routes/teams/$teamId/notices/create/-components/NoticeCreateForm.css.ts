@@ -24,10 +24,9 @@ export const titleRow = style({
 });
 
 export const titleInput = style({
-  outline: 'none',
+  flex: 1,
   border: `1px solid ${lightThemeVars.color.gray[200]}`,
   borderRadius: 8,
-  cursor: 'text',
   padding: '12px 16px',
   fontSize: 16,
   fontWeight: 500,
@@ -39,6 +38,7 @@ export const titleInput = style({
 });
 
 export const importantCheckbox = style({
+  flexBasis: 50,
   flexShrink: 0,
   cursor: 'pointer',
 });
@@ -55,7 +55,6 @@ export const actionSection = style({
 });
 
 export const submitButton = style({
-  border: 'none',
   borderRadius: 8,
   backgroundColor: lightThemeVars.color.primary[700],
   cursor: 'pointer',

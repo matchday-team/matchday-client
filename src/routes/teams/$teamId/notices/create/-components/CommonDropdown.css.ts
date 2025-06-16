@@ -6,9 +6,6 @@ export const dropdownItem = style({
   display: 'flex',
   alignItems: 'center',
   gap: 16,
-  border: 'none',
-  backgroundColor: 'transparent',
-  cursor: 'pointer',
   padding: '8px 12px',
   width: '100%',
   textAlign: 'left',
@@ -18,9 +15,7 @@ export const dropdownItem = style({
   ':hover': {
     backgroundColor: '#f6f8fa',
   },
-
   ':focus': {
-    outline: 'none',
     backgroundColor: '#f6f8fa',
   },
 });

@@ -34,7 +34,6 @@ export const textarea = style({
   resize: 'none',
   lineHeight: 1.5,
   ':focus': {
-    outline: 'none',
     boxShadow: 'inset 0 0 0 1px rgba(0, 0, 0, 0.1)', // NOTE: 디자인에 없지만 임시로 표시
   },
   '::placeholder': {

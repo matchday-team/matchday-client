@@ -28,10 +28,8 @@ export const hexInput = style({
 });
 
 export const hexInputField = style({
-  outline: 'none',
   border: `1px solid ${lightThemeVars.color.gray[200]}`,
   borderRadius: 4,
-  cursor: 'text',
   padding: '4px 8px',
   fontSize: 14,
 
@@ -73,8 +71,6 @@ export const customColorWrapper = style({
 });
 
 export const customColorInput = style({
-  outline: 'none',
-  border: 'none',
   borderRadius: 4,
   cursor: 'pointer',
   width: 40,

@@ -16,7 +16,6 @@ export const sizeButton = style({
   alignItems: 'center',
   justifyContent: 'center',
   transition: 'background-color 0.2s ease',
-  border: 'none',
   backgroundColor: 'transparent',
   cursor: 'pointer',
   width: 28,
@@ -41,16 +40,14 @@ export const sizeButton = style({
 });
 
 export const sizeInput = style({
-  outline: 'none',
   border: 'none',
   backgroundColor: 'transparent',
-  cursor: 'text',
   width: 50,
   height: 28,
   textAlign: 'center',
   fontSize: 14,
 
-  // Remove number input spinners
+  // NOTE: input type=number의 기본 ^,v 버튼 제거
   selectors: {
     '&::-webkit-outer-spin-button': {
       margin: 0,

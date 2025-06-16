@@ -13,7 +13,6 @@ export const dropdownButton = style({
   justifyContent: 'space-between',
   gap: '8px',
   transition: 'all 0.2s ease',
-  outline: 'none',
   border: '1px solid #e0e0e0',
   borderRadius: '6px',
   backgroundColor: lightThemeVars.color.white.main,

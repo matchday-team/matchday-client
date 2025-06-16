@@ -50,7 +50,6 @@ export const navItem = recipe({
         backgroundColor: lightThemeVars.color.white.hover,
       },
       '&:focus-visible': {
-        outline: 'none',
         boxShadow: `0 0 0 2px ${lightThemeVars.color.primary[300]}`,
         backgroundColor: lightThemeVars.color.white.hover,
       },

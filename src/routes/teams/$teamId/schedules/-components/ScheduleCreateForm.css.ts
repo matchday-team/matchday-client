@@ -46,7 +46,6 @@ export const cancelButton = style({
   display: 'flex',
   alignItems: 'center',
   gap: 8,
-  border: 'none',
   borderRadius: 8,
   backgroundColor: 'transparent',
   cursor: 'pointer',
@@ -87,7 +86,6 @@ export const field = style({
 
 export const textarea = style({
   boxSizing: 'border-box',
-  outline: 'none',
   border: `1px solid ${lightThemeVars.color.primary[100]}`,
   borderRadius: 6,
   backgroundColor: lightThemeVars.color.white.hover,
@@ -110,7 +108,6 @@ export const submitButton = style({
   alignItems: 'center',
   justifyContent: 'center',
   gap: 8,
-  border: 'none',
   borderRadius: 8,
   boxShadow: '4px 4px 8px 0px rgba(0,0,0,0.05)',
   backgroundColor: lightThemeVars.color.primary[700],

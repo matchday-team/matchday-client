@@ -74,7 +74,6 @@ export const colorInput = style({
   top: 0,
   left: 0,
   opacity: 0,
-  outline: 'none',
   border: 'none',
   cursor: 'pointer',
   width: '100%',

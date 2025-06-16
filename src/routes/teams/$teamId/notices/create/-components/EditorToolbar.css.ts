@@ -17,7 +17,6 @@ export const toolbarItem = style({
   alignItems: 'center',
   justifyContent: 'center',
   transition: 'all 0.2s ease',
-  outline: 'none',
   border: '1px solid transparent',
   borderRadius: 4,
   backgroundColor: 'transparent',
