@@ -23,5 +23,8 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
           exitZeroOnChanges: true
+          # 관련 코드 변경 사항이 없는 스토리에 대해서는 새 스냅샷을 캡처하지 않음 (TurboSnap: 미변경 스토리에 대해서는 20% 크레딧만 소모)
+          # see: https://www.chromatic.com/docs/billing/#snapshots-with-turbosnap-enabled
+          onlyChanged: true
         env:
           STORYBOOK_API_BASE_URL: ${{ vars.STORYBOOK_API_BASE_URL }}
